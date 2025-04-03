@@ -35,7 +35,6 @@
       to { opacity: 1; }
     }
 
-    /* Centered logo */
     .logo-center {
       text-align: center;
     }
@@ -43,7 +42,6 @@
     .logo-center img:hover {
       transform: rotate(10deg) scale(1.05);
     }
-    
 
     .logo-center img {
       max-width: 240px;
@@ -51,29 +49,15 @@
       cursor: pointer;
     }
 
-
-    /* Top-right fixed links */
+    /* Top-right grid icon only */
     .top-links {
       position: absolute;
       top: 1.2rem;
       right: 1rem;
       display: flex;
-      gap: 1.2rem;
       align-items: center;
-      font-size: 0.95rem;
     }
 
-    .top-links a {
-      text-decoration: none;
-      color: #007acc;
-      font-weight: 500;
-    }
-
-    .top-links a:hover {
-      text-decoration: underline;
-    }
-
-    /* Grid icon */
     .menu-icon {
       width: 32px;
       height: 32px;
@@ -90,7 +74,6 @@
       border-radius: 1px;
     }
 
-    /* Grid menu popup */
     .app-grid {
       position: absolute;
       top: 3.5rem;
@@ -138,10 +121,8 @@
 
 <body>
 
-  <!-- Top right menu -->
+  <!-- Top-right: only grid icon -->
   <div class="top-links">
-    <a href="donorcase/test5/app.html">DonorCase</a>
-    <a href="docs.html">Docs</a>
     <div class="menu-icon" id="gridToggle">
       <div></div><div></div><div></div>
       <div></div><div></div><div></div>
@@ -149,7 +130,7 @@
     </div>
   </div>
 
-  <!-- App grid -->
+  <!-- App grid: includes DonorCase and Docs -->
   <div class="app-grid" id="gridMenu">
     <a href="mission.html">
       <div class="icon-box">M</div>
@@ -183,7 +164,6 @@
       <img src="assets/images/ukubona.png" alt="Ukubona Logo" />
     </a>
   </div>
-
 
   <script>
     const toggle = document.getElementById('gridToggle');
