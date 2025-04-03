@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ukubona</title>
 
-  <!-- Favicon -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <!-- Optional Favicon -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
-  <!-- Elegant Header Font -->
+  <!-- Classy Header Font -->
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
 
   <style>
+    /* Fade-in animation */
     body {
       opacity: 0;
       animation: fadeIn 1s ease-in-out forwards;
@@ -35,6 +36,7 @@
       padding: 2rem 1rem 1rem;
       text-align: center;
       border-bottom: 1px solid #ddd;
+      position: relative;
     }
 
     .logo-container {
@@ -72,23 +74,6 @@
       border-radius: 1px;
     }
 
-    nav {
-      text-align: center;
-      margin-top: 1rem;
-      font-size: 0.95rem;
-    }
-
-    nav a {
-      color: #007acc;
-      margin: 0 0.6rem;
-      text-decoration: none;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-      text-shadow: 0 0 3px rgba(0,122,204,0.15);
-    }
-
     main {
       max-width: 800px;
       margin: 2rem auto;
@@ -107,6 +92,16 @@
 
     section {
       margin-bottom: 2.5rem;
+    }
+
+    a {
+      color: #007acc;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      text-shadow: 0 0 3px rgba(0,122,204,0.15);
     }
 
     mark {
@@ -145,13 +140,6 @@
       <img src="assets/images/ukubona.png" alt="Ukubona Logo" />
     </div>
     <p class="tagline">Data-driven decision support in public health and clinical care</p>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="mission.html">Mission</a>
-      <a href="models.html">Models</a>
-      <a href="collaborators.html">Collaborators</a>
-      <a href="contact.html">Contact</a>
-    </nav>
   </header>
 
   <main>
