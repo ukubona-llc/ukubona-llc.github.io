@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ukubona</title>
+
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      background: #fff;
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      opacity: 0;
+      animation: fadeIn 0.8s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .logo-center {
+      text-align: center;
+    }
+
+    .logo-center img:hover {
+      transform: rotate(10deg) scale(1.05);
+    }
+
+    .logo-center img {
+      max-width: 240px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    /* Top-right grid icon only */
+    .top-links {
+      position: absolute;
+      top: 1.2rem;
+      right: 1rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .menu-icon {
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .menu-icon div {
+      background-color: #444;
+      width: 8px;
+      height: 8px;
+      border-radius: 1px;
+    }
+
+    .app-grid {
+      position: absolute;
+      top: 3.5rem;
+      right: 1rem;
+      display: none;
+      grid-template-columns: repeat(3, 80px);
+      gap: 1rem;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      z-index: 999;
+    }
+
+    .app-grid a {
+      text-align: center;
+      text-decoration: none;
+      color: #333;
+      font-size: 0.8rem;
+      font-weight: 500;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .app-grid a:hover {
+      color: #007acc;
+    }
+
+    .app-grid .icon-box {
+      width: 40px;
+      height: 40px;
+      background-color: #f1f1f1;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Top-right: only grid icon -->
+  <div class="top-links">
+    <div class="menu-icon" id="gridToggle">
+      <div></div><div></div><div></div>
+      <div></div><div></div><div></div>
+      <div></div><div></div><div></div>
+    </div>
+  </div>
+
+  <!-- App grid: includes DonorCase and Docs -->
+  <div class="app-grid" id="gridMenu">
+    <a href="mission.html">
+      <div class="icon-box">M</div>
+      Mission
+    </a>
+    <a href="models.html">
+      <div class="icon-box">📊</div>
+      Models
+    </a>
+    <a href="collaborators.html">
+      <div class="icon-box">👥</div>
+      Team
+    </a>
+    <a href="contact.html">
+      <div class="icon-box">✉️</div>
+      Contact
+    </a>
+    <a href="donorcase/test5/app.html">
+      <div class="icon-box">🧮</div>
+      DonorCase
+    </a>
+    <a href="docs.html">
+      <div class="icon-box">📄</div>
+      Docs
+    </a>
+  </div>
+
+  <!-- Centered logo -->
+  <div class="logo-center">
+    <a href="index.html">
+      <img src="assets/images/ukubona.png" alt="Ukubona Logo" />
+    </a>
+  </div>
+
+  <script>
+    const toggle = document.getElementById('gridToggle');
+    const menu = document.getElementById('gridMenu');
+
+    toggle.addEventListener('click', () => {
+      const isOpen = menu.style.display === 'grid';
+      menu.style.display = isOpen ? 'none' : 'grid';
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+        menu.style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>

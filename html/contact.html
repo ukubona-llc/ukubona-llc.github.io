@@ -6,7 +6,16 @@
   <title>Ukubona</title>
 
   <!-- Optional Favicon -->
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+ <!-- Fallback favicon (used if browser doesn't support media queries) -->
+<link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon" />
+<!-- Favicon for light mode -->
+<link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon" media="(prefers-color-scheme: light)" />
+<!-- Favicon for dark mode -->
+<link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" type="image/x-icon" media="(prefers-color-scheme: dark)" />
+  <!-- Preload Logo Assets -->
+  <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-light.png" as="image" />
+  <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-dark.png" as="image" />
+  <!-- Fonts -->
 
   <!-- Classy Header Font -->
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
@@ -137,7 +146,7 @@
 
   <header>
     <div class="logo-container">
-      <img src="assets/images/ukubona.png" alt="Ukubona Logo" />
+      <img src="https://abikesa.github.io/logos/assets/ukubona-light.png" alt="Ukubona Logo" />
     </div>
     <p class="tagline">Data-driven decision support in public health and clinical care</p>
   </header>
