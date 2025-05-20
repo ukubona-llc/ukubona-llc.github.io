@@ -5,23 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ukubona</title>
 
-  <!-- Optional Favicon -->
- <!-- Fallback favicon (used if browser doesn't support media queries) -->
-<link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon" />
-<!-- Favicon for light mode -->
-<link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon" media="(prefers-color-scheme: light)" />
-<!-- Favicon for dark mode -->
-<link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" type="image/x-icon" media="(prefers-color-scheme: dark)" />
-  <!-- Preload Logo Assets -->
+  <!-- Favicon -->
+  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon" />
+  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon" media="(prefers-color-scheme: light)" />
+  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" type="image/x-icon" media="(prefers-color-scheme: dark)" />
+
+  <!-- Preload Logos -->
   <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-light.png" as="image" />
   <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-dark.png" as="image" />
-  <!-- Fonts -->
 
-  <!-- Classy Header Font -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
 
   <style>
-    /* Fade-in animation */
     body {
       opacity: 0;
       animation: fadeIn 1s ease-in-out forwards;
@@ -34,9 +30,27 @@
     }
 
     @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
+      to { opacity: 1; }
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    #logo {
+      animation: spin 60s linear infinite;
+      opacity: 0;
+      transition: opacity 0.4s ease-in;
+      transform-origin: center center;
+    }
+
+    body.loaded #logo {
+      opacity: 1;
+    }
+
+    html[data-theme='light'] #logo {
+      animation: spin 60s linear infinite;
     }
 
     header {
@@ -58,13 +72,7 @@
     .logo-container img {
       max-height: 120px;
       background: transparent;
-      padding: 0;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-      transition: transform 0.3s ease;
-    }
-
-    .logo-container img:hover {
-      transform: rotate(-12deg);
     }
 
     .tagline {
@@ -139,6 +147,12 @@
       border-top: 1px solid #eee;
       font-style: italic;
     }
+
+    .top-right {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
   </style>
 </head>
 
@@ -146,9 +160,17 @@
 
   <header>
     <div class="logo-container">
-      <img src="https://abikesa.github.io/logos/assets/ukubona-light.png" alt="Ukubona Logo" />
+      <img
+        src="https://abikesa.github.io/logos/assets/ukubona-dark.png"
+        alt="Ukubona Logo"
+        id="logo"
+        loading="eager"
+      />
     </div>
     <p class="tagline">Data-driven decision support in public health and clinical care</p>
+    <div class="top-right">
+      <button id="toggle-theme">🌞 / 🌙</button>
+    </div>
   </header>
 
   <main>
@@ -195,5 +217,33 @@
     &copy; 2025 Ukubona LLC. All rights reserved.
   </footer>
 
+  <!-- Moved script to bottom to avoid null DOM refs -->
+  <script>
+    const html = document.documentElement;
+    const logo = document.getElementById('logo');
+    const toggleBtn = document.getElementById('toggle-theme');
+    const LIGHT_LOGO = 'https://abikesa.github.io/logos/assets/ukubona-light.png';
+    const DARK_LOGO  = 'https://abikesa.github.io/logos/assets/ukubona-dark.png';
+
+    function setTheme(theme) {
+      html.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      logo.src = theme === 'dark' ? DARK_LOGO : LIGHT_LOGO;
+      toggleBtn.textContent = theme === 'dark' ? '🌙' : '🌞';
+    }
+
+    const storedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(storedTheme);
+
+    toggleBtn.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      setTheme(next);
+    });
+
+    window.addEventListener('load', () => {
+      document.body.classList.add('loaded');
+    });
+  </script>
 </body>
 </html>
