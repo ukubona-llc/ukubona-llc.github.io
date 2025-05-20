@@ -42,6 +42,7 @@
       padding: 0;
       font-family: 'Inter', system-ui, sans-serif;
       transition: background-color 0.3s ease;
+      overflow-x: hidden;
     }
 
     body {
@@ -54,17 +55,14 @@
     .container {
       width: 100%;
       max-width: 960px;
-      padding: 2rem 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      padding: 1.5rem 1rem;
     }
 
     .top-right {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      z-index: 999;
+      position: fixed;
+      top: 0.75rem;
+      right: 0.75rem;
+      z-index: 1000;
     }
 
     #toggle-theme {
@@ -80,7 +78,8 @@
     }
 
     #logo {
-      width: 160px;
+      max-width: 100%;
+      width: min(160px, 40vw);
       height: auto;
       animation: spin 60s linear infinite;
       opacity: 0;
@@ -115,13 +114,17 @@
 
     .app-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
       gap: 1rem;
-      padding: 1rem;
+      padding: 1rem 0;
       width: 100%;
       max-width: 720px;
-      justify-items: center;
+      place-items: center;
+      min-width: 0;
+      margin: 0 auto;
+      text-align: center;
     }
+    
 
     .app-grid a {
       text-decoration: none;
@@ -132,12 +135,17 @@
       font-weight: 600;
       display: flex;
       flex-direction: column;
+      justify-content: center;
       align-items: center;
       border: 1px solid transparent;
       transition: transform 0.2s, background-color 0.2s;
       opacity: 0;
       animation: fadeInTile 0.5s ease forwards;
+      width: auto;
+      max-width: 100%;
     }
+    
+    
 
     .icon-box {
       font-size: 1.5rem;
@@ -235,6 +243,8 @@
       { name: 'Models', url: './html/models.html', icon: '📊' },
       { name: 'About', url: './html/collaborators.html', icon: '👥' },
       { name: 'Contact', url: './html/contact.html', icon: '✉️' },
+      { name: 'Docs', url: './html/contact.html', icon: '🧾' },
+
     ];
 
     const menu = document.getElementById('gridMenu');
