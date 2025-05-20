@@ -11,6 +11,7 @@
   <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-dark.png" as="image" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
+    
     :root {
       --bg-light: #ffffff;
       --bg-dark: #000000;
@@ -41,8 +42,8 @@
     @keyframes fadeIn { to { opacity: 1; } }
 
     .logo-center {
-      width: 320px;
-      height: 320px;
+      width: min(60vw, 560px);
+      height: min(60vw, 560px);
       cursor: pointer;
       z-index: 2;
       transition: all 0.8s ease;
@@ -122,7 +123,7 @@
 
     .app-grid {
       position: absolute;
-      top: 12rem; /* or try 14rem for more spaciousness */
+      top: calc(20vh + 80px);
       left: 50%;
       transform: translateX(-50%);
       display: none;
