@@ -17,6 +17,40 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
+    .app-grid a {
+      border: 1px solid transparent;
+    }
+    
+    html[data-theme='dark'] .app-grid a {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    html[data-theme='light'] .app-grid a {
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    
+    html[data-theme='light'] .app-grid a {
+      background-color: rgba(0, 0, 0, 0.03);
+    }
+    
+    html[data-theme='light'] .app-grid a:hover {
+      background-color: rgba(0, 0, 0, 0.07);
+    }
+    
+    html[data-theme='dark'] .app-grid a {
+      background-color: rgba(255, 255, 255, 0.05);
+      color: #eee;
+    }
+    
+    html[data-theme='dark'] .app-grid a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      transform: scale(1.03);
+    }
+    
+    html[data-theme='dark'] .icon-box {
+      color: #fff;
+    }
+    
     .logo-center img {
       background-color: transparent;
     }
@@ -276,7 +310,7 @@
     const links = [
       { name: 'Mission', url: './html/mission.html', icon: 'M' },
       { name: 'Models', url: './html/models.html', icon: '📊' },
-      { name: 'Team', url: './html/contact.html', icon: '👥' },
+      { name: 'About', url: './html/landing.html', icon: '👥' },
       { name: 'Contact', url: './html/contact.html', icon: '✉️' },
       { name: 'Donor Case', url: '../..', icon: '🧮' },
       { name: 'Docs', url: './html/collaborators.html', icon: '📄' },

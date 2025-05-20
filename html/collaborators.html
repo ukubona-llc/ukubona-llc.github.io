@@ -3,326 +3,106 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ukubona</title>
-
-  <!-- Favicon -->
-  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon" />
-  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon" media="(prefers-color-scheme: light)" />
-  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" type="image/x-icon" media="(prefers-color-scheme: dark)" />
-
-  <!-- Preload Logos -->
-  <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-light.png" as="image" />
-  <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-dark.png" as="image" />
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
-
+  <title>Team – Ukubona</title>
+  <link rel="stylesheet" href="../assets/main.css" />
   <style>
     body {
-      opacity: 0;
-      animation: fadeIn 1s ease-in-out forwards;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      font-family: Inter, sans-serif;
       margin: 0;
       padding: 0;
-      color: #111;
-      background-color: #ffffff;
+      background-color: var(--bg, #ffffff);
+      color: var(--fg, #111111);
       line-height: 1.6;
     }
 
-    .logo-container img {
-      max-height: 120px;
-      background: transparent;
-      box-shadow: none; /* remove the square illusion */
-      border-radius: 50%; /* circular cutout breaks the square silhouette */
-    }
-    
-    .logo-container {
-      animation: counterspin 120s linear infinite;
-    }
-    
-    @keyframes counterspin {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(-360deg); }
-    }
-
-    #logo::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-image: url('...');
-      background-size: contain;
-      background-repeat: no-repeat;
-      animation: spin 60s linear infinite;
-    }
-    
-    
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-
-    #logo {
-      animation: spin 60s linear infinite;
-      opacity: 0;
-      transition: opacity 0.4s ease-in;
-      transform-origin: center center;
-    }
-
-    body.loaded #logo {
-      opacity: 1;
-    }
-
-    html[data-theme='light'] #logo {
-      animation: spin 60s linear infinite;
-    }
-
-    header {
-      background-color: #ffffff;
-      color: #111;
-      padding: 2rem 1rem 1rem;
-      text-align: center;
-      border-bottom: 1px solid #ddd;
-      position: relative;
-    }
-
-    .logo-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding-bottom: 0.5rem;
-    }
-
-    .logo-container img {
-      max-height: 120px;
-      background: transparent;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-    }
-
-    .tagline {
-      font-size: 1rem;
-      color: #555;
-      margin-top: 0.2rem;
-    }
-
-    header::after {
-      content: "";
-      display: block;
-      margin: 1rem auto 0;
-      width: 40px;
-      height: 2px;
-      background: #ccc;
-      border-radius: 1px;
-    }
-
-    main {
-      max-width: 800px;
-      margin: 2rem auto;
+    .container {
+      max-width: 900px;
+      margin: 4rem auto;
       padding: 0 1rem;
     }
 
-    h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 500;
-      font-size: 1.6rem;
-      border-bottom: 1px solid #e0e0e0;
-      padding-bottom: 0.5rem;
-      margin-bottom: 1rem;
-      color: #111;
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
     }
 
-    section {
-      margin-bottom: 2.5rem;
+    .subtitle {
+      color: #666;
+      margin-bottom: 2rem;
     }
 
-    a {
-      color: #007acc;
-      text-decoration: none;
+    .person {
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 1.5rem;
     }
 
-    a:hover {
-      text-decoration: underline;
-      text-shadow: 0 0 3px rgba(0,122,204,0.15);
+    .person:last-child {
+      border-bottom: none;
     }
 
-    mark {
-      background-color: #e6f7ff;
-      padding: 0.1em 0.3em;
-      border-radius: 2px;
+    .person h2 {
+      font-size: 1.25rem;
+      margin: 0;
     }
 
-    .footer-quote {
-      text-align: center;
+    .person p {
+      margin: 0.3rem 0 0;
+    }
+
+    .placeholder {
       font-style: italic;
-      color: #777;
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
+      color: #aaa;
     }
 
-    footer {
-      background-color: #ffffff;
-      color: #999;
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.85rem;
-      border-top: 1px solid #eee;
-      font-style: italic;
-    }
-
-    .top-right {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-    }
     html[data-theme='dark'] {
-      --bg: #111;
+      --bg: #000;
       --fg: #eee;
-      --accent: #ccc;
-      --mark: #223344;
-      --border: #444;
     }
-    
-    html[data-theme='light'] {
-      --bg: #ffffff;
-      --fg: #111;
-      --accent: #555;
-      --mark: #e6f7ff;
-      --border: #ddd;
-    }
-    
-    body, header, footer {
-      background-color: var(--bg);
-      color: var(--fg);
-    }
-    
-    header::after {
-      background: var(--border);
-    }
-    
-    h2 {
-      color: var(--fg);
-      border-bottom: 1px solid var(--border);
-    }
-    
-    a {
-      color: #66ccff;
-    }
-    
-    a:hover {
-      text-shadow: 0 0 3px rgba(102,204,255,0.15);
-    }
-    
-    .tagline {
-      color: var(--accent);
-    }
-    
-    mark {
-      background-color: var(--mark);
-    }
-    
-    footer {
-      border-top: 1px solid var(--border);
-      color: var(--accent);
-    }
-    
   </style>
 </head>
-
 <body>
+  <div class="container">
+    <h1>Meet the Team</h1>
+    <p class="subtitle">We build epistemic tools for precision medicine, public health, and metabolic intelligence.</p>
 
-  <header>
-    <div class="logo-container">
-      <img
-        src="https://abikesa.github.io/logos/assets/ukubona-dark.png"
-        alt="Ukubona Logo"
-        id="logo"
-        loading="eager"
-      />
+    <div class="person">
+      <h2>Abimereki Muzaale, MD, MPH</h2>
+      <p>Founder and CEO</p>
+      <p>Former NIH-funded clinical investigator. Leads the integration of symbolic reasoning, risk science, and AI interfaces in healthcare. Editor-in-chief of the Ukubona grammar.</p>
     </div>
-    <p class="tagline">Data-driven decision support in public health and clinical care</p>
-    <div class="top-right">
-      <button id="toggle-theme">🌞 / 🌙</button>
+
+    <div class="person">
+      <h2>Vincent Jin, MS</h2>
+      <p>Analyst, Data Visualization & Strategy</p>
+      <p>Machine learning analyst and quantitative systems builder. Developed Ukubona's live survival modeling platform and works on interface design for personalized risk visualization.</p>
     </div>
-  </header>
 
-  <main>
-    <section>
-      <h2>Mission</h2>
-      <p><mark>Ukubona</mark> builds decision-support tools that translate statistical models into intuitive visual insights for patients, clinicians, researchers, and students. Our platform integrates curated datasets, multivariable regression outputs, and real-time visualization tools to support informed, personalized choices.</p>
-    </section>
+    <div class="person">
+      <h2>Jonathan Gasaatura</h2>
+      <p>Intern, Orioles Analytics & Visual Systems</p>
+      <p>High school researcher working on real-time sports analytics pipelines and storytelling dashboards. Leads Ukubona’s experimental edge in narrative sabermetrics.</p>
+    </div>
 
-    <section>
-      <h2>Core Features</h2>
-      <ul>
-        <li><strong>Modular Platform:</strong> Ingests CSV files with beta coefficients and variance-covariance matrices, outputs interactive Kaplan-Meier–style survival curves and 95% confidence intervals.</li>
-        <li><strong>Clinical Use Case:</strong> Personalized risk visualization for living kidney donors, with a focus on older adults.</li>
-        <li><strong>Extensible Architecture:</strong> Dataset-agnostic design enables rapid deployment of new risk models across healthcare, research domains, and educational domains.</li>
-      </ul>
-    </section>
+    <div class="person">
+      <h2>Paul Luswata, MS</h2>
+      <p>Intern, Symbolic Systems (Coming Soon)</p>
+      <p class="placeholder">Paul is currently designing his own epistemic framework and will join the public site rollout with his first microproduct by late June. 🔄</p>
+    </div>
+    <div class="person">
+      <h2>Fawaz S. Al Ammary, MD, PhD</h2>
+      <p>Clinical Collaborator – Living Donor Transplantation</p>
+      <p>Dr. Al Ammary is a board-certified nephrologist and Associate Professor at UC Irvine School of Medicine. A former Medical Director of Living Donor Kidney Transplantation at Johns Hopkins, he brings deep clinical and policy expertise to Ukubona's work on donor risk stratification, consent modeling, and post-donation outcomes. His academic work bridges clinical nephrology, transplant epidemiology, and the ethical use of predictive models in patient care.</p>
+    </div>
+    
 
-    <section>
-      <h2>Technology Stack</h2>
-      <ul>
-        <li><strong>Back-End:</strong> Python-based statistical engine using Cox regression</li>
-        <li><strong>Front-End:</strong> JavaScript and HTML5 for interactive graphing</li>
-        <li><strong>Hosting:</strong> GitHub Pages with embedded dynamic content</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>About Ukubona</h2>
-      <p><mark>Ukubona</mark> is a data science and public health company focused on bridging the gap between population-level statistics and individual-level decisions. We prioritize <mark>transparency</mark>, <mark>interactivity</mark>, and <mark>collaboration</mark> in all our tools.</p>
-    </section>
-
-    <section>
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:ukubona.llc@gmail.com">ukubona.llc@gmail.com</a></p>
-      <p>GitHub: <a href="https://ukubona-llc.github.io">ukubona-llc.github.io</a></p>
-    </section>
-  </main>
-
-  <div class="footer-quote">
-    “To see is not only to look — it is to attend, to interpret, and to respond.”
+    <div class="footer-quote" style="margin-top: 4rem; font-style: italic; color: #777;">
+      “To see is not only to look — it is to attend, to interpret, and to respond.”
+    </div>
   </div>
-
-  <footer>
-    &copy; 2025 Ukubona LLC. All rights reserved.
-  </footer>
-
-  <!-- Moved script to bottom to avoid null DOM refs -->
-  <script>
-    const html = document.documentElement;
-    const logo = document.getElementById('logo');
-    const toggleBtn = document.getElementById('toggle-theme');
-    const LIGHT_LOGO = 'https://abikesa.github.io/logos/assets/ukubona-light.png';
-    const DARK_LOGO  = 'https://abikesa.github.io/logos/assets/ukubona-dark.png';
-
-    function setTheme(theme) {
-      html.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
-      logo.src = theme === 'dark' ? DARK_LOGO : LIGHT_LOGO;
-      toggleBtn.textContent = theme === 'dark' ? '🌙' : '🌞';
-    }
-
-    const storedTheme = localStorage.getItem('theme') || 'dark';
-    setTheme(storedTheme);
-
-    toggleBtn.addEventListener('click', () => {
-      const current = html.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      setTheme(next);
-    });
-
-    window.addEventListener('load', () => {
-      document.body.classList.add('loaded');
-    });
-  </script>
+  <div style="position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.85); color: #eee; font-size: 0.8rem; padding: 0.5rem 1rem; z-index: 9999; text-align: center;">
+    This site uses cookies to enhance functionality and is compliant with the California Consumer Privacy Act (CCPA). <a href="/html/privacy.html" style="color:#66ccff;">Learn more</a>.
+  </div>
+  
 </body>
 </html>

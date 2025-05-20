@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ukubona</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="preload" href="../logos/assets/ukubona-light.png" as="image" />
+  <link rel="preload" href="../logos/assets/ukubona-dark.png" as="image" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/main.css" />
+  <style>
+    :root {
+      --bg: #fff;
+      --fg: #111;
+      --accent: #007acc;
+    }
+
+    html[data-theme='dark'] {
+      --bg: #000;
+      --fg: #eee;
+      --accent: #66ccff;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: Inter, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    header, footer {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    #logo {
+      width: 240px;
+      height: auto;
+      animation: spin 60s linear infinite;
+      margin-bottom: 1rem;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .tagline {
+      font-size: 1rem;
+      color: var(--accent);
+      margin-bottom: 2rem;
+    }
+
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1rem;
+      width: 90%;
+      max-width: 900px;
+      margin-bottom: 2rem;
+    }
+
+    .app-grid a {
+      background: rgba(255,255,255,0.05);
+      color: var(--fg);
+      text-decoration: none;
+      padding: 1rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 600;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    html[data-theme='light'] .app-grid a {
+      background: rgba(0,0,0,0.03);
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .app-grid a:hover {
+      transform: scale(1.05);
+      background: rgba(255,255,255,0.1);
+    }
+
+    .top-right {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+
+    #toggle-theme {
+      background: transparent;
+      color: var(--fg);
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    footer {
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="top-right">
+    <button id="toggle-theme">🌞 / 🌙</button>
+  </div>
+
+  <header>
+    <img id="logo" src="../assets/logos/ukubona-dark.png" alt="Ukubona Logo" />
+    <p class="tagline">Epistemic interfaces for real-time decision-making</p>
+  </header>
+
+  <div class="app-grid">
+    <a href="./mission.html">Mission</a>
+    <a href="./models.html">Models</a>
+    <a href="./collaborators.html">Team</a>
+    <a href="./contact.html">Contact</a>
+    <a href="./index.html">Donor Case</a>
+    <a href="./collaborators.html#docs">Docs</a>
+  </div>
+
+  <footer>
+    &copy; 2025 Ukubona LLC · “To see is not only to look — it is to attend, to interpret, and to respond.”
+  </footer>
+
+  <script>
+    const html = document.documentElement;
+    const logo = document.getElementById('logo');
+    const toggleBtn = document.getElementById('toggle-theme');
+    const LIGHT_LOGO = '../assets/logos/ukubona-light.png';
+    const DARK_LOGO  = '../assets/logos/ukubona-dark.png';
+
+    function setTheme(theme) {
+      html.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      logo.src = theme === 'dark' ? DARK_LOGO : LIGHT_LOGO;
+      toggleBtn.textContent = theme === 'dark' ? '🌙' : '🌞';
+    }
+
+    const stored = localStorage.getItem('theme') || 'dark';
+    setTheme(stored);
+
+    toggleBtn.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      setTheme(next);
+    });
+  </script>
+</body>
+</html>
