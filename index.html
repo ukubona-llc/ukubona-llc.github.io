@@ -3,96 +3,72 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <title>Ukubona</title>
-
-  <!-- Favicon -->
   <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon" />
-  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon" media="(prefers-color-scheme: light)" />
-  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" type="image/x-icon" media="(prefers-color-scheme: dark)" />
-
-  <!-- Logo Preloads -->
+  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" media="(prefers-color-scheme: light)" />
+  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" media="(prefers-color-scheme: dark)" />
   <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-light.png" as="image" />
   <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-dark.png" as="image" />
-
-  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-
   <style>
     :root {
       --bg-light: #ffffff;
       --bg-dark: #000000;
     }
+    html[data-theme='light'] { background-color: var(--bg-light); }
+    html[data-theme='dark']  { background-color: var(--bg-dark); }
 
-    html[data-theme='light'] {
-      background-color: var(--bg-light);
-    }
-
-    html[data-theme='dark'] {
-      background-color: var(--bg-dark);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     html, body {
       margin: 0;
       padding: 0;
+      height: 100%;
+      width: 100%;
       font-family: 'Inter', system-ui, sans-serif;
-      transition: background-color 0.3s ease;
-      overflow-x: hidden;
+      overflow: hidden;
     }
 
     body {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      min-height: 100vh;
+      justify-content: center;
+      position: relative;
+      opacity: 0;
+      animation: fadeIn 1s ease-in-out forwards;
     }
 
-    .container {
-      width: 100%;
-      max-width: 960px;
-      padding: 1.5rem 1rem;
-    }
+    @keyframes fadeIn { to { opacity: 1; } }
 
-    .top-right {
-      position: fixed;
-      top: 0.75rem;
-      right: 0.75rem;
-      z-index: 1000;
-    }
-
-    #toggle-theme {
+    .logo-center {
+      width: 320px;
+      height: 320px;
       cursor: pointer;
-      background: transparent;
-      border: none;
-      font-size: 1.3rem;
-      color: inherit;
+      z-index: 2;
+      transition: all 0.8s ease;
     }
 
-    header {
-      text-align: center;
+    .logo-center.shrink {
+      position: absolute;
+      top: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140px;
+      height: 140px;
     }
 
     #logo {
-      max-width: 100%;
-      width: min(160px, 40vw);
-      height: auto;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transform-origin: center center;
       animation: spin 60s linear infinite;
-      opacity: 0;
-      transition: opacity 0.5s ease-in;
-    }
-
-    body.loaded #logo {
-      opacity: 1;
+      transition: opacity 0.6s ease, transform 0.8s ease;
     }
 
     @keyframes spin {
       from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+      to   { transform: rotate(360deg); }
     }
 
     #logo.light-mode-fix {
@@ -101,124 +77,150 @@
 
     @keyframes spin-light {
       from { transform: scale(1) rotate(0deg); }
-      to { transform: scale(1) rotate(360deg); }
+      to   { transform: scale(1) rotate(360deg); }
     }
 
-    .tagline {
-      font-size: 1.1rem;
-      margin: 1rem auto 2rem;
-      color: #888;
-      text-align: center;
-      max-width: 700px;
+    .top-left, .top-right {
+      position: absolute;
+      top: 1em;
+      z-index: 5;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .top-left  { left: 1em; }
+    .top-right { right: 1em; }
+
+    .menu-icon, #toggle-theme {
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      font-size: 1.5rem;
+    }
+
+    .menu-icon {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      width: 32px;
+      height: 32px;
+    }
+
+    .menu-icon div {
+      width: 8px;
+      height: 8px;
+      border-radius: 1px;
+    }
+
+    html[data-theme='light'] .menu-icon div {
+      background-color: #000;
+    }
+
+    html[data-theme='dark'] .menu-icon div {
+      background-color: #fff;
     }
 
     .app-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      position: absolute;
+      top: 12rem; /* or try 14rem for more spaciousness */
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
       gap: 1rem;
-      padding: 1rem 0;
-      width: 100%;
-      max-width: 720px;
-      place-items: center;
-      min-width: 0;
-      margin: 0 auto;
-      text-align: center;
+      background: rgba(255,255,255,0.95);
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      max-height: 80vh;
+      overflow-y: auto;
+      width: 90vw;
+      max-width: 960px;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.6s ease;
     }
-    
+
+    html[data-theme='dark'] .app-grid {
+      background: rgba(0,0,0,0.95);
+      color: #eee;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .app-grid.reveal {
+      display: grid;
+      opacity: 1;
+    }
 
     .app-grid a {
       text-decoration: none;
-      text-align: center;
-      padding: 1rem;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-weight: 600;
+      color: inherit;
+      font-size: 0.85rem;
+      font-weight: 500;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      border: 1px solid transparent;
-      transition: transform 0.2s, background-color 0.2s;
-      opacity: 0;
-      animation: fadeInTile 0.5s ease forwards;
-      width: auto;
-      max-width: 100%;
+      padding: 0.5rem;
+      border-radius: 6px;
+      transition: background-color 0.2s, transform 0.3s;
+      animation: fadeTile 0.6s ease forwards;
     }
-    
-    
 
     .icon-box {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
+      font-size: 1.4rem;
+      margin-bottom: 0.3rem;
     }
 
-    @keyframes fadeInTile {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes fadeTile {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     html[data-theme='light'] .app-grid a {
-      background-color: rgba(0, 0, 0, 0.03);
-      border: 1px solid rgba(0, 0, 0, 0.05);
-      color: #111;
-    }
-
-    html[data-theme='light'] .app-grid a:hover {
-      background-color: rgba(0, 0, 0, 0.07);
-      transform: scale(1.03);
+      background-color: rgba(0,0,0,0.03);
+      border: 1px solid rgba(0,0,0,0.05);
     }
 
     html[data-theme='dark'] .app-grid a {
-      background-color: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #eee;
+      background-color: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    html[data-theme='light'] .app-grid a:hover {
+      background-color: rgba(0,0,0,0.07);
     }
 
     html[data-theme='dark'] .app-grid a:hover {
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(255,255,255,0.1);
       transform: scale(1.03);
-    }
-
-    footer {
-      margin-top: 4rem;
-      text-align: center;
-      font-size: 0.85rem;
-      color: #777;
-      padding-bottom: 2rem;
     }
   </style>
 </head>
-
 <body>
-  <div class="top-right">
+  <div class="top-left" id="menuIcon">
+    <div class="menu-icon" role="button" aria-label="Open navigation menu">
+      <div></div><div></div><div></div>
+      <div></div><div></div><div></div>
+      <div></div><div></div><div></div>
+    </div>
+  </div>
+
+  <div class="top-right" id="themeToggleWrap">
     <button id="toggle-theme">🌞 / 🌙</button>
   </div>
 
-  <div class="container">
-    <header>
-      <img
-        src="https://abikesa.github.io/logos/assets/ukubona-dark.png"
-        alt="Ukubona Logo"
-        id="logo"
-        loading="eager"
-      />
-      <div class="tagline">Epistemic Interfaces for Real-Time Clinical and Public Health Decisions</div>
-    </header>
-
-    <main>
-      <div class="app-grid" id="gridMenu"></div>
-    </main>
-
-    <footer>
-      “To see is not only to look — it is to attend, to interpret, and to respond.”<br/>
-      &copy; 2025 Ukubona LLC
-    </footer>
+  <div class="logo-center" id="logoWrapper">
+    <img src="https://abikesa.github.io/logos/assets/ukubona-dark.png" alt="Ukubona Logo" id="logo" loading="eager" />
   </div>
+
+  <div class="app-grid" id="gridMenu"></div>
 
   <script>
     const html = document.documentElement;
     const toggleBtn = document.getElementById('toggle-theme');
     const logo = document.getElementById('logo');
+    const logoWrapper = document.getElementById('logoWrapper');
     const LIGHT_LOGO = 'https://abikesa.github.io/logos/assets/ukubona-light.png';
     const DARK_LOGO  = 'https://abikesa.github.io/logos/assets/ukubona-dark.png';
 
@@ -234,25 +236,23 @@
 
     toggleBtn.addEventListener('click', () => {
       const current = html.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      setTheme(next);
+      setTheme(current === 'dark' ? 'light' : 'dark');
     });
 
+    const menu = document.getElementById('gridMenu');
     const links = [
-      { name: 'Mission', url: './html/mission.html', icon: '📘' },
-      { name: 'Models', url: './html/models.html', icon: '📊' },
-      { name: 'About', url: './html/collaborators.html', icon: '👥' },
-      { name: 'Contact', url: './html/contact.html', icon: '✉️' },
-      { name: 'Docs', url: './html/contact.html', icon: '🧾' },
-
+    { name: 'Mission', url: './html/mission.html', icon: '📘' },
+    { name: 'Models', url: './html/models.html', icon: '📊' },
+    { name: 'About', url: './html/collaborators.html', icon: '👥' },
+    { name: 'Contact', url: './html/contact.html', icon: '✉️' },
+    { name: 'Docs', url: './html/contact.html', icon: '🧾' },
     ];
 
-    const menu = document.getElementById('gridMenu');
     links.forEach((link, i) => {
       const a = document.createElement('a');
       a.href = link.url;
       a.target = '_blank';
-      a.style.animationDelay = `${i * 0.03}s`;
+      a.style.animationDelay = `${i * 0.05}s`;
 
       const icon = document.createElement('div');
       icon.textContent = link.icon;
@@ -265,6 +265,14 @@
 
     window.addEventListener('load', () => {
       document.body.classList.add('loaded');
+    });
+
+    // 🔁 Ritual Reveal
+    logoWrapper.addEventListener('click', () => {
+      document.getElementById('gridMenu').classList.add('reveal');
+      logoWrapper.classList.add('shrink');
+      document.getElementById('menuIcon').style.opacity = 1;
+      document.getElementById('themeToggleWrap').style.opacity = 1;
     });
   </script>
 </body>
