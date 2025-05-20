@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Team – Ukubona</title>
-  <link rel="stylesheet" href="../assets/main.css" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
   <style>
     body {
       font-family: Inter, sans-serif;
@@ -28,26 +28,32 @@
 
     .subtitle {
       color: #666;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    section h2 {
+      font-size: 1.3rem;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.25rem;
+      margin-bottom: 1rem;
+      color: #333;
     }
 
     .person {
-      margin-bottom: 2rem;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 1.5rem;
+      margin-bottom: 1.75rem;
     }
 
-    .person:last-child {
-      border-bottom: none;
-    }
-
-    .person h2 {
-      font-size: 1.25rem;
-      margin: 0;
+    .person h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
     }
 
     .person p {
-      margin: 0.3rem 0 0;
+      margin: 0.2rem 0;
     }
 
     .placeholder {
@@ -59,50 +65,71 @@
       --bg: #000;
       --fg: #eee;
     }
+
+    footer {
+      text-align: center;
+      font-style: italic;
+      color: #777;
+      margin-top: 4rem;
+      font-size: 0.9rem;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Meet the Team</h1>
-    <p class="subtitle">We build epistemic tools for precision medicine, public health, and metabolic intelligence.</p>
+    <p class="subtitle">We are a hybrid of technologists, clinicians, and narrative thinkers building epistemic tools for personalized medicine and systems transformation.</p>
 
-    <div class="person">
-      <h2>Abimereki Muzaale, MD, MPH</h2>
-      <p>Founder and CEO</p>
-      <p>Former NIH-funded clinical investigator. Leads the integration of symbolic reasoning, risk science, and AI interfaces in healthcare. Editor-in-chief of the Ukubona grammar.</p>
-    </div>
+    <section id="leadership">
+      <h2>Leadership</h2>
+      <div class="person">
+        <h3>Abimereki Muzaale, MD, MPH</h3>
+        <p><strong>Founder and CEO</strong></p>
+        <p>Former NIH-funded clinical investigator. Leads the integration of symbolic reasoning, risk science, and AI interfaces in healthcare. Editor-in-chief of the Ukubona grammar.</p>
+      </div>
+    </section>
 
-    <div class="person">
-      <h2>Vincent Jin, MS</h2>
-      <p>Analyst, Data Visualization & Strategy</p>
-      <p>Machine learning analyst and quantitative systems builder. Developed Ukubona's live survival modeling platform and works on interface design for personalized risk visualization.</p>
-    </div>
+    <section id="staff">
+      <h2>Core Staff</h2>
+      <div class="person">
+        <h3>Vincent Jin, MS</h3>
+        <p><strong>Analyst – Data Visualization & Strategy</strong></p>
+        <p>Machine learning analyst and quantitative systems builder. Developed Ukubona's live survival modeling platform and works on interface design for personalized risk visualization.</p>
+      </div>
+    </section>
 
-    <div class="person">
-      <h2>Jonathan Gasaatura</h2>
-      <p>Intern, Orioles Analytics & Visual Systems</p>
-      <p>High school researcher working on real-time sports analytics pipelines and storytelling dashboards. Leads Ukubona’s experimental edge in narrative sabermetrics.</p>
-    </div>
+    <section id="interns">
+      <h2>Interns</h2>
+      <div class="person">
+        <h3>Jonathan Gasaatura</h3>
+        <p><strong>Intern – Orioles Analytics & Visual Systems</strong></p>
+        <p>High school researcher working on real-time sports analytics pipelines and storytelling dashboards. Leads Ukubona’s experimental edge in narrative sabermetrics.</p>
+      </div>
 
-    <div class="person">
-      <h2>Paul Luswata, MS</h2>
-      <p>Intern, Symbolic Systems (Coming Soon)</p>
-      <p class="placeholder">Paul is currently designing his own epistemic framework and will join the public site rollout with his first microproduct by late June. 🔄</p>
-    </div>
-    <div class="person">
-      <h2>Fawaz S. Al Ammary, MD, PhD</h2>
-      <p>Clinical Collaborator – Living Donor Transplantation</p>
-      <p>Dr. Al Ammary is a board-certified nephrologist and Associate Professor at UC Irvine School of Medicine. A former Medical Director of Living Donor Kidney Transplantation at Johns Hopkins, he brings deep clinical and policy expertise to Ukubona's work on donor risk stratification, consent modeling, and post-donation outcomes. His academic work bridges clinical nephrology, transplant epidemiology, and the ethical use of predictive models in patient care.</p>
-    </div>
-    
+      <div class="person">
+        <h3>Paul Luswata, MS</h3>
+        <p><strong>Intern – Symbolic Systems</strong></p>
+        <p class="placeholder">Paul is currently designing his own epistemic framework and will join the public site rollout with his first microproduct by late June. 🔄</p>
+      </div>
+    </section>
 
-    <div class="footer-quote" style="margin-top: 4rem; font-style: italic; color: #777;">
-      “To see is not only to look — it is to attend, to interpret, and to respond.”
-    </div>
+    <section id="collaborators">
+      <h2>Clinical Collaborators</h2>
+      <div class="person">
+        <h3>Fawaz S. Al Ammary, MD, PhD</h3>
+        <p><strong>Living Donor Transplantation</strong></p>
+        <p>Board-certified nephrologist and Associate Professor at UC Irvine School of Medicine. Former Medical Director of Living Donor Kidney Transplantation at Johns Hopkins. Collaborates with Ukubona on donor risk stratification, consent modeling, and predictive model ethics in transplant medicine.</p>
+      </div>
+    </section>
+
+    <footer>
+      “To see is not only to look — it is to attend, to interpret, and to respond.”<br />
+      &copy; 2025 Ukubona LLC
+    </footer>
   </div>
+
   <div style="position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.85); color: #eee; font-size: 0.8rem; padding: 0.5rem 1rem; z-index: 9999; text-align: center;">
     This site uses cookies to enhance functionality and is compliant with the California Consumer Privacy Act (CCPA). <a href="/html/privacy.html" style="color:#66ccff;">Learn more</a>.
   </div>
-  
 </body>
 </html>

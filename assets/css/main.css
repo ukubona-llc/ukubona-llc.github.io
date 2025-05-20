@@ -1,0 +1,108 @@
+:root {
+    --bg: #ffffff;
+    --fg: #111111;
+    --accent: #007acc;
+    --muted: #666666;
+  }
+  
+  html[data-theme='dark'] {
+    --bg: #000000;
+    --fg: #eeeeee;
+    --accent: #66ccff;
+    --muted: #999999;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.6;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--fg);
+  }
+  
+  h2 {
+    font-size: 1.3rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--fg);
+  }
+  
+  h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--fg);
+  }
+  
+  p {
+    margin-bottom: 1rem;
+  }
+  
+  a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  ul {
+    padding-left: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  li {
+    margin-bottom: 0.75rem;
+  }
+  
+  .container {
+    max-width: 900px;
+    margin: 4rem auto;
+    padding: 0 1.5rem;
+  }
+  
+  .subtitle {
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+  }
+  
+  footer {
+    text-align: center;
+    font-style: italic;
+    color: var(--muted);
+    margin-top: 4rem;
+    font-size: 0.9rem;
+  }
+  
+  blockquote {
+    font-style: italic;
+    color: var(--muted);
+    margin: 1.5rem 0;
+    padding-left: 1rem;
+    border-left: 2px solid #ccc;
+  }
+  
+  html[data-theme='dark'] blockquote {
+    border-left: 2px solid #444;
+  }
+  
+  button {
+    font-family: inherit;
+    font-size: 1rem;
+    background: transparent;
+    color: var(--fg);
+    border: none;
+    cursor: pointer;
+  }
+  

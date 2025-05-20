@@ -3,112 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ukubona</title>
-
-  <!-- Favicon -->
-  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon" />
-  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon" media="(prefers-color-scheme: light)" />
-  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" type="image/x-icon" media="(prefers-color-scheme: dark)" />
-
-  <!-- Preload Logos -->
-  <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-light.png" as="image" />
-  <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-dark.png" as="image" />
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
-
+  <title>Contact – Ukubona</title>
+  <link rel="stylesheet" href="../assets/css/main.css" />
   <style>
     body {
-      opacity: 0;
-      animation: fadeIn 1s ease-in-out forwards;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      font-family: Inter, sans-serif;
       margin: 0;
       padding: 0;
-      color: #111;
-      background-color: #ffffff;
+      background-color: var(--bg, #ffffff);
+      color: var(--fg, #111111);
       line-height: 1.6;
     }
 
-    @keyframes fadeIn {
-      to { opacity: 1; }
+    .container {
+      max-width: 700px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
     }
 
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
     }
 
-    #logo {
-      animation: spin 60s linear infinite;
-      opacity: 0;
-      transition: opacity 0.4s ease-in;
-      transform-origin: center center;
-    }
-
-    body.loaded #logo {
-      opacity: 1;
-    }
-
-    html[data-theme='light'] #logo {
-      animation: spin 60s linear infinite;
-    }
-
-    header {
-      background-color: #ffffff;
-      color: #111;
-      padding: 2rem 1rem 1rem;
-      text-align: center;
-      border-bottom: 1px solid #ddd;
-      position: relative;
-    }
-
-    .logo-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding-bottom: 0.5rem;
-    }
-
-    .logo-container img {
-      max-height: 120px;
-      background: transparent;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-    }
-
-    .tagline {
-      font-size: 1rem;
-      color: #555;
-      margin-top: 0.2rem;
-    }
-
-    header::after {
-      content: "";
-      display: block;
-      margin: 1rem auto 0;
-      width: 40px;
-      height: 2px;
-      background: #ccc;
-      border-radius: 1px;
-    }
-
-    main {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-
-    h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 500;
-      font-size: 1.6rem;
-      border-bottom: 1px solid #e0e0e0;
-      padding-bottom: 0.5rem;
-      margin-bottom: 1rem;
-      color: #111;
-    }
-
-    section {
+    .subtitle {
+      color: #666;
       margin-bottom: 2.5rem;
+    }
+
+    p {
+      margin: 1rem 0;
     }
 
     a {
@@ -118,132 +42,58 @@
 
     a:hover {
       text-decoration: underline;
-      text-shadow: 0 0 3px rgba(0,122,204,0.15);
     }
 
-    mark {
-      background-color: #e6f7ff;
-      padding: 0.1em 0.3em;
-      border-radius: 2px;
+    ul {
+      padding-left: 1.2rem;
     }
 
-    .footer-quote {
-      text-align: center;
-      font-style: italic;
-      color: #777;
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
+    li {
+      margin-bottom: 0.8rem;
+    }
+
+    html[data-theme='dark'] {
+      --bg: #000;
+      --fg: #eee;
     }
 
     footer {
-      background-color: #ffffff;
-      color: #999;
       text-align: center;
-      padding: 1rem;
-      font-size: 0.85rem;
-      border-top: 1px solid #eee;
       font-style: italic;
-    }
-
-    .top-right {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
+      color: #777;
+      margin-top: 4rem;
+      font-size: 0.9rem;
     }
   </style>
 </head>
-
 <body>
+  <div class="container">
+    <h1>Contact</h1>
+    <p class="subtitle">We welcome inquiries from clinicians, researchers, partners, and curious minds.</p>
 
-  <header>
-    <div class="logo-container">
-      <img
-        src="https://abikesa.github.io/logos/assets/ukubona-dark.png"
-        alt="Ukubona Logo"
-        id="logo"
-        loading="eager"
-      />
-    </div>
-    <p class="tagline">Data-driven decision support in public health and clinical care</p>
-    <div class="top-right">
-      <button id="toggle-theme">🌞 / 🌙</button>
-    </div>
-  </header>
-
-  <main>
-    <section>
-      <h2>Mission</h2>
-      <p><mark>Ukubona</mark> builds decision-support tools that translate statistical models into intuitive visual insights for patients, clinicians, researchers, and students. Our platform integrates curated datasets, multivariable regression outputs, and real-time visualization tools to support informed, personalized choices.</p>
-    </section>
+    <p>Email us at <a href="mailto:ukubona.llc@gmail.com">ukubona.llc@gmail.com</a> — we read every message.</p>
 
     <section>
-      <h2>Core Features</h2>
+      <h2 style="font-size: 1.2rem; margin-top: 2rem;">What You Can Reach Out About</h2>
       <ul>
-        <li><strong>Modular Platform:</strong> Ingests CSV files with beta coefficients and variance-covariance matrices, outputs interactive Kaplan-Meier–style survival curves and 95% confidence intervals.</li>
-        <li><strong>Clinical Use Case:</strong> Personalized risk visualization for living kidney donors, with a focus on older adults.</li>
-        <li><strong>Extensible Architecture:</strong> Dataset-agnostic design enables rapid deployment of new risk models across healthcare, research domains, and educational domains.</li>
+        <li>Collaboration on clinical risk models or decision-support interfaces</li>
+        <li>Piloting Ukubona tools at your institution or with your dataset</li>
+        <li>Internships or mentorship opportunities</li>
+        <li>Technical feedback on our calculators or platform</li>
+        <li>Symbolic AI applications in health, design, or epistemology</li>
       </ul>
     </section>
 
     <section>
-      <h2>Technology Stack</h2>
-      <ul>
-        <li><strong>Back-End:</strong> Python-based statistical engine using Cox regression</li>
-        <li><strong>Front-End:</strong> JavaScript and HTML5 for interactive graphing</li>
-        <li><strong>Hosting:</strong> GitHub Pages with embedded dynamic content</li>
-      </ul>
+      <h2 style="font-size: 1.2rem; margin-top: 2.5rem;">General Info</h2>
+      <p>Ukubona LLC is based in Virginia and operates remotely across time zones and disciplines.</p>
+      <p>GitHub: <a href="https://github.com/ukubona-llc" target="_blank">ukubona-llc</a></p>
     </section>
 
-    <section>
-      <h2>About Ukubona</h2>
-      <p><mark>Ukubona</mark> is a data science and public health company focused on bridging the gap between population-level statistics and individual-level decisions. We prioritize <mark>transparency</mark>, <mark>interactivity</mark>, and <mark>collaboration</mark> in all our tools.</p>
-    </section>
-
-    <section>
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:ukubona.llc@gmail.com">ukubona.llc@gmail.com</a></p>
-      <p>GitHub: <a href="https://ukubona-llc.github.io">ukubona-llc.github.io</a></p>
-    </section>
-  </main>
-
-  <div class="footer-quote">
-    “To see is not only to look — it is to attend, to interpret, and to respond.”
+    <footer>
+      “To connect is to inquire — to reveal the shape of uncertainty in good faith.”<br/>
+      &copy; 2025 Ukubona LLC
+    </footer>
   </div>
-
-  <footer>
-    &copy; 2025 Ukubona LLC. All rights reserved.
-  </footer>
-
-  <!-- Moved script to bottom to avoid null DOM refs -->
-  <script>
-    const html = document.documentElement;
-    const logo = document.getElementById('logo');
-    const toggleBtn = document.getElementById('toggle-theme');
-    const LIGHT_LOGO = 'https://abikesa.github.io/logos/assets/ukubona-light.png';
-    const DARK_LOGO  = 'https://abikesa.github.io/logos/assets/ukubona-dark.png';
-
-    function setTheme(theme) {
-      html.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
-      logo.src = theme === 'dark' ? DARK_LOGO : LIGHT_LOGO;
-      toggleBtn.textContent = theme === 'dark' ? '🌙' : '🌞';
-    }
-
-    const storedTheme = localStorage.getItem('theme') || 'dark';
-    setTheme(storedTheme);
-
-    toggleBtn.addEventListener('click', () => {
-      const current = html.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      setTheme(next);
-    });
-
-    window.addEventListener('load', () => {
-      document.body.classList.add('loaded');
-    });
-  </script>
 </body>
 </html>
