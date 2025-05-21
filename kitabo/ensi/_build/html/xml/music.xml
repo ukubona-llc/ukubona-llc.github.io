@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.1 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="3.1">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Voice</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>1</divisions>
+        <key>
+          <fifths>0</fifths>
+        </key>
+        <time>
+          <beats>4</beats>
+          <beat-type>4</beat-type>
+        </time>
+        <clef>
+          <sign>G</sign>
+          <line>2</line>
+        </clef>
+      </attributes>
+      <note>
+        <pitch>
+          <step>D</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
+        <type>quarter</type>
+      </note>
+      <note>
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>2</duration>
+        <type>eighth</type>
+      </note>
+      <note>
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>2</duration>
+        <type>eighth</type>
+      </note>
+      <note>
+        <pitch>
+          <step>G</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>2</duration>
+        <type>eighth</type>
+      </note>
+      <note>
+        <pitch>
+          <step>C</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>2</duration>
+        <type>eighth</type>
+      </note>
+    </measure>
+    <measure number="2">
+      <note>
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>2</duration>
+        <type>eighth</type>
+      </note>
+      <note>
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>2</duration>
+        <type>eighth</type>
+      </note>
+      <note>
+        <pitch>
+          <step>D</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>2</duration>
+        <type>eighth</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
+# flick 20250409213603-aw7j
+# flick 20250409214209-3MDT
+# flick 20250409214625-PY9v
+# flick 20250410003644-Qy85
+# flick 20250410005410-kKZi
+# flick 20250410032116-SE0r
+# flick 20250410032812-t878
+# flick 20250410144303-rSL4
+# flick 20250410152849-CPtA
+# flick 20250410154742-THC8
+# flick 20250410162336-T2aa
+# flick 20250410201241-uhKO
+# flick 20250410202644-33FA
+# flick 20250410212200-Mkwi
+# flick 20250410232148-QfnX
+# flick 20250410235823-nRvO
+# flick 20250413005457-WjLX
+# flick 20250413011054-oL2B
+# flick 20250414181112-1QFs
+# flick 20250415192651-Q8EP
+# flick 20250415193510-s75d
+# flick 20250415212834-YGbd
+# flick 20250415230810-HONX
+# flick 20250416020251-pPKg
+# flick 20250416025011-cZrl
+# flick 20250416160544-0c2J
+# flick 20250416191008-CjvE
+# flick 20250416191901-lpqi
+# flick 20250416214305-nVTo
+# flick 20250416214706-kME4
+# flick 20250416222628-IAxp
+# flick 20250416234857-0WQs
+# flick 20250417000350-vXKw
+# flick 20250417181704-53BR
+# flick 20250417184545-tNLe
+# flick 20250417190343-lQ7N
+# flick 20250417192642-4cLo
+# flick 20250418021902-LAX3
+# flick 20250422204826-sIXm
+# flick 20250422212436-4L80
+# flick 20250422214551-cuzR
+# flick 20250422215641-i8sh
+# flick 20250423172039-fQ8m
+# flick 20250423173642-V9iF
+# flick 20250423180927-097A
+# flick 20250423200931-Qgkh
+# flick 20250428112848-OcZM
+# flick 20250429014920-FgdP
+# flick 20250429111921-HY2h
+# flick 20250429170606-DgyC
+# flick 20250429190504-d6Gd
+# flick 20250429193947-CLkr
+# flick 20250429200420-rSpH
+# flick 20250429223323-krdl
+# flick 20250430035513-6Krr
+# flick 20250430130743-0I5D
+# flick 20250430233600-nlFS
+# flick 20250430235654-3b9S
+# flick 20250501010527-7Sfy
+# flick 20250502021210-Csar
+# flick 20250502021553-Pe8c
+# flick 20250502144130-UQfy
+# flick 20250504223221-zTEQ
+# flick 20250504224449-NEGH
+# flick 20250504234301-0r71
+# flick 20250505002915-xhwD
+# flick 20250505031255-Rk2l
+# flick 20250505031606-CZr2
+# flick 20250505062537-XWvt
+# flick 20250505103127-4x6g
+# flick 20250505165121-CDpf
+# flick 20250505170456-rqzo
+# flick 20250505172137-7Ojp
+# flick 20250505181031-HKcN
+# flick 20250507144245-LJgS
+# flick 20250507144805-QWWp
+# flick 20250507180205-c3R4
+# flick 20250508030851-cEEw
+# flick 20250508165707-DXrh
+# flick 20250509002651-C33f
+# flick 20250509171807-pHkQ
+# flick 20250509171950-GBDD
+# flick 20250509195805-h06K
+# flick 20250509203137-8N6F
+# flick 20250510000416-wao2
+# flick 20250510002240-u2Lu
+# flick 20250510211029-WUhZ
+# flick 20250510220820-4Qcv
+# flick 20250511211719-DUAg
+# flick 20250511222428-Qrfl
+# flick 20250511224513-m5o7
+# flick 20250511225943-phEl
+# flick 20250512010808-M63Y
+# flick 20250512145201-kL6F
+# flick 20250512150529-Lmzq
+# flick 20250512151158-sk2Q
+# flick 20250512153703-NSSo
+# flick 20250512215808-OQKb
+# flick 20250513151529-GWa2
+# flick 20250513153206-aR4s
+# flick 20250513204429-5Kz0
+# flick 20250513204720-ZJlV
+# flick 20250516024501-uuXO
+# flick 20250516032019-33Ak
+# flick 20250516112027-fvsQ
