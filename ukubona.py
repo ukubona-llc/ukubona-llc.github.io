@@ -20,7 +20,7 @@ def move_index_html():
     src = Path("index.html")
     dest = Path("kitabo/ensi/index/index.html")
     dest.parent.mkdir(parents=True, exist_ok=True)
-    if src.exists():
+    if src.exists() and not dest.exists():
         shutil.move(str(src), str(dest))
         print(f"✅ Moved {src} → {dest}")
     else:
