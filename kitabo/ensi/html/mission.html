@@ -1,93 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mission – Ukubona</title>
-  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    body {
-      font-family: Inter, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: var(--bg, #ffffff);
-      color: var(--fg, #111111);
-      line-height: 1.6;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 4rem auto;
-      padding: 0 1.5rem;
-    }
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .subtitle {
-      color: #666;
-      margin-bottom: 2.5rem;
-    }
-
-    section {
-      margin-bottom: 2.5rem;
-    }
-
-    h2 {
-      font-size: 1.3rem;
-      margin-bottom: 0.75rem;
-      color: #333;
-    }
-
-    p {
-      margin: 0.5rem 0;
+    :root {
+      --bg: #ffffff;
+      --fg: #111111;
     }
 
     html[data-theme='dark'] {
-      --bg: #000;
-      --fg: #eee;
+      --bg: #000000;
+      --fg: #eeeeee;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 840px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 6rem 1.5rem;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #888;
+      margin-bottom: 3rem;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+      color: var(--fg);
+    }
+
+    p {
+      margin: 1rem 0;
+      font-size: 1rem;
     }
 
     footer {
+      margin-top: 4rem;
       text-align: center;
       font-style: italic;
-      color: #777;
-      margin-top: 4rem;
       font-size: 0.9rem;
+      color: #777;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      .container {
+        padding: 2rem 1rem 4rem 1rem;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Mission</h1>
-    <p class="subtitle">Ukubona builds epistemic infrastructure for personalized decision-making in public health, medicine, and symbolic systems.</p>
+    <p class="subtitle">Ukubona builds infrastructure for personalized decision-making in public health, medicine, and other systems.</p>
 
-    <section>
-      <h2>What We Do</h2>
-      <p>Ukubona translates statistical models into interactive, personalized visualizations that empower individuals, clinicians, and researchers to make informed decisions under uncertainty. We specialize in high-stakes domains such as living kidney donation, perioperative risk, aging, and metabolic self-regulation.</p>
-    </section>
+    <h2>What We Do</h2>
+    <p>Ukubona translates statistical models into interactive, personalized visualizations that empower individuals, clinicians, and researchers to make informed decisions under uncertainty. We specialize in high-stakes domains such as living kidney donation, perioperative risk, aging, and metabolic self-regulation.</p>
 
-    <section>
-      <h2>Our Philosophy</h2>
-      <p>We believe consent is a process, not a signature. Information is not knowledge. And personalized medicine must begin not with the genome, but with perspective. We treat software as interface, interface as epistemology, and epistemology as lived negotiation between self and nonself.</p>
-    </section>
+<h2>Our Philosophy</h2>
+<p>Consent is not a signature. It is not a checkbox, a timestamp, or a legal form. Consent is orientation—a process of seeing, interpreting, and choosing under conditions of uncertainty. Information is not knowledge. Data is not wisdom. And personalized medicine does not begin with the genome. It begins with perspective.</p>
 
-    <section>
-      <h2>Our Platform</h2>
-      <p>Our modular platform ingests curated datasets and statistical models, including Cox regression and survival analysis, and renders these into real-time decision support tools. All outputs are responsive, explainable, and designed to reveal—not conceal—uncertainty.</p>
-    </section>
+<p>Ukubona’s infrastructure is built on the principle that judgment flows both ways: from model to user, and from user to system. We do not design neutral tools. We design tools that remember. That watch. That weigh. Like the eye that runs to and fro throughout the earth—not to surveil, but to show strength on behalf of those whose orientation is clear.</p>
 
-    <section>
-      <h2>Whom We Serve</h2>
-      <p>We work with academic health centers, clinical researchers, public health agencies, and individual donors. Our interfaces are built to be co-navigated: patient and provider, researcher and regulator, model and myth.</p>
-    </section>
+<p>When interface becomes epistemology, ethics is no longer optional. It is the substrate. Our commitment is to build decision systems that do not hide behind abstraction, but stand in the judgment with those who must choose.</p>
 
-    <section>
-      <h2>The Name</h2>
-      <p><em>Ukubona</em> is a Zulu verb meaning “to see.” But not just to see with the eye: to apprehend, to understand, to bear witness. In our architecture, to see is to connect the symbolic with the physiological, the statistical with the mythic. Seeing too much can hurt—but not seeing enough can kill.</p>
-    </section>
+    <h2>Our Platform</h2>
+    <p>Our modular platform ingests curated datasets and statistical models—including Cox regression, survival analysis, and Bayesian updating—and renders them into real-time decision-support tools. All outputs are responsive, explainable, and designed to reveal—not conceal—uncertainty.</p>
+
+    <h2>Whom We Serve</h2>
+    <p>We work with academic health centers, clinical researchers, public health agencies, and individual donors. Our interfaces are built to be co-navigated: patient and provider, researcher and regulator, model and myth.</p>
+
+    <h2>The Name</h2>
+    <p><em>Ukubona</em> is a Zulu verb meaning “to see.” But not merely to glance or scan. To see is to bear witness. To move with discernment across chaos. Our name honors the act of perception as a moral and epistemic commitment.</p>
+    <p>Across every dataset, every consultation, every act of design, our eye runs to and fro—not to surveil, but to strengthen. To uphold those whose orientation is clear, whose hearts lean toward coherence in the face of ambiguity.</p>
+    <p>True seeing is not passive. It is the beginning of accountability, alignment, and action.</p>
+    <p>Seeing too much can disorient. But not seeing enough can destroy.</p>
 
     <footer>
       “To see is not only to look — it is to attend, to interpret, and to respond.”<br />
