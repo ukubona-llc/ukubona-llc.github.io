@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon">
+    <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" media="(prefers-color-scheme: light)">
+    <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" media="(prefers-color-scheme: dark)">
+    <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-light.png" as="image">
+    <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-dark.png" as="image">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+    <title>Contact - Ukubona LLC</title>
+</head>
+<body>
+    <div class="scroll-indicator">
+        <div class="scroll-progress"></div>
+    </div>
+    <div class="bg-pattern"></div>
+    <header class="header">
+        <div class="nav-container">
+            <img src="https://abikesa.github.io/logos/assets/ukubona-dark.png" alt="Ukubona LLC Logo" id="logo" class="logo">
+            <div class="top-right">
+                <ul class="nav-links">
+                    <li><a href="../../index.html" class="nav-link">Home</a></li>
+                    <li><a href="mission.html" class="nav-link">Mission</a></li>
+                    <li><a href="models.html" class="nav-link">Models</a></li>
+                    <li><a href="team.html" class="nav-link">Team</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                <button class="menu-icon" id="menuIcon" role="button" aria-label="Open navigation menu">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </button>
+                <button id="toggle-theme">🌙</button>
+            </div>
+        </div>
+        <div class="app-grid" id="gridMenu">
+            <a href="../../index.html" data-icon="activity"><div class="icon-box">📊</div>Dashboard</a>
+            <a href="mission.html" data-icon="target"><div class="icon-box">🎯</div>Mission</a>
+            <a href="models.html" data-icon="activity"><div class="icon-box">📈</div>Models</a>
+            <a href="team.html" data-icon="users"><div class="icon-box">👥</div>Team</a>
+            <a href="contact.html" data-icon="mail"><div class="icon-box">✉️</div>Contact</a>
+            <a href="https://ukubona-llc.github.io/" target="_blank"><div class="icon-box">📲</div>UX</a>
+            <a href="https://abikesa.github.io/poetic-python-pentagon/" target="_blank"><div class="icon-box">🌊</div>Data</a>
+            <a href="https://abikesa.github.io/creator/" target="_blank"><div class="icon-box">❤️</div>Flask</a>
+            <a href="https://abikesa.github.io/ukb/" target="_blank"><div class="icon-box">🌀</div>Jinja</a>
+            <a href="https://abikesa.github.io/nonself/" target="_blank"><div class="icon-box">🐬</div>HTML</a>
+        </div>
+    </header>
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Contact Us</h1>
+            <p class="hero-subtitle">Building personalized decision-making together</p>
+            <div class="hero-cta">
+                <a href="#contact-form" class="cta-button cta-primary">
+                    <i data-feather="mail"></i>
+                    Get in Touch
+                </a>
+            </div>
+        </div>
+    </section>
+    <main class="main-content">
+        <section class="content-section" id="contact-form">
+            <h2 class="section-title">Contact</h2>
+            <p class="section-text">We welcome inquiries from clinicians, researchers, partners, and curious minds.</p>
+            <p class="section-text">Email us at <a href="mailto:ukubona.llc@gmail.com">ukubona.llc@gmail.com</a> — we read every message.</p>
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <input type="text" placeholder="Institution/Organization">
+                <textarea placeholder="Describe your project or research needs" rows="6" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+        <section class="content-section">
+            <h2 class="section-title">What You Can Reach Out About</h2>
+            <ul class="section-text">
+                <li>Collaboration on clinical risk models or decision-support interfaces</li>
+                <li>Piloting Ukubona tools at your institution or with your dataset</li>
+                <li>Internships or mentorship opportunities</li>
+                <li>Technical feedback on our calculators or platform</li>
+                <li>Symbolic AI applications in health, design, or epistemology</li>
+            </ul>
+        </section>
+        <section class="content-section">
+            <h2 class="section-title">General Info</h2>
+            <p class="section-text">Ukubona LLC is based in Virginia and operates remotely across time zones and disciplines.</p>
+            <p class="section-text">GitHub: <a href="https://github.com/ukubona-llc" target="_blank">ukubona-llc</a></p>
+        </section>
+        <section class="content-section">
+            <p class="section-text"><em>“To connect is to inquire — to reveal the shape of uncertainty in good faith.”</em></p>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>“To connect is to inquire — to reveal the shape of uncertainty in good faith.”</p>
+        <p>© 2025 Ukubona LLC. All rights reserved.</p>
+    </footer>
+    <script src="../js/shared.js"></script>
+    <script src="../js/landing.js"></script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>

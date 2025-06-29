@@ -1,0 +1,474 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon">
+    <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" media="(prefers-color-scheme: light)">
+    <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" media="(prefers-color-scheme: dark)">
+    <!-- Preload Logo Assets -->
+    <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-light.png" as="image">
+    <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-dark.png" as="image">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Ukubona LLC - Biomedical & Public Health Solutions</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0066cc;
+            --secondary: #00d4aa;
+            --accent: #ff6b35;
+            --light: #f8fafc;
+            --dark: #1a1a2e;
+            --darker: #16213e;
+            --gray: #64748b;
+            --gray-light: #e2e8f0;
+            --glass: rgba(255, 255, 255, 0.1);
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        html[data-theme='light'] {
+            --dark: #f8fafc;
+            --darker: #e2e8f0;
+            --gray: #334155;
+            --glass: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
+            color: var(--gray-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background: rgba(26, 26, 46, 0.8);
+            border-bottom: 1px solid var(--glass);
+            padding: 1rem 2rem;
+        }
+
+        html[data-theme='light'] .header {
+            background: rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            width: 120px;
+            height: auto;
+            object-fit: contain;
+            transform-origin: center center;
+            animation: spin 30s linear infinite; /* Continuous rotation */
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--gray-light);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--secondary);
+            background: var(--glass);
+        }
+
+        .top-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        #toggle-theme {
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--gray-light);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--light), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--secondary);
+            color: var(--dark);
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: background 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: var(--primary);
+            color: var(--light);
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .service-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+            border-color: var(--secondary);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .service-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+        }
+
+        .service-desc {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* Metrics Section */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .metric-card {
+            background: var(--glass);
+            backdrop-fry: blur(10px);
+            border: 1px solid var(--glass);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--light);
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 0.75rem;
+            border: 1px solid var(--glass);
+            border-radius: 0.5rem;
+            background: var(--darker);
+            color: var(--light);
+            font-size: 1rem;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+
+        .contact-form button {
+            padding: 0.75rem;
+            background: var(--secondary);
+            color: var(--dark);
+            font-weight: 600;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background: var(--primary);
+            color: var(--light);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--darker);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 2rem 1rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .services-grid,
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .logo {
+                width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <img src="https://abikesa.github.io/logos/assets/ukubona-dark.png" alt="Ukubona LLC Logo" id="logo" class="logo">
+            <div class="top-right">
+                <ul class="nav-links">
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <button id="toggle-theme">🌙</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero" id="about">
+            <h1 class="page-title">Ukubona LLC</h1>
+            <p class="page-subtitle">
+                Empowering biomedical, clinical, and public health research with expert analytics, consulting, and decision-support solutions.
+            </p>
+            <a href="#contact" class="cta-button">Get in Touch</a>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section" style="margin-bottom: 3rem;">
+            <h2 class="section-title">Our Story</h2>
+            <p style="max-width: 800px; margin: 0 auto; line-height: 1.6; color: var(--gray-light);">
+                Founded in March 2025, Ukubona LLC is a dynamic startup dedicated to advancing biomedical, clinical, and public health research. 
+                We secured our first major client, Johns Hopkins Enterprise, in June 2026, marking a significant milestone in our journey. 
+                With expertise in Stata programming, NIH-funded study support, and decision-support application development, we are committed to 
+                delivering tailored solutions that drive impactful outcomes. Starting in the DMV region, we aim to scale our services to national 
+                and global institutions, transforming research through precision and innovation.
+            </p>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services-section" id="services">
+            <h2 class="section-title"><i data-feather="briefcase"></i> Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">��</div>
+                    <h3 class="service-title">Stata Programming</h3>
+                    <p class="service-desc">Custom analytics and data processing using advanced Stata programming for robust research outcomes.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🩺</div>
+                    <h3 class="service-title">NIH Study Support</h3>
+                    <p class="service-desc">Comprehensive consulting for NIH-funded studies, ensuring compliance and impactful results.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3 class="service-title">Decision-Support Apps</h3>
+                    <p class="service-desc">Custom applications for patients and providers to enhance decision-making in healthcare.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Metrics Section -->
+        <section class="metrics-section">
+            <h2 class="section-title"><i data-feather="bar-chart-2"></i> Our Impact</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">1</div>
+                    <div class="metric-label">Major Client (Johns Hopkins)</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">100%</div>
+                    <div class="metric-label">Client Satisfaction</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">10+</div>
+                    <div class="metric-label">Projects in Progress</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section" id="contact">
+            <h2 class="section-title"><i data-feather="mail"></i> Contact Us</h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray);">Ready to transform your research? Reach out to discuss your needs!</p>
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        © 2025 Ukubona LLC. All rights reserved.
+    </footer>
+
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Theme Toggle
+        const html = document.documentElement;
+        const toggleBtn = document.getElementById('toggle-theme');
+        const logo = document.getElementById('logo');
+        const LIGHT_LOGO = 'https://abikesa.github.io/logos/assets/ukubona-light.png';
+        const DARK_LOGO = 'https://abikesa.github.io/logos/assets/ukubona-dark.png';
+
+        function setTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            logo.src = theme === 'dark' ? DARK_LOGO : LIGHT_LOGO;
+            toggleBtn.textContent = theme === 'dark' ? '🌙' : '🌞';
+            // Ensure logo rotation persists
+            logo.style.animation = 'spin 30s linear infinite';
+        }
+
+        setTheme(localStorage.getItem('theme') || 'dark');
+
+        toggleBtn.addEventListener('click', () => {
+            const current = html.getAttribute('data-theme');
+            setTheme(current === 'dark' ? 'light' : 'dark');
+        });
+
+        // Smooth Scroll for Nav Links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Form Submission (Placeholder)
+        document.querySelector('.contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>
+
