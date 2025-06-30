@@ -18,6 +18,7 @@
         <div class="scroll-progress"></div>
     </div>
     <div class="bg-pattern"></div>
+    
     <header class="header">
         <div class="nav-container">
             <img src="https://abikesa.github.io/logos/assets/ukubona-dark.png" alt="Ukubona LLC Logo" id="logo" class="logo">
@@ -27,7 +28,7 @@
                     <li><a href="mission.html" class="nav-link">Mission</a></li>
                     <li><a href="models.html" class="nav-link">Models</a></li>
                     <li><a href="team.html" class="nav-link">Team</a></li>
-                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li><a href="contact.html" class="nav-link active">Contact</a></li>
                 </ul>
                 <button class="menu-icon" id="menuIcon" role="button" aria-label="Open navigation menu">
                     <div></div><div></div><div></div>
@@ -50,58 +51,446 @@
             <a href="https://abikesa.github.io/nonself/" target="_blank"><div class="icon-box">🐬</div>HTML</a>
         </div>
     </header>
+
     <section class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">Contact Us</h1>
-            <p class="hero-subtitle">Building personalized decision-making together</p>
+            <h1 class="hero-title">Let's Connect</h1>
+            <p class="hero-subtitle">Collaborate on the future of personalized decision-making</p>
             <div class="hero-cta">
                 <a href="#contact-form" class="cta-button cta-primary">
                     <i data-feather="mail"></i>
-                    Get in Touch
+                    Start a Conversation
+                </a>
+                <a href="mailto:ukubona.llc@gmail.com" class="cta-button cta-secondary">
+                    <i data-feather="send"></i>
+                    Direct Email
                 </a>
             </div>
         </div>
     </section>
+
     <main class="main-content">
-        <section class="content-section" id="contact-form">
-            <h2 class="section-title">Contact</h2>
-            <p class="section-text">We welcome inquiries from clinicians, researchers, partners, and curious minds.</p>
-            <p class="section-text">Email us at <a href="mailto:ukubona.llc@gmail.com">ukubona.llc@gmail.com</a> — we read every message.</p>
-            <form class="contact-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <input type="text" placeholder="Institution/Organization">
-                <textarea placeholder="Describe your project or research needs" rows="6" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
-        </section>
+        <div class="contact-grid">
+            <section class="content-section contact-main" id="contact-form">
+                <h2 class="section-title">Get in Touch</h2>
+                <p class="section-text">Whether you're a clinician with a complex case, a researcher with an interesting dataset, or someone curious about symbolic AI — we'd love to hear from you.</p>
+                
+                <form class="contact-form" id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name *</label>
+                            <input type="text" id="name" name="name" placeholder="Your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="organization">Organization</label>
+                            <input type="text" id="organization" name="organization" placeholder="Institution, Hospital, Company">
+                        </div>
+                        <div class="form-group">
+                            <label for="role">Role</label>
+                            <select id="role" name="role">
+                                <option value="">Select your role</option>
+                                <option value="clinician">Clinician</option>
+                                <option value="researcher">Researcher</option>
+                                <option value="data-scientist">Data Scientist</option>
+                                <option value="student">Student</option>
+                                <option value="administrator">Administrator</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">What's this about?</label>
+                        <select id="subject" name="subject">
+                            <option value="">Choose a topic</option>
+                            <option value="collaboration">Research Collaboration</option>
+                            <option value="pilot">Pilot Implementation</option>
+                            <option value="internship">Internship/Mentorship</option>
+                            <option value="feedback">Technical Feedback</option>
+                            <option value="consulting">Consulting Services</option>
+                            <option value="partnership">Partnership Opportunity</option>
+                            <option value="other">Something Else</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Tell us more *</label>
+                        <textarea id="message" name="message" placeholder="Describe your project, research needs, or what you'd like to explore together..." rows="6" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="updates" name="updates">
+                            <span class="checkmark"></span>
+                            I'd like to receive occasional updates about Ukubona's work
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-button">
+                        <i data-feather="send"></i>
+                        Send Message
+                    </button>
+                </form>
+            </section>
+
+            <aside class="contact-sidebar">
+                <div class="contact-card">
+                    <h3>Quick Connect</h3>
+                    <div class="contact-methods">
+                        <a href="mailto:ukubona.llc@gmail.com" class="contact-method">
+                            <i data-feather="mail"></i>
+                            <div>
+                                <strong>Email</strong>
+                                <span>ukubona.llc@gmail.com</span>
+                            </div>
+                        </a>
+                        <a href="https://github.com/ukubona-llc" target="_blank" class="contact-method">
+                            <i data-feather="github"></i>
+                            <div>
+                                <strong>GitHub</strong>
+                                <span>ukubona-llc</span>
+                            </div>
+                        </a>
+                        <div class="contact-method">
+                            <i data-feather="map-pin"></i>
+                            <div>
+                                <strong>Location</strong>
+                                <span>Virginia, USA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <h3>Response Time</h3>
+                    <p>We typically respond within 24-48 hours. For urgent clinical matters, please contact your healthcare provider directly.</p>
+                </div>
+
+                <div class="contact-card">
+                    <h3>Areas of Interest</h3>
+                    <ul class="interest-list">
+                        <li>Clinical risk prediction models</li>
+                        <li>Decision-support interfaces</li>
+                        <li>Symbolic AI applications</li>
+                        <li>Health data analysis</li>
+                        <li>Epistemological frameworks</li>
+                        <li>Design thinking in healthcare</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+
         <section class="content-section">
-            <h2 class="section-title">What You Can Reach Out About</h2>
-            <ul class="section-text">
-                <li>Collaboration on clinical risk models or decision-support interfaces</li>
-                <li>Piloting Ukubona tools at your institution or with your dataset</li>
-                <li>Internships or mentorship opportunities</li>
-                <li>Technical feedback on our calculators or platform</li>
-                <li>Symbolic AI applications in health, design, or epistemology</li>
-            </ul>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>Can you help with my specific clinical case?</h4>
+                    <p>While we can't provide direct clinical advice, we're happy to discuss how our models and tools might support clinical decision-making in your context.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Do you work with international organizations?</h4>
+                    <p>Absolutely. We operate remotely and collaborate across time zones with partners worldwide.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What about data privacy and security?</h4>
+                    <p>Data protection is paramount in our work. We're happy to discuss our privacy practices and can work within your institutional requirements.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Are there internship opportunities?</h4>
+                    <p>We occasionally offer mentorship and project-based opportunities for students interested in health AI and symbolic reasoning.</p>
+                </div>
+            </div>
         </section>
+
         <section class="content-section">
-            <h2 class="section-title">General Info</h2>
-            <p class="section-text">Ukubona LLC is based in Virginia and operates remotely across time zones and disciplines.</p>
-            <p class="section-text">GitHub: <a href="https://github.com/ukubona-llc" target="_blank">ukubona-llc</a></p>
-        </section>
-        <section class="content-section">
-            <p class="section-text"><em>“To connect is to inquire — to reveal the shape of uncertainty in good faith.”</em></p>
+            <div class="quote-section">
+                <blockquote>
+                    <p>"To connect is to inquire — to reveal the shape of uncertainty in good faith."</p>
+                </blockquote>
+                <p class="section-text">Every conversation is an opportunity to learn, collaborate, and build something meaningful together. We're excited to hear from you.</p>
+            </div>
         </section>
     </main>
+
     <footer class="footer">
-        <p>“To connect is to inquire — to reveal the shape of uncertainty in good faith.”</p>
+        <p>"To connect is to inquire — to reveal the shape of uncertainty in good faith."</p>
         <p>© 2025 Ukubona LLC. All rights reserved.</p>
     </footer>
+
     <script src="../js/shared.js"></script>
     <script src="../js/landing.js"></script>
     <script>
         feather.replace();
+        
+        // Enhanced form functionality
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Create mailto link with form data
+            const subject = encodeURIComponent(`${data.subject ? data.subject + ': ' : ''}Message from ${data.name}`);
+            const body = encodeURIComponent(`
+Name: ${data.name}
+Email: ${data.email}
+Organization: ${data.organization || 'Not specified'}
+Role: ${data.role || 'Not specified'}
+Subject: ${data.subject || 'General inquiry'}
+
+Message:
+${data.message}
+
+${data.updates ? 'Please add me to your updates list.' : ''}
+            `.trim());
+            
+            const mailtoLink = `mailto:ukubona.llc@gmail.com?subject=${subject}&body=${body}`;
+            
+            // Show success message
+            const submitButton = this.querySelector('.submit-button');
+            const originalText = submitButton.innerHTML;
+            submitButton.innerHTML = '<i data-feather="check"></i> Opening email client...';
+            submitButton.disabled = true;
+            
+            // Open mailto link
+            window.location.href = mailtoLink;
+            
+            // Reset button after delay
+            setTimeout(() => {
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+                feather.replace();
+            }, 3000);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
     </script>
+
+    <style>
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: inherit;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary, #6366f1);
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .submit-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .contact-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-card {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: inherit;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-method:hover {
+            opacity: 0.8;
+        }
+
+        .contact-method i {
+            width: 20px;
+            height: 20px;
+        }
+
+        .contact-method strong {
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        .contact-method span {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .interest-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .interest-list li {
+            padding-left: 1rem;
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        .interest-list li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #6366f1;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .faq-item {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .faq-item h4 {
+            margin-bottom: 0.75rem;
+            color: #6366f1;
+            font-weight: 600;
+        }
+
+        .quote-section {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .quote-section blockquote {
+            margin-bottom: 1.5rem;
+        }
+
+        .quote-section blockquote p {
+            font-size: 1.25rem;
+            font-style: italic;
+            color: #6366f1;
+            margin-bottom: 0;
+        }
+
+        .nav-link.active {
+            color: #6366f1;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </body>
 </html>
