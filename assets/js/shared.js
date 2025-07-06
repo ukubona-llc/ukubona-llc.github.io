@@ -11,7 +11,7 @@ function setTheme(theme) {
     if (logo) {
         logo.src = theme === 'dark' ? DARK_LOGO : LIGHT_LOGO;
     }
-    toggleBtn.textContent = theme === 'dark' ? '☀️' : '🌙';
+    toggleBtn.textContent = theme === 'dark' ? '🌙' : '🌞';
 }
 
 setTheme(localStorage.getItem('theme') || 'dark');
@@ -34,4 +34,3 @@ document.addEventListener('click', (e) => {
         menu.classList.remove('active');
     }
 });
-

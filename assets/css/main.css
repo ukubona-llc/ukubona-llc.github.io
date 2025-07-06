@@ -171,6 +171,33 @@ html[data-theme='light'] .logo {
     gap: 1rem;
 }
 
+html[data-theme='light'] .menu-icon div {
+    background-color: #000;
+}
+html[data-theme='dark'] .menu-icon div {
+    background-color: #fff;
+}
+
+/* ... (all other styles unchanged) ... */
+
+/* Logo with Spinning Animation */
+.logo {
+    width: var(--logo-size);
+    height: var(--logo-size);
+    object-fit: contain;
+    transform-origin:OTER: center center;
+    animation: spin var(--logo-spin-duration) linear infinite;
+    transition: var(--transition);
+}
+
+/* Remove spin-light to ensure seamless rotation */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ... (rest of main.css unchanged) ... */
+
 .nav-links {
     display: none;
     list-style: none;
