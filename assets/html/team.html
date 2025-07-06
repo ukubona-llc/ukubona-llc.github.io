@@ -46,18 +46,14 @@
         <button id="toggle-theme">🌙</button>
       </div>
     </div>
-    <div class="app-grid" id="gridMenu">
-      <a href="../../index.html" data-icon="activity"><div class="icon-box">📊</div>Dashboard</a>
-      <a href="mission.html" data-icon="target"><div class="icon-box">🎯</div>Mission</a>
-      <a href="models.html" data-icon="activity"><div class="icon-box">📈</div>Models</a>
-      <a href="team.html" data-icon="users"><div class="icon-box">👥</div>Team</a>
-      <a href="contact.html" data-icon="mail"><div class="icon-box">✉️</div>Contact</a>
-      <a href="https://ukubona-llc.github.io/" target="_blank"><div class="icon-box">📲</div>UX</a>
-      <a href="https://abikesa.github.io/poetic-python-pentagon/" target="_blank"><div class="icon-box">🌊</div>Data</a>
-      <a href="https://abikesa.github.io/creator/" target="_blank"><div class="icon-box">❤️</div>Flask</a>
-      <a href="https://abikesa.github.io/ukb/" target="_blank"><div class="icon-box">🌀</div>Jinja</a>
-      <a href="https://abikesa.github.io/nonself/" target="_blank"><div class="icon-box">��</div>HTML</a>
-    </div>
+<div class="app-grid" id="gridMenu">
+    <a href="../../index.html"><div class="icon-box">📊</div>Home</a>
+    <a href="mission.html"><div class="icon-box">🎯</div>Mission</a>
+    <a href="models.html"><div class="icon-box">📈</div>Models</a>
+    <a href="team.html"><div class="icon-box">👥</div>Team</a>
+    <a href="contact.html"><div class="icon-box">✉️</div>Contact</a>
+    <a href="https://pairs-jh.github.io/" target="_blank" rel="noopener noreferrer"><div class="icon-box">📚</div>Education</a>
+</div>
   </header>
 
   <section class="hero">
@@ -77,19 +73,21 @@
     <section class="content-section">
       <h2 class="section-title">Our Ethos</h2>
       <p class="section-text">
-        At Ukubona, <em>to see</em> is to engage in a dynamic process — sensing patterns, weaving memory, applying meaning, and taking action.  
-        Our team spans continents and disciplines, united by a shared commitment to building decision systems that reflect the recursive, embodied nature of human perception.
-      </p><br>
+    At Ukubona, <em>to see</em> is to engage in a dynamic process — sensing patterns, weaving memory, applying meaning, and taking action.<br><br>
+    Like Zarathustra’s ascent to greater heights, our team seeks clarity by seeing both long-term facts and counterfactual possibilities — gaining perspective that informs wiser, more adaptive decisions.<br><br>
+    Spanning continents and disciplines, we unite in building decision systems that honor the recursive, embodied nature of human perception.
+  </p><br>
     </section>
 
 <section class="content-section founder-spotlight">
-    <h2 class="section-title">Founder Spotlight</h2>
-    <p class="section-text">
-        Abimereki Muzaale brings a unique fusion of rigorous scientific inquiry, recursive systems insight, and a deep-rooted clarity shaped by ancestral perspectives.<br><br>
-        From ages 26 to 45, his professional adulthood was forged at Johns Hopkins University — a tenure that solidified his expertise as a clinical investigator and public health leader. This foundation drives the vision and innovation at Ukubona LLC.<br><br>
-        Committed to building tools that blend precision medicine with recursive, embodied decision systems, Dr. Muzaale's leadership embodies the balance between disciplined inquiry and emergent, collaborative insight.
-    </p><br>
+  <h2 class="section-title">Founder Spotlight</h2>
+  <p class="section-text">
+    Abimereki Muzaale brings a unique fusion of rigorous scientific inquiry, systems that learn and adapt over time, and a deep clarity shaped by experience.<br><br>
+    From ages 26 to 45, his professional adulthood was forged at Johns Hopkins University — a tenure that solidified his expertise as a clinical investigator and public health leader. This foundation drives the vision and innovation at Ukubona LLC.<br><br>
+    Focused on building interactive, personalized digital tools, Dr. Muzaale leads with a balance of disciplined inquiry and collaborative insight.
+  </p><br>
 </section>
+
 
     <section class="content-section">
       <h2 class="section-title">Leadership</h2>
@@ -148,10 +146,16 @@
     building decision systems that honor human complexity and nurture clarity in chaos.
   </p>    </section>
   </main>
-<footer class="footer">
-  <p>© 2025 Ukubona LLC. Built on clarity and trust.</p>
-  <p><em><a href="https://abikesa.github.io/bellissimo-002">Ukubona LLC</a> is a proud vendor for Johns Hopkins Enterprise as of June 2025<a href="https://abikesa.github.io/ukb-001/">.</em></p>
-</footer>
+
+<div id="footer-placeholder"></div>
+<script>
+fetch('/assets/html/footer.html')
+  .then(response => response.text())
+  .then(html => {
+    document.getElementById('footer-placeholder').innerHTML = html;
+  });
+</script>
+
 
 
   <script src="../js/shared.js"></script>

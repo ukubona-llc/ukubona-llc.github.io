@@ -625,3 +625,22 @@ html[data-theme='dark'] .menu-icon div {
         min-width: auto;
     }
 }
+
+    /* Updated grid layout for 6 items */
+    .app-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 1rem;
+        padding: 1rem;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    /* Responsive adjustment for smaller screens */
+    @media (max-width: 480px) {
+        .app-grid {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+        }
+    }

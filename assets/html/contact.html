@@ -46,18 +46,14 @@
                 <button id="toggle-theme">🌙</button>
             </div>
         </div>
-        <div class="app-grid" id="gridMenu">
-            <a href="../../index.html" data-icon="activity"><div class="icon-box">📊</div>Dashboard</a>
-            <a href="mission.html" data-icon="target"><div class="icon-box">🎯</div>Mission</a>
-            <a href="models.html" data-icon="activity"><div class="icon-box">📈</div>Models</a>
-            <a href="team.html" data-icon="users"><div class="icon-box">👥</div>Team</a>
-            <a href="contact.html" data-icon="mail"><div class="icon-box">✉️</div>Contact</a>
-            <a href="https://ukubona-llc.github.io/" target="_blank"><div class="icon-box">📲</div>UX</a>
-            <a href="https://abikesa.github.io/poetic-python-pentagon/" target="_blank"><div class="icon-box">🌊</div>Data</a>
-            <a href="https://abikesa.github.io/creator/" target="_blank"><div class="icon-box">❤️</div>Flask</a>
-            <a href="https://abikesa.github.io/ukb/" target="_blank"><div class="icon-box">🌀</div>Jinja</a>
-            <a href="https://abikesa.github.io/nonself/" target="_blank"><div class="icon-box">🐬</div>HTML</a>
-        </div>
+<div class="app-grid" id="gridMenu">
+    <a href="../../index.html"><div class="icon-box">📊</div>Home</a>
+    <a href="mission.html"><div class="icon-box">🎯</div>Mission</a>
+    <a href="models.html"><div class="icon-box">📈</div>Models</a>
+    <a href="team.html"><div class="icon-box">👥</div>Team</a>
+    <a href="contact.html"><div class="icon-box">✉️</div>Contact</a>
+    <a href="https://pairs-jh.github.io/" target="_blank" rel="noopener noreferrer"><div class="icon-box">📚</div>Education</a>
+</div>
     </header>
 
     <section class="hero">
@@ -227,10 +223,14 @@
         </section>
     </main>
 
-<footer class="footer">
-  <p>© 2025 Ukubona LLC. Built on clarity and trust.</p>
-  <p><em><a href="https://abikesa.github.io/bellissimo-002">Ukubona LLC</a> is a proud vendor for Johns Hopkins Enterprise as of June 2025<a href="https://abikesa.github.io/ukb-001/">.</em></p>
-</footer>
+<div id="footer-placeholder"></div>
+<script>
+fetch('/assets/html/footer.html')
+  .then(response => response.text())
+  .then(html => {
+    document.getElementById('footer-placeholder').innerHTML = html;
+  });
+</script>
 
     <script src="../js/shared.js"></script>
     <script src="../js/landing.js"></script>

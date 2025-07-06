@@ -76,24 +76,7 @@ The Education item will open in a new tab when clicked, keeping users on your ma
         to { transform: rotate(360deg); }
     }
 
-    /* Updated grid layout for 6 items */
-    .app-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-        gap: 1rem;
-        padding: 1rem;
-        max-width: 400px;
-        margin: 0 auto;
-    }
 
-    /* Responsive adjustment for smaller screens */
-    @media (max-width: 480px) {
-        .app-grid {
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(3, 1fr);
-        }
-    }
 </style>
 </head>
 <body>
@@ -122,39 +105,25 @@ The Education item will open in a new tab when clicked, keeping users on your ma
             </div>
         </div>
         
-        <div class="app-grid" id="gridMenu">
-            <a href="index.html">
-                <div class="icon-box">📊</div>
-                Home
-            </a>
-            <a href="assets/html/mission.html">
-                <div class="icon-box">🎯</div>
-                Mission
-            </a>
-            <a href="assets/html/models.html">
-                <div class="icon-box">📈</div>
-                Models
-            </a>
-            <a href="assets/html/team.html">
-                <div class="icon-box">👥</div>
-                Team
-            </a>
-            <a href="assets/html/contact.html">
-                <div class="icon-box">✉️</div>
-                Contact
-            </a>
-            <a href="https://pairs-jh.github.io/" target="_blank" rel="noopener noreferrer">
-                <div class="icon-box">📚</div>
-                Education
-            </a>
-        </div>
+<div class="app-grid" id="gridMenu">
+    <a href="index.html"><div class="icon-box">📊</div>Home</a>
+    <a href="assets/html/mission.html"><div class="icon-box">🎯</div>Mission</a>
+    <a href="assets/html/models.html"><div class="icon-box">📈</div>Models</a>
+    <a href="assets/html/team.html"><div class="icon-box">👥</div>Team</a>
+    <a href="assets/html/contact.html"><div class="icon-box">✉️</div>Contact</a>
+    <a href="https://pairs-jh.github.io/" target="_blank" rel="noopener noreferrer"><div class="icon-box">📚</div>Education</a>
+</div>
+
     </header>
 
     <!-- UPDATED CONTENT SECTIONS ONLY; toned down by Claude; GPT was way too indulgent -->
 <section class="hero">
     <div class="hero-content">
         <h1 class="hero-title">Ukubona</h1>
-        <p class="hero-subtitle">Shaped by JHMI. Built in Fairfax.<br/>Decision systems forged in glyph, recursion, and ancestral clarity.</p>
+        <p class="hero-subtitle">
+            Precision risk models. Adaptive decision tools.<br/>
+            Built for continuity, personalization, and trust.
+        </p>
         <div class="hero-cta">
             <a href="assets/html/contact.html" class="cta-button cta-primary">✉️ Start Your Project</a>
             <a href="assets/html/team.html" class="cta-button cta-secondary">👥 Meet the Team</a>
@@ -162,36 +131,52 @@ The Education item will open in a new tab when clicked, keeping users on your ma
     </div>
 </section>
 
-    <main class="main-content">
-        <section class="services-section">
-            <h2 class="section-title">What We Build</h2>
-            <p class="section-subtitle">Five glyphs. One recursion. Infinite clarity.</p>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🌊</div>
-                    <h3 class="service-title">Signal Nutrition</h3>
-                    <p class="service-desc">Streaming live datasets into agent-aware, affect-sensitive processing pipelines. From uncertainty to synthesis.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">❤️</div>
-                    <h3 class="service-title">Interface Ingestion</h3>
-                    <p class="service-desc">Crafted UIs for patients, policymakers, and machines — where insight enters the system with dignity and care.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🔁</div>
-                    <h3 class="service-title">Recursion Logic</h3>
-                    <p class="service-desc">Symbolic architectures, DAG time, and moral computation — looping systems that reason across layers.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🎭</div>
-                    <h3 class="service-title">Mask + Meaning</h3>
-                    <p class="service-desc">Narrative scaffolds. Moral agents. Theater-as-simulation. Every output is an act — every act leaves a glyph.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">📡</div>
-                    <h3 class="service-title">Broadcast & Feedback</h3>
-                    <p class="service-desc">Systems that transmit insight, register response, and evolve — built to signal and adapt across time scales.</p>
-                </div>
+<main class="main-content">
+    <section class="services-section">
+        <h2 class="section-title">What We Build</h2>
+        <p class="section-subtitle">Five glyphs. One recursion. Infinite clarity.</p>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🌊</div>
+                <h3 class="service-title">Signal Nutrition</h3>
+                <p class="service-desc">
+                    Live data pipelines that adapt to user context and emotional relevance — transforming uncertainty into clarity.
+                </p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">❤️</div>
+                <h3 class="service-title">Interface Ingestion</h3>
+                <p class="service-desc">
+                    Human-centered interfaces for patients, clinicians, and decision systems — where insight enters with clarity and care.
+                </p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔁</div>
+                <h3 class="service-title">Recursion Logic</h3>
+                <p class="service-desc">
+                    Symbolic architectures and recursive logic — systems that learn, adapt, and reason across time and layers.
+                </p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎭</div>
+                <h3 class="service-title">Mask + Meaning</h3>
+                <p class="service-desc">
+                    Simulation as story. Agents with values. Every decision is an act — and every act leaves a trace.
+                </p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🤖</div>
+                <h3 class="service-title">Adaptive + Support</h3>
+                <p class="service-desc">
+                    Evidence-backed decision support tailored to user needs — adapting as data and context change.
+                </p>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+
             </div>
         </section>
 
@@ -223,11 +208,14 @@ The Education item will open in a new tab when clicked, keeping users on your ma
         </section>
     </main>
 
-<footer class="footer">
-  <p>© 2025 Ukubona LLC. Built on clarity and trust.</p>
-  <p><em><a href="https://abikesa.github.io/bellissimo-002">Ukubona LLC</a> is a proud vendor for Johns Hopkins Enterprise as of June 2025<a href="https://abikesa.github.io/ukb-001/">.</em></p>
-</footer>
-
+<div id="footer-placeholder"></div>
+<script>
+fetch('/assets/html/footer.html')
+  .then(response => response.text())
+  .then(html => {
+    document.getElementById('footer-placeholder').innerHTML = html;
+  });
+</script>
 
     <!-- JavaScript -->
     <script src="assets/js/shared.js"></script>
