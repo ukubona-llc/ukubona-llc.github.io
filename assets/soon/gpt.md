@@ -1,0 +1,1 @@
+- GPT has convinced me to go unapologetic with `index-gpt-poetical.html`
