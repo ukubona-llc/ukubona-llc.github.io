@@ -20,33 +20,32 @@
     
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/main.css">        
-    <style>
-        /* Menu icon colors to match first HTML */
-        html[data-theme='light'] .menu-icon div {
-            background-color: #000;
-        }
-        html[data-theme='dark'] .menu-icon div {
-            background-color: #fff;
-        }
-        
-        /* Logo animation only */
-        .logo {
-            animation: cosmic-rotate 12s linear infinite;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.3));
-        }
-        
-        .logo:hover {
-            transform: scale(1.15);
-            animation-duration: 3s;
-            filter: drop-shadow(0 0 30px rgba(99, 102, 241, 0.5));
-        }
-        
-        @keyframes cosmic-rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-    </style>
+<style>
+    /* Menu icon colors to match first HTML */
+    html[data-theme='light'] .menu-icon div {
+        background-color: #000;
+    }
+    html[data-theme='dark'] .menu-icon div {
+        background-color: #fff;
+    }
+    
+    /* Logo animation only */
+    .logo {
+        animation: cosmic-rotate 60s linear infinite;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.3));
+    }
+    
+    .logo:hover {
+        transform: scale(1.15);
+        filter: drop-shadow(0 0 30px rgba(99, 102, 241, 0.5));
+    }
+    
+    @keyframes cosmic-rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+</style>
 </head>
 <body>
     <div class="scroll-indicator">
