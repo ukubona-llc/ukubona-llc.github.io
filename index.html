@@ -1,3 +1,33 @@
+
+
+<!DOCTYPE html> <html lang="en" data-theme="dark"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta name="description" content="Ukubona LLC - Digital Infrastructure for Personalized Medicine"> <title>Ukubona LLC - Digital Inf
+
+pasted
+
+modify the grid, add an extra item for education or courses https://pairs-jh.github.io/
+
+Edit
+I'll modify the grid menu to add an extra item for education/courses. Looking at your current grid structure, I'll add a new "Education" item that links to the provided URL.
+
+
+Ukubona LLC - Modified with Education Grid Item
+Interactive artifact 
+I've modified the grid menu to include a new "Education" item that links to https://pairs-jh.github.io/. Here are the key changes:
+
+Added Education Grid Item: New item with a book icon (📚) and "Education" label
+External Link: Links to the provided URL with proper target="_blank" and security attributes
+Updated Grid Layout: Modified CSS to handle 6 items instead of 5:
+Desktop: 3 columns × 2 rows
+Mobile: 2 columns × 3 rows for better mobile experience
+Proper Spacing: Maintained the visual balance with appropriate grid gap and padding
+The Education item will open in a new tab when clicked, keeping users on your main site while providing access to the educational content. The grid now displays all 6 items in a clean, organized layout that works well on both desktop and mobile devices.
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
@@ -44,6 +74,25 @@
     @keyframes cosmic-rotate {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
+    }
+
+    /* Updated grid layout for 6 items */
+    .app-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 1rem;
+        padding: 1rem;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    /* Responsive adjustment for smaller screens */
+    @media (max-width: 480px) {
+        .app-grid {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+        }
     }
 </style>
 </head>
@@ -93,6 +142,10 @@
             <a href="assets/html/contact.html">
                 <div class="icon-box">✉️</div>
                 Contact
+            </a>
+            <a href="https://pairs-jh.github.io/" target="_blank" rel="noopener noreferrer">
+                <div class="icon-box">📚</div>
+                Education
             </a>
         </div>
     </header>
@@ -179,5 +232,43 @@
     <!-- JavaScript -->
     <script src="assets/js/shared.js"></script>
     <script src="assets/js/landing.js"></script>     
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
 </body>       
 </html>
