@@ -3,15 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - Ukubona LLC</title>
-    <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon">
-    <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" media="(prefers-color-scheme: light)">
-    <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" media="(prefers-color-scheme: dark)">
-    <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-light.png" as="image">
-    <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-dark.png" as="image">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/main.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js" defer></script>
     <style>
         html[data-theme='light'] .menu-icon div {
             background-color: #000;
@@ -60,7 +51,7 @@
         .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #6366f1;
+            border-color: var(--primary, #6366f1);
         }
         .checkbox-label {
             display: flex;
@@ -193,17 +184,26 @@
             }
         }
     </style>
+    <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon">
+    <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" media="(prefers-color-scheme: light)">
+    <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" media="(prefers-color-scheme: dark)">
+    <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-light.png" as="image">
+    <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-dark.png" as="image">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+    <title>Contact - Ukubona LLC</title>
 </head>
 <body>
-    <div class="scroll-indicator" aria-hidden="true">
+    <div class="scroll-indicator">
         <div class="scroll-progress"></div>
     </div>
     <div class="bg-pattern"></div>
     
-    <header class="header" role="banner">
+    <header class="header">
         <div class="nav-container">
-            <img src="https://abikesa.github.io/logos/assets/ukubona-dark.png" alt="Ukubona LLC Logo" id="logo" class="logo" width="150" height="48">
-            <nav role="navigation" aria-label="Primary navigation">
+            <img src="https://abikesa.github.io/logos/assets/ukubona-dark.png" alt="Ukubona LLC Logo" id="logo" class="logo">
+            <div class="top-right">
                 <ul class="nav-links" id="navLinks">
                     <li><a href="../../index.html" class="nav-link">Home</a></li>
                     <li><a href="mission.html" class="nav-link">Mission</a></li>
@@ -211,9 +211,7 @@
                     <li><a href="team.html" class="nav-link">Team</a></li>
                     <li><a href="contact.html" class="nav-link active" aria-current="page">Contact</a></li>
                 </ul>
-            </nav>
-            <div class="top-right" style="display:flex; align-items:center;">
-                <button class="menu-icon" id="menuIcon" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks" role="button" tabindex="0">
+                <button class="menu-icon" id="menuIcon" role="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
                     <div></div><div></div><div></div>
                     <div></div><div></div><div></div>
                     <div></div><div></div><div></div>
@@ -221,7 +219,7 @@
                 <button id="toggle-theme" aria-label="Toggle dark and light mode">🌙</button>
             </div>
         </div>
-        <div class="app-grid" id="gridMenu" aria-label="Quick access menu">
+        <div class="app-grid" id="gridMenu">
             <a href="../../index.html" data-icon="activity"><div class="icon-box">📊</div>Dashboard</a>
             <a href="mission.html" data-icon="target"><div class="icon-box">🎯</div>Mission</a>
             <a href="models.html" data-icon="activity"><div class="icon-box">📈</div>Models</a>
@@ -229,27 +227,33 @@
             <a href="contact.html" data-icon="mail"><div class="icon-box">✉️</div>Contact</a>
             <a href="https://ukubona-llc.github.io/" target="_blank" rel="noopener noreferrer"><div class="icon-box">📲</div>UX</a>
             <a href="https://abikesa.github.io/poetic-python-pentagon/" target="_blank" rel="noopener noreferrer"><div class="icon-box">🌊</div>Data</a>
-            <a href="https://abikesa.github.io/creator/" target="_blank" rel="noopener noreferrer"><div class="icon-box">❤️ meinte</div>Flask</a>
+            <a href="https://abikesa.github.io/creator/" target="_blank" rel="noopener noreferrer"><div class="icon-box">❤️</div>Flask</a>
             <a href="https://abikesa.github.io/ukb/" target="_blank" rel="noopener noreferrer"><div class="icon-box">🌀</div>Jinja</a>
             <a href="https://abikesa.github.io/nonself/" target="_blank" rel="noopener noreferrer"><div class="icon-box">🐬</div>HTML</a>
         </div>
     </header>
 
-    <section class="hero" role="region" aria-labelledby="hero-title">
+    <section class="hero">
         <div class="hero-content">
-            <h1 class="hero-title" id="hero-title">Let's Connect</h1>
+            <h1 class="hero-title">Let's Connect</h1>
             <p class="hero-subtitle">Collaborate on the future of personalized decision-making</p>
             <div class="hero-cta">
-                <a href="#contact-form" class="cta-button cta-primary" role="button"><i data-feather="mail" aria-hidden="true"></i>Start a Conversation</a>
-                <a href="mailto:ukubona.llc@gmail.com" class="cta-button cta-secondary"><i data-feather="send" aria-hidden="true"></i>Direct Email</a>
+                <a href="#contact-form" class="cta-button cta-primary">
+                    <i data-feather="mail" aria-hidden="true"></i>
+                    Start a Conversation
+                </a>
+                <a href="mailto:ukubona.llc@gmail.com" class="cta-button cta-secondary">
+                    <i data-feather="send" aria-hidden="true"></i>
+                    Direct Email
+                </a>
             </div>
         </div>
     </section>
 
-    <main class="main-content" role="main">
+    <main class="main-content">
         <div class="contact-grid">
-            <section class="content-section contact-main" id="contact-form" aria-labelledby="contact-title">
-                <h2 class="section-title" id="contact-title">Get in Touch</h2>
+            <section class="content-section contact-main" id="contact-form">
+                <h2 class="section-title">Get in Touch</h2>
                 <p class="section-text">Whether you're a clinician with a complex case, a researcher with an interesting dataset, or someone curious about symbolic AI — we'd love to hear from you.</p>
                 
                 <form class="contact-form" id="contactForm" novalidate>
@@ -305,35 +309,37 @@
                     <div class="form-group">
                         <label class="checkbox-label" for="updates">
                             <input type="checkbox" id="updates" name="updates">
-                            <span class="checkmark"></span>I'd like to receive occasional updates about Ukubona's work
+                            <span class="checkmark"></span>
+                            I'd like to receive occasional updates about Ukubona's work
                         </label>
                     </div>
 
                     <button type="submit" class="submit-button">
-                        <i data-feather="send" aria-hidden="true"></i>Send Message
+                        <i data-feather="send" aria-hidden="true"></i>
+                        Send Message
                     </button>
                 </form>
             </section>
 
-            <aside class="contact-sidebar" aria-label="Contact information and details">
+            <aside class="contact-sidebar">
                 <div class="contact-card">
                     <h3>Quick Connect</h3>
                     <div class="contact-methods">
-                        <a href="mailto:ukubona.llc@gmail.com" class="contact-method" tabindex="0">
+                        <a href="mailto:ukubona.llc@gmail.com" class="contact-method">
                             <i data-feather="mail" aria-hidden="true"></i>
                             <div>
                                 <strong>Email</strong>
                                 <span>ukubona.llc@gmail.com</span>
                             </div>
                         </a>
-                        <a href="https://github.com/ukubona-llc" target="_blank" rel="noopener noreferrer" class="contact-method" tabindex="0">
+                        <a href="https://github.com/ukubona-llc" target="_blank" rel="noopener noreferrer" class="contact-method">
                             <i data-feather="github" aria-hidden="true"></i>
                             <div>
                                 <strong>GitHub</strong>
                                 <span>ukubona-llc</span>
                             </div>
                         </a>
-                        <div class="contact-method" tabindex="0">
+                        <div class="contact-method">
                             <i data-feather="map-pin" aria-hidden="true"></i>
                             <div>
                                 <strong>Location</strong>
@@ -362,29 +368,29 @@
             </aside>
         </div>
 
-        <section class="content-section" aria-labelledby="faq-title">
-            <h2 class="section-title" id="faq-title">Frequently Asked Questions</h2>
+        <section class="content-section">
+            <h2 class="section-title">Frequently Asked Questions</h2>
             <div class="faq-grid">
-                <article class="faq-item" tabindex="0">
+                <div class="faq-item">
                     <h4>Can you help with my specific clinical case?</h4>
                     <p>While we can't provide direct clinical advice, we're happy to discuss how our models and tools might support clinical decision-making in your context.</p>
-                </article>
-                <article class="faq-item" tabindex="0">
+                </div>
+                <div class="faq-item">
                     <h4>Do you work with international organizations?</h4>
                     <p>Absolutely. We operate remotely and collaborate across time zones with partners worldwide.</p>
-                </article>
-                <article class="faq-item" tabindex="0">
+                </div>
+                <div class="faq-item">
                     <h4>What about data privacy and security?</h4>
                     <p>Data protection is paramount in our work. We're happy to discuss our privacy practices and can work within your institutional requirements.</p>
-                </article>
-                <article class="faq-item" tabindex="0">
+                </div>
+                <div class="faq-item">
                     <h4>Are there internship opportunities?</h4>
                     <p>We occasionally offer mentorship and project-based opportunities for students interested in health AI and symbolic reasoning.</p>
-                </article>
+                </div>
             </div>
         </section>
 
-        <section class="content-section" aria-label="Inspirational quote and message">
+        <section class="content-section">
             <div class="quote-section">
                 <blockquote>
                     <p>"To connect is to inquire — to reveal the shape of uncertainty in good faith."</p>
@@ -394,46 +400,18 @@
         </section>
     </main>
 
-    <footer class="footer" role="contentinfo">
+    <footer class="footer">
         <p>© 2025 Ukubona LLC. Built on clarity and trust.</p>
         <p><em><a href="https://abikesa.github.io/bellissimo-002" target="_blank" rel="noopener noreferrer">Ukubona LLC</a> is a proud vendor for Johns Hopkins Enterprise as of June 2025<a href="https://abikesa.github.io/ukb-001/" target="_blank" rel="noopener noreferrer">.</a></em></p>
     </footer>
 
-    <script src="../js/shared.js" defer></script>
-    <script src="../js/landing.js" defer></script>
+    <script src="../js/shared.js"></script>
+    <script src="../js/landing.js"></script>
     <script>
+        feather.replace();
+        
+        // Theme Toggle with persistence
         document.addEventListener('DOMContentLoaded', () => {
-            feather.replace();
-
-            // Scroll Progress Bar
-            const scrollProgress = document.querySelector('.scroll-progress');
-            window.addEventListener('scroll', () => {
-                const scrollTop = window.scrollY;
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-                scrollProgress.style.width = scrollPercent + '%';
-            });
-
-            // Menu Toggle
-            const menuBtn = document.getElementById('menuIcon');
-            const navLinks = document.getElementById('navLinks');
-
-            menuBtn.addEventListener('click', () => {
-                const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
-                menuBtn.setAttribute('aria-expanded', !expanded);
-                navLinks.classList.toggle('open');
-            });
-
-            // Close menu with Escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && navLinks.classList.contains('open')) {
-                    navLinks.classList.remove('open');
-                    menuBtn.setAttribute('aria-expanded', false);
-                    menuBtn.focus();
-                }
-            });
-
-            // Theme Toggle with persistence
             const toggleThemeBtn = document.getElementById('toggle-theme');
             const htmlElem = document.documentElement;
             const logo = document.getElementById('logo');
@@ -514,7 +492,7 @@ ${data.updates ? 'Please add me to your updates list.' : ''}
                 }, 3000);
             });
 
-            // Smooth scroll for anchor links
+            // Smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
                 anchor.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -523,6 +501,25 @@ ${data.updates ? 'Please add me to your updates list.' : ''}
                         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                 });
+            });
+
+            // Menu Toggle
+            const menuBtn = document.getElementById('menuIcon');
+            const navLinks = document.getElementById('navLinks');
+
+            menuBtn.addEventListener('click', () => {
+                const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+                menuBtn.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('open');
+            });
+
+            // Close menu with Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+                    navLinks.classList.remove('open');
+                    menuBtn.setAttribute('aria-expanded', false);
+                    menuBtn.focus();
+                }
             });
         });
     </script>
