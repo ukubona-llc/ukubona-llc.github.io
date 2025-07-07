@@ -1,352 +1,357 @@
-        fetch('/assets/html/footer.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('footer-placeholder').innerHTML = html;
-            });
+// Fetch the footer
+fetch('/assets/html/footer.html')
+    .then(response => response.text())
+    .then(html => {
+        document.getElementById('footer-placeholder').innerHTML = html;
+    });
 
-        // Modal data structure
-        const modalData = {
-            'service-1': {
-                icon: '🌊',
-                title: 'Signal Nutrition',
-                sections: [
+// Full Modal Data: Services + Timelines (GPT-4o upgrade)
+const modalData = {
+    // ——— SERVICES ———
+    'service-1': {
+        icon: '🌊',
+        title: 'Signal Nutrition',
+        sections: [
+            {
+                title: 'Overview',
+                content: 'We build real-time signal pipelines designed to prioritize contextual relevance — supporting precise clinical decisions in dynamic environments.',
+                subsections: [
                     {
-                        title: 'Overview',
-                        content: 'Live data pipelines that adapt to user context and emotional relevance — transforming uncertainty into clarity.',
-                        subsections: [
-                            {
-                                title: 'Core Technology',
-                                content: 'Real-time data processing with machine learning models to filter and prioritize health signals.'
-                            },
-                            {
-                                title: 'Applications',
-                                content: 'Personalized health monitoring, predictive analytics for chronic conditions, and patient engagement tools.'
-                            }
-                        ]
+                        title: 'Core Technology',
+                        content: 'Streaming data systems trained to detect clinically actionable signals across heterogeneous data sources.'
                     },
                     {
-                        title: 'Technical Details',
-                        content: 'Our methodology leverages streaming data architectures and context-aware algorithms to deliver actionable insights.',
-                        subsections: [
-                            {
-                                title: 'Data Pipeline Architecture',
-                                content: 'Built on scalable cloud infrastructure with Apache Kafka for real-time data streaming.'
-                            },
-                            {
-                                title: 'Adaptive Algorithms',
-                                content: 'Context-driven models using reinforcement learning to adapt to individual patient profiles.'
-                            }
-                        ]
+                        title: 'Applications',
+                        content: 'Personalized monitoring for chronic conditions, acute event triage, and real-time risk stratification.'
                     }
                 ]
             },
-            'service-2': {
-                icon: '❤️',
-                title: 'Interface Ingestion',
-                sections: [
+            {
+                title: 'Technical Framework',
+                content: 'Our systems utilize edge-aware analytics and modular event processors tailored for health environments.',
+                subsections: [
                     {
-                        title: 'Overview',
-                        content: 'Human-centered interfaces for patients, clinicians, and decision systems — where insight enters with clarity and care.',
-                        subsections: [
-                            {
-                                title: 'User Experience Design',
-                                content: 'Intuitive, accessible interfaces designed with user feedback and iterative testing.'
-                            },
-                            {
-                                title: 'Interface Types',
-                                content: 'Patient portals, clinician dashboards, and mobile apps for seamless health data interaction.'
-                            }
-                        ]
+                        title: 'Pipeline Architecture',
+                        content: 'Kafka-based messaging systems and distributed inference engines supporting low-latency workflows.'
                     },
                     {
-                        title: 'Implementation',
-                        content: 'Our interfaces integrate with existing healthcare systems to ensure smooth data flow and usability.',
-                        subsections: [
-                            {
-                                title: 'Technology Stack',
-                                content: 'React for front-end, Node.js for backend, and FHIR-compliant APIs for interoperability.'
-                            },
-                            {
-                                title: 'Integration Patterns',
-                                content: 'RESTful APIs and WebSocket for real-time updates with EHR systems.'
-                            }
-                        ]
-                    }
-                ]
-            },
-            'service-3': {
-                icon: '🔁',
-                title: 'Recursion Logic',
-                sections: [
-                    {
-                        title: 'Overview',
-                        content: 'Symbolic architectures and recursive logic — systems that learn, adapt, and reason across time and layers.',
-                        subsections: [
-                            {
-                                title: 'Symbolic Systems',
-                                content: 'Knowledge graphs and rule-based systems for structured reasoning in healthcare.'
-                            },
-                            {
-                                title: 'Recursive Patterns',
-                                content: 'Iterative learning loops that refine predictions based on historical and real-time data.'
-                            }
-                        ]
-                    },
-                    {
-                        title: 'Architecture',
-                        content: 'Our recursive systems are designed for scalability and adaptability in dynamic environments.',
-                        subsections: [
-                            {
-                                title: 'Layer Management',
-                                content: 'Hierarchical models with modular layers for flexible computation.'
-                            },
-                            {
-                                title: 'State Persistence',
-                                content: 'Distributed databases with eventual consistency for robust state management.'
-                            }
-                        ]
-                    }
-                ]
-            },
-            'service-4': {
-                icon: '🎭',
-                title: 'Mask + Meaning',
-                sections: [
-                    {
-                        title: 'Overview',
-                        content: 'Simulation as story. Agents with values. Every decision is an act — and every act leaves a trace.',
-                        subsections: [
-                            {
-                                title: 'Agent-Based Modeling',
-                                content: 'Simulations of patient and clinician behaviors to optimize care pathways.'
-                            },
-                            {
-                                title: 'Value Systems',
-                                content: 'Ethical AI frameworks ensuring decisions align with patient values and clinical guidelines.'
-                            }
-                        ]
-                    },
-                    {
-                        title: 'Implementation',
-                        content: 'Our simulation systems create meaningful insights through agent-based modeling.',
-                        subsections: [
-                            {
-                                title: 'Simulation Engines',
-                                content: 'Built with AnyLogic and custom Python frameworks for complex simulations.'
-                            },
-                            {
-                                title: 'Decision Tracking',
-                                content: 'Blockchain-inspired ledgers for transparent decision logging.'
-                            }
-                        ]
-                    }
-                ]
-            },
-            'service-5': {
-                icon: '🤖',
-                title: 'Adaptive + Support',
-                sections: [
-                    {
-                        title: 'Overview',
-                        content: 'Evidence-backed decision support tailored to user needs — adapting as data and context change.',
-                        subsections: [
-                            {
-                                title: 'Decision Support Systems',
-                                content: 'AI-driven tools providing real-time recommendations for clinicians and patients.'
-                            },
-                            {
-                                title: 'Evidence Integration',
-                                content: 'Continuous integration of clinical research and real-world evidence.'
-                            }
-                        ]
-                    },
-                    {
-                        title: 'Adaptive Features',
-                        content: 'Our systems evolve with user needs, ensuring relevance and accuracy.',
-                        subsections: [
-                            {
-                                title: 'Learning Mechanisms',
-                                content: 'Online learning algorithms that update models with new data.'
-                            },
-                            {
-                                title: 'Personalization',
-                                content: 'Tailored recommendations based on patient history and preferences.'
-                            }
-                        ]
-                    }
-                ]
-            },
-            'timeline-1': {
-                icon: '🎲',
-                title: 'Tactical — Chance Events',
-                sections: [
-                    {
-                        title: 'Overview',
-                        content: 'Immediate response to unpredictable events and chance occurrences.',
-                        subsections: [
-                            {
-                                title: 'Event Detection',
-                                content: 'AI-driven anomaly detection to identify critical health events in real time.'
-                            },
-                            {
-                                title: 'Response Protocols',
-                                content: 'Automated workflows for rapid response to urgent situations.'
-                            }
-                        ]
-                    },
-                    {
-                        title: 'Implementation',
-                        content: 'Systems designed to handle uncertainty with speed and precision.',
-                        subsections: [
-                            {
-                                title: 'Real-time Processing',
-                                content: 'Edge computing for low-latency event handling.'
-                            },
-                            {
-                                title: 'Risk Assessment',
-                                content: 'Probabilistic models to evaluate and prioritize risks.'
-                            }
-                        ]
-                    }
-                ]
-            },
-            'timeline-2': {
-                icon: '📰',
-                title: 'Informational — Weekly Sync',
-                sections: [
-                    {
-                        title: 'Overview',
-                        content: 'Regular information gathering and synchronization across systems.',
-                        subsections: [
-                            {
-                                title: 'Data Aggregation',
-                                content: 'Centralized data lakes for consolidating multi-source health data.'
-                            },
-                            {
-                                title: 'Sync Protocols',
-                                content: 'Scheduled ETL processes for consistent data updates.'
-                            }
-                        ]
-                    },
-                    {
-                        title: 'Process',
-                        content: 'Weekly workflows ensure data integrity and system alignment.',
-                        subsections: [
-                            {
-                                title: 'Update Mechanisms',
-                                content: 'Automated scripts for incremental data updates.'
-                            },
-                            {
-                                title: 'Quality Control',
-                                content: 'Data validation pipelines to ensure accuracy.'
-                            }
-                        ]
-                    }
-                ]
-            },
-            'timeline-3': {
-                icon: '📅',
-                title: 'Strategic — Quarterly Plans',
-                sections: [
-                    {
-                        title: 'Overview',
-                        content: 'Long-term strategic planning and quarterly milestone management.',
-                        subsections: [
-                            {
-                                title: 'Planning Framework',
-                                content: 'Scenario planning tools to align with organizational goals.'
-                            },
-                            {
-                                title: 'Milestone Tracking',
-                                content: 'Dashboards for monitoring key performance indicators.'
-                            }
-                        ]
-                    },
-                    {
-                        title: 'Execution',
-                        content: 'Structured processes to execute strategic initiatives.',
-                        subsections: [
-                            {
-                                title: 'Resource Allocation',
-                                content: 'Optimization algorithms for efficient resource distribution.'
-                            },
-                            {
-                                title: 'Progress Monitoring',
-                                content: 'Regular reports and analytics for strategic oversight.'
-                            }
-                        ]
-                    }
-                ]
-            },
-            'timeline-4': {
-                icon: '📍',
-                title: 'Operational — Daily Flow',
-                sections: [
-                    {
-                        title: 'Overview',
-                        content: 'Day-to-day operational processes and workflow management.',
-                        subsections: [
-                            {
-                                title: 'Workflow Design',
-                                content: 'Streamlined processes for clinical and administrative tasks.'
-                            },
-                            {
-                                title: 'Process Optimization',
-                                content: 'Lean methodologies to enhance operational efficiency.'
-                            }
-                        ]
-                    },
-                    {
-                        title: 'Management',
-                        content: 'Daily operations are supported by robust management systems.',
-                        subsections: [
-                            {
-                                title: 'Task Coordination',
-                                content: 'Task management platforms for seamless coordination.'
-                            },
-                            {
-                                title: 'Performance Monitoring',
-                                content: 'Real-time metrics for operational performance.'
-                            }
-                        ]
-                    }
-                ]
-            },
-            'timeline-5': {
-                icon: '♾️',
-                title: 'Existential — Recursive Meaning',
-                sections: [
-                    {
-                        title: 'Overview',
-                        content: 'Deep philosophical and recursive meaning-making processes.',
-                        subsections: [
-                            {
-                                title: 'Meaning Framework',
-                                content: 'Frameworks to align technology with human values.'
-                            },
-                            {
-                                title: 'Recursive Processes',
-                                content: 'Iterative cycles to refine purpose and impact.'
-                            }
-                        ]
-                    },
-                    {
-                        title: 'Philosophy',
-                        content: 'Our systems are grounded in ethical and existential principles.',
-                        subsections: [
-                            {
-                                title: 'Value Systems',
-                                content: 'Core values prioritize patient trust and well-being.'
-                            },
-                            {
-                                title: 'Purpose Definition',
-                                content: 'Continuous reflection to ensure alignment with mission.'
-                            }
-                        ]
+                        title: 'Adaptive Filtering',
+                        content: 'Context-aware algorithms fine-tuned for patient state, clinician input, and evolving population trends.'
                     }
                 ]
             }
-        };
+        ]
+    },
+    'service-2': {
+        icon: '❤️',
+        title: 'Interface Ingestion',
+        sections: [
+            {
+                title: 'Overview',
+                content: 'Our interfaces are designed for human use in clinical complexity — readable, interoperable, and responsive to real-world constraints.',
+                subsections: [
+                    {
+                        title: 'Design Process',
+                        content: 'UX designed in close collaboration with patients, clinicians, and administrators to prioritize clarity, speed, and safety.'
+                    },
+                    {
+                        title: 'Interface Modalities',
+                        content: 'Dashboards, voice assistants, mobile apps, and embedded EHR components.'
+                    }
+                ]
+            },
+            {
+                title: 'Implementation Standards',
+                content: 'Each tool integrates with existing systems to reduce overhead and preserve continuity of care.',
+                subsections: [
+                    {
+                        title: 'Stack + Compliance',
+                        content: 'React + Node.js front-end, HL7/FHIR APIs, and HIPAA/NIST-aligned security protocols.'
+                    },
+                    {
+                        title: 'EHR Compatibility',
+                        content: 'SMART-on-FHIR integration for Epic, Cerner, and other major platforms.'
+                    }
+                ]
+            }
+        ]
+    },
+    'service-3': {
+        icon: '🔁',
+        title: 'Recursion Logic',
+        sections: [
+            {
+                title: 'Overview',
+                content: 'We develop symbolic and recursive reasoning systems for high-stakes health decisions — built for interpretability, modularity, and performance.',
+                subsections: [
+                    {
+                        title: 'Symbolic Logic',
+                        content: 'Ontologies, causal graphs, and rule-based logic engines that support traceable decision flows.'
+                    },
+                    {
+                        title: 'Temporal Reasoning',
+                        content: 'Recursive mechanisms that integrate past decisions, current state, and future trajectories.'
+                    }
+                ]
+            },
+            {
+                title: 'System Design',
+                content: 'Our architecture is modular, interpretable, and designed for iterative learning.',
+                subsections: [
+                    {
+                        title: 'Knowledge Layers',
+                        content: 'Multi-tier graph structures and inference rules enabling domain-specific reasoning.'
+                    },
+                    {
+                        title: 'Learning Feedback Loops',
+                        content: 'State-aware systems that refine outputs based on user feedback and outcome tracking.'
+                    }
+                ]
+            }
+        ]
+    },
+    'service-4': {
+        icon: '🎭',
+        title: 'Mask + Meaning',
+        sections: [
+            {
+                title: 'Overview',
+                content: 'Agent-based simulation environments for modeling behavior, values, and policy impacts — aligning ethical considerations with real-world complexity.',
+                subsections: [
+                    {
+                        title: 'Agent Modeling',
+                        content: 'Heterogeneous agents simulating patients, clinicians, and organizations under constraint.'
+                    },
+                    {
+                        title: 'Values & Intentions',
+                        content: 'Simulation parameters include norms, goals, and ethical commitments.'
+                    }
+                ]
+            },
+            {
+                title: 'Simulation Platforms',
+                content: 'Robust infrastructure for exploratory modeling, intervention testing, and behavioral inference.',
+                subsections: [
+                    {
+                        title: 'Engines + Tools',
+                        content: 'Custom Python engines and AnyLogic for multi-agent, value-sensitive simulation.'
+                    },
+                    {
+                        title: 'Traceability',
+                        content: 'Log structures inspired by blockchain to preserve and audit decision provenance.'
+                    }
+                ]
+            }
+        ]
+    },
+    'service-5': {
+        icon: '🤖',
+        title: 'Adaptive + Support',
+        sections: [
+            {
+                title: 'Overview',
+                content: 'We provide adaptive decision support systems grounded in clinical evidence and responsive to real-time user behavior and data.',
+                subsections: [
+                    {
+                        title: 'Decision Support Systems',
+                        content: 'AI modules for real-time clinical guidance across settings: primary care, acute care, and population health.'
+                    },
+                    {
+                        title: 'Evidence Integration',
+                        content: 'Automated ingestion of peer-reviewed research, registry data, and clinical guidelines.'
+                    }
+                ]
+            },
+            {
+                title: 'Adaptation & Personalization',
+                content: 'Built-in feedback mechanisms allow the system to improve, personalize, and retain relevance over time.',
+                subsections: [
+                    {
+                        title: 'Learning Mechanisms',
+                        content: 'Online learning and reinforcement strategies that adjust logic based on new evidence and outcomes.'
+                    },
+                    {
+                        title: 'Personalization Engine',
+                        content: 'Tailored recommendations aligned to patient history, goals, and preferences.'
+                    }
+                ]
+            }
+        ]
+    },
+
+    // ——— TIMELINES ———
+    'timeline-1': {
+        icon: '🎲',
+        title: 'Tactical — Chance Events',
+        sections: [
+            {
+                title: 'Overview',
+                content: 'Systems that respond to unpredictable events in real time, providing intelligent prioritization and escalation.',
+                subsections: [
+                    {
+                        title: 'Detection + Triage',
+                        content: 'Real-time anomaly detection and classification to triage urgent events rapidly.'
+                    },
+                    {
+                        title: 'Response Logic',
+                        content: 'Rule-based protocols and alerting mechanisms triggered under defined thresholds.'
+                    }
+                ]
+            },
+            {
+                title: 'Infrastructure',
+                content: 'Optimized for low-latency detection and decisioning.',
+                subsections: [
+                    {
+                        title: 'Signal Routing',
+                        content: 'Edge and cloud hybrid systems with localized fail-safes.'
+                    },
+                    {
+                        title: 'Decision Pathways',
+                        content: 'Tiered logic trees to route actions and accountability.'
+                    }
+                ]
+            }
+        ]
+    },
+    'timeline-2': {
+        icon: '📰',
+        title: 'Informational — Weekly Sync',
+        sections: [
+            {
+                title: 'Overview',
+                content: 'Weekly data refresh cycles supporting operational awareness, audit, and system tuning.',
+                subsections: [
+                    {
+                        title: 'Data Aggregation',
+                        content: 'Structured ingestion of updates from devices, EHRs, and analytic platforms.'
+                    },
+                    {
+                        title: 'Synchronization Patterns',
+                        content: 'Standardized ETL windows for consistency and integrity.'
+                    }
+                ]
+            },
+            {
+                title: 'Infrastructure + QA',
+                content: 'Ensuring data quality across systems.',
+                subsections: [
+                    {
+                        title: 'Update Logic',
+                        content: 'Incremental vs full loads guided by change frequency and impact tier.'
+                    },
+                    {
+                        title: 'Validation Checks',
+                        content: 'Schema matching, duplicate detection, and field-level consistency scoring.'
+                    }
+                ]
+            }
+        ]
+    },
+    'timeline-3': {
+        icon: '📅',
+        title: 'Strategic — Quarterly Plans',
+        sections: [
+            {
+                title: 'Overview',
+                content: 'Structures to design, implement, and evaluate quarterly strategic priorities.',
+                subsections: [
+                    {
+                        title: 'Milestone Management',
+                        content: 'Quarterly KPIs, budget cycles, and reporting dashboards.'
+                    },
+                    {
+                        title: 'Planning Systems',
+                        content: 'Goal-setting and accountability frameworks embedded in workflows.'
+                    }
+                ]
+            },
+            {
+                title: 'Execution Architecture',
+                content: 'Digital tools to keep teams and plans aligned.',
+                subsections: [
+                    {
+                        title: 'Dashboards + Alerts',
+                        content: 'Integrated with task systems to surface lagging metrics or unmet objectives.'
+                    },
+                    {
+                        title: 'Collaboration Channels',
+                        content: 'Asynchronous updates, real-time comments, and document version control.'
+                    }
+                ]
+            }
+        ]
+    },
+    'timeline-4': {
+        icon: '📍',
+        title: 'Operational — Daily Flow',
+        sections: [
+            {
+                title: 'Overview',
+                content: 'Day-to-day execution of clinical, administrative, and analytic tasks — tracked and tuned through shared systems.',
+                subsections: [
+                    {
+                        title: 'Work Coordination',
+                        content: 'Daily checklists, task routing, and process status views for staff.'
+                    },
+                    {
+                        title: 'Efficiency Monitoring',
+                        content: 'Cycle time and load metrics surface friction or bottlenecks.'
+                    }
+                ]
+            },
+            {
+                title: 'Management Routines',
+                content: 'Systemized huddles, escalation protocols, and distributed logs.',
+                subsections: [
+                    {
+                        title: 'Shift Reporting',
+                        content: 'Start-of-day briefings, handoff notes, and end-of-day summaries.'
+                    },
+                    {
+                        title: 'Data Capture',
+                        content: 'Structured fields and inline notes to preserve audit-ready detail.'
+                    }
+                ]
+            }
+        ]
+    },
+    'timeline-5': {
+        icon: '♾️',
+        title: 'Existential — Recursive Meaning',
+        sections: [
+            {
+                title: 'Overview',
+                content: 'Philosophical grounding and reflective cycles to ensure technology remains human-centered and just.',
+                subsections: [
+                    {
+                        title: 'Ethics-as-Architecture',
+                        content: 'Design principles informed by moral philosophy and lived experience.'
+                    },
+                    {
+                        title: 'Recursive Impact',
+                        content: 'Feedback loops to assess how systems shape — and are shaped by — users and institutions.'
+                    }
+                ]
+            },
+            {
+                title: 'Mission Alignment',
+                content: 'Making visible the values encoded in algorithms.',
+                subsections: [
+                    {
+                        title: 'Accountability Structures',
+                        content: 'Governance and disclosure layers built into infrastructure.'
+                    },
+                    {
+                        title: 'Purpose Calibration',
+                        content: 'Ongoing stakeholder engagement and scenario analysis.'
+                    }
+                ]
+            }
+        ]
+    }
+};
+
 
         // Modal functions
         function openModal(modalId) {
