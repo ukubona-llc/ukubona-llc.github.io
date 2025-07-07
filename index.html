@@ -1,33 +1,3 @@
-
-
-<!DOCTYPE html> <html lang="en" data-theme="dark"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta name="description" content="Ukubona LLC - Digital Infrastructure for Personalized Medicine"> <title>Ukubona LLC - Digital Inf
-
-pasted
-
-modify the grid, add an extra item for education or courses https://pairs-jh.github.io/
-
-Edit
-I'll modify the grid menu to add an extra item for education/courses. Looking at your current grid structure, I'll add a new "Education" item that links to the provided URL.
-
-
-Ukubona LLC - Modified with Education Grid Item
-Interactive artifact 
-I've modified the grid menu to include a new "Education" item that links to https://pairs-jh.github.io/. Here are the key changes:
-
-Added Education Grid Item: New item with a book icon (📚) and "Education" label
-External Link: Links to the provided URL with proper target="_blank" and security attributes
-Updated Grid Layout: Modified CSS to handle 6 items instead of 5:
-Desktop: 3 columns × 2 rows
-Mobile: 2 columns × 3 rows for better mobile experience
-Proper Spacing: Maintained the visual balance with appropriate grid gap and padding
-The Education item will open in a new tab when clicked, keeping users on your main site while providing access to the educational content. The grid now displays all 6 items in a clean, organized layout that works well on both desktop and mobile devices.
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
@@ -51,7 +21,25 @@ The Education item will open in a new tab when clicked, keeping users on your ma
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/main.css">        
 <style>
-    /* Menu icon colors to match first HTML */
+    /* General layout for centering */
+    .services-section, .metrics-section {
+        text-align: center;
+        margin: 0 auto;
+        padding: 2rem 0;
+    }
+    
+    /* Center section titles */
+    .section-title {
+        display: block;
+        margin: 0 auto 2rem auto;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        position: relative;
+        text-align: center;
+    }
+    
+    /* Menu icon colors */
     html[data-theme='light'] .menu-icon div {
         background-color: #000;
     }
@@ -59,7 +47,7 @@ The Education item will open in a new tab when clicked, keeping users on your ma
         background-color: #fff;
     }
     
-    /* Logo animation only */
+    /* Logo animation */
     .logo {
         animation: cosmic-rotate 60s linear infinite;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -76,7 +64,404 @@ The Education item will open in a new tab when clicked, keeping users on your ma
         to { transform: rotate(360deg); }
     }
 
+    /* Pentagon Layouts for Services & Timeline */
+    .services-pentagon, .timeline-pentagon {
+        position: relative;
+        width: 400px;
+        height: 400px;
+        margin: 3rem auto;
+        max-width: 90vw;
+        aspect-ratio: 1;
+    }
+    
+    .pentagon-service, .pentagon-timeline {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        transform-origin: center;
+        opacity: 0;
+        animation: fadeInPentagon 0.6s ease-out forwards;
+    }
+    
+    .pentagon-service:nth-child(1), .pentagon-timeline:nth-child(1) { animation-delay: 0.1s; }
+    .pentagon-service:nth-child(2), .pentagon-timeline:nth-child(2) { animation-delay: 0.2s; }
+    .pentagon-service:nth-child(3), .pentagon-timeline:nth-child(3) { animation-delay: 0.3s; }
+    .pentagon-service:nth-child(4), .pentagon-timeline:nth-child(4) { animation-delay: 0.4s; }
+    .pentagon-service:nth-child(5), .pentagon-timeline:nth-child(5) { animation-delay: 0.5s; }
+    
+    @keyframes fadeInPentagon {
+        from {
+            opacity: 0;
+            transform: scale(0.8) translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+    }
+    
+    /* Replace the existing pentagon positioning with this */
+.services-pentagon, .timeline-pentagon {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    margin: 3rem auto;
+    max-width: 90vw;
+    aspect-ratio: 1;
+}
 
+/* Pentagon vertex positions (perfect symmetry) */
+.pentagon-service, .pentagon-timeline {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    margin-left: -40px; /* Half of width to center */
+    margin-top: -40px; /* Half of height to center */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* ... keep other styles ... */
+}
+
+/* Vertex positions (radius = 150px for 400px container) */
+.pentagon-service:nth-child(1), .pentagon-timeline:nth-child(1) { /* Top */
+    top: 5%;
+    left: 50%;
+}
+
+.pentagon-service:nth-child(2), .pentagon-timeline:nth-child(2) { /* 72° */
+    top: 28.5%;
+    left: 85.5%;
+}
+
+.pentagon-service:nth-child(3), .pentagon-timeline:nth-child(3) { /* 144° */
+    top: 71.5%;
+    left: 85.5%;
+}
+
+.pentagon-service:nth-child(4), .pentagon-timeline:nth-child(4) { /* 216° */
+    top: 94%;
+    left: 50%;
+}
+
+.pentagon-service:nth-child(5), .pentagon-timeline:nth-child(5) { /* 288° */
+    top: 71.5%;
+    left: 14.5%;
+}
+
+.pentagon-service:nth-child(6), .pentagon-timeline:nth-child(6) { /* 0° (back to top) */
+    top: 28.5%;
+    left: 14.5%;
+}
+
+    
+    /* Section Title Tooltip */
+    .section-title {
+        position: relative;
+    }
+    
+    .section-title::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        top: 120%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.95);
+        color: #fff;
+        padding: 1rem;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        width: 320px;
+        max-width: 90vw;
+        text-align: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        z-index: 100;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    .section-title:hover::after {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    /* Glyph Tooltip Styles */
+    .pentagon-service, .pentagon-timeline {
+        position: relative;
+    }
+    
+    .pentagon-service::after, .pentagon-timeline::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        top: 110%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.95);
+        color: #fff;
+        padding: 0.8rem;
+        border-radius: 8px;
+        font-size: 0.8rem;
+        line-height: 1.4;
+        width: 200px;
+        max-width: 90vw;
+        text-align: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        z-index: 100;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    .pentagon-service:hover::after, .pentagon-timeline:hover::after {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    /* Modal Styles */
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(5px);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    .modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .modal-content {
+        background: var(--bg-secondary);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 25px;
+        padding: 2rem;
+        max-width: 600px;
+        width: 90vw;
+        max-height: 80vh;
+        overflow-y: auto;
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+    }
+    
+    .modal-overlay.active .modal-content {
+        transform: scale(1);
+    }
+    
+    .modal-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .modal-icon {
+        font-size: 3rem;
+    }
+    
+    .modal-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin: 0;
+    }
+    
+    .modal-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        cursor: pointer;
+        color: var(--text-secondary);
+        transition: color 0.3s ease;
+    }
+    
+    .modal-close:hover {
+        color: var(--text-primary);
+    }
+    
+    .modal-section {
+        margin-bottom: 1.5rem;
+    }
+    
+    .modal-section h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+    }
+    
+    .modal-section p {
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+    
+    .modal-subsection {
+        margin-left: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .modal-subsection h4 {
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--text-primary);
+        margin-bottom: 0.3rem;
+    }
+    
+    .modal-subsection p {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .services-pentagon, .timeline-pentagon {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .pentagon-service, .pentagon-timeline {
+            width: 60px;
+            height: 60px;
+        }
+        
+        .pentagon-service .service-icon, .pentagon-timeline .service-icon {
+            font-size: 1.4rem;
+        }
+        
+        .pentagon-service .service-title, .pentagon-timeline .service-title {
+            font-size: 0.65rem;
+        }
+        
+        /* Disable tooltips on mobile */
+        .section-title::after, .pentagon-service::after, .pentagon-timeline::after {
+            display: none;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .services-pentagon, .timeline-pentagon {
+            width: 250px;
+            height: 250px;
+        }
+        
+        .pentagon-service, .pentagon-timeline {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .pentagon-service .service-icon, .pentagon-timeline .service-icon {
+            font-size: 1.2rem;
+        }
+        
+        .pentagon-service .service-title, .pentagon-timeline .service-title {
+            font-size: 0.6rem;
+        }
+    }
+    
+    /* Light theme adjustments */
+    html[data-theme='light'] .pentagon-service, html[data-theme='light'] .pentagon-timeline {
+        background: rgba(0, 0, 0, 0.05);
+        border-color: rgba(0, 0, 0, 0.1);
+    }
+    
+    html[data-theme='light'] .pentagon-service:hover, html[data-theme='light'] .pentagon-timeline:hover {
+        background: rgba(99, 102, 241, 0.1);
+        border-color: rgba(99, 102, 241, 0.3);
+    }
+    
+    html[data-theme='light'] .modal-content {
+        background: var(--bg-primary);
+        border-color: rgba(0, 0, 0, 0.1);
+    }
+
+/* Add this to your CSS */
+.services-section {
+    padding-bottom: 6rem; /* Increased bottom padding */
+}
+
+.metrics-section {
+    padding-top: 4rem; /* Added top padding */
+    padding-bottom: 6rem;
+}
+
+@media (max-width: 768px) {
+    .services-pentagon, .timeline-pentagon {
+        width: 300px;
+        height: 300px;
+    }
+    
+    /* Adjust vertex positions for smaller pentagon */
+    .pentagon-service:nth-child(1), .pentagon-timeline:nth-child(1) {
+        top: 5%;
+        left: 50%;
+    }
+    .pentagon-service:nth-child(2), .pentagon-timeline:nth-child(2) {
+        top: 28.5%;
+        left: 85.5%;
+    }
+    .pentagon-service:nth-child(3), .pentagon-timeline:nth-child(3) {
+        top: 71.5%;
+        left: 85.5%;
+    }
+    .pentagon-service:nth-child(4), .pentagon-timeline:nth-child(4) {
+        top: 94%;
+        left: 50%;
+    }
+    .pentagon-service:nth-child(5), .pentagon-timeline:nth-child(5) {
+        top: 71.5%;
+        left: 14.5%;
+    }
+}
+
+@media (max-width: 480px) {
+    .services-pentagon, .timeline-pentagon {
+        width: 250px;
+        height: 250px;
+    }
+}
+
+/* Add subtle animation to pentagon containers */
+.services-pentagon, .timeline-pentagon {
+    transition: all 0.5s ease;
+}
+
+/* Improve tooltip visibility */
+.pentagon-service::after, .pentagon-timeline::after {
+    font-size: 0.9rem;
+    padding: 0.8rem 1rem;
+    width: 220px;
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.85);
+}
 </style>
 </head>
 <body>
@@ -105,158 +490,528 @@ The Education item will open in a new tab when clicked, keeping users on your ma
             </div>
         </div>
         
-<div class="app-grid" id="gridMenu">
-    <a href="index.html"><div class="icon-box">📊</div>Home</a>
-    <a href="assets/html/mission.html"><div class="icon-box">🎯</div>Mission</a>
-    <a href="assets/html/models.html"><div class="icon-box">📈</div>Models</a>
-    <a href="assets/html/team.html"><div class="icon-box">👥</div>Team</a>
-    <a href="assets/html/contact.html"><div class="icon-box">✉️</div>Contact</a>
-    <a href="https://pairs-jh.github.io/" target="_blank" rel="noopener noreferrer"><div class="icon-box">📚</div>Education</a>
-</div>
-
+        <div class="app-grid" id="gridMenu">
+            <a href="index.html"><div class="icon-box">📊</div>Home</a>
+            <a href="assets/html/mission.html"><div class="icon-box">🎯</div>Mission</a>
+            <a href="assets/html/models.html"><div class="icon-box">📈</div>Models</a>
+            <a href="assets/html/team.html"><div class="icon-box">👥</div>Team</a>
+            <a href="assets/html/contact.html"><div class="icon-box">✉️</div>Contact</a>
+            <a href="https://pairs-jh.github.io/" target="_blank" rel="noopener noreferrer"><div class="icon-box">📚</div>Education</a>
+        </div>
     </header>
 
-    <!-- UPDATED CONTENT SECTIONS ONLY; toned down by Claude; GPT was way too indulgent -->
-<section class="hero">
-    <div class="hero-content">
-        <h1 class="hero-title">Ukubona</h1>
-        <p class="hero-subtitle">
-            Precision risk models. Adaptive decision tools.<br/>
-            Built for continuity, personalization, and trust.
-        </p>
-        <div class="hero-cta">
-            <a href="assets/html/contact.html" class="cta-button cta-primary">✉️ Start Your Project</a>
-            <a href="assets/html/team.html" class="cta-button cta-secondary">👥 Meet the Team</a>
-        </div>
-    </div>
-</section>
-
-<main class="main-content">
-    <section class="services-section">
-        <h2 class="section-title">What We Build</h2>
-        <p class="section-subtitle">Five glyphs. One recursion. Infinite clarity.</p>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">🌊</div>
-                <h3 class="service-title">Signal Nutrition</h3>
-                <p class="service-desc">
-                    Live data pipelines that adapt to user context and emotional relevance — transforming uncertainty into clarity.
-                </p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">❤️</div>
-                <h3 class="service-title">Interface Ingestion</h3>
-                <p class="service-desc">
-                    Human-centered interfaces for patients, clinicians, and decision systems — where insight enters with clarity and care.
-                </p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🔁</div>
-                <h3 class="service-title">Recursion Logic</h3>
-                <p class="service-desc">
-                    Symbolic architectures and recursive logic — systems that learn, adapt, and reason across time and layers.
-                </p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🎭</div>
-                <h3 class="service-title">Mask + Meaning</h3>
-                <p class="service-desc">
-                    Simulation as story. Agents with values. Every decision is an act — and every act leaves a trace.
-                </p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🤖</div>
-                <h3 class="service-title">Adaptive + Support</h3>
-                <p class="service-desc">
-                    Evidence-backed decision support tailored to user needs — adapting as data and context change.
-                </p>
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Ukubona</h1>
+            <p class="hero-subtitle">
+                Precision risk models. Adaptive decision tools.<br/>
+                Built for continuity, personalization, and trust.
+            </p>
+            <div class="hero-cta">
+                <a href="assets/html/contact.html" class="cta-button cta-primary">✉️ Start Your Project</a>
+                <a href="assets/html/team.html" class="cta-button cta-secondary">👥 Meet the Team</a>
             </div>
         </div>
     </section>
-</main>
 
-
-
+    <main class="main-content">
+        <section class="services-section">
+            <h2 class="section-title" data-tooltip="Five glyphs. One recursion. Infinite clarity.">What We Build</h2>
+               <br><br><br>
+            <div class="services-pentagon">
+                <div class="pentagon-service" data-modal="service-1" data-tooltip="Live data pipelines that adapt to user context and emotional relevance — transforming uncertainty into clarity.">
+                    <div class="service-icon">🌊</div>
+                    <h3 class="service-title">Signal Nutrition</h3>
+                </div>
+                <div class="pentagon-service" data-modal="service-2" data-tooltip="Human-centered interfaces for patients, clinicians, and decision systems — where insight enters with clarity and care.">
+                    <div class="service-icon">❤️</div>
+                    <h3 class="service-title">Interface Ingestion</h3>
+                </div>
+                <div class="pentagon-service" data-modal="service-3" data-tooltip="Symbolic architectures and recursive logic — systems that learn, adapt, and reason across time and layers.">
+                    <div class="service-icon">🔁</div>
+                    <h3 class="service-title">Recursion Logic</h3>
+                </div>
+                <div class="pentagon-service" data-modal="service-4" data-tooltip="Simulation as story. Agents with values. Every decision is an act — and every act leaves a trace.">
+                    <div class="service-icon">🎭</div>
+                    <h3 class="service-title">Mask + Meaning</h3>
+                </div>
+                <div class="pentagon-service" data-modal="service-5" data-tooltip="Evidence-backed decision support tailored to user needs — adapting as data and context change.">
+                    <div class="service-icon">🤖</div>
+                    <h3 class="service-title">Adaptive + Support</h3>
+                </div>
             </div>
         </section>
-
+   <br><br><br>
+   <br><br><br>
         <section class="metrics-section">
-            <h2 class="section-title">Timeline Logic</h2>
-            <p class="section-subtitle">We operate on five layers — each one nested, recursive, and essential.</p>
-            <div class="metrics-grid">
-                <div class="metric-card">
-                    <div class="metric-value">🎲</div>
-                    <div class="metric-label">Tactical — Chance Events</div>
+            <h2 class="section-title" data-tooltip="We operate on five layers — each one nested, recursive, and essential.">Timeline Logic</h2>
+            <br><br><br>
+            <div class="timeline-pentagon">
+                <div class="pentagon-timeline" data-modal="timeline-1" data-tooltip="Immediate response to unpredictable events and chance occurrences.">
+                    <div class="service-icon">🎲</div>
+                    <h3 class="service-title">Tactical</h3>
                 </div>
-                <div class="metric-card">
-                    <div class="metric-value">📰</div>
-                    <div class="metric-label">Informational — Weekly Sync</div>
+                <div class="pentagon-timeline" data-modal="timeline-2" data-tooltip="Regular information gathering and synchronization across systems.">
+                    <div class="service-icon">📰</div>
+                    <h3 class="service-title">Informational</h3>
                 </div>
-                <div class="metric-card">
-                    <div class="metric-value">📅</div>
-                    <div class="metric-label">Strategic — Quarterly Plans</div>
+                <div class="pentagon-timeline" data-modal="timeline-3" data-tooltip="Long-term strategic planning and quarterly milestone management.">
+                    <div class="service-icon">📅</div>
+                    <h3 class="service-title">Strategic</h3>
                 </div>
-                <div class="metric-card">
-                    <div class="metric-value">📍</div>
-                    <div class="metric-label">Operational — Daily Flow</div>
+                <div class="pentagon-timeline" data-modal="timeline-4" data-tooltip="Day-to-day operational processes and workflow management.">
+                    <div class="service-icon">📍</div>
+                    <h3 class="service-title">Operational</h3>
                 </div>
-                <div class="metric-card">
-                    <div class="metric-value">♾️</div>
-                    <div class="metric-label">Existential — Recursive Meaning</div>
+                <div class="pentagon-timeline" data-modal="timeline-5" data-tooltip="Deep philosophical and recursive meaning-making processes.">
+                    <div class="service-icon">♾️</div>
+                    <h3 class="service-title">Existential</h3>
                 </div>
             </div>
         </section>
     </main>
 
-<div id="footer-placeholder"></div>
-<script>
-fetch('/assets/html/footer.html')
-  .then(response => response.text())
-  .then(html => {
-    document.getElementById('footer-placeholder').innerHTML = html;
-  });
-</script>
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-header">
+                <div class="modal-icon" id="modalIcon">🌊</div>
+                <h2 class="modal-title" id="modalTitle">Signal Nutrition</h2>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch('/assets/html/footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footer-placeholder').innerHTML = html;
+            });
+
+        // Modal data structure
+        const modalData = {
+            'service-1': {
+                icon: '🌊',
+                title: 'Signal Nutrition',
+                sections: [
+                    {
+                        title: 'Overview',
+                        content: 'Live data pipelines that adapt to user context and emotional relevance — transforming uncertainty into clarity.',
+                        subsections: [
+                            {
+                                title: 'Core Technology',
+                                content: 'Real-time data processing with machine learning models to filter and prioritize health signals.'
+                            },
+                            {
+                                title: 'Applications',
+                                content: 'Personalized health monitoring, predictive analytics for chronic conditions, and patient engagement tools.'
+                            }
+                        ]
+                    },
+                    {
+                        title: 'Technical Details',
+                        content: 'Our methodology leverages streaming data architectures and context-aware algorithms to deliver actionable insights.',
+                        subsections: [
+                            {
+                                title: 'Data Pipeline Architecture',
+                                content: 'Built on scalable cloud infrastructure with Apache Kafka for real-time data streaming.'
+                            },
+                            {
+                                title: 'Adaptive Algorithms',
+                                content: 'Context-driven models using reinforcement learning to adapt to individual patient profiles.'
+                            }
+                        ]
+                    }
+                ]
+            },
+            'service-2': {
+                icon: '❤️',
+                title: 'Interface Ingestion',
+                sections: [
+                    {
+                        title: 'Overview',
+                        content: 'Human-centered interfaces for patients, clinicians, and decision systems — where insight enters with clarity and care.',
+                        subsections: [
+                            {
+                                title: 'User Experience Design',
+                                content: 'Intuitive, accessible interfaces designed with user feedback and iterative testing.'
+                            },
+                            {
+                                title: 'Interface Types',
+                                content: 'Patient portals, clinician dashboards, and mobile apps for seamless health data interaction.'
+                            }
+                        ]
+                    },
+                    {
+                        title: 'Implementation',
+                        content: 'Our interfaces integrate with existing healthcare systems to ensure smooth data flow and usability.',
+                        subsections: [
+                            {
+                                title: 'Technology Stack',
+                                content: 'React for front-end, Node.js for backend, and FHIR-compliant APIs for interoperability.'
+                            },
+                            {
+                                title: 'Integration Patterns',
+                                content: 'RESTful APIs and WebSocket for real-time updates with EHR systems.'
+                            }
+                        ]
+                    }
+                ]
+            },
+            'service-3': {
+                icon: '🔁',
+                title: 'Recursion Logic',
+                sections: [
+                    {
+                        title: 'Overview',
+                        content: 'Symbolic architectures and recursive logic — systems that learn, adapt, and reason across time and layers.',
+                        subsections: [
+                            {
+                                title: 'Symbolic Systems',
+                                content: 'Knowledge graphs and rule-based systems for structured reasoning in healthcare.'
+                            },
+                            {
+                                title: 'Recursive Patterns',
+                                content: 'Iterative learning loops that refine predictions based on historical and real-time data.'
+                            }
+                        ]
+                    },
+                    {
+                        title: 'Architecture',
+                        content: 'Our recursive systems are designed for scalability and adaptability in dynamic environments.',
+                        subsections: [
+                            {
+                                title: 'Layer Management',
+                                content: 'Hierarchical models with modular layers for flexible computation.'
+                            },
+                            {
+                                title: 'State Persistence',
+                                content: 'Distributed databases with eventual consistency for robust state management.'
+                            }
+                        ]
+                    }
+                ]
+            },
+            'service-4': {
+                icon: '🎭',
+                title: 'Mask + Meaning',
+                sections: [
+                    {
+                        title: 'Overview',
+                        content: 'Simulation as story. Agents with values. Every decision is an act — and every act leaves a trace.',
+                        subsections: [
+                            {
+                                title: 'Agent-Based Modeling',
+                                content: 'Simulations of patient and clinician behaviors to optimize care pathways.'
+                            },
+                            {
+                                title: 'Value Systems',
+                                content: 'Ethical AI frameworks ensuring decisions align with patient values and clinical guidelines.'
+                            }
+                        ]
+                    },
+                    {
+                        title: 'Implementation',
+                        content: 'Our simulation systems create meaningful insights through agent-based modeling.',
+                        subsections: [
+                            {
+                                title: 'Simulation Engines',
+                                content: 'Built with AnyLogic and custom Python frameworks for complex simulations.'
+                            },
+                            {
+                                title: 'Decision Tracking',
+                                content: 'Blockchain-inspired ledgers for transparent decision logging.'
+                            }
+                        ]
+                    }
+                ]
+            },
+            'service-5': {
+                icon: '🤖',
+                title: 'Adaptive + Support',
+                sections: [
+                    {
+                        title: 'Overview',
+                        content: 'Evidence-backed decision support tailored to user needs — adapting as data and context change.',
+                        subsections: [
+                            {
+                                title: 'Decision Support Systems',
+                                content: 'AI-driven tools providing real-time recommendations for clinicians and patients.'
+                            },
+                            {
+                                title: 'Evidence Integration',
+                                content: 'Continuous integration of clinical research and real-world evidence.'
+                            }
+                        ]
+                    },
+                    {
+                        title: 'Adaptive Features',
+                        content: 'Our systems evolve with user needs, ensuring relevance and accuracy.',
+                        subsections: [
+                            {
+                                title: 'Learning Mechanisms',
+                                content: 'Online learning algorithms that update models with new data.'
+                            },
+                            {
+                                title: 'Personalization',
+                                content: 'Tailored recommendations based on patient history and preferences.'
+                            }
+                        ]
+                    }
+                ]
+            },
+            'timeline-1': {
+                icon: '🎲',
+                title: 'Tactical — Chance Events',
+                sections: [
+                    {
+                        title: 'Overview',
+                        content: 'Immediate response to unpredictable events and chance occurrences.',
+                        subsections: [
+                            {
+                                title: 'Event Detection',
+                                content: 'AI-driven anomaly detection to identify critical health events in real time.'
+                            },
+                            {
+                                title: 'Response Protocols',
+                                content: 'Automated workflows for rapid response to urgent situations.'
+                            }
+                        ]
+                    },
+                    {
+                        title: 'Implementation',
+                        content: 'Systems designed to handle uncertainty with speed and precision.',
+                        subsections: [
+                            {
+                                title: 'Real-time Processing',
+                                content: 'Edge computing for low-latency event handling.'
+                            },
+                            {
+                                title: 'Risk Assessment',
+                                content: 'Probabilistic models to evaluate and prioritize risks.'
+                            }
+                        ]
+                    }
+                ]
+            },
+            'timeline-2': {
+                icon: '📰',
+                title: 'Informational — Weekly Sync',
+                sections: [
+                    {
+                        title: 'Overview',
+                        content: 'Regular information gathering and synchronization across systems.',
+                        subsections: [
+                            {
+                                title: 'Data Aggregation',
+                                content: 'Centralized data lakes for consolidating multi-source health data.'
+                            },
+                            {
+                                title: 'Sync Protocols',
+                                content: 'Scheduled ETL processes for consistent data updates.'
+                            }
+                        ]
+                    },
+                    {
+                        title: 'Process',
+                        content: 'Weekly workflows ensure data integrity and system alignment.',
+                        subsections: [
+                            {
+                                title: 'Update Mechanisms',
+                                content: 'Automated scripts for incremental data updates.'
+                            },
+                            {
+                                title: 'Quality Control',
+                                content: 'Data validation pipelines to ensure accuracy.'
+                            }
+                        ]
+                    }
+                ]
+            },
+            'timeline-3': {
+                icon: '📅',
+                title: 'Strategic — Quarterly Plans',
+                sections: [
+                    {
+                        title: 'Overview',
+                        content: 'Long-term strategic planning and quarterly milestone management.',
+                        subsections: [
+                            {
+                                title: 'Planning Framework',
+                                content: 'Scenario planning tools to align with organizational goals.'
+                            },
+                            {
+                                title: 'Milestone Tracking',
+                                content: 'Dashboards for monitoring key performance indicators.'
+                            }
+                        ]
+                    },
+                    {
+                        title: 'Execution',
+                        content: 'Structured processes to execute strategic initiatives.',
+                        subsections: [
+                            {
+                                title: 'Resource Allocation',
+                                content: 'Optimization algorithms for efficient resource distribution.'
+                            },
+                            {
+                                title: 'Progress Monitoring',
+                                content: 'Regular reports and analytics for strategic oversight.'
+                            }
+                        ]
+                    }
+                ]
+            },
+            'timeline-4': {
+                icon: '📍',
+                title: 'Operational — Daily Flow',
+                sections: [
+                    {
+                        title: 'Overview',
+                        content: 'Day-to-day operational processes and workflow management.',
+                        subsections: [
+                            {
+                                title: 'Workflow Design',
+                                content: 'Streamlined processes for clinical and administrative tasks.'
+                            },
+                            {
+                                title: 'Process Optimization',
+                                content: 'Lean methodologies to enhance operational efficiency.'
+                            }
+                        ]
+                    },
+                    {
+                        title: 'Management',
+                        content: 'Daily operations are supported by robust management systems.',
+                        subsections: [
+                            {
+                                title: 'Task Coordination',
+                                content: 'Task management platforms for seamless coordination.'
+                            },
+                            {
+                                title: 'Performance Monitoring',
+                                content: 'Real-time metrics for operational performance.'
+                            }
+                        ]
+                    }
+                ]
+            },
+            'timeline-5': {
+                icon: '♾️',
+                title: 'Existential — Recursive Meaning',
+                sections: [
+                    {
+                        title: 'Overview',
+                        content: 'Deep philosophical and recursive meaning-making processes.',
+                        subsections: [
+                            {
+                                title: 'Meaning Framework',
+                                content: 'Frameworks to align technology with human values.'
+                            },
+                            {
+                                title: 'Recursive Processes',
+                                content: 'Iterative cycles to refine purpose and impact.'
+                            }
+                        ]
+                    },
+                    {
+                        title: 'Philosophy',
+                        content: 'Our systems are grounded in ethical and existential principles.',
+                        subsections: [
+                            {
+                                title: 'Value Systems',
+                                content: 'Core values prioritize patient trust and well-being.'
+                            },
+                            {
+                                title: 'Purpose Definition',
+                                content: 'Continuous reflection to ensure alignment with mission.'
+                            }
+                        ]
+                    }
+                ]
+            }
+        };
+
+        // Modal functions
+        function openModal(modalId) {
+            const data = modalData[modalId];
+            if (!data) return;
+            
+            document.getElementById('modalIcon').textContent = data.icon;
+            document.getElementById('modalTitle').textContent = data.title;
+            
+            const modalBody = document.getElementById('modalBody');
+            modalBody.innerHTML = '';
+            
+            data.sections.forEach(section => {
+                const sectionDiv = document.createElement('div');
+                sectionDiv.className = 'modal-section';
+                
+                const sectionTitle = document.createElement('h3');
+                sectionTitle.textContent = section.title;
+                sectionDiv.appendChild(sectionTitle);
+                
+                const sectionContent = document.createElement('p');
+                sectionContent.textContent = section.content;
+                sectionDiv.appendChild(sectionContent);
+                
+                if (section.subsections) {
+                    section.subsections.forEach(subsection => {
+                        const subsectionDiv = document.createElement('div');
+                        subsectionDiv.className = 'modal-subsection';
+                        
+                        const subsectionTitle = document.createElement('h4');
+                        subsectionTitle.textContent = subsection.title;
+                        subsectionDiv.appendChild(subsectionTitle);
+                        
+                        const subsectionContent = document.createElement('p');
+                        subsectionContent.textContent = subsection.content;
+                        subsectionDiv.appendChild(subsectionContent);
+                        
+                        sectionDiv.appendChild(subsectionDiv);
+                    });
+                }
+                
+                modalBody.appendChild(sectionDiv);
+            });
+            
+            document.getElementById('modalOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('[data-modal]').forEach(element => {
+                element.addEventListener('click', function() {
+                    const modalId = this.getAttribute('data-modal');
+                    openModal(modalId);
+                });
+            });
+            
+            document.getElementById('modalOverlay').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+            });
+        });
+    </script>
 
     <!-- JavaScript -->
     <script src="assets/js/shared.js"></script>
-    <script src="assets/js/landing.js"></script>     
-<!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
-</body>       
+    <script src="assets/js/landing.js"></script>
+</body>
 </html>
