@@ -25,14 +25,14 @@
     .services-section, .metrics-section {
         text-align: center;
         margin: 0 auto;
-        padding: 2rem 0;
+        padding: 8rem 0; /* Adjusted padding to match second HTML */
     }
     
     /* Center section titles */
     .section-title {
         display: block;
-        margin: 0 auto 2rem auto;
-        font-size: 2rem;
+        margin: 0 auto 4rem auto; /* Adjusted margin */
+        font-size: 2.5rem;
         font-weight: 700;
         color: var(--text-primary);
         position: relative;
@@ -64,46 +64,72 @@
         to { transform: rotate(360deg); }
     }
 
-    /* Pentagon Layouts for Services & Timeline */
+    /* Perfect Pentagon Layout from second HTML */
     .services-pentagon, .timeline-pentagon {
         position: relative;
-        width: 400px;
-        height: 400px;
-        margin: 3rem auto;
+        width: 450px;
+        height: 450px;
+        margin: 0 auto;
         max-width: 90vw;
         aspect-ratio: 1;
     }
     
     .pentagon-service, .pentagon-timeline {
         position: absolute;
-        width: 80px;
-        height: 80px;
+        width: 100px;
+        height: 100px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         text-align: center;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 15px;
-        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.03);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        backdrop-filter: blur(15px);
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         cursor: pointer;
-        transform-origin: center;
         opacity: 0;
-        animation: fadeInPentagon 0.6s ease-out forwards;
+        animation: fadeInPentagon 0.8s ease-out forwards;
     }
     
-    .pentagon-service:nth-child(1), .pentagon-timeline:nth-child(1) { animation-delay: 0.1s; }
-    .pentagon-service:nth-child(2), .pentagon-timeline:nth-child(2) { animation-delay: 0.2s; }
-    .pentagon-service:nth-child(3), .pentagon-timeline:nth-child(3) { animation-delay: 0.3s; }
-    .pentagon-service:nth-child(4), .pentagon-timeline:nth-child(4) { animation-delay: 0.4s; }
-    .pentagon-service:nth-child(5), .pentagon-timeline:nth-child(5) { animation-delay: 0.5s; }
+    .pentagon-service:nth-child(1), .pentagon-timeline:nth-child(1) {
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        animation-delay: 0.1s;
+    }
+
+    .pentagon-service:nth-child(2), .pentagon-timeline:nth-child(2) {
+        top: 29.4%;
+        right: 0;
+        transform: translateY(-50%);
+        animation-delay: 0.2s;
+    }
+
+    .pentagon-service:nth-child(3), .pentagon-timeline:nth-child(3) {
+        bottom: 11.8%;
+        right: 19.1%;
+        animation-delay: 0.3s;
+    }
+
+    .pentagon-service:nth-child(4), .pentagon-timeline:nth-child(4) {
+        bottom: 11.8%;
+        left: 19.1%;
+        animation-delay: 0.4s;
+    }
+
+    .pentagon-service:nth-child(5), .pentagon-timeline:nth-child(5) {
+        top: 29.4%;
+        left: 0;
+        transform: translateY(-50%);
+        animation-delay: 0.5s;
+    }
     
     @keyframes fadeInPentagon {
         from {
             opacity: 0;
-            transform: scale(0.8) translateY(20px);
+            transform: scale(0.8) translateY(30px);
         }
         to {
             opacity: 1;
@@ -111,68 +137,27 @@
         }
     }
     
-    /* Replace the existing pentagon positioning with this */
-.services-pentagon, .timeline-pentagon {
-    position: relative;
-    width: 400px;
-    height: 400px;
-    margin: 3rem auto;
-    max-width: 90vw;
-    aspect-ratio: 1;
-}
+    .pentagon-service:hover, .pentagon-timeline:hover {
+        background: rgba(99, 102, 241, 0.15);
+        border-color: rgba(99, 102, 241, 0.4);
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 15px 30px rgba(99, 102, 241, 0.3);
+    }
 
-/* Pentagon vertex positions (perfect symmetry) */
-.pentagon-service, .pentagon-timeline {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    margin-left: -40px; /* Half of width to center */
-    margin-top: -40px; /* Half of height to center */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    /* ... keep other styles ... */
-}
+    .service-icon {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
 
-/* Vertex positions (radius = 150px for 400px container) */
-.pentagon-service:nth-child(1), .pentagon-timeline:nth-child(1) { /* Top */
-    top: 5%;
-    left: 50%;
-}
-
-.pentagon-service:nth-child(2), .pentagon-timeline:nth-child(2) { /* 72° */
-    top: 28.5%;
-    left: 85.5%;
-}
-
-.pentagon-service:nth-child(3), .pentagon-timeline:nth-child(3) { /* 144° */
-    top: 71.5%;
-    left: 85.5%;
-}
-
-.pentagon-service:nth-child(4), .pentagon-timeline:nth-child(4) { /* 216° */
-    top: 94%;
-    left: 50%;
-}
-
-.pentagon-service:nth-child(5), .pentagon-timeline:nth-child(5) { /* 288° */
-    top: 71.5%;
-    left: 14.5%;
-}
-
-.pentagon-service:nth-child(6), .pentagon-timeline:nth-child(6) { /* 0° (back to top) */
-    top: 28.5%;
-    left: 14.5%;
-}
-
-    
-    /* Section Title Tooltip */
-    .section-title {
-        position: relative;
+    .service-title {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        line-height: 1.2;
     }
     
+    /* Section Title Tooltip */
     .section-title::after {
         content: attr(data-tooltip);
         position: absolute;
@@ -181,18 +166,19 @@
         transform: translateX(-50%);
         background: rgba(0, 0, 0, 0.95);
         color: #fff;
-        padding: 1rem;
-        border-radius: 10px;
+        padding: 1rem 1.5rem;
+        border-radius: 12px;
         font-size: 0.9rem;
         line-height: 1.5;
-        width: 320px;
+        width: 350px;
         max-width: 90vw;
         text-align: center;
         opacity: 0;
         visibility: hidden;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
+        transition: all 0.3s ease;
         z-index: 100;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
     }
     
     .section-title:hover::after {
@@ -201,30 +187,27 @@
     }
     
     /* Glyph Tooltip Styles */
-    .pentagon-service, .pentagon-timeline {
-        position: relative;
-    }
-    
     .pentagon-service::after, .pentagon-timeline::after {
         content: attr(data-tooltip);
         position: absolute;
-        top: 110%;
+        top: 120%;
         left: 50%;
         transform: translateX(-50%);
         background: rgba(0, 0, 0, 0.95);
         color: #fff;
-        padding: 0.8rem;
-        border-radius: 8px;
-        font-size: 0.8rem;
-        line-height: 1.4;
-        width: 200px;
+        padding: 1rem 1.2rem;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        width: 280px;
         max-width: 90vw;
         text-align: center;
         opacity: 0;
         visibility: hidden;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
+        transition: all 0.3s ease;
         z-index: 100;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
     }
     
     .pentagon-service:hover::after, .pentagon-timeline:hover::after {
@@ -239,8 +222,8 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.8);
-        backdrop-filter: blur(5px);
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(10px);
         z-index: 1000;
         display: flex;
         align-items: center;
@@ -257,12 +240,12 @@
     
     .modal-content {
         background: var(--bg-secondary);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 1px solid var(--border-color);
         border-radius: 25px;
-        padding: 2rem;
-        max-width: 600px;
+        padding: 2.5rem;
+        max-width: 700px;
         width: 90vw;
-        max-height: 80vh;
+        max-height: 85vh;
         overflow-y: auto;
         transform: scale(0.9);
         transition: transform 0.3s ease;
@@ -275,16 +258,16 @@
     .modal-header {
         display: flex;
         align-items: center;
-        gap: 1rem;
-        margin-bottom: 1.5rem;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
     }
     
     .modal-icon {
-        font-size: 3rem;
+        font-size: 3.5rem;
     }
     
     .modal-title {
-        font-size: 1.8rem;
+        font-size: 2rem;
         font-weight: 700;
         color: var(--text-primary);
         margin: 0;
@@ -292,72 +275,82 @@
     
     .modal-close {
         position: absolute;
-        top: 1rem;
-        right: 1rem;
+        top: 1.5rem;
+        right: 1.5rem;
         background: none;
         border: none;
         font-size: 2rem;
         cursor: pointer;
         color: var(--text-secondary);
         transition: color 0.3s ease;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
     }
     
     .modal-close:hover {
         color: var(--text-primary);
+        background: rgba(255, 255, 255, 0.1);
     }
     
     .modal-section {
-        margin-bottom: 1.5rem;
+        margin-bottom: 2rem;
     }
     
     .modal-section h3 {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         font-weight: 600;
         color: var(--text-primary);
-        margin-bottom: 0.5rem;
+        margin-bottom: 1rem;
     }
     
     .modal-section p {
         color: var(--text-secondary);
-        line-height: 1.6;
-        margin-bottom: 1rem;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
     }
     
     .modal-subsection {
-        margin-left: 1rem;
-        margin-bottom: 1rem;
+        margin-left: 1.5rem;
+        margin-bottom: 1.5rem;
+        padding-left: 1rem;
+        border-left: 3px solid rgba(99, 102, 241, 0.3);
     }
     
     .modal-subsection h4 {
-        font-size: 1rem;
+        font-size: 1.1rem;
         font-weight: 500;
         color: var(--text-primary);
-        margin-bottom: 0.3rem;
+        margin-bottom: 0.5rem;
     }
     
     .modal-subsection p {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
         color: var(--text-secondary);
+        line-height: 1.6;
     }
     
     /* Responsive adjustments */
     @media (max-width: 768px) {
         .services-pentagon, .timeline-pentagon {
-            width: 300px;
-            height: 300px;
+            width: 350px;
+            height: 350px;
         }
         
         .pentagon-service, .pentagon-timeline {
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
         }
         
-        .pentagon-service .service-icon, .pentagon-timeline .service-icon {
-            font-size: 1.4rem;
+        .service-icon {
+            font-size: 2rem;
         }
         
-        .pentagon-service .service-title, .pentagon-timeline .service-title {
-            font-size: 0.65rem;
+        .service-title {
+            font-size: 0.8rem;
         }
         
         /* Disable tooltips on mobile */
@@ -368,27 +361,27 @@
     
     @media (max-width: 480px) {
         .services-pentagon, .timeline-pentagon {
-            width: 250px;
-            height: 250px;
+            width: 280px;
+            height: 280px;
         }
         
         .pentagon-service, .pentagon-timeline {
-            width: 50px;
-            height: 50px;
+            width: 65px;
+            height: 65px;
         }
         
-        .pentagon-service .service-icon, .pentagon-timeline .service-icon {
-            font-size: 1.2rem;
+        .service-icon {
+            font-size: 1.8rem;
         }
         
-        .pentagon-service .service-title, .pentagon-timeline .service-title {
-            font-size: 0.6rem;
+        .service-title {
+            font-size: 0.7rem;
         }
     }
     
     /* Light theme adjustments */
     html[data-theme='light'] .pentagon-service, html[data-theme='light'] .pentagon-timeline {
-        background: rgba(0, 0, 0, 0.05);
+        background: rgba(0, 0, 0, 0.03);
         border-color: rgba(0, 0, 0, 0.1);
     }
     
@@ -401,67 +394,6 @@
         background: var(--bg-primary);
         border-color: rgba(0, 0, 0, 0.1);
     }
-
-/* Add this to your CSS */
-.services-section {
-    padding-bottom: 6rem; /* Increased bottom padding */
-}
-
-.metrics-section {
-    padding-top: 4rem; /* Added top padding */
-    padding-bottom: 6rem;
-}
-
-@media (max-width: 768px) {
-    .services-pentagon, .timeline-pentagon {
-        width: 300px;
-        height: 300px;
-    }
-    
-    /* Adjust vertex positions for smaller pentagon */
-    .pentagon-service:nth-child(1), .pentagon-timeline:nth-child(1) {
-        top: 5%;
-        left: 50%;
-    }
-    .pentagon-service:nth-child(2), .pentagon-timeline:nth-child(2) {
-        top: 28.5%;
-        left: 85.5%;
-    }
-    .pentagon-service:nth-child(3), .pentagon-timeline:nth-child(3) {
-        top: 71.5%;
-        left: 85.5%;
-    }
-    .pentagon-service:nth-child(4), .pentagon-timeline:nth-child(4) {
-        top: 94%;
-        left: 50%;
-    }
-    .pentagon-service:nth-child(5), .pentagon-timeline:nth-child(5) {
-        top: 71.5%;
-        left: 14.5%;
-    }
-}
-
-@media (max-width: 480px) {
-    .services-pentagon, .timeline-pentagon {
-        width: 250px;
-        height: 250px;
-    }
-}
-
-/* Add subtle animation to pentagon containers */
-.services-pentagon, .timeline-pentagon {
-    transition: all 0.5s ease;
-}
-
-/* Improve tooltip visibility */
-.pentagon-service::after, .pentagon-timeline::after {
-    font-size: 0.9rem;
-    padding: 0.8rem 1rem;
-    width: 220px;
-    border-radius: 12px;
-    backdrop-filter: blur(5px);
-    background: rgba(0, 0, 0, 0.85);
-}
 </style>
 </head>
 <body>
@@ -517,7 +449,6 @@
     <main class="main-content">
         <section class="services-section">
             <h2 class="section-title" data-tooltip="Five glyphs. One recursion. Infinite clarity.">What We Build</h2>
-               <br><br><br>
             <div class="services-pentagon">
                 <div class="pentagon-service" data-modal="service-1" data-tooltip="Live data pipelines that adapt to user context and emotional relevance — transforming uncertainty into clarity.">
                     <div class="service-icon">🌊</div>
@@ -541,17 +472,15 @@
                 </div>
             </div>
         </section>
-   <br><br><br>
-   <br><br><br>
+
         <section class="metrics-section">
             <h2 class="section-title" data-tooltip="We operate on five layers — each one nested, recursive, and essential.">Timeline Logic</h2>
-            <br><br><br>
             <div class="timeline-pentagon">
                 <div class="pentagon-timeline" data-modal="timeline-1" data-tooltip="Immediate response to unpredictable events and chance occurrences.">
                     <div class="service-icon">🎲</div>
                     <h3 class="service-title">Tactical</h3>
                 </div>
-                <div class="pentagon-timeline" data-modal="timeline-2" data-tooltip="Regular information gathering and synchronization across systems.">
+                <div class="tagon-timeline" data-modal="timeline-2" data-tooltip="Regular information gathering and synchronization across systems.">
                     <div class="service-icon">📰</div>
                     <h3 class="service-title">Informational</h3>
                 </div>
@@ -927,7 +856,7 @@
                             },
                             {
                                 title: 'Purpose Definition',
-                                content: 'Continuous reflection to ensure alignment with mission.'
+                                content: 'Continuous reflection to ensure alignment不容with mission.'
                             }
                         ]
                     }
@@ -963,7 +892,7 @@
                         const subsectionDiv = document.createElement('div');
                         subsectionDiv.className = 'modal-subsection';
                         
-                        const subsectionTitle = document.createElement('h4');
+                        const subsectionTitle = document.createElement('h ਪh4');
                         subsectionTitle.textContent = subsection.title;
                         subsectionDiv.appendChild(subsectionTitle);
                         
