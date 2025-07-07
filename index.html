@@ -25,13 +25,13 @@
     .services-section, .metrics-section {
         text-align: center;
         margin: 0 auto;
-        padding: 8rem 0; /* Adjusted padding to match second HTML */
+        padding: 8rem 0;
     }
     
     /* Center section titles */
     .section-title {
         display: block;
-        margin: 0 auto 4rem auto; /* Adjusted margin */
+        margin: 0 auto 4rem auto;
         font-size: 2.5rem;
         font-weight: 700;
         color: var(--text-primary);
@@ -64,7 +64,7 @@
         to { transform: rotate(360deg); }
     }
 
-    /* Perfect Pentagon Layout from second HTML */
+    /* Perfect Pentagon Layout for both Services and Timeline */
     .services-pentagon, .timeline-pentagon {
         position: relative;
         width: 450px;
@@ -340,7 +340,7 @@
             height: 350px;
         }
         
-        .pentagon-service, .pentagon-timeline {
+ .pentagon-service, .pentagon-timeline {
             width: 80px;
             height: 80px;
         }
@@ -480,7 +480,7 @@
                     <div class="service-icon">🎲</div>
                     <h3 class="service-title">Tactical</h3>
                 </div>
-                <div class="tagon-timeline" data-modal="timeline-2" data-tooltip="Regular information gathering and synchronization across systems.">
+                <div class="pentagon-timeline" data-modal="timeline-2" data-tooltip="Regular information gathering and synchronization across systems.">
                     <div class="service-icon">📰</div>
                     <h3 class="service-title">Informational</h3>
                 </div>
@@ -856,7 +856,7 @@
                             },
                             {
                                 title: 'Purpose Definition',
-                                content: 'Continuous reflection to ensure alignment不容with mission.'
+                                content: 'Continuous reflection to ensure alignment with mission.'
                             }
                         ]
                     }
@@ -892,7 +892,7 @@
                         const subsectionDiv = document.createElement('div');
                         subsectionDiv.className = 'modal-subsection';
                         
-                        const subsectionTitle = document.createElement('h ਪh4');
+                        const subsectionTitle = document.createElement('h4');
                         subsectionTitle.textContent = subsection.title;
                         subsectionDiv.appendChild(subsectionTitle);
                         
@@ -943,4 +943,4 @@
     <script src="assets/js/shared.js"></script>
     <script src="assets/js/landing.js"></script>
 </body>
-</html>
+</html>    
