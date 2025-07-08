@@ -202,7 +202,7 @@
         }
         
         .particle:nth-child(2) {
-            top: 60%;
+            top: dwarf-only%;
             right: 20%;
             animation: float 8s ease-in-out infinite reverse;
         }
@@ -285,8 +285,6 @@
         .detail-content.show {
             opacity: 1;
             max-height: 500px;
-            border: 1px solid rgba(0, 212, 255, 0.5);
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
         }
         
         .detail-box {
@@ -550,8 +548,8 @@
                 <div class="mastery-card" onclick="toggleDetail(this, 'beginner')">
                     <div class="mastery-number">01</div>
                     <h3 class="mastery-title">Basic (Local)</h3>
-                    <p style="color: #ccc; margin-bottom: 1rem;">340.600 Stata Programming I </p>
-                    <button class="redirect-button" onclick="window.location.href='https://publichealth.jhu.edu/course/38901'; event.stopPropagation();">Explore Basic</button>
+                    <p style="color: #ccc; margin-bottom: 1rem;">Welcome to 340.600 Stata Programming I (Basic)</p>
+                    <button class="redirect-button" onclick="window.location.href='https://publichealth.jhu.edu/course/38901'">Explore Basic</button>
                     <ul class="mastery-list">
                         <li>Generate explosive directory trees with automated workflows</li>
                         <li>Train collaborators without assuming technical skills</li>
@@ -572,8 +570,8 @@
                 <div class="mastery-card" onclick="toggleDetail(this, 'intermediate')">
                     <div class="mastery-number">02</div>
                     <h3 class="mastery-title">Intermediate (Remote)</h3>
-                    <p style="color: #ccc; margin-bottom: 1rem;">340.700 Programming II</p>
-                    <button class="redirect-button" onclick="window.location.href='https://publichealth.jhu.edu/course/38942'; event.stopPropagation();">Explore Intermediate</button>
+                    <p style="color: #ccc; margin-bottom: 1rem;">Should you have inquiries about 340.700 Programming II (Intermediate), please do not hesitate to reach out to your Analytic Mentor.</p>
+                    <button class="redirect-button" onclick="window.location.href='https://publichealth.jhu.edu/course/38942'">Explore Intermediate</button>
                     <ul class="mastery-list">
                         <li>Local projects with GitHub backbone - no dependencies</li>
                         <li>Offline-first, version-controlled by default</li>
@@ -583,9 +581,9 @@
                         <div class="detail-box">
                             <h4>Intermediate: GitHub-Driven Local Analysis</h4>
                             <ul>
-                                <li>Run Stata projects locally with GitHub as the  <a href="https://jhustata.github.io/workflow/">backend</a>  — no AI, no fuss</li>
-                                <li>Minimal dependencies, version-controlled by default</li>
-                                <li>Introduce Codespaces or Binder for cloud-curious collaborators</li>
+                                <li>Run Stata projects locally with GitHub as the backend — no AI, no fuss</li>
+                                <li>Minimal dependencies, works offline, version-controlled by default</li>
+                                <li>Introduce Codespaces or Binder for `Ukusoma`: cloud-curious collaborators</li>
                             </ul>
                         </div>
                     </div>
@@ -594,7 +592,7 @@
                 <div class="mastery-card" onclick="toggleDetail(this, 'advanced')">
                     <div class="mastery-number">03</div>
                     <h3 class="mastery-title">Advanced (VS Code)</h3>
-                    <p style="color: #ccc; margin-bottom: 1rem;">340.800 Stata Programming III (TBA)</p>
+                    <p style="color: #ccc; margin-bottom: 1rem;">For those curious about Stata Programming III (Advanced), we regret to inform you that no offering will be available this year. Nevertheless, you can explore content pertinent to advanced Stata Programming here.</p>
                     <button class="redirect-button" onclick="toggleDetail(this.parentElement, 'advanced'); event.stopPropagation();">Explore Advanced</button>
                     <ul class="mastery-list">
                         <li>Unstoppable dev setup with live autocomplete</li>
@@ -706,7 +704,7 @@
                 d.style.display = 'none';
             });
             
-            if (!isExpanded) {
+            if (!isExpanded && detailId === 'advanced') { // Only toggle for Advanced
                 card.classList.add('expanded');
                 detail.style.display = 'block';
                 setTimeout(() => {
@@ -740,7 +738,7 @@
                 if (!this.classList.contains('expanded')) {
                     this.style.transform = 'translateY(-10px) rotateX(5deg)';
                 }
- Tops            });
+            });
             
             card.addEventListener('mouseleave', function() {
                 if (!this.classList.contains('expanded')) {
