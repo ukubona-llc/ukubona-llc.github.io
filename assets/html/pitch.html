@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PAIRS@JH: Analytics Arsenal for Hopkins Epidemiologists</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #002d72 0%, #1a1a2e 100%);
+      color: #ffffff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    .grain {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      opacity: 0.03;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><defs><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/></filter></defs><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.4"/></svg>');
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(0,45,114,0.4) 0%, transparent 70%);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+      50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.2; }
+    }
+    
+    .logo {
+      font-size: clamp(4rem, 12vw, 8rem);
+      font-weight: 900;
+      background: linear-gradient(45deg, #68ace5, #ffffff, #ffc72c);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: hopkins-gradient 3s ease infinite;
+      margin-bottom: 1rem;
+      z-index: 2;
+      position: relative;
+    }
+    
+    @keyframes hopkins-gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .tagline {
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      color: #68ace5;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    
+    .subtitle {
+      color: #b8cee8;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+    
+    .hopkins-badge {
+      display: inline-block;
+      background: rgba(104, 172, 229, 0.2);
+      border: 2px solid #68ace5;
+      border-radius: 50px;
+      padding: 0.75rem 1.5rem;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #68ace5;
+    }
+    
+    /* Course Cards */
+    .courses-section {
+      padding: 5rem 0;
+      background: rgba(0,0,0,0.2);
+    }
+    
+    .section-title {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      color: #68ace5;
+      text-align: center;
+      margin-bottom: 3rem;
+      font-weight: 700;
+    }
+    
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .course-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(104, 172, 229, 0.3);
+      border-radius: 15px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      position: relative;
+      cursor: pointer;
+    }
+    
+    .course-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #002d72, #68ace5, #ffc72c);
+      border-radius: 15px 15px 0 0;
+    }
+    
+    .course-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(104, 172, 229, 0.3);
+      border-color: #68ace5;
+    }
+    
+    .course-code {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #ffc72c;
+      margin-bottom: 0.5rem;
+    }
+    
+    .course-title {
+      font-size: 1.8rem;
+      color: #68ace5;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    
+    .course-terms {
+      background: rgba(104, 172, 229, 0.2);
+      border-radius: 20px;
+      padding: 0.5rem 1rem;
+      display: inline-block;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      color: #68ace5;
+      font-weight: 600;
+    }
+    
+    .course-description {
+      color: #e8f0ff;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    
+    .course-objectives {
+      display: none;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(104, 172, 229, 0.3);
+    }
+    
+    .course-objectives.show {
+      display: block;
+    }
+    
+    .course-objectives h4 {
+      color: #68ace5;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+    
+    .course-objectives ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .course-objectives li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: #b8cee8;
+      line-height: 1.5;
+    }
+    
+    .course-objectives li::before {
+      content: '▶';
+      position: absolute;
+      left: 0;
+      color: #68ace5;
+      font-size: 0.8rem;
+    }
+    
+    /* Announcement */
+    .announcement {
+      background: rgba(104, 172, 229, 0.1);
+      border: 1px solid #68ace5;
+      border-radius: 15px;
+      padding: 2rem;
+      margin: 3rem 0;
+      color: #b8cee8;
+      line-height: 1.6;
+    }
+    
+    .announcement h3 {
+      color: #68ace5;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+    
+    .announcement strong {
+      color: #ffc72c;
+    }
+    
+    .announcement em {
+      color: #68ace5;
+      font-style: italic;
+    }
+    
+    /* Pathway Section */
+    .pathway-section {
+      padding: 5rem 0;
+      background: rgba(0,45,114,0.1);
+    }
+    
+    .pathway-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .pathway-card {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(104, 172, 229, 0.2);
+      border-radius: 15px;
+      backdrop-filter: blur(5px);
+      transition: all 0.3s ease;
+    }
+    
+    .pathway-card:hover {
+      transform: translateY(-5px);
+      border-color: #68ace5;
+    }
+    
+    .pathway-number {
+      font-size: 3rem;
+      font-weight: 900;
+      color: #ffc72c;
+      margin-bottom: 1rem;
+    }
+    
+    .pathway-title {
+      font-size: 1.3rem;
+      color: #68ace5;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    
+    .pathway-description {
+      color: #b8cee8;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    
+    /* Footer */
+    .footer {
+      background: rgba(0,0,0,0.8);
+      padding: 3rem 0;
+      text-align: center;
+      border-top: 1px solid rgba(104, 172, 229, 0.3);
+    }
+    
+    .footer-content {
+      color: #888;
+    }
+    
+    .footer-link {
+      color: #68ace5;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-link:hover {
+      color: #ffc72c;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1rem;
+      }
+      
+      .courses-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .pathway-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="grain"></div>
+  
+  <section class="hero">
+    <div class="container">
+      <h1 class="logo">PAIRS@JH</h1>
+      <p class="tagline">Python. AI. R. Stata. JS/HTML.</p>
+      <p class="subtitle">Analytics Arsenal for Hopkins Epidemiologists</p>
+      <div class="hopkins-badge">Department of Epidemiology • Bloomberg School of Public Health</div>
+    </div>
+  </section>
+  
+  <section class="courses-section">
+    <div class="container">
+      <h2 class="section-title">Stata Programming Pathway</h2>
+      
+      <div class="announcement">
+        <h3>📋 Course Availability Update</h3>
+        <p>
+          <strong>Basic (340.600)</strong> and <strong>Intermediate (340.700)</strong> Stata Programming courses are <em>officially approved for the 4th term</em>, but we are making these courses <strong>available across all terms (1st to 4th) immediately</strong> to support Hopkins epidemiologists at every career stage.
+        </p>
+        <p>
+          <strong>Advanced Stata Programming (340.800)</strong> will launch beginning with the <em>3rd term</em>, powered by <em>Ukubona LLC</em> — the same expert instructor, now leveraging company resources for expanded impact within the Hopkins ecosystem.
+        </p>
+      </div>
+      
+      <div class="courses-grid">
+        <div class="course-card" onclick="toggleCourse(this)">
+          <div class="course-code">340.600</div>
+          <h3 class="course-title">Basic Stata Programming</h3>
+          <div class="course-terms">Terms 1-4 Available</div>
+          <p class="course-description">
+            Systematic Stata programming for Hopkins epidemiologists with prior statistical software exposure. Covers data management, programming concepts, and reproducible research workflows essential for epidemiological analysis.
+          </p>
+          <div class="course-objectives">
+            <h4>Learning Objectives for Hopkins Epidemiologists:</h4>
+            <ul>
+              <li>Master Stata commands beyond core biostatistics (reshape, collapse, factor variables)</li>
+              <li>Write efficient, reproducible code using loops, macros, and .ado files</li>
+              <li>Implement project workflows ensuring reproducibility with logging and version control</li>
+              <li>Manage complex epidemiological datasets with confidence</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="course-card" onclick="toggleCourse(this)">
+          <div class="course-code">340.700</div>
+          <h3 class="course-title">Intermediate Stata Programming</h3>
+          <div class="course-terms">Terms 1-4 Available</div>
+          <p class="course-description">
+            Advanced Stata techniques for complex epidemiological analyses. Includes simulations, custom commands, and optimization strategies for large-scale population health studies.
+          </p>
+          <div class="course-objectives">
+            <h4>Advanced Skills for Hopkins Researchers:</h4>
+            <ul>
+              <li>Create and execute Monte Carlo simulations for epidemiological scenarios</li>
+              <li>Write custom Stata commands for specialized analyses</li>
+              <li>Optimize code performance for large cohort studies</li>
+              <li>Generate publication-ready output (HTML, LaTeX) for Hopkins standards</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="course-card" onclick="toggleCourse(this)">
+          <div class="course-code">340.800</div>
+          <h3 class="course-title">Advanced Stata Programming</h3>
+          <div class="course-terms">Launching Term 3</div>
+          <p class="course-description">
+            Cutting-edge Stata programming via Ukubona LLC, designed specifically for Hopkins epidemiologists conducting high-impact research. Integration with modern development tools and AI-assisted workflows.
+          </p>
+          <div class="course-objectives">
+            <h4>Mastery-Level Skills for Hopkins Leaders:</h4>
+            <ul>
+              <li>Master complex programming constructs for longitudinal studies</li>
+              <li>Integrate Stata workflows with Python and modern development tools</li>
+              <li>Develop robust, scalable analytic pipelines for population health</li>
+              <li>Lead collaborative research projects with reproducible methodologies</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="pathway-section">
+    <div class="container">
+      <h2 class="section-title">From Hopkins Student to Analytics Leader</h2>
+      
+      <div class="pathway-grid">
+        <div class="pathway-card">
+          <div class="pathway-number">01</div>
+          <h3 class="pathway-title">Local Stata Mastery</h3>
+          <p class="pathway-description">
+            Build bulletproof workflows for collaborative epidemiological research. Teach colleagues without assuming technical skills. Output structured for seamless Hopkins collaboration.
+          </p>
+        </div>
+        
+        <div class="pathway-card">
+          <div class="pathway-number">02</div>
+          <h3 class="pathway-title">GitHub-Driven Research</h3>
+          <p class="pathway-description">
+            Version-controlled projects with GitHub backbone. Offline-first approach perfect for sensitive health data. Cloud-ready for multi-institutional collaboration.
+          </p>
+        </div>
+        
+        <div class="pathway-card">
+          <div class="pathway-number">03</div>
+          <h3 class="pathway-title">Modern Dev Environment</h3>
+          <p class="pathway-description">
+            VS Code + Copilot + multi-kernel Jupyter. AI-assisted development that enhances (never replaces) epidemiological expertise. Ready for high-impact publication.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; 2025 <a href="https://ukubona-llc.github.io/" class="footer-link">Ukubona LLC</a> | Designed for Hopkins Epidemiologists</p>
+        <p>"Real researchers don't worship languages. They sculpt answers from chaos — for people, not platforms."</p>
+      </div>
+    </div>
+  </footer>
+  
+  <script>
+    function toggleCourse(card) {
+      const objectives = card.querySelector('.course-objectives');
+      const isExpanded = objectives.classList.contains('show');
+      
+      // Close all other cards
+      document.querySelectorAll('.course-objectives').forEach(obj => {
+        obj.classList.remove('show');
+      });
+      
+      // Toggle clicked card
+      if (!isExpanded) {
+        objectives.classList.add('show');
+        card.style.transform = 'translateY(-8px) scale(1.02)';
+      } else {
+        card.style.transform = 'translateY(0) scale(1)';
+      }
+    }
+    
+    // Add subtle parallax effect
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const hero = document.querySelector('.hero::before');
+      if (hero) {
+        const speed = scrolled * 0.3;
+        hero.style.transform = `translate(-50%, ${-50 + speed * 0.05}%)`;
+      }
+    });
+  </script>
+</body>
+</html>
