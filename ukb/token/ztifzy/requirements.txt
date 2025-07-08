@@ -1,0 +1,5 @@
+flask  # Optional, only if needed
+# DO NOT include:
+# - datetime (built-in)
+# - secrets (built-in)
+# - OpenSSL (not pip-installable directly)
