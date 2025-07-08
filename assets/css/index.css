@@ -135,7 +135,7 @@
         line-height: 1.2;
     }
     
-    /* Section Title Tooltip */
+    /* Section Title Tooltip 
     .section-title::after {
         content: attr(data-tooltip);
         position: absolute;
@@ -154,11 +154,12 @@
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.3s ease, visibility 0.3s ease;
-        z-index: 1000; /* Increased z-index */
+        z-index: 1000; /* Increased z-index 
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         backdrop-filter: blur(10px);
         pointer-events: none; /* Prevents tooltip from interfering with interactions */
-    }
+    /*
+    } */
     
     .section-title:hover::after {
         opacity: 1;
@@ -333,10 +334,10 @@
             font-size: 0.8rem;
         }
         
-        /* Disable tooltips on mobile */
+        /* Disable tooltips on mobile 
         .section-title::after, .pentagon-service::after, .pentagon-timeline::after {
             display: none;
-        }
+        } */
     }
     
     @media (max-width: 480px) {
