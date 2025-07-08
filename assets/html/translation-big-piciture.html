@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>340.850: Translation as Method | PAIRS@JH</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+      color: #ffffff;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    
+    .grain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.03;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><defs><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/></filter></defs><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.4"/></svg>');
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .return-nav {
+      position: fixed;
+      top: 2rem;
+      left: 2rem;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50px;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      color: #00d4ff;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .return-nav:hover {
+      background: rgba(0, 212, 255, 0.1);
+      border-color: rgba(0, 212, 255, 0.3);
+      transform: translateX(-3px);
+      box-shadow: 0 6px 25px rgba(0, 212, 255, 0.2);
+    }
+    
+    .return-arrow {
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .return-nav:hover .return-arrow {
+      transform: translateX(-3px);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-pulse {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255,165,0,0.3) 0%, transparent 70%);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+      50% { transform: translate(-50%, -50%) scale(1.5); opacity: 0.1; }
+    }
+    
+    .hero-content {
+      text-align: center;
+      z-index: 2;
+      position: relative;
+    }
+    
+    .course-code {
+      font-size: 1.5rem;
+      color: #ff6b35;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease 0.2s forwards;
+    }
+    
+    .logo {
+      font-size: clamp(3rem, 10vw, 6rem);
+      font-weight: 900;
+      background: linear-gradient(45deg, #ff6b35, #00d4ff, #ffff00);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradient-shift 3s ease infinite;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 50px rgba(255,107,53,0.5);
+    }
+    
+    @keyframes gradient-shift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .tagline {
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      color: #00d4ff;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease 0.7s forwards;
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .subtitle {
+      color: #888;
+      font-size: 1.1rem;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease 1.2s forwards;
+    }
+    
+    .cta-button {
+      background: linear-gradient(45deg, #ff6b35, #00d4ff);
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      color: white;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeInUp 1s ease 1.7s forwards;
+    }
+    
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    .cta-button:hover::before {
+      left: 100%;
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(255,107,53,0.4);
+    }
+    
+    .section {
+      padding: 5rem 0;
+      position: relative;
+    }
+    
+    .section-title {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      background: linear-gradient(45deg, #ffffff, #ff6b35);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    
+    .translation-demo {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 2rem;
+      margin: 2rem 0;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .translation-demo::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #ff6b35, #00d4ff, #ffff00);
+    }
+    
+    .language-tabs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .language-tab {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    
+    .language-tab.active {
+      background: linear-gradient(45deg, #ff6b35, #00d4ff);
+      color: white;
+      border-color: rgba(255,255,255,0.3);
+    }
+    
+    .language-tab:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255,107,53,0.3);
+    }
+    
+    .code-block {
+      background: rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      display: none;
+    }
+    
+    .code-block.active {
+      display: block;
+    }
+    
+    .code-block pre {
+      margin: 0;
+      color: #00d4ff;
+    }
+    
+    .code-comment {
+      color: #888;
+      font-style: italic;
+    }
+    
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    
+    .module-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    
+    .module-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #ff6b35, #00d4ff, #ffff00);
+    }
+    
+    .module-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(255,107,53,0.2);
+      border-color: rgba(255,107,53,0.5);
+    }
+    
+    .module-number {
+      font-size: 3rem;
+      font-weight: 900;
+      color: #ff6b35;
+      margin-bottom: 1rem;
+    }
+    
+    .module-title {
+      font-size: 1.5rem;
+      color: #00d4ff;
+      margin-bottom: 1rem;
+    }
+    
+    .module-description {
+      color: #ccc;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    
+    .module-skills {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .module-skills li {
+      padding: 0.3rem 0;
+      position: relative;
+      padding-left: 1.5rem;
+      color: #888;
+      font-size: 0.9rem;
+    }
+    
+    .module-skills li::before {
+      content: '▶';
+      position: absolute;
+      left: 0;
+      color: #ff6b35;
+    }
+    
+    .outcomes-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      background: rgba(255,255,255,0.05);
+      border-radius: 15px;
+      overflow: hidden;
+    }
+    
+    .outcomes-table th,
+    .outcomes-table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .outcomes-table th {
+      background: rgba(255,107,53,0.2);
+      color: #ff6b35;
+      font-weight: 600;
+    }
+    
+    .outcomes-table td {
+      color: #ccc;
+    }
+    
+    .workflow-diagram {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 3rem 0;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    
+    .workflow-step {
+      background: rgba(255,255,255,0.1);
+      border: 2px solid rgba(255,107,53,0.3);
+      border-radius: 15px;
+      padding: 1.5rem;
+      text-align: center;
+      min-width: 120px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .workflow-step:hover {
+      transform: scale(1.05);
+      border-color: rgba(255,107,53,0.7);
+      box-shadow: 0 10px 30px rgba(255,107,53,0.3);
+    }
+    
+    .workflow-step::after {
+      content: '→';
+      position: absolute;
+      right: -1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #00d4ff;
+      font-size: 1.5rem;
+    }
+    
+    .workflow-step:last-child::after {
+      display: none;
+    }
+    
+    .workflow-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .workflow-label {
+      font-size: 0.9rem;
+      color: #ccc;
+      font-weight: 500;
+    }
+    
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin: 3rem 0;
+    }
+    
+    .tech-pill {
+      background: linear-gradient(45deg, rgba(255,107,53,0.2), rgba(0,212,255,0.2));
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .tech-pill::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+      transition: all 0.3s ease;
+      transform: translate(-50%, -50%);
+    }
+    
+    .tech-pill:hover::before {
+      width: 100px;
+      height: 100px;
+    }
+    
+    .tech-pill:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(255,107,53,0.3);
+    }
+    
+    .footer {
+      background: rgba(0,0,0,0.8);
+      padding: 3rem 0;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .footer-content {
+      color: #888;
+    }
+    
+    .footer-link {
+      color: #00d4ff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-link:hover {
+      color: #ff6b35;
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1rem;
+      }
+      
+      .return-nav {
+        top: 1rem;
+        left: 1rem;
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+      }
+      
+      .modules-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .language-tabs {
+        justify-content: center;
+      }
+      
+      .workflow-diagram {
+        flex-direction: column;
+      }
+      
+      .workflow-step::after {
+        content: '↓';
+        right: 50%;
+        bottom: -1.5rem;
+        top: auto;
+        transform: translateX(50%);
+      }
+      
+      .tech-stack {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="grain"></div>
+  
+  <a href="../../index.html" class="return-nav">
+    <span class="return-arrow">←</span>
+    <span class="return-text">PAIRS@JH</span>
+  </a>
+  
+  <section class="hero">
+    <div class="hero-pulse"></div>
+    
+    <div class="hero-content">
+      <div class="course-code">340.850</div>
+      <h1 class="logo">Translation as Method</h1>
+      <p class="tagline">Stata ⇄ R ⇄ Python</p>
+      <p class="subtitle">Write once, translate thrice — fluency across statistical dialects,<br>with Copilot as your co-author</p>
+      <a href="#overview" class="cta-button">Master Translation</a>
+    </div>
+  </section>
+  
+  <section class="section" id="overview">
+    <div class="container">
+      <h2 class="section-title">The Rosetta Stone of Analytics</h2>
+      
+      <div class="translation-demo">
+        <h3 style="color: #ff6b35; margin-bottom: 1rem;">Live Translation Example</h3>
+        <p style="color: #ccc; margin-bottom: 1.5rem;">The same descriptive statistics operation across three languages:</p>
+        
+        <div class="language-tabs">
+          <div class="language-tab active" onclick="showCode('stata')">📊 Stata</div>
+          <div class="language-tab" onclick="showCode('r')">📈 R</div>
+          <div class="language-tab" onclick="showCode('python')">🐍 Python</div>
+        </div>
+        
+        <div class="code-block active" id="stata">
+          <pre>
+<span class="code-comment">// Stata: Descriptive statistics</span>
+use "dataset.dta", clear
+summarize age gender income
+tabulate gender, missing
+bysort gender: summarize income
+          </pre>
+        </div>
+        
+        <div class="code-block" id="r">
+          <pre>
+<span class="code-comment"># R: Descriptive statistics</span>
+df <- read.csv("dataset.csv")
+summary(df[c("age", "gender", "income")])
+table(df$gender, useNA = "ifany")
+df %>% group_by(gender) %>% summarize(mean_income = mean(income, na.rm = TRUE))
+          </pre>
+        </div>
+        
+        <div class="code-block" id="python">
+          <pre>
+<span class="code-comment"># Python: Descriptive statistics</span>
+import pandas as pd
+df = pd.read_csv("dataset.csv")
+df[['age', 'gender', 'income']].describe()
+df['gender'].value_counts(dropna=False)
+df.groupby('gender')['income'].mean()
+          </pre>
+        </div>
+      </div>
+      
+      <div class="workflow-diagram">
+        <div class="workflow-step">
+          <div class="workflow-icon">🧠</div>
+          <div class="workflow-label">Conceptualize</div>
+        </div>
+        <div class="workflow-step">
+          <div class="workflow-icon">📝</div>
+          <div class="workflow-label">Write Once</div>
+        </div>
+        <div class="workflow-step">
+          <div class="workflow-icon">🔄</div>
+          <div class="workflow-label">Translate</div>
+        </div>
+        <div class="workflow-step">
+          <div class="workflow-icon">🤖</div>
+          <div class="workflow-label">Copilot Assist</div>
+        </div>
+        <div class="workflow-step">
+          <div class="workflow-icon">🚀</div>
+          <div class="workflow-label">Deploy</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Course Modules</h2>
+      
+      <div class="modules-grid">
+        <div class="module-card">
+          <div class="module-number">01</div>
+          <h3 class="module-title">Statistical Language Families</h3>
+          <p class="module-description">Understanding structural vs functional syntax, base vs tidyverse vs pandas paradigms</p>
+          <ul class="module-skills">
+            <li>Identify syntax patterns across languages</li>
+            <li>Understand data structure differences</li>
+            <li>Master object-oriented vs procedural approaches</li>
+          </ul>
+        </div>
+        
+        <div class="module-card">
+          <div class="module-number">02</div>
+          <h3 class="module-title">Translation Patterns I: Descriptive Stats</h3>
+          <p class="module-description">summarize, tabulate ⇄ summary(), table() ⇄ df.describe(), value_counts()</p>
+          <ul class="module-skills">
+            <li>Data exploration across platforms</li>
+            <li>Missing value handling strategies</li>
+            <li>Cross-tabulation techniques</li>
+          </ul>
+        </div>
+        
+        <div class="module-card">
+          <div class="module-number">03</div>
+          <h3 class="module-title">Translation Patterns II: Regression</h3>
+          <p class="module-description">regress, logit ⇄ glm(), lm() ⇄ statsmodels, sklearn</p>
+          <ul class="module-skills">
+            <li>Linear and logistic regression syntax</li>
+            <li>Model diagnostics and output interpretation</li>
+            <li>Prediction and validation workflows</li>
+          </ul>
+        </div>
+        
+        <div class="module-card">
+          <div class="module-number">04</div>
+          <h3 class="module-title">Translation Patterns III: Graphics</h3>
+          <p class="module-description">twoway, graph bar ⇄ ggplot() ⇄ seaborn, matplotlib</p>
+          <ul class="module-skills">
+            <li>Visualization grammar across platforms</li>
+            <li>Publication-ready graphics</li>
+            <li>Interactive and static plotting</li>
+          </ul>
+        </div>
+        
+        <div class="module-card">
+          <div class="module-number">05</div>
+          <h3 class="module-title">Building Translation Engines with AI</h3>
+          <p class="module-description">Prompt Copilot to auto-generate function equivalents and documentation</p>
+          <ul class="module-skills">
+            <li>Copilot prompting strategies</li>
+            <li>Code documentation automation</li>
+            <li>Function scaffolding and testing</li>
+          </ul>
+        </div>
+        
+        <div class="module-card">
+          <div class="module-number">06</div>
+          <h3 class="module-title">Final Project</h3>
+          <p class="module-description">Translate a complete analysis pipeline across 3 languages in .ipynb format</p>
+          <ul class="module-skills">
+            <li>Multi-language workflow design</li>
+            <li>Jupyter notebook documentation</li>
+            <li>GitHub repository management</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Learning Outcomes</h2>
+      
+      <table class="outcomes-table">
+        <thead>
+          <tr>
+            <th>Skill</th>
+            <th>Outcome</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Syntax Fluency</td>
+            <td>Translate any method logic across 3 languages</td>
+          </tr>
+          <tr>
+            <td>AI Collaboration</td>
+            <td>Use Copilot to speed up pattern detection</td>
+          </tr>
+          <tr>
+            <td>Workflow Design</td>
+            <td>Chain .do, .R, .py into one pipeline</td>
+          </tr>
+          <tr>
+            <td>Open Science</td>
+            <td>Produce well-documented, multi-language repos</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Tech Stack</h2>
+      
+      <div class="tech-stack">
+        <div class="tech-pill">💻 VS Code Multi-Kernel</div>
+        <div class="tech-pill">🤖 GitHub Copilot</div>
+        <div class="tech-pill">📓 Jupyter Notebooks</div>
+        <div class="tech-pill">🐙 GitHub Classroom</div>
+        <div class="tech-pill">🔄 Live Translation</div>
+      </div>
+      
+      <p style="text-align: center; font-style: italic; color: #888; margin-top: 2rem; font-size: 1.1rem;">
+        "Think of this as the Rosetta Stone of analytics — where Stata, R, and Python don't compete, they align.<br>
+        With Copilot and VS Code, we can now teach translation as a method — not a hack."
+      </p>
+    </div>
+  </section>
+  
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; 2025 <a href="https://ukubona-llc.github.io/" class="footer-link">Ukubona LLC</a> | PAIRS@JH Translation Course</p>
+        <p>Johns Hopkins Bloomberg School of Public Health | Department of Epidemiology</p>
+      </div>
+    </div>
+  </footer>
+  
+  <script>
+    function showCode(language) {
+      // Hide all code blocks
+      document.querySelectorAll('.code-block').forEach(block => {
+        block.classList.remove('active');
+      });
+      
+      // Hide all tabs
+      document.querySelectorAll('.language-tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      
+      // Show selected code block
+      document.getElementById(language).classList.add('active');
+      
+      // Activate selected tab
+      event.target.classList.add('active');
+    }
+    
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+    
+    // Add hover effects to module cards
+    document.querySelectorAll('.module-card').forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-10px) rotateX(5deg)';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) rotateX(0)';
+      });
+    });
+    
+    // Animate elements on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+    
+    // Observe all module cards
+    document.querySelectorAll('.module-card').forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(30px)';
+      card.style.transition = 'all 0.6s ease';
+      observer.observe(card);
+    });
+  </script>
+</body>
+</html>
