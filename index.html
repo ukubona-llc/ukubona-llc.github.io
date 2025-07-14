@@ -5,148 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Ukubona LLC - Health Tech Infrastructure for Personalized Care">
     <meta name="description" content="Ukubona LLC builds AI-powered health tech infrastructure to support personalized care, intelligent decision systems, and adaptive health solutions.">
-
     <title>Ukubona LLC - Health Tech Infrastructure for Personalized Care</title>
-    
-    <!-- Favicon -->
     <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon">
     <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" media="(prefers-color-scheme: light)">
     <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" media="(prefers-color-scheme: dark)">
-    
-    <!-- Preload Logos -->
     <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-light.png" as="image">
     <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-dark.png" as="image">
-    
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- CSS -->
     <link rel="stylesheet" href="assets/css/main.css">        
     <link rel="stylesheet" href="assets/css/index.css">        
-
 </head>
 <body>
     <div class="scroll-indicator">
         <div class="scroll-progress"></div>
     </div>
     <div class="bg-pattern"></div>
-    
-    <header class="header">
-        <div class="nav-container">
-            <img src="https://abikesa.github.io/logos/assets/ukubona-dark.png" alt="Ukubona LLC Logo" id="logo" class="logo">
-            <div class="top-right">
-                <ul class="nav-links">
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="assets/html/mission.html" class="nav-link">Mission</a></li>
-                    <li><a href="assets/html/models.html" class="nav-link">Models</a></li>
-                    <li><a href="assets/html/team.html" class="nav-link">Team</a></li>
-                    <li><a href="assets/html/contact.html" class="nav-link">Contact</a></li>
-                    <li><a href="assets/html/pairs-jh.html" class="nav-link">Education</a></li>
-                </ul>
-                <button class="menu-icon" id="menuIcon" role="button" aria-label="Open navigation menu">
-                    <div></div><div></div><div></div>
-                    <div></div><div></div><div></div>
-                    <div></div><div></div><div></div>
-                </button>
-                <button id="toggle-theme">🌙</button>   
-            </div>
-        </div>
-        
-        <div class="app-grid" id="gridMenu">
-            <a href="index.html"><div class="icon-box">📊</div>Home</a>
-            <a href="assets/html/mission.html"><div class="icon-box">🎯</div>Mission</a>
-            <a href="assets/html/models.html"><div class="icon-box">📈</div>Models</a>
-            <a href="assets/html/team.html"><div class="icon-box">👥</div>Team</a>
-            <a href="assets/html/contact.html"><div class="icon-box">✉️</div>Contact</a>
-            <a href="assets/html/pairs-jh.html"><div class="icon-box">📚</div>Education</a>
-        </div>
-    </header>
-
-    <section class="hero">
-        <div class="hero-content">
-<h1 class="hero-title">Ukubona LLC</h1>     
-<p class="hero-subtitle">
-    Health tech infrastructure for personalized and equitable care.<br/>
-    Built for continuity, accountability, across all health ecosystems.
-</p>
-            <div class="hero-cta">
-                <a href="assets/html/contact.html" class="cta-button cta-primary">✉️ Start Your Project</a>
-                <a href="assets/html/team.html" class="cta-button cta-secondary">👥 Meet the Team</a>
-            </div>
-        </div>
-    </section>
-
+    <header class="header" id="header"></header>
+    <section class="hero" id="hero"></section>
     <main class="main-content">
-        <section class="services-section">
-            <h2 class="section-title" data-tooltip="Five pillars. One recursive framework. Infinite health possibilities.">What We Build</h2><br><br><br>
-            <div class="services-pentagon">
-                <div class="pentagon-service" data-modal="service-1" data-tooltip="Smart data pipelines that transform health information into actionable insights.">
-                    <div class="service-icon">🌊</div>
-                    <h3 class="service-title">Data Intelligence</h3>
-                </div>
-                <div class="pentagon-service" data-modal="service-2" data-tooltip="Intuitive interfaces that connect patients, providers, and health systems seamlessly.">
-                    <div class="service-icon">❤️</div>
-                    <h3 class="service-title">Human-Centered Design</h3>
-                </div>
-                <div class="pentagon-service" data-modal="service-3" data-tooltip="AI-powered decision engines that support evidence-based care across all settings.">
-                    <div class="service-icon">🔁</div>
-                    <h3 class="service-title">Decision Intelligence</h3>
-                </div>
-                <div class="pentagon-service" data-modal="service-4" data-tooltip="Digital health simulations that test and validate care models before implementation.">
-                    <div class="service-icon">🎭</div>
-                    <h3 class="service-title">Health Modeling</h3>
-                </div>
-                <div class="pentagon-service" data-modal="service-5" data-tooltip="Adaptive systems that learn and evolve with changing health needs and evidence.">
-                    <div class="service-icon">🤖</div>
-                    <h3 class="service-title">Adaptive Systems</h3>
-                </div>
-            </div>
-        </section>
-
-        <section class="metrics-section">
-            <h2 class="section-title" data-tooltip="We operate across five time horizons — each one nested, recursive, and essential.">Timeline Logic</h2><br>
-            <div class="timeline-pentagon">
-                <div class="pentagon-timeline" data-modal="timeline-1" data-tooltip="Immediate response to urgent health events and unexpected challenges.">
-                    <div class="service-icon">🎲</div>
-                    <h3 class="service-title">Tactical</h3>
-                </div>
-                <div class="pentagon-timeline" data-modal="timeline-2" data-tooltip="Regular health monitoring and data synchronization across platforms.">
-                    <div class="service-icon">📰</div>
-                    <h3 class="service-title">Informational</h3>
-                </div>
-                <div class="pentagon-timeline" data-modal="timeline-3" data-tooltip="Long-term health planning and population health strategy development.">
-                    <div class="service-icon">📅</div>
-                    <h3 class="service-title">Strategic</h3>
-                </div>
-                <div class="pentagon-timeline" data-modal="timeline-4" data-tooltip="Day-to-day health operations and workflow optimization.">
-                    <div class="service-icon">📍</div>
-                    <h3 class="service-title">Operational</h3>
-                </div>
-                <div class="pentagon-timeline" data-modal="timeline-5" data-tooltip="Deep health philosophy and meaning-making in care delivery.">
-                    <div class="service-icon">♾️</div>   
-                    <h3 class="service-title">Existential</h3>
-                </div>
-            </div>
-        </section>
+        <section class="services-section" id="services-section"></section>
+        <section class="metrics-section" id="metrics-section"></section>
     </main>
-
-    <!-- Modal Overlay -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal()">×</button>
-            <div class="modal-header">
-                <div class="modal-icon" id="modalIcon">🌊</div>
-                <h2 class="modal-title" id="modalTitle">Data Intelligence</h2>
-            </div>
-            <div class="modal-body" id="modalBody"></div>
-        </div>
-    </div>
-
+    <div class="modal-overlay" id="modal-overlay"></div>
     <div id="footer-placeholder"></div>
-
-    <!-- JavaScript -->
     <script src="assets/js/shared.js"></script>
     <script src="assets/js/landing.js"></script>
     <script src="assets/js/index.js"></script>
-    <script src="assets/js/tooltips.js"></script>        
+    <script src="assets/js/tooltips.js"></script>
+</body>
 </html>
