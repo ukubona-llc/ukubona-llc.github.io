@@ -151,10 +151,6 @@ body {
     transition: var(--transition);
 }
 
-html[data-theme='light'] .logo {
-    animation: spin-light var(--logo-spin-duration) linear infinite;
-}
-
 @keyframes spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
@@ -185,10 +181,17 @@ html[data-theme='dark'] .menu-icon div {
     width: var(--logo-size);
     height: var(--logo-size);
     object-fit: contain;
-    transform-origin:OTER: center center;
+    transform-origin: center center; /* 🔧 fixed typo */
     animation: spin var(--logo-spin-duration) linear infinite;
-    transition: var(--transition);
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+    filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.3));
 }
+
+.logo:hover {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 30px rgba(99, 102, 241, 0.5));
+}
+
 
 /* Remove spin-light to ensure seamless rotation */
 @keyframes spin {
