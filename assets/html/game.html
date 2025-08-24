@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+  <title>Ukubona LLC – The Game of Care</title>
+  <style>
+    html[data-theme='light'] .menu-icon div { background-color: #000; }
+    html[data-theme='dark'] .menu-icon div { background-color: #fff; }
+    .role-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-top:20px; }
+    .role-card { padding:1rem; border:1px solid rgba(255,255,255,0.2); border-radius:12px; background:rgba(255,255,255,0.05); }
+    .badge { display:inline-block; padding:6px 10px; border:1px solid rgba(255,255,255,0.2); border-radius:9999px; font-size:0.85rem; margin:4px 6px 0 0; }
+    .disclaimer { font-size:0.85rem; opacity:0.7; margin-top:2rem; text-align:center; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="nav-container">
+      <img src="https://abikesa.github.io/logos/assets/ukubona-dark.png" alt="Ukubona LLC Logo" id="logo" class="logo" />
+      <div class="top-right">
+        <ul class="nav-links">
+          <li><a href="../../index.html" class="nav-link">Home</a></li>
+          <li><a href="mission.html" class="nav-link">Mission</a></li>
+          <li><a href="models.html" class="nav-link">Models</a></li>
+          <li><a href="team.html" class="nav-link">Team</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <button class="menu-icon" id="menuIcon" role="button" aria-label="Open navigation menu">
+          <div></div><div></div><div></div>
+          <div></div><div></div><div></div>
+          <div></div><div></div><div></div>
+        </button>
+        <button id="toggle-theme">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">The Game of Care</h1>
+      <p class="hero-subtitle">Healthcare reimagined as sequential, consequential play.</p>
+      <div class="hero-cta">
+        <a href="#roles" class="cta-button cta-primary">
+          <i data-feather="play-circle"></i> Choose Your Role
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <main class="main-content" id="roles">
+    <section class="content-section">
+      <h2 class="section-title">Why Gamify?</h2>
+      <p class="section-text">
+        Regulation defines “advice.” Games define “play.” By gamifying the care pathway, Ukubona creates a safe, engaging ecosystem where patients, clinicians, insurers, and trainees all explore decisions — without claiming to treat, diagnose, or cure.
+      </p>
+      <div class="pill-row">
+        <span class="badge">Not FDA Approved</span>
+        <span class="badge">Not Medical Advice</span>
+        <span class="badge">Interactive Learning & Simulation</span>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">Pick Your Avatar</h2>
+      <div class="role-grid">
+        <div class="role-card"><h3>👩‍⚕️ Doctor</h3><p>Balance evidence, risk, and time. Do you order the scan, or wait?</p></div>
+        <div class="role-card"><h3>🧑‍🦽 Patient</h3><p>Navigate symptoms, insurance hurdles, and lifestyle tradeoffs.</p></div>
+        <div class="role-card"><h3>🚑 Ambulance Driver</h3><p>Get the patient to the right facility — time is life.</p></div>
+        <div class="role-card"><h3>📚 Med Student</h3><p>Study, rotate, and climb levels of mastery. Fail, repeat, learn.</p></div>
+        <div class="role-card"><h3>🏢 Insurance Exec</h3><p>Approve or deny? Balance actuarial math vs. human cost.</p></div>
+        <div class="role-card"><h3>🧑‍⚕️ Nurse</h3><p>Coordinate bedside care, anticipate crises, keep continuity alive.</p></div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">Consequences & Levels</h2>
+      <p class="section-text">
+        Every choice updates the underlying parameters and variance–covariance matrix. Like any good game, sequences matter: skip an immunization, delay a diagnosis, miss a payment — and you may find yourself “dead at Level 2.” Or you may discover resilience, redundancy, and recovery. 
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">Advisors & Mentors</h2>
+      <p class="section-text">
+        Guided by fictional luminaries like <strong>Zen Kiersen, MD</strong> and <strong>Jone Bopkin University</strong>, we poke fun at authority while building systems that, paradoxically, restore it. Investors should expect nothing less than the next Fortune 500 company emerging from the gaming community itself.
+      </p>
+    </section>
+
+    <p class="disclaimer">
+      Ukubona LLC’s platform is a game. It is <strong>not FDA approved</strong>, and provides <strong>no medical advice</strong>.  
+      Participation is voluntary play. Outcomes are simulations, not clinical recommendations.
+    </p>
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <script>
+    fetch('/assets/html/footer.html')
+      .then(r => r.text())
+      .then(html => { document.getElementById('footer-placeholder').innerHTML = html; });
+    feather.replace();
+  </script>
+  <script src="../js/shared.js"></script>
+  <script src="../js/landing.js"></script>
+</body>
+</html>
+

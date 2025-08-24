@@ -4,13 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    html[data-theme='light'] .menu-icon div {
-        background-color: #000;
-    }
-    html[data-theme='dark'] .menu-icon div {
-        background-color: #fff;
-    }
-</style>
+    html[data-theme='light'] .menu-icon div { background-color: #000; }
+    html[data-theme='dark'] .menu-icon div { background-color: #fff; }
+    /* Minimal extras for badges and at-a-glance pills */
+    .badge { display:inline-block; padding:6px 10px; border:1px solid var(--muted-border, rgba(255,255,255,0.2)); border-radius:9999px; font-size:0.85rem; margin:4px 6px 0 0; white-space:nowrap; }
+    .pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+    .mini-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-top:14px; }
+    .kv { border:1px solid var(--muted-border, rgba(255,255,255,0.2)); border-radius:12px; padding:14px; }
+    .kv h3 { margin:0 0 6px 0; font-size:1rem; opacity:.9; }
+    .kv p { margin:0; font-size:.95rem; opacity:.9; }
+    details summary { cursor:pointer; list-style:none; }
+    details summary::-webkit-details-marker { display:none; }
+    .inline-cta { display:flex; gap:12px; flex-wrap:wrap; margin-top:14px; }
+    .inline-cta .cta-button { text-decoration:none; }
+  </style>
   <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon" />
   <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" media="(prefers-color-scheme: light)" />
   <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" media="(prefers-color-scheme: dark)" />
@@ -22,9 +29,7 @@
   <title>Team - Ukubona LLC</title>
 </head>
 <body>
-  <div class="scroll-indicator">
-    <div class="scroll-progress"></div>
-  </div>
+  <div class="scroll-indicator"><div class="scroll-progress"></div></div>
   <div class="bg-pattern"></div>
 
   <header class="header">
@@ -47,20 +52,21 @@
         <button id="toggle-theme">🌙</button>
       </div>
     </div>
-<div class="app-grid" id="gridMenu">
-    <a href="../../index.html"><div class="icon-box">📊</div>Home</a>
-    <a href="mission.html"><div class="icon-box">🎯</div>Mission</a>
-    <a href="models.html"><div class="icon-box">📈</div>Models</a>
-    <a href="team.html"><div class="icon-box">👥</div>Team</a>
-    <a href="contact.html"><div class="icon-box">✉️</div>Contact</a>
-    <a href="pairs-jh.html" target="_blank"><div class="icon-box">📚</div>Education</a>
-</div>
+    <div class="app-grid" id="gridMenu">
+      <a href="../../index.html"><div class="icon-box">📊</div>Home</a>
+      <a href="mission.html"><div class="icon-box">🎯</div>Mission</a>
+      <a href="models.html"><div class="icon-box">📈</div>Models</a>
+      <a href="team.html"><div class="icon-box">👥</div>Team</a>
+      <a href="contact.html"><div class="icon-box">✉️</div>Contact</a>
+      <a href="pairs-jh.html" target="_blank"><div class="icon-box">📚</div>Education</a>
+    </div>
   </header>
 
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-content">
       <h1 class="hero-title">Meet the Team</h1>
-      <p class="hero-subtitle">Technologists, academics, and clinicians weaving insight into action</p>
+      <p class="hero-subtitle">Credibility and capacity — the people behind Ukubona.</p>
       <div class="hero-cta">
         <a href="#team-content" class="cta-button cta-primary">
           <i data-feather="users"></i>
@@ -71,107 +77,92 @@
   </section>
 
   <main class="main-content" id="team-content">
+
+    <!-- AT A GLANCE / PROOF POINTS -->
     <section class="content-section">
-      <h2 class="section-title">Our Ethos</h2>
-      <p class="section-text">
-    At Ukubona, <em>to see</em> is to engage in a dynamic process — sensing patterns, weaving memory, applying meaning, and taking action.<br><br>
-    Like Zarathustra’s ascent to greater heights, our team seeks clarity by seeing both long-term facts and counterfactual possibilities — gaining perspective that informs wiser, more adaptive decisions.<br><br>
-    Spanning continents and disciplines, we unite in building decision systems that honor the recursive, embodied nature of human perception.
-  </p><br>
+      <h2 class="section-title">At a Glance</h2>
+      <div class="pill-row">
+        <span class="badge">Vendor • Johns Hopkins Enterprise (since Jun 2025)</span>
+        <span class="badge">NIH-funded research • 15+ years</span>
+        <span class="badge">Personalized risk & decision tools in production</span>
+        <span class="badge">Operating • New York & Kampala</span>
+      </div>
+      <div class="mini-grid" style="margin-top:18px;">
+        <div class="kv"><h3>What we do</h3><p>Health tech infrastructure: data pipelines, risk models, and adaptive decision-support for personalized care.</p></div>
+        <div class="kv"><h3>Why it matters</h3><p>Continuity and accountability across health ecosystems — from clinic to population level.</p></div>
+        <div class="kv"><h3>How we deliver</h3><p>Clinically grounded research → deployable tools (interactive KM, individualized risk) → measurable outcomes.</p></div>
+      </div>
+      <div class="inline-cta">
+        <a href="models.html" class="cta-button cta-secondary"><i data-feather="activity"></i> See Live Models</a>
+        <a href="/assets/files/ukubona.vcf" class="cta-button cta-primary"><i data-feather="download"></i> Download vCard</a>
+        <a href="contact.html" class="cta-button cta-tertiary"><i data-feather="mail"></i> Contact Page</a>
+      </div>
     </section>
 
-<section class="content-section founder-spotlight">
-  <h2 class="section-title">Founder Spotlight</h2>
-  <p class="section-text">
-    Abimereki Muzaale brings a unique fusion of rigorous scientific inquiry, systems that learn and adapt over time, and a deep clarity shaped by experience.<br><br>
-    From ages 26 to 45, his professional adulthood was forged at Johns Hopkins University — a tenure that solidified his expertise as a clinical investigator and public health leader. This foundation drives the vision and innovation at Ukubona LLC.<br><br>
-    Focused on building interactive, personalized digital tools, Dr. Muzaale leads with a balance of disciplined inquiry and collaborative insight.
-  </p><br>
-</section>
-
-
-    <section class="content-section">
-      <h2 class="section-title">Leadership</h2>
-      <p class="section-text"><strong>Abimereki Muzaale, MD, MPH</strong><br />Founder and CEO</p>
+    <!-- FOUNDER FIRST -->
+    <section class="content-section founder-spotlight">
+      <h2 class="section-title">Founder</h2>
+      <p class="section-text"><strong>Abimereki Muzaale, MD, MPH</strong><br/>Founder & CEO</p>
       <p class="section-text">
-        Dr. Muzaale has been an NIH-funded clinical investigator for over 15 years with grants from <a href="https://www.niddk.nih.gov/">NIDDK</a> and <a href="https://www.nia.nih.gov/">NIA</a>.  
-        He oversees initiatives focusing on decision-support and personalized risk-assessment, blending clinical insight with data-driven innovation.
-      </p><br>
-    </section>
-
-    <section class="content-section">
-      <h2 class="section-title">Core Staff</h2>
-      <p class="section-text">
-        <strong>Vincent Jin, MS</strong><br />
-        Analyst – Data Visualization & Strategy
+        NIH-funded clinical investigator (NIDDK, NIA) and former Johns Hopkins faculty with 15+ years leading outcomes research in transplantation and population health. At Ukubona, Dr. Muzaale translates rigorous science into deployable, personalized decision-support — tools that clinicians and patients can use in real time.
       </p>
-      <p class="section-text">
-        Vincent builds the future of personalized medicine. Drawing on a deep knowledge of transplant databases, Cox models, and uncertainty quantification, he designs platforms delivering live, interactive Kaplan–Meier visualizations tailored to individual patient profiles. His work turns complex population data into immediate, actionable insight.
-      </p><br>
+      <div class="pill-row">
+        <span class="badge">Outcomes & survival modeling</span>
+        <span class="badge">Personalized risk assessment</span>
+        <span class="badge">Clinical translation</span>
+      </div>
     </section>
 
+    <!-- CORE TEAM (CONDENSED, IMPACT-LED) -->
     <section class="content-section">
-      <h2 class="section-title">Interns</h2>
+      <h2 class="section-title">Core Team</h2>
+      <p class="section-text"><strong>Vincent Jin, MS</strong><br/>Analyst — Data Visualization & Strategy</p>
+      <p class="section-text">Transplant databases, Cox models, and uncertainty quantification. Builds live, interactive Kaplan–Meier and individualized risk views that turn population data into actionable bedside insight.</p>
+    </section>
 
+    <!-- INTERNS (COHORT) -->
+    <section class="content-section">
+      <h2 class="section-title">Interns (2025 Cohort)</h2>
       <article class="intern-profile">
-        <p class="section-text"><strong>Jonathan Gasaatura</strong><br />Intern – Applied Analytics & Web Publishing</p>
-        <p class="section-text">
-          Jonathan joined Ukubona in Spring 2025 as the company’s first intern while a high school senior in Fairfax, VA.  
-          He delivered a full-stack analysis titled <em><a href="https://ukubona-llc.github.io/internship/ukb/token/ji2x26/assets/html/final.html" target="_blank">The Soto–Judge Effect</a></em>, covering shifts in MLB hitting performance through lineup structure. His work combined statistical thinking with deployable tools — building for impact.
-        </p><br>
+        <p class="section-text"><strong>Jonathan Gasaatura</strong><br/>Applied Analytics & Web Publishing</p>
+        <p class="section-text">Delivered <em><a href="https://ukubona-llc.github.io/internship/ukb/token/ji2x26/assets/html/final.html" target="_blank">The Soto–Judge Effect</a></em> — a full-stack analysis translating statistical thinking into deployable tools.</p>
       </article>
-
       <article class="intern-profile">
-        <p class="section-text"><strong>Paul Luswata</strong><br />Intern – Data Analytics & Global Health Policy</p>
-        <p class="section-text">
-          Paul joined Ukubona in May 2025 to deepen his applied experience in data analytics and behavioral health policy.  
-          With a master’s background in health systems and Google Data Analytics certification, he contributes to dashboards, peer-reviewed writing, and research alongside doctoral studies in health policy.
-        </p><br>
+        <p class="section-text"><strong>Paul Luswata</strong><br/>Data Analytics & Global Health Policy</p>
+        <p class="section-text">Builds dashboards and contributes to peer‑review and research; backgrounds in health systems and data analytics.</p>
       </article>
     </section>
 
+    <!-- CLINICAL COLLABORATORS -->
     <section class="content-section">
       <h2 class="section-title">Clinical Collaborators</h2>
-      <p class="section-text"><strong>Fawaz S. Al Ammary, MD, PhD</strong><br />Living Donor Transplantation</p>
-      <p class="section-text">
-        Board-certified nephrologist and Associate Professor at <a href="https://www.ucihealth.org/clinicians/fawaz-al-ammary-1992918916" target="_blank">UC Irvine</a> School of Medicine.  
-        Former Medical Director of Living Donor Kidney Transplantation at Johns Hopkins.  
-        Collaborates with Ukubona on donor risk stratification, consent modeling, and ethical frameworks in transplant predictive analytics.
-      </p><br>
+      <p class="section-text"><strong>Fawaz S. Al Ammary, MD, PhD</strong><br/>Living Donor Transplantation</p>
+      <p class="section-text">Associate Professor, <a href="https://www.ucihealth.org/clinicians/fawaz-al-ammary-1992918916" target="_blank">UC Irvine</a>; former Medical Director of Living Donor Kidney Transplantation at Johns Hopkins. Collaborates on donor risk stratification, consent modeling, and ethics in predictive analytics.</p>
     </section>
 
-<section class="content-section philosophy-section">
-  <h2 class="section-title">A Note on Origins</h2>
-  <p class="section-text">
-    Ukubona means “to see.” The name reflects our mission to bridge knowledge across disciplines and cultures, connecting data, experience, and values to improve decision-making.
-  </p>
-</section>
-
-<section class="content-section quote-section"><br>
-  <p class="section-text">
-    Seeing is never passive. It is an active, recursive dance — attention focused, meaning interpreted, and action taken.  
-    This cycle shapes how we engage with the world, building decision systems that honor human complexity and nurture clarity in chaos.
-  </p>
-</section>
+    <!-- OPTIONAL DEPTH: ETHOS / ORIGINS COLLAPSIBLE -->
+    <section class="content-section">
+      <h2 class="section-title">Ethos & Origins</h2>
+      <details>
+        <summary class="section-text">Open the "deep cut" — how we think about seeing, recursion, and systems.</summary>
+        <div class="section-text" style="margin-top:12px;">
+          <p>Ukubona means “to see.” For us, seeing is active and recursive — sense patterns, weave memory, apply meaning, take action. We build decision systems that honor human complexity and create clarity in chaos.</p>
+          <p>Five Scales we design for: 🎲 Tactical • 📰 Informational • 📅 Strategic • 📍 Operational • ♾️ Existential.</p>
+          <p><em>“Heights as perspective”</em> — not just vision, but recursion of insight. Ukuvula → Ukuzula → Ukusoma → Ukubona → Ukukula.</p>
+        </div>
+      </details>
+    </section>
 
   </main>
 
-<div id="footer-placeholder"></div>
-<script>
-fetch('/assets/html/footer.html')
-  .then(response => response.text())
-  .then(html => {
-    document.getElementById('footer-placeholder').innerHTML = html;
-  });
-</script>
-
-
-
+  <div id="footer-placeholder"></div>
+  <script>
+    fetch('/assets/html/footer.html')
+      .then(r => r.text())
+      .then(html => { document.getElementById('footer-placeholder').innerHTML = html; });
+  </script>
   <script src="../js/shared.js"></script>
   <script src="../js/landing.js"></script>
-  <script>
-    feather.replace();
-  </script>
+  <script>feather.replace();</script>
 </body>
 </html>
-

@@ -1,11 +1,14 @@
 // Links array for app-grid (from original index.html)
 const links = [
-  { name: 'Home', url: 'index.html', icon: '📊' },
-  { name: 'Mission', url: 'assets/html/mission.html', icon: '🎯' },
-  { name: 'Models', url: 'assets/html/models.html', icon: '📈' },
-  { name: 'Team', url: 'assets/html/team.html', icon: '👥' },
-  { name: 'Contact', url: 'assets/html/contact.html', icon: '✉️' },
-  { name: 'Education', url: 'assets/html/pairs-jh.html', icon: '📚' },
+  { name: 'Home',        url: 'index.html',                icon: '📊' },
+  { name: 'Mission',     url: 'assets/html/mission.html',  icon: '🎯' },
+  { name: 'Models',      url: 'assets/html/models.html',   icon: '📈' },
+  { name: 'Team',        url: 'assets/html/team.html',     icon: '👥' },
+  { name: 'Contact',     url: 'assets/html/contact.html',  icon: '✉️' },
+  { name: 'Education',   url: 'assets/html/pairs-jh.html', icon: '📚' },
+  // New links
+  { name: 'Business Card', url: 'assets/html/card.html',   icon: '📇' },
+  { name: 'Game of Care',  url: 'assets/html/game.html',   icon: '🎮' },
 ];
 
 // Modal data (full original content)
