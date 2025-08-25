@@ -3,13 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    html[data-theme='light'] .menu-icon div { background-color: #000; }
+    html[data-theme='dark'] .menu-icon div { background-color: #fff; }
+  </style>
+  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon">
+  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" media="(prefers-color-scheme: dark)">
+  <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-light.png" as="image">
+  <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-dark.png" as="image">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/main.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
   <title>Ukubona LLC – The Game of Care</title>
   <style>
-    html[data-theme='light'] .menu-icon div { background-color: #000; }
-    html[data-theme='dark'] .menu-icon div { background-color: #fff; }
     .role-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-top:20px; }
     .role-card { padding:1rem; border:1px solid rgba(255,255,255,0.2); border-radius:12px; background:rgba(255,255,255,0.05); }
     .badge { display:inline-block; padding:6px 10px; border:1px solid rgba(255,255,255,0.2); border-radius:9999px; font-size:0.85rem; margin:4px 6px 0 0; }
@@ -36,6 +43,18 @@
         </button>
         <button id="toggle-theme">🌙</button>
       </div>
+    </div>
+
+    <!-- GRID MENU (missing before) -->
+    <div class="app-grid" id="gridMenu">
+      <a href="../../index.html"><div class="icon-box">📊</div>Home</a>
+      <a href="mission.html"><div class="icon-box">🎯</div>Mission</a>
+      <a href="models.html"><div class="icon-box">📈</div>Models</a>
+      <a href="team.html"><div class="icon-box">👥</div>Team</a>
+      <a href="contact.html"><div class="icon-box">✉️</div>Contact</a>
+      <a href="pairs-jh.html" target="_blank"><div class="icon-box">📚</div>Education</a>
+      <a href="card.html"><div class="icon-box">📇</div>Business Card</a>
+      <a href="game.html" class="active"><div class="icon-box">🎮</div>Game of Care</a>
     </div>
   </header>
 
@@ -108,4 +127,3 @@
   <script src="../js/landing.js"></script>
 </body>
 </html>
-
