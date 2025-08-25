@@ -244,6 +244,7 @@ function loadHTML(elementId, url) {
     })
     .then(data => {
       document.getElementById(elementId).innerHTML = data;
+
       // Populate app-grid after loading header
       if (elementId === 'header') {
         console.log('Populating app-grid with links');
@@ -260,11 +261,15 @@ function loadHTML(elementId, url) {
         } else {
           console.error('gridMenu not found after loading header');
         }
+
+        // ✅ fix: mark body as loaded only after header/logo exists
+        document.body.classList.add('loaded');
       }
+
       // Rebind modal event listeners after loading services/timeline sections
       if (elementId === 'services-section' || elementId === 'metrics-section') {
         document.querySelectorAll('[data-modal]').forEach(element => {
-          element.removeEventListener('click', modalClickHandler); // Prevent duplicate listeners
+          element.removeEventListener('click', modalClickHandler);
           element.addEventListener('click', modalClickHandler);
         });
       }
@@ -346,9 +351,6 @@ document.addEventListener('DOMContentLoaded', () => {
   loadHTML('metrics-section', 'assets/html/metrics-section.html');
   loadHTML('modal-overlay', 'assets/html/modal-overlay.html');
   loadHTML('footer-placeholder', 'assets/html/footer.html');
-
-  // Apply body.loaded for logo animation
-  document.body.classList.add('loaded');
 
   // Modal event listeners
   document.getElementById('modalOverlay')?.addEventListener('click', function(e) {
