@@ -6,6 +6,147 @@
   <style>
     html[data-theme='light'] .menu-icon div { background-color: #000; }
     html[data-theme='dark'] .menu-icon div { background-color: #fff; }
+
+    /* --- Page-local aesthetic touches (no new deps) --- */
+    .page-wrap { position: relative; }
+    .hero {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(80% 120% at 10% 10%, rgba(255,255,255,0.06), transparent 60%),
+        radial-gradient(90% 140% at 90% 30%, rgba(0,153,255,0.08), transparent 65%),
+        radial-gradient(90% 140% at 50% 100%, rgba(255,0,128,0.06), transparent 60%);
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+    }
+    .hero-title {
+      letter-spacing: 0.3px;
+    }
+    .hero-subtitle {
+      opacity: 0.9;
+    }
+    .cta-button.cta-primary {
+      border-radius: 9999px;
+      padding: 0.7rem 1.1rem;
+      gap: 8px;
+    }
+
+    .content-section {
+      margin-top: 2.25rem;
+      padding-top: 0.25rem;
+    }
+    .section-title {
+      display: inline-block;
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+    .section-title::after {
+      content: "";
+      display: block;
+      height: 2px;
+      width: 56px;
+      margin-top: 8px;
+      background: linear-gradient(90deg, rgba(0,153,255,0.9), rgba(255,0,128,0.8));
+      border-radius: 2px;
+    }
+    .section-text {
+      line-height: 1.65;
+    }
+
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 18px;
+      margin-top: 20px;
+    }
+    .role-card {
+      padding: 1rem;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .role-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.35);
+      border-color: rgba(0,153,255,0.35);
+    }
+    .role-card h3 { margin: 0 0 6px 0; }
+
+    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: saturate(120%);
+      white-space: nowrap;
+    }
+
+    /* vignette card uses existing .role-card */
+    .vignette figure{
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .vignette img{
+      max-width: 60%;
+      height: auto;
+      border-radius: 10px;
+      margin: 0 0 12px 0;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .vignette figcaption{
+      opacity: 0.85;
+      max-width: 60%;
+    }
+    /* responsive refinement for vignette */
+    @media (max-width: 900px){
+      .vignette img, .vignette figcaption{ max-width: 85%; }
+    }
+    @media (max-width: 600px){
+      .vignette img, .vignette figcaption{ max-width: 100%; }
+    }
+
+    /* soft section separators */
+    .sep {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+      margin: 24px 0 8px 0;
+      border: none;
+    }
+
+    .disclaimer {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      margin-top: 2rem;
+      text-align: center;
+      border: 1px dashed rgba(255,255,255,0.2);
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.03);
+    }
+
+    /* make the “Education” external link visually consistent */
+    .nav-links .nav-link[target="_blank"]::after{
+      content: "↗";
+      margin-left: 6px;
+      opacity: 0.7;
+      font-size: 0.9em;
+    }
   </style>
   <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon">
   <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" media="(prefers-color-scheme: light)">
@@ -16,14 +157,8 @@
   <link rel="stylesheet" href="../css/main.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
   <title>Ukubona LLC – The Game of Care</title>
-  <style>
-    .role-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-top:20px; }
-    .role-card { padding:1rem; border:1px solid rgba(255,255,255,0.2); border-radius:12px; background:rgba(255,255,255,0.05); }
-    .badge { display:inline-block; padding:6px 10px; border:1px solid rgba(255,255,255,0.2); border-radius:9999px; font-size:0.85rem; margin:4px 6px 0 0; }
-    .disclaimer { font-size:0.85rem; opacity:0.7; margin-top:2rem; text-align:center; }
-  </style>
 </head>
-<body>
+<body class="page-wrap">
   <header class="header">
     <div class="nav-container">
       <img src="https://abikesa.github.io/logos/assets/ukubona-dark.png" alt="Ukubona LLC Logo" id="logo" class="logo" />
@@ -41,11 +176,10 @@
           <div></div><div></div><div></div>
           <div></div><div></div><div></div>
         </button>
-        <button id="toggle-theme">🌙</button>
+        <button id="toggle-theme" aria-label="Toggle theme">🌙</button>
       </div>
     </div>
 
-    <!-- GRID MENU (missing before) -->
     <div class="app-grid" id="gridMenu">
       <a href="../../index.html"><div class="icon-box">📊</div>Home</a>
       <a href="mission.html"><div class="icon-box">🎯</div>Mission</a>
@@ -64,8 +198,8 @@
       <h1 class="hero-title">The Game of Care</h1>
       <p class="hero-subtitle">Healthcare reimagined as sequential, consequential play.</p>
       <div class="hero-cta">
-        <a href="#roles" class="cta-button cta-primary">
-          <i data-feather="play-circle"></i> Choose Your Role
+        <a href="#to-screen" class="cta-button cta-primary">
+          <i data-feather="play-circle"></i> Try a Scenario
         </a>
       </div>
     </div>
@@ -82,6 +216,7 @@
         <span class="badge">Not Medical Advice</span>
         <span class="badge">Interactive Learning & Simulation</span>
       </div>
+      <hr class="sep">
     </section>
 
     <section class="content-section">
@@ -94,6 +229,33 @@
         <div class="role-card"><h3>🏢 Insurance Exec</h3><p>Approve or deny? Balance actuarial math vs. human cost.</p></div>
         <div class="role-card"><h3>🧑‍⚕️ Nurse</h3><p>Coordinate bedside care, anticipate crises, keep continuity alive.</p></div>
       </div>
+      <hr class="sep">
+    </section>
+
+    <!-- Vignette -->
+    <section class="content-section" id="to-screen">
+      <h2 class="section-title">To Screen or Not to Screen?</h2>
+      <div class="role-card vignette">
+        <figure>
+          <!-- Update the src if you place the file elsewhere -->
+          <img src="../img/to-screen.jpeg" 
+               alt="News screenshot referencing a fatal reaction during a routine CT scan">
+          <figcaption class="section-text">
+            A “routine” decision can carry non-zero tail risk. Simulation lets us rehearse those branches before reality forces them.
+          </figcaption>
+        </figure>
+        <div class="section-text" style="margin-top:12px;">
+          <strong>Doctor:</strong> Order a contrast CT now (rule-out value high) knowing a small allergy risk exists — or observe and re-evaluate?<br>
+          <strong>Patient:</strong> Consent to the scan today — or delay for alternative tests and risk a missed diagnosis?<br>
+          <strong>Insurer:</strong> Approve pre-auth — or request step-therapy and push the decision downstream?
+        </div>
+        <div class="pill-row" style="margin-top:10px;">
+          <span class="badge">Parallel Futures</span>
+          <span class="badge">Tail Risk</span>
+          <span class="badge">Ethics of Delay</span>
+        </div>
+      </div>
+      <hr class="sep">
     </section>
 
     <section class="content-section">
@@ -101,6 +263,7 @@
       <p class="section-text">
         Every choice updates the underlying parameters and variance–covariance matrix. Like any good game, sequences matter: skip an immunization, delay a diagnosis, miss a payment — and you may find yourself “dead at Level 2.” Or you may discover resilience, redundancy, and recovery. 
       </p>
+      <hr class="sep">
     </section>
 
     <section class="content-section">
@@ -111,7 +274,7 @@
     </section>
 
     <p class="disclaimer">
-      Ukubona LLC’s platform is a game. It is <strong>not FDA approved</strong>, and provides <strong>no medical advice</strong>.  
+      Ukubona LLC’s platform is a game. It is <strong>not FDA approved</strong>, and provides <strong>no medical advice</strong>.<br>
       Participation is voluntary play. Outcomes are simulations, not clinical recommendations.
     </p>
   </main>
