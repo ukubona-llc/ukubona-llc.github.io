@@ -11,7 +11,7 @@ const links = [
   { name: 'Game of Care',  url: 'assets/html/game.html',   icon: '🎮' },
 ];
 
-// Modal data (full original content)
+// Modal data (full original content – unchanged, ~300 lines)
 const modalData = {
   'service-1': {
     icon: '🌊',
@@ -262,8 +262,8 @@ function loadHTML(elementId, url) {
           console.error('gridMenu not found after loading header');
         }
 
-        // ✅ fix: mark body as loaded only after header/logo exists
-        document.body.classList.add('loaded');
+        // ✅ Safari-safe delay so logo animation works on mobile
+        setTimeout(() => document.body.classList.add('loaded'), 200);
       }
 
       // Rebind modal event listeners after loading services/timeline sections
