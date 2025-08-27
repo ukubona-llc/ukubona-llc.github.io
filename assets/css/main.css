@@ -647,3 +647,19 @@ html[data-theme='dark'] .menu-icon div {
             grid-template-rows: repeat(3, 1fr);
         }
     }
+
+    /* Ukubona metric style refinement */
+.metric-value {
+    font-size: 2rem;              /* smaller, tighter */
+    font-weight: 700;             /* confident, not screaming */
+    color: var(--text);           /* plain strong text, no gradient */
+    margin-bottom: 0.25rem;
+}
+
+.metric-label {
+    color: var(--text-secondary);
+    font-weight: 400;
+    text-transform: none;         /* sentence case instead of ALL CAPS */
+    letter-spacing: normal;
+    font-size: 0.95rem;
+}
