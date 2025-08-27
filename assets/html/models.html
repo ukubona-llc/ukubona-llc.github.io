@@ -26,18 +26,34 @@
     .section-title { text-align:center; margin-bottom:12px; letter-spacing:.2px; }
     .section-text { max-width:86ch; margin:0 auto; line-height:1.65; color:var(--text); text-align:left; }
 
-    /* Card grids */
-    .cards,
-    .models-grid {
+    /* Flow strip */
+    .flow-strip {
+      display:flex; gap:10px; align-items:center; justify-content:center;
+      flex-wrap:wrap; margin-top:12px;
+    }
+    .flow-chip {
+      border:1px solid var(--border); background:var(--glass); border-radius:999px;
+      padding:6px 12px; font-size:.9rem;
+    }
+    .flow-arrow { opacity:.6; }
+
+    /* 3-column grid (collapses to 2/1) */
+    .cards, .models-grid {
       display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap:18px;
       max-width:1080px;
       margin:16px auto 0;
       padding:0 4px;
     }
-    .card,
-    .model-card {
+    @media (max-width: 980px) {
+      .cards, .models-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .cards, .models-grid { grid-template-columns: 1fr; }
+    }
+
+    .card, .model-card {
       background:var(--surface);
       border:1px solid var(--border);
       border-radius:16px;
@@ -58,8 +74,7 @@
     }
     code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 
-    /* Remove any legacy separators on this page */
-    .sep { display:none !important; }
+    .sep { display:none !important; } /* no cheesy lines */
   </style>
 
   <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon">
@@ -131,9 +146,18 @@
         We ship Flask apps with backend APIs that connect to <em>public</em> datasets and, when appropriate,
         <em>private</em> data under strict disclosure-risk controls. The output isn’t a decree — it’s a place to rehearse decisions.
       </p>
+
+      <!-- flow strip -->
+      <div class="flow-strip">
+        <span class="flow-chip">Source</span><span class="flow-arrow">→</span>
+        <span class="flow-chip">Input</span><span class="flow-arrow">→</span>
+        <span class="flow-chip">Transform</span><span class="flow-arrow">→</span>
+        <span class="flow-chip">Output</span><span class="flow-arrow">→</span>
+        <span class="flow-chip">Return</span>
+      </div>
     </section>
 
-    <!-- Pipeline -->
+    <!-- Pipeline (3 cards) -->
     <section class="content-section">
       <h2 class="section-title">Pipeline</h2>
       <div class="cards">
@@ -145,22 +169,15 @@
           </div>
         </div>
         <div class="card">
-          <h3>Model</h3>
-          <p>Validated equations (e.g., survival/Cox). Assumptions visible. Uncertainty preserved.</p>
-          <div class="badge-row">
-            <span class="badge">Validated</span><span class="badge">Explainable</span>
-          </div>
-        </div>
-        <div class="card">
-          <h3>API (Flask)</h3>
-          <p>Endpoints serve estimates & comparators; auth & logging configurable.</p>
+          <h3>Model → API</h3>
+          <p>Validated equations (e.g., survival/Cox) served via Flask endpoints. Assumptions visible; uncertainty preserved.</p>
           <div class="badge-row">
             <span class="badge">JSON</span><span class="badge">Auth</span><span class="badge">Rate-limited</span>
           </div>
         </div>
         <div class="card">
           <h3>UI (Rehearsal)</h3>
-          <p>Interactive loops (scenarios, avatars, sliders) to play → learn → adjust → decide.</p>
+          <p>Interactive loops (avatars, sliders, comparators) to play → learn → adjust → decide.</p>
           <div class="badge-row">
             <span class="badge">Responsive</span><span class="badge">Audit-friendly</span>
           </div>
@@ -168,31 +185,24 @@
       </div>
     </section>
 
-    <!-- LLC Stack Models -->
-    <section class="content-section">
-      <h2 class="section-title">Models Across the LLC Stack</h2>
-      <p class="section-text">
-        We ship models as live services. Some read <em>public</em> data; others join with <em>private</em> feeds under disclosure-risk controls.
-        The output is a rehearsal space, not a decree.
-      </p>
-    </section>
-
+    <!-- LLC Stack Models: every section = 3 cards -->
     <section class="content-section">
       <h2 class="section-title">Ukuvula — Provisioning</h2>
       <div class="cards">
         <div class="card">
           <h3>Social Determinants Ingestor</h3>
           <p>SDOH vectors & deprivation indices for a place.</p>
-          <div class="badge-row">
-            <span class="badge">Public</span><span class="badge">ETL</span><span class="badge">Low energy</span>
-          </div>
+          <div class="badge-row"><span class="badge">Public</span><span class="badge">ETL</span><span class="badge">Low energy</span></div>
         </div>
         <div class="card">
           <h3>Nutrition Exposure</h3>
           <p>Access/affordability buckets + elasticity.</p>
-          <div class="badge-row">
-            <span class="badge">Public/Partner</span><span class="badge">Buckets</span><span class="badge">Low energy</span>
-          </div>
+          <div class="badge-row"><span class="badge">Public/Partner</span><span class="badge">Buckets</span><span class="badge">Low</span></div>
+        </div>
+        <div class="card">
+          <h3>Env. Normalizer</h3>
+          <p>Air/heat/traffic indices normalized for downstream risk models.</p>
+          <div class="badge-row"><span class="badge">Public</span><span class="badge">Normalize</span><span class="badge">Low</span></div>
         </div>
       </div>
     </section>
@@ -203,16 +213,17 @@
         <div class="card">
           <h3>Vitality Signal</h3>
           <p>Steps/cadence → vitality score & slope.</p>
-          <div class="badge-row">
-            <span class="badge">User input</span><span class="badge">Explainable</span><span class="badge">Low–Mod</span>
-          </div>
+          <div class="badge-row"><span class="badge">User input</span><span class="badge">Explainable</span><span class="badge">Low–Mod</span></div>
         </div>
         <div class="card">
           <h3>Gait → Risk Mapper</h3>
           <p>Simple mobility signals to absolute-risk proxies with uncertainty.</p>
-          <div class="badge-row">
-            <span class="badge">Literature</span><span class="badge">Comparators</span><span class="badge">Low</span>
-          </div>
+          <div class="badge-row"><span class="badge">Literature</span><span class="badge">Comparators</span><span class="badge">Low</span></div>
+        </div>
+        <div class="card">
+          <h3>Recovery Curve</h3>
+          <p>Post-event recovery estimator from short time-series windows.</p>
+          <div class="badge-row"><span class="badge">Time-series</span><span class="badge">Explainable</span><span class="badge">Low–Mod</span></div>
         </div>
       </div>
     </section>
@@ -223,16 +234,17 @@
         <div class="card">
           <h3>Scenario Engine (Avatars)</h3>
           <p>Branch outcomes, tails, replays — safe rehearsal before deployment.</p>
-          <div class="badge-row">
-            <span class="badge">Synthetic</span><span class="badge">Monte Carlo</span><span class="badge">Moderate</span>
-          </div>
+          <div class="badge-row"><span class="badge">Synthetic</span><span class="badge">Monte Carlo</span><span class="badge">Mod</span></div>
         </div>
         <div class="card">
           <h3>Behavior Loop</h3>
           <p>Nudges → adherence curves; optimal micro-commitments.</p>
-          <div class="badge-row">
-            <span class="badge">Binned</span><span class="badge">No PII</span><span class="badge">Low–Mod</span>
-          </div>
+          <div class="badge-row"><span class="badge">Binned</span><span class="badge">No PII</span><span class="badge">Low–Mod</span></div>
+        </div>
+        <div class="card">
+          <h3>Cost of Delay</h3>
+          <p>Time-to-action vs outcome curves to expose hidden tail risks.</p>
+          <div class="badge-row"><span class="badge">Policy</span><span class="badge">Comparators</span><span class="badge">Mod</span></div>
         </div>
       </div>
     </section>
@@ -243,16 +255,17 @@
         <div class="card">
           <h3>Comparator & Benchmarks</h3>
           <p>Your estimate vs matched peers; explainable deltas.</p>
-          <div class="badge-row">
-            <span class="badge">Lit-based</span><span class="badge">Explainable</span><span class="badge">Low</span>
-          </div>
+          <div class="badge-row"><span class="badge">Lit-based</span><span class="badge">Explainable</span><span class="badge">Low</span></div>
         </div>
         <div class="card">
           <h3>Consent-as-Rehearsal</h3>
           <p>Snapshot of what was practiced & understood; versioned, auditable.</p>
-          <div class="badge-row">
-            <span class="badge">Audit</span><span class="badge">Min PII</span><span class="badge">Low</span>
-          </div>
+          <div class="badge-row"><span class="badge">Audit</span><span class="badge">Min PII</span><span class="badge">Low</span></div>
+        </div>
+        <div class="card">
+          <h3>Audit Digest</h3>
+          <p>Human-readable audit reports: inputs, transforms, outputs, return.</p>
+          <div class="badge-row"><span class="badge">Governance</span><span class="badge">Docs</span><span class="badge">Low</span></div>
         </div>
       </div>
     </section>
@@ -263,16 +276,17 @@
         <div class="card">
           <h3>ADL Trajectory</h3>
           <p>12–24 mo ADL bands; care-plan triggers.</p>
-          <div class="badge-row">
-            <span class="badge">Lit-based</span><span class="badge">Triggers</span><span class="badge">Low</span>
-          </div>
+          <div class="badge-row"><span class="badge">Lit-based</span><span class="badge">Triggers</span><span class="badge">Low</span></div>
         </div>
         <div class="card">
           <h3>Family Impact</h3>
           <p>Caregiver time/$ projections; decision surfaces.</p>
-          <div class="badge-row">
-            <span class="badge">Aggregates</span><span class="badge">Currency rounding</span><span class="badge">Low</span>
-          </div>
+          <div class="badge-row"><span class="badge">Aggregates</span><span class="badge">Rounding</span><span class="badge">Low</span></div>
+        </div>
+        <div class="card">
+          <h3>Preference Elicitor</h3>
+          <p>Lightweight survey loop to align plans with values.</p>
+          <div class="badge-row"><span class="badge">Values</span><span class="badge">Buckets</span><span class="badge">Low</span></div>
         </div>
       </div>
     </section>
@@ -283,45 +297,47 @@
         <div class="card">
           <h3>Energy Cost Monitor</h3>
           <p>kWh/$ per clarity; marginal cost curves as simulations scale. Clarity has a price.</p>
-          <div class="badge-row">
-            <span class="badge">Meta</span><span class="badge">Aggregates</span><span class="badge">Low overhead</span>
-          </div>
+          <div class="badge-row"><span class="badge">Meta</span><span class="badge">Aggregates</span><span class="badge">Low overhead</span></div>
+        </div>
+        <div class="card">
+          <h3>Compute Budget Planner</h3>
+          <p>Plan runs vs budget; surface trade-offs before launch.</p>
+          <div class="badge-row"><span class="badge">Planner</span><span class="badge">Budget</span><span class="badge">Low</span></div>
+        </div>
+        <div class="card">
+          <h3>Footprint Reporter</h3>
+          <p>Per-run & cumulative footprint summaries for stakeholders.</p>
+          <div class="badge-row"><span class="badge">Report</span><span class="badge">Aggregates</span><span class="badge">Low</span></div>
         </div>
       </div>
     </section>
 
-    <!-- Public vs Private data + Disclosure risk -->
+    <!-- Data & Disclosure -->
     <section class="content-section">
       <h2 class="section-title">Data Access & Disclosure Risk</h2>
       <div class="cards">
         <div class="card">
           <h3>Public Data</h3>
-          <p>Connected via documented endpoints. No identifiers; aggregation/suppression when needed.</p>
-          <div class="badge-row">
-            <span class="badge">Open</span><span class="badge">Versioned</span><span class="badge">Doc’d</span>
-          </div>
+          <p>Documented endpoints; no identifiers; aggregation/suppression when needed.</p>
+          <div class="badge-row"><span class="badge">Open</span><span class="badge">Versioned</span><span class="badge">Doc’d</span></div>
         </div>
         <div class="card">
           <h3>Private Data</h3>
-          <p>Access-controlled. Min-fields; hash/bucket quasi-IDs; row-level guards.</p>
-          <div class="badge-row">
-            <span class="badge">Least-privilege</span><span class="badge">PII-aware</span><span class="badge">Audit</span>
-          </div>
+          <p>Access-controlled. Min-fields, hashed/bucketed quasi-IDs, row-level guards.</p>
+          <div class="badge-row"><span class="badge">Least-privilege</span><span class="badge">PII-aware</span><span class="badge">Audit</span></div>
         </div>
         <div class="card">
           <h3>Disclosure Controls</h3>
-          <p>k-anonymity thresholds, top/bottom-coding, small-cell noise, rare-combo redaction.</p>
-          <div class="badge-row">
-            <span class="badge">k-anon</span><span class="badge">Noise</span><span class="badge">Redaction</span>
-          </div>
+          <p>k-anon thresholds, top/bottom-coding, small-cell noise, rare-combo redaction.</p>
+          <div class="badge-row"><span class="badge">k-anon</span><span class="badge">Noise</span><span class="badge">Redaction</span></div>
         </div>
       </div>
     </section>
 
-    <!-- Example API shape (illustrative) -->
+    <!-- Example API shape -->
     <section class="content-section">
       <h2 class="section-title">API — Illustrative Shape</h2>
-      <p class="section-text">Example: request an individualized estimate and a comparator band from a Flask endpoint.</p>
+      <p class="section-text">Example: request an estimate + comparator band from a Flask endpoint.</p>
       <pre><code>// POST /api/v1/risk/estimate
 {
   "model": "periop_90d",
@@ -345,7 +361,7 @@
       <h2 class="section-title">Cost of Clarity</h2>
       <p class="section-text">
         More simulation → more intelligence → more decisions — and more energy and money.
-        We surface these trade-offs so teams invest wisely: tighten loops where value is highest, avoid “exhaust” where it isn’t.
+        We surface these trade-offs so teams invest where value is highest and avoid “exhaust” where it isn’t.
       </p>
     </section>
 
