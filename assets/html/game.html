@@ -8,15 +8,10 @@
     html[data-theme='dark'] .menu-icon div { background-color: #fff; }
 
     /* --- Layout symmetry & desktop polish (inline only) --- */
-    /* Global content container widths for symmetry */
-    .wrap-max {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
+    .wrap-max { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
     .hero .hero-content { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
 
-    /* Hero subtle glow (keeps your existing hero styles) */
+    /* Hero subtle glow */
     .hero { position: relative; overflow: hidden; }
     .hero::after {
       content: "";
@@ -32,9 +27,7 @@
 
     /* Section rhythm */
     .content-section { margin-top: 2.25rem; padding-top: .25rem; }
-    .section-title {
-      display: block; text-align: center; margin: 0 auto .75rem auto; letter-spacing:.2px;
-    }
+    .section-title { display: block; text-align: center; margin: 0 auto .75rem auto; letter-spacing:.2px; }
     .section-title::after {
       content:""; display:block; height:2px; width:64px; margin:10px auto 0 auto;
       background: linear-gradient(90deg, rgba(0,153,255,.9), rgba(255,0,128,.85));
@@ -51,58 +44,37 @@
     }
 
     /* --- Role grid symmetry --- */
-    /* Base mobile: 1 column, then 2, then EXACTLY 3 on desktop for perfect symmetry with 6 cards */
-    .role-grid {
-      display:grid; gap:18px; margin-top:20px;
-      grid-template-columns: 1fr;
-    }
+    .role-grid { display:grid; gap:18px; margin-top:20px; grid-template-columns: 1fr; }
     @media (min-width: 640px){ .role-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 1024px){ .role-grid { grid-template-columns: repeat(3, 1fr); } }
 
     .role-card {
       padding:1rem; border:1px solid rgba(255,255,255,.15); border-radius:14px;
-      background:rgba(255,255,255,.04);
-      box-shadow:0 6px 16px rgba(0,0,0,.25);
+      background:rgba(255,255,255,.04); box-shadow:0 6px 16px rgba(0,0,0,.25);
       transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-      display:flex; flex-direction:column; justify-content:flex-start;
-      min-height: 132px; /* equalish heights for neat rows */
+      display:flex; flex-direction:column; justify-content:flex-start; min-height:132px;
     }
     .role-card:hover { transform: translateY(-3px); box-shadow:0 10px 22px rgba(0,0,0,.35); border-color:rgba(0,153,255,.35); }
     .role-card h3 { margin:0 0 6px 0; }
 
-    /* --- Vignette (image + caption centered as a unit) --- */
-    .vignette figure {
-      margin:0; display:flex; flex-direction:column; align-items:center; text-align:center;
-    }
+    /* Vignette (image + caption centered as a unit) */
+    .vignette figure { margin:0; display:flex; flex-direction:column; align-items:center; text-align:center; }
     .vignette img {
       max-width: 66%; height:auto; border-radius:10px; margin:0 0 12px 0;
       box-shadow:0 8px 24px rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.12);
     }
-    .vignette figcaption {
-      opacity:.85; max-width:66%; text-align:center; /* caption centered, same width as image */
-    }
-    @media (max-width: 900px){
-      .vignette img, .vignette figcaption { max-width: 85%; }
-    }
-    @media (max-width: 600px){
-      .vignette img, .vignette figcaption { max-width: 100%; }
-    }
+    .vignette figcaption { opacity:.85; max-width:66%; text-align:center; }
+    @media (max-width: 900px){ .vignette img, .vignette figcaption { max-width: 85%; } }
+    @media (max-width: 600px){ .vignette img, .vignette figcaption { max-width: 100%; } }
 
-    /* Section separators for clean breaks */
+    /* Section separators */
     .sep {
       height:1px; background:linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
       margin:24px auto 8px auto; border:none; max-width: 920px;
     }
 
-    /* Disclaimer box centered */
-    .disclaimer {
-      font-size:.9rem; opacity:.85; margin:2rem auto 0 auto; text-align:center;
-      border:1px dashed rgba(255,255,255,.2); padding:12px 14px; border-radius:10px;
-      background:rgba(255,255,255,.03); max-width: 860px;
-    }
-
-    /* Keep Education link with subtle external cue */
-    .nav-links .nav-link[target="_blank"]::after{ content:"↗"; margin-left:6px; opacity:.7; font-size:.9em; }
+    /* (Remove the external-link arrow on Education) */
+    /* .nav-links .nav-link[target="_blank"]::after{ content:"↗"; margin-left:6px; opacity:.7; font-size:.9em; } */
   </style>
 
   <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon">
@@ -196,8 +168,7 @@
       <h2 class="section-title">To Screen or Not to Screen?</h2>
       <div class="role-card vignette">
         <figure>
-          <!-- Update the src if you place the file elsewhere -->
-          <img src="../img/to-screen.jpeg" alt="News screenshot referencing a fatal reaction during a routine CT scan">
+          <img src="../img/to-screen.jpeg" alt="News screenshot referencing a fatal reaction during a routine CT scan" loading="lazy" decoding="async">
           <figcaption class="section-text">
             A “routine” decision can carry non-zero tail risk. Simulation lets us rehearse those branches before reality forces them.
           </figcaption>
@@ -219,7 +190,7 @@
     <section class="content-section">
       <h2 class="section-title">Consequences & Levels</h2>
       <p class="section-text">
-        Every choice updates the underlying parameters and variance–covariance matrix. Like any good game, sequences matter: skip an immunization, delay a diagnosis, miss a payment — and you may find yourself “dead at Level 2.” Or you may discover resilience, redundancy, and recovery. 
+        Every choice changes what comes next. Like any good game, sequences matter: skip an immunization, delay a diagnosis, miss a payment — and you may find yourself “dead at Level 2.” Or you may uncover resilience, redundancy, and recovery.
       </p>
       <hr class="sep">
     </section>
@@ -227,14 +198,11 @@
     <section class="content-section">
       <h2 class="section-title">Advisors & Mentors</h2>
       <p class="section-text">
-        Guided by fictional luminaries like <strong>Zen Kiersen, MD</strong> and <strong>Jone Bopkin University</strong>, we poke fun at authority while building systems that, paradoxically, restore it. Investors should expect nothing less than the next Fortune 500 company emerging from the gaming community itself.
+        Guided by fictional mentors, we poke fun at authority while building systems that, paradoxically, restore it. The aim is serious: a Fortune-500-class platform born from the gaming community itself.
       </p>
     </section>
 
-    <p class="disclaimer">
-      Ukubona LLC’s platform is a game. It is <strong>not FDA approved</strong>, and provides <strong>no medical advice</strong>.<br>
-      Participation is voluntary play. Outcomes are simulations, not clinical recommendations.
-    </p>
+    <!-- Removed the big paragraph disclaimer per coherence; footer carries the chorus -->
   </main>
 
   <div id="footer-placeholder" class="wrap-max"></div>

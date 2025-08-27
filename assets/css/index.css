@@ -375,3 +375,6 @@
         background: var(--bg-primary);
         border-color: rgba(0, 0, 0, 0.1);
     }
+
+    /* kill external-link arrow globally */
+.nav-links .nav-link[target="_blank"]::after { content: none !important; }
