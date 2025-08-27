@@ -1,108 +1,373 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-    html[data-theme='light'] .menu-icon div {
-        background-color: #000;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Minimal inline polish for symmetry & rhythm -->
+  <style>
+    html[data-theme='light'] .menu-icon div { background-color:#000; }
+    html[data-theme='dark']  .menu-icon div { background-color:#fff; }
+
+    /* Layout container */
+    .wrap-max { max-width:1120px; margin:0 auto; padding:0 24px; }
+
+    /* Hero */
+    .hero .hero-content { padding:120px 0 40px; }
+    .hero-title { text-align:center; letter-spacing:.2px; }
+    .hero-subtitle { text-align:center; opacity:.9; margin-top:.4rem; }
+
+    /* Section rhythm */
+    .main-content { padding-bottom:64px; }
+    .content-section { margin:56px auto 0; }
+    .content-section:first-of-type { margin-top:24px; }
+
+    /* Typography & symmetry */
+    .section-title { text-align:center; margin-bottom:12px; letter-spacing:.2px; }
+    .section-text { max-width:86ch; margin:0 auto; line-height:1.65; color:var(--text); text-align:left; }
+
+    /* Card grids */
+    .cards,
+    .models-grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+      gap:18px;
+      max-width:1080px;
+      margin:16px auto 0;
+      padding:0 4px;
     }
-    html[data-theme='dark'] .menu-icon div {
-        background-color: #fff;
+    .card,
+    .model-card {
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:18px;
+      backdrop-filter: blur(var(--blur));
+      transition: var(--transition);
     }
-</style>
-    <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon">
-    <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" media="(prefers-color-scheme: light)">
-    <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" media="(prefers-color-scheme: dark)">
-    <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-light.png" as="image">
-    <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-dark.png" as="image">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/main.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
-    <title>Models - Ukubona LLC</title>
+    .card:hover, .model-card:hover { transform: translateY(-2px); }
+    .card h3, .model-card h3 { margin:0 0 6px; font-weight:700; }
+    .card p, .model-card p { margin:0; }
+    .badge-row { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+    .badge { border:1px solid var(--border); border-radius:999px; padding:4px 10px; font-size:.85rem; background:var(--glass); }
+
+    /* Code sample */
+    pre {
+      max-width:86ch; margin:12px auto 0; padding:12px 14px; border:1px solid var(--border);
+      border-radius:12px; background:rgba(255,255,255,.03); overflow:auto; font-size:.9rem; line-height:1.5;
+    }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+    /* Remove any legacy separators on this page */
+    .sep { display:none !important; }
+  </style>
+
+  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon">
+  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" media="(prefers-color-scheme: dark)">
+  <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-light.png" as="image">
+  <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-dark.png" as="image">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+  <title>Models - Ukubona LLC</title>
 </head>
 <body>
-    <div class="scroll-indicator">
-        <div class="scroll-progress"></div>
+  <div class="scroll-indicator"><div class="scroll-progress"></div></div>
+  <div class="bg-pattern"></div>
+
+  <header class="header">
+    <div class="nav-container wrap-max">
+      <img src="https://abikesa.github.io/logos/assets/ukubona-dark.png" alt="Ukubona LLC Logo" id="logo" class="logo">
+      <div class="top-right">
+        <ul class="nav-links">
+          <li><a href="../../index.html" class="nav-link">Home</a></li>
+          <li><a href="mission.html" class="nav-link">Mission</a></li>
+          <li><a href="models.html" class="nav-link active">Models</a></li>
+          <li><a href="team.html" class="nav-link">Team</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+          <li><a href="pairs-jh.html" target="_blank" class="nav-link">Education</a></li>
+        </ul>
+        <button class="menu-icon" id="menuIcon" role="button" aria-label="Open navigation menu">
+          <div></div><div></div><div></div>
+          <div></div><div></div><div></div>
+          <div></div><div></div><div></div>
+        </button>
+        <button id="toggle-theme" aria-label="Toggle theme">🌙</button>
+      </div>
     </div>
-    <div class="bg-pattern"></div>
-    <header class="header">
-        <div class="nav-container">
-            <img src="https://abikesa.github.io/logos/assets/ukubona-dark.png" alt="Ukubona LLC Logo" id="logo" class="logo">
-            <div class="top-right">
-                <ul class="nav-links">
-                    <li><a href="../../index.html" class="nav-link">Home</a></li>
-                    <li><a href="mission.html" class="nav-link">Mission</a></li>
-                    <li><a href="models.html" class="nav-link">Models</a></li>
-                    <li><a href="team.html" class="nav-link">Team</a></li>
-                    <li><a href="contact.html" class="nav-link">Contact</a></li>
-                    <li><a href="pairs-jh.html " target="_blank" class="nav-link">Education</a></li>
-                </ul>
-                <button class="menu-icon" id="menuIcon" role="button" aria-label="Open navigation menu">
-                    <div></div><div></div><div></div>
-                    <div></div><div></div><div></div>
-                    <div></div><div></div><div></div>
-                </button>
-                <button id="toggle-theme">🌙</button>
-            </div>
-        </div>
-<div class="app-grid" id="gridMenu">
-    <a href="../../index.html"><div class="icon-box">📊</div>Home</a>
-    <a href="mission.html"><div class="icon-box">🎯</div>Mission</a>
-    <a href="models.html"><div class="icon-box">📈</div>Models</a>
-    <a href="team.html"><div class="icon-box">👥</div>Team</a>
-    <a href="contact.html"><div class="icon-box">✉️</div>Contact</a>
-    <a href="pairs-jh.html" target="_blank"><div class="icon-box">📚</div>Education</a>
-    <a href="card.html"><div class="icon-box">💳</div>Business Card</a>
-    <a href="game.html"><div class="icon-box">🎮</div>Game of Care</a>
-</div>
-    </header>
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Our Models</h1>
-            <p class="hero-subtitle">Transforming complex data into actionable insights</p>
-            <div class="hero-cta">
-                <a href="#models-content" class="cta-button cta-primary">
-                    <i data-feather="activity"></i>
-                    Explore Models
-                </a>
-            </div>
-        </div>
+
+    <div class="app-grid wrap-max" id="gridMenu">
+      <a href="../../index.html"><div class="icon-box">📊</div>Home</a>
+      <a href="mission.html"><div class="icon-box">🎯</div>Mission</a>
+      <a href="models.html" class="active"><div class="icon-box">📈</div>Models</a>
+      <a href="team.html"><div class="icon-box">👥</div>Team</a>
+      <a href="contact.html"><div class="icon-box">✉️</div>Contact</a>
+      <a href="pairs-jh.html" target="_blank"><div class="icon-box">📚</div>Education</a>
+      <a href="card.html"><div class="icon-box">💳</div>Business Card</a>
+      <a href="game.html"><div class="icon-box">🎮</div>Game of Care</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content wrap-max">
+      <h1 class="hero-title">Our Models</h1>
+      <p class="hero-subtitle">From validated equations to live rehearsal — via Flask apps & APIs.</p>
+      <div class="hero-cta" style="display:flex; justify-content:center; margin-top:12px;">
+        <a href="#models-content" class="cta-button cta-primary">
+          <i data-feather="activity"></i> Explore Models
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <main class="main-content wrap-max" id="models-content">
+    <!-- What this page is -->
+    <section class="content-section">
+      <h2 class="section-title">What This Page Is</h2>
+      <p class="section-text">
+        A concise map of how Ukubona turns evidence into tools: <strong>Inputs → Model → API → UI</strong>.
+        We ship Flask apps with backend APIs that connect to <em>public</em> datasets and, when appropriate,
+        <em>private</em> data under strict disclosure-risk controls. The output isn’t a decree — it’s a place to rehearse decisions.
+      </p>
     </section>
-    <main class="main-content" id="models-content">
-        <section class="content-section">
-            <h2 class="section-title">Our Models</h2>
-            <p class="section-text">Ukubona’s platform transforms complex statistical models into interactive, personalized decision-support tools. Below are examples of our current models, designed for high-stakes domains like living kidney donation and perioperative risk assessment.</p>
-        </section>
-        <section class="content-section">
-            <h2 class="section-title">Living Kidney Donor Risk Calculator</h2>
-            <p class="section-text">Built on Cox regression and survival analysis, this tool provides personalized risk projections for living kidney donors. It integrates curated datasets to visualize long-term health outcomes, emphasizing transparency in uncertainty.</p>
-        </section>
-        <section class="content-section">
-            <h2 class="section-title">Perioperative Risk Visualizer</h2>
-            <p class="section-text">This model translates surgical risk data into interactive visualizations, enabling clinicians and patients to co-navigate decision-making. It uses real-time data inputs to highlight key risk factors and outcomes.</p>
-        </section>
-        <section class="content-section">
-            <h2 class="section-title">Aging and Metabolic Self-Regulation</h2>
-            <p class="section-text">Our aging model combines physiological and statistical data to support personalized health strategies. It provides responsive outputs for individuals and researchers studying metabolic self-regulation.</p>
-        </section>
 
-    </main>
+    <!-- Pipeline -->
+    <section class="content-section">
+      <h2 class="section-title">Pipeline</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Inputs</h3>
+          <p>Registries, trials, vetted literature, context. Curated and versioned.</p>
+          <div class="badge-row">
+            <span class="badge">Public</span><span class="badge">Private (governed)</span><span class="badge">Docs</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Model</h3>
+          <p>Validated equations (e.g., survival/Cox). Assumptions visible. Uncertainty preserved.</p>
+          <div class="badge-row">
+            <span class="badge">Validated</span><span class="badge">Explainable</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>API (Flask)</h3>
+          <p>Endpoints serve estimates & comparators; auth & logging configurable.</p>
+          <div class="badge-row">
+            <span class="badge">JSON</span><span class="badge">Auth</span><span class="badge">Rate-limited</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>UI (Rehearsal)</h3>
+          <p>Interactive loops (scenarios, avatars, sliders) to play → learn → adjust → decide.</p>
+          <div class="badge-row">
+            <span class="badge">Responsive</span><span class="badge">Audit-friendly</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<div id="footer-placeholder"></div>
-<script>
-fetch('/assets/html/footer.html')
-  .then(response => response.text())
-  .then(html => {
-    document.getElementById('footer-placeholder').innerHTML = html;
-  });
-</script>
+    <!-- LLC Stack Models -->
+    <section class="content-section">
+      <h2 class="section-title">Models Across the LLC Stack</h2>
+      <p class="section-text">
+        We ship models as live services. Some read <em>public</em> data; others join with <em>private</em> feeds under disclosure-risk controls.
+        The output is a rehearsal space, not a decree.
+      </p>
+    </section>
 
+    <section class="content-section">
+      <h2 class="section-title">Ukuvula — Provisioning</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Social Determinants Ingestor</h3>
+          <p>SDOH vectors & deprivation indices for a place.</p>
+          <div class="badge-row">
+            <span class="badge">Public</span><span class="badge">ETL</span><span class="badge">Low energy</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Nutrition Exposure</h3>
+          <p>Access/affordability buckets + elasticity.</p>
+          <div class="badge-row">
+            <span class="badge">Public/Partner</span><span class="badge">Buckets</span><span class="badge">Low energy</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <script src="../js/shared.js"></script>
-    <script src="../js/landing.js"></script>
-    <script>
-        feather.replace();
-    </script>
+    <section class="content-section">
+      <h2 class="section-title">Ukuzula — Mobility & Vitality</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Vitality Signal</h3>
+          <p>Steps/cadence → vitality score & slope.</p>
+          <div class="badge-row">
+            <span class="badge">User input</span><span class="badge">Explainable</span><span class="badge">Low–Mod</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Gait → Risk Mapper</h3>
+          <p>Simple mobility signals to absolute-risk proxies with uncertainty.</p>
+          <div class="badge-row">
+            <span class="badge">Literature</span><span class="badge">Comparators</span><span class="badge">Low</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">Ukukona — Play & Experiments</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Scenario Engine (Avatars)</h3>
+          <p>Branch outcomes, tails, replays — safe rehearsal before deployment.</p>
+          <div class="badge-row">
+            <span class="badge">Synthetic</span><span class="badge">Monte Carlo</span><span class="badge">Moderate</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Behavior Loop</h3>
+          <p>Nudges → adherence curves; optimal micro-commitments.</p>
+          <div class="badge-row">
+            <span class="badge">Binned</span><span class="badge">No PII</span><span class="badge">Low–Mod</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">Ukubona — Integration/Nervous System</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Comparator & Benchmarks</h3>
+          <p>Your estimate vs matched peers; explainable deltas.</p>
+          <div class="badge-row">
+            <span class="badge">Lit-based</span><span class="badge">Explainable</span><span class="badge">Low</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Consent-as-Rehearsal</h3>
+          <p>Snapshot of what was practiced & understood; versioned, auditable.</p>
+          <div class="badge-row">
+            <span class="badge">Audit</span><span class="badge">Min PII</span><span class="badge">Low</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">Ukukula — Aging & Legacy</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>ADL Trajectory</h3>
+          <p>12–24 mo ADL bands; care-plan triggers.</p>
+          <div class="badge-row">
+            <span class="badge">Lit-based</span><span class="badge">Triggers</span><span class="badge">Low</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Family Impact</h3>
+          <p>Caregiver time/$ projections; decision surfaces.</p>
+          <div class="badge-row">
+            <span class="badge">Aggregates</span><span class="badge">Currency rounding</span><span class="badge">Low</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">Cross-Cut — Energy & Simulation Cost</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Energy Cost Monitor</h3>
+          <p>kWh/$ per clarity; marginal cost curves as simulations scale. Clarity has a price.</p>
+          <div class="badge-row">
+            <span class="badge">Meta</span><span class="badge">Aggregates</span><span class="badge">Low overhead</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Public vs Private data + Disclosure risk -->
+    <section class="content-section">
+      <h2 class="section-title">Data Access & Disclosure Risk</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Public Data</h3>
+          <p>Connected via documented endpoints. No identifiers; aggregation/suppression when needed.</p>
+          <div class="badge-row">
+            <span class="badge">Open</span><span class="badge">Versioned</span><span class="badge">Doc’d</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Private Data</h3>
+          <p>Access-controlled. Min-fields; hash/bucket quasi-IDs; row-level guards.</p>
+          <div class="badge-row">
+            <span class="badge">Least-privilege</span><span class="badge">PII-aware</span><span class="badge">Audit</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Disclosure Controls</h3>
+          <p>k-anonymity thresholds, top/bottom-coding, small-cell noise, rare-combo redaction.</p>
+          <div class="badge-row">
+            <span class="badge">k-anon</span><span class="badge">Noise</span><span class="badge">Redaction</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Example API shape (illustrative) -->
+    <section class="content-section">
+      <h2 class="section-title">API — Illustrative Shape</h2>
+      <p class="section-text">Example: request an individualized estimate and a comparator band from a Flask endpoint.</p>
+      <pre><code>// POST /api/v1/risk/estimate
+{
+  "model": "periop_90d",
+  "inputs": { "age": 40, "sex": "F", "race": "White", "health": "very_good" },
+  "comparators": ["matched_nondonor"]
+}
+
+// 200 OK
+{
+  "estimate": { "risk_90d_per_10k": 2.2, "ci": [1.0, 4.7] },
+  "comparator": { "matched_nondonor_per_10k": 1.3, "delta": 0.9 },
+  "explain": { "equation": "cox", "assumptions": ["PH ok"], "version": "2025.08" }
+}</code></pre>
+      <p class="section-text" style="margin-top:10px;">
+        Private variants add auth headers and stricter logging; public endpoints return only safe aggregates.
+      </p>
+    </section>
+
+    <!-- Cost of clarity -->
+    <section class="content-section">
+      <h2 class="section-title">Cost of Clarity</h2>
+      <p class="section-text">
+        More simulation → more intelligence → more decisions — and more energy and money.
+        We surface these trade-offs so teams invest wisely: tighten loops where value is highest, avoid “exhaust” where it isn’t.
+      </p>
+    </section>
+
+    <!-- CTA -->
+    <section class="content-section">
+      <h2 class="section-title">Build With Us</h2>
+      <p class="section-text">
+        Want your model behind an API and into a rehearsal UI? We’ll deploy a Flask app, wire disclosure controls, and ship a clean interface.
+      </p>
+      <p class="section-text" style="margin-top:6px;"><a href="contact.html">Start a model →</a></p>
+    </section>
+  </main>
+
+  <div id="footer-placeholder" class="wrap-max"></div>
+  <script>
+    fetch('/assets/html/footer.html')
+      .then(r => r.text())
+      .then(html => { document.getElementById('footer-placeholder').innerHTML = html; });
+  </script>
+
+  <script src="../js/shared.js"></script>
+  <script src="../js/landing.js"></script>
+  <script>feather.replace();</script>
 </body>
-</html>`
+</html>
