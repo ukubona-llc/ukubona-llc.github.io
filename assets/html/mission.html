@@ -1,117 +1,230 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-    html[data-theme='light'] .menu-icon div {
-        background-color: #000;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Minimal inline polish for symmetry & rhythm -->
+  <style>
+    html[data-theme='light'] .menu-icon div { background-color:#000; }
+    html[data-theme='dark']  .menu-icon div { background-color:#fff; }
+
+    /* Layout container */
+    .wrap-max { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+    /* Hero */
+    .hero .hero-content { padding: 120px 0 40px; }
+    .hero-title { text-align:center; letter-spacing:.2px; }
+    .hero-subtitle { text-align:center; opacity:.9; margin-top:.4rem; }
+
+    /* Section rhythm */
+    .main-content { padding-bottom: 64px; }
+    .content-section { margin: 56px auto 0; }
+    .content-section:first-of-type { margin-top: 24px; }
+
+    /* Typography & symmetry */
+    .section-title {
+      text-align:center;
+      margin-bottom: 12px;
+      letter-spacing:.2px;
     }
-    html[data-theme='dark'] .menu-icon div {
-        background-color: #fff;
+    .section-text {
+      max-width: 86ch;
+      margin: 0 auto;
+      line-height: 1.65;
+      color: var(--text);
+      /* Left-align body everywhere to keep reading comfortable */
+      text-align: left;
     }
-</style>
-    <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon">
-    <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" media="(prefers-color-scheme: light)">
-    <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" media="(prefers-color-scheme: dark)">
-    <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-light.png" as="image">
-    <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-dark.png" as="image">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/main.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
-    <title>Mission - Ukubona LLC</title>
+
+    /* Card grid for “What We Build” only (uses your existing classes) */
+    .services-grid { 
+      display:grid; 
+      grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); 
+      gap: 18px; 
+      max-width: 1080px; 
+      margin: 16px auto 0; 
+      padding: 0 4px;
+    }
+    .service-card { 
+      background: var(--surface); 
+      border: 1px solid var(--border); 
+      border-radius: 16px; 
+      padding: 18px; 
+      backdrop-filter: blur(var(--blur));
+      transition: var(--transition);
+    }
+    .service-card:hover { transform: translateY(-2px); }
+    .service-icon { font-size: 1.6rem; margin-bottom: 6px; opacity:.9; }
+    .service-title { margin: 0 0 6px; font-weight: 700; }
+    .service-desc a { text-decoration: none; }
+
+    /* Remove all legacy separators on this page */
+    .sep { display:none !important; }
+
+    /* Header spacing harmony */
+    .header .nav-container { padding: 1rem 2rem; }
+  </style>
+
+  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon">
+  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" media="(prefers-color-scheme: dark)">
+  <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-light.png" as="image">
+  <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-dark.png" as="image">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+  <title>Mission - Ukubona LLC</title>
 </head>
 <body>
-    <div class="scroll-indicator">
-        <div class="scroll-progress"></div>
+  <div class="scroll-indicator"><div class="scroll-progress"></div></div>
+  <div class="bg-pattern"></div>
+
+  <header class="header">
+    <div class="nav-container wrap-max">
+      <img src="https://abikesa.github.io/logos/assets/ukubona-dark.png" alt="Ukubona LLC Logo" id="logo" class="logo">
+      <div class="top-right">
+        <ul class="nav-links">
+          <li><a href="../../index.html" class="nav-link">Home</a></li>
+          <li><a href="mission.html" class="nav-link active">Mission</a></li>
+          <li><a href="models.html" class="nav-link">Models</a></li>
+          <li><a href="team.html" class="nav-link">Team</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+          <li><a href="pairs-jh.html" target="_blank" class="nav-link">Education</a></li>
+        </ul>
+        <button class="menu-icon" id="menuIcon" role="button" aria-label="Open navigation menu">
+          <div></div><div></div><div></div>
+          <div></div><div></div><div></div>
+          <div></div><div></div><div></div>
+        </button>
+        <button id="toggle-theme" aria-label="Toggle theme">🌙</button>
+      </div>
     </div>
-    <div class="bg-pattern"></div>
-    <header class="header">
-        <div class="nav-container">
-            <img src="https://abikesa.github.io/logos/assets/ukubona-dark.png" alt="Ukubona LLC Logo" id="logo" class="logo">
-            <div class="top-right">
-                <ul class="nav-links">
-                    <li><a href="../../index.html" class="nav-link">Home</a></li>
-                    <li><a href="mission.html" class="nav-link">Mission</a></li>
-                    <li><a href="models.html" class="nav-link">Models</a></li>
-                    <li><a href="team.html" class="nav-link">Team</a></li>
-                    <li><a href="contact.html" class="nav-link">Contact</a></li>
-                    <li><a href="pairs-jh.html" target="_blank" class="nav-link">Education</a></li>
-                </ul>
-                <button class="menu-icon" id="menuIcon" role="button" aria-label="Open navigation menu">
-                    <div></div><div></div><div></div>
-                    <div></div><div></div><div></div>
-                    <div></div><div></div><div></div>
-                </button>
-                <button id="toggle-theme">🌙</button>
-            </div>
-        </div>
-<div class="app-grid" id="gridMenu">
-    <a href="../../index.html"><div class="icon-box">📊</div>Home</a>
-    <a href="mission.html"><div class="icon-box">🎯</div>Mission</a>
-    <a href="models.html"><div class="icon-box">📈</div>Models</a>
-    <a href="team.html"><div class="icon-box">👥</div>Team</a>
-    <a href="contact.html"><div class="icon-box">✉️</div>Contact</a>
-    <a href="pairs-jh.html" target="_blank"><div class="icon-box">📚</div>Education</a>
-    <a href="card.html"><div class="icon-box">💳</div>Business Card</a>
-    <a href="game.html"><div class="icon-box">🎮</div>Game of Care</a>
-</div>
-    </header>
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Our Mission</h1>
-            <p class="hero-subtitle">Personalizing decision-making</p>
-            <div class="hero-cta">
-                <a href="#mission-content" class="cta-button cta-primary">
-                    <i data-feather="target"></i>
-                    Learn More
-                </a>
-            </div>
-        </div>
+
+    <div class="app-grid wrap-max" id="gridMenu">
+      <a href="../../index.html"><div class="icon-box">📊</div>Home</a>
+      <a href="mission.html" class="active"><div class="icon-box">🎯</div>Mission</a>
+      <a href="models.html"><div class="icon-box">📈</div>Models</a>
+      <a href="team.html"><div class="icon-box">👥</div>Team</a>
+      <a href="contact.html"><div class="icon-box">✉️</div>Contact</a>
+      <a href="pairs-jh.html" target="_blank"><div class="icon-box">📚</div>Education</a>
+      <a href="card.html"><div class="icon-box">💳</div>Business Card</a>
+      <a href="game.html"><div class="icon-box">🎮</div>Game of Care</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content wrap-max">
+      <h1 class="hero-title">Our Mission</h1>
+      <p class="hero-subtitle">Make clarity rehearseable — and honest about its cost.</p>
+      <div class="hero-cta" style="display:flex; justify-content:center; margin-top:12px;">
+        <a href="#mission-content" class="cta-button cta-primary">
+          <i data-feather="target"></i> Learn More
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <main class="main-content wrap-max" id="mission-content">
+    <!-- Mission -->
+    <section class="content-section">
+      <h2 class="section-title">What We Stand For</h2>
+      <p class="section-text">
+        Absolute zero is unattainable — there is no stasis. Decisions live on gradients and flow.
+        Ukubona builds rehearsal spaces for high-stakes choices, where people can <em>play → learn → adjust → try again</em>.
+        We translate validated models into interactive tools, so clarity isn’t a reveal — it’s a practice.
+      </p>
     </section>
-    <main class="main-content" id="mission-content">
-        <section class="content-section">
-            <h2 class="section-title">Mission</h2>
-            <p class="section-text">Ukubona builds epistemic infrastructure for personalized decision-making in public health, medicine, and symbolic systems.</p>
-        </section>
-        <section class="content-section">
-            <h2 class="section-title">What We Do</h2>
-            <p class="section-text">Ukubona translates statistical models into interactive, personalized visualizations that empower individuals, clinicians, and researchers to make informed decisions under uncertainty. We specialize in high-stakes domains such as living kidney donation, perioperative risk, aging, and metabolic self-regulation.</p>
-        </section>
-        <section class="content-section">
-            <h2 class="section-title">Our Philosophy</h2>
-            <p class="section-text">We believe consent is a process, not a signature. Information is not knowledge. And personalized medicine must begin not with the genome, but with perspective. We treat software as interface, interface as epistemology, and epistemology as lived negotiation between self and nonself.</p>
-        </section>
-        <section class="content-section">
-            <h2 class="section-title">Our Platform</h2>
-            <p class="section-text">Our modular platform ingests curated datasets and statistical models, including Cox regression and survival analysis, and renders these into real-time decision support tools. All outputs are responsive, explainable, and designed to reveal—not conceal—uncertainty.</p>
-        </section>
-        <section class="content-section">
-            <h2 class="section-title">Whom We Serve</h2>
-            <p class="section-text">We work with academic health centers, clinical researchers, public health agencies, and individual donors. Our interfaces are built to be co-navigated: patient and provider, researcher and regulator, model and myth.</p>
-        </section>
-        <section class="content-section">
-            <h2 class="section-title">The Name</h2>
-            <p class="section-text">Ukubona is a Zulu verb meaning “to see.” But not just to see with the eye: to apprehend, to understand, to bear witness. In our architecture, to see is to connect the symbolic with the physiological, the statistical with the mythic. Seeing too much can hurt—but not seeing enough can kill.</p>
-        </section>
-        <section class="content-section">
-            <p class="section-text"><em>“To see is not only to look — it is to attend, to interpret, and to respond.”</em></p>
-        </section>
-    </main>
 
-    <div id="footer-placeholder"></div>
-<script>
-fetch('/assets/html/footer.html')
-  .then(response => response.text())
-  .then(html => {
-    document.getElementById('footer-placeholder').innerHTML = html;
-  });
-</script>
+    <!-- What We Build -->
+    <section class="content-section">
+      <h2 class="section-title">What We Build</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🎮</div>
+          <h3 class="service-title">Game of Care</h3>
+          <p class="service-desc">
+            A playable environment for clinical and policy decisions. Scenarios, avatars, and outcomes you can rehearse
+            before reality forces them.
+          </p>
+          <p class="service-desc"><a href="game.html#to-screen">Try a scenario →</a></p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📐</div>
+          <h3 class="service-title">Models → Decisions</h3>
+          <p class="service-desc">
+            Literature-grade multivariable models expressed as simple, explainable interfaces. When data are sparse,
+            we simulate counterfactuals — not to pretend, but to orient.
+          </p>
+          <p class="service-desc"><a href="models.html">See the pipeline →</a></p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🔗</div>
+          <h3 class="service-title">Infrastructure</h3>
+          <p class="service-desc">
+            Lightweight components for continuity and accountability across ecosystems — designed to integrate, not replace.
+          </p>
+          <p class="service-desc"><a href="contact.html">Work with us →</a></p>
+        </div>
+      </div>
+    </section>
 
-    <script src="../js/shared.js"></script>
-    <script src="../js/landing.js"></script>
-    <script>
-        feather.replace();
-    </script>
+    <!-- How It Works -->
+    <section class="content-section">
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-text">
+        We start with curated inputs (registries, trials, vetted literature). We map them to transparent models (e.g., survival analysis),
+        then render them as interactive loops where users rehearse. The output is not a decree; it’s a <em>better next move</em> under uncertainty.
+      </p>
+      <ul class="section-text" style="list-style:none; padding-left:0; margin-top:10px;">
+        <li>• <strong>Inputs:</strong> evidence, context, constraints</li>
+        <li>• <strong>Model:</strong> validated equations, visible assumptions</li>
+        <li>• <strong>Rehearsal:</strong> scenarios, avatars, comparators</li>
+        <li>• <strong>Decision:</strong> a clear step — not an illusion of certainty</li>
+      </ul>
+    </section>
+
+    <!-- Principles -->
+    <section class="content-section">
+      <h2 class="section-title">Principles</h2>
+      <p class="section-text">
+        <em>Play, not prescription.</em> We build practice grounds, not pronouncements.<br>
+        <em>Rehearsal, not remedy.</em> A safe place to try, fail, and learn before stakes are irreversible.<br>
+        <em>Clarity has a price.</em> Intelligence, simulation, and vision consume energy and money. We make those trade-offs visible and investable.
+      </p>
+    </section>
+
+    <!-- Who We Serve -->
+    <section class="content-section">
+      <h2 class="section-title">Who We Serve</h2>
+      <p class="section-text">
+        Academic health centers, clinical investigators, public health agencies, and mission-driven partners who want
+        decision support that is truthful about uncertainty — and honest about the cost of clarity.
+      </p>
+    </section>
+
+    <!-- Collaborations -->
+    <section class="content-section">
+      <h2 class="section-title">Collaborations</h2>
+      <p class="section-text">
+        We partner with clinicians and researchers to turn validated evidence into interactive rehearsal.
+        Current work includes telemedicine pathways with UC Irvine collaborators and decision engines connected to
+        perioperative donor-risk analyses.
+      </p>
+      <p class="section-text"><a href="team.html">Meet the team →</a></p>
+    </section>
+  </main>
+
+  <div id="footer-placeholder" class="wrap-max"></div>
+  <script>
+    fetch('/assets/html/footer.html')
+      .then(r => r.text())
+      .then(html => { document.getElementById('footer-placeholder').innerHTML = html; });
+  </script>
+
+  <script src="../js/shared.js"></script>
+  <script src="../js/landing.js"></script>
+  <script>feather.replace();</script>
 </body>
 </html>
