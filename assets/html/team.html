@@ -4,9 +4,62 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- Minimal inline polish for symmetry & rhythm -->
   <style>
-    html[data-theme='light'] .menu-icon div { background-color: #000; }
-    html[data-theme='dark'] .menu-icon div { background-color: #fff; }
+    html[data-theme='light'] .menu-icon div { background-color:#000; }
+    html[data-theme='dark']  .menu-icon div { background-color:#fff; }
+
+    /* Layout container */
+    .wrap-max { max-width:1120px; margin:0 auto; padding:0 24px; }
+
+    /* Hero */
+    .hero .hero-content { padding:120px 0 40px; }
+    .hero-title { text-align:center; letter-spacing:.2px; }
+    .hero-subtitle { text-align:center; opacity:.9; margin-top:.4rem; }
+
+    /* Page rhythm */
+    .main-content { padding-bottom:64px; }
+    .content-section { margin:56px auto 0; }
+    .content-section:first-of-type { margin-top:24px; }
+
+    /* Typography */
+    .section-title { text-align:center; margin-bottom:12px; letter-spacing:.2px; }
+    .section-text { max-width:86ch; margin:0 auto; line-height:1.65; color:var(--text); text-align:left; }
+
+    /* Intern cards: tidy spacing, readable lines */
+    .interns-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      max-width: 86ch;
+      margin: 12px auto 0;
+    }
+    .intern-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      backdrop-filter: blur(var(--blur));
+    }
+    .intern-card h3 {
+      margin: 0 0 6px;
+      font-weight: 700;
+    }
+    .intern-meta {
+      margin: 0 0 10px;
+      opacity: .85;
+      font-size: .95rem;
+    }
+    .intern-points {
+      margin: 0;
+      padding-left: 1.1rem;
+      line-height: 1.6;
+    }
+    .intern-points li { margin: 4px 0; }
+    .intern-link { margin-top: 10px; }
+    .intern-link a { text-decoration: none; }
+
+
   </style>
 
   <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon" />
@@ -25,7 +78,7 @@
   <div class="bg-pattern"></div>
 
   <header class="header">
-    <div class="nav-container">
+    <div class="nav-container wrap-max">
       <img src="https://abikesa.github.io/logos/assets/ukubona-dark.png" alt="Ukubona LLC Logo" id="logo" class="logo" />
       <div class="top-right">
         <ul class="nav-links">
@@ -45,11 +98,11 @@
       </div>
     </div>
 
-    <div class="app-grid" id="gridMenu">
+    <div class="app-grid wrap-max" id="gridMenu">
       <a href="../../index.html"><div class="icon-box">📊</div>Home</a>
       <a href="mission.html"><div class="icon-box">🎯</div>Mission</a>
       <a href="models.html"><div class="icon-box">📈</div>Models</a>
-      <a href="team.html"><div class="icon-box">👥</div>Team</a>
+      <a href="team.html" class="active"><div class="icon-box">👥</div>Team</a>
       <a href="contact.html"><div class="icon-box">✉️</div>Contact</a>
       <a href="pairs-jh.html" target="_blank"><div class="icon-box">📚</div>Education</a>
       <a href="card.html"><div class="icon-box">💳</div>Business Card</a>
@@ -57,20 +110,18 @@
     </div>
   </header>
 
+  <!-- HERO -->
   <section class="hero">
-    <div class="hero-content">
+    <div class="hero-content wrap-max">
       <h1 class="hero-title">Meet the Team</h1>
       <p class="hero-subtitle">The people behind the rehearsal — building systems you can play, learn, and decide with.</p>
-      <div class="hero-cta">
-        <a href="#team-content" class="cta-button cta-primary">
-          <i data-feather="users"></i>
-          Meet Us
-        </a>
+      <div class="hero-cta" style="display:flex; justify-content:center; margin-top:12px;">
+        <a href="#team-content" class="cta-button cta-primary"><i data-feather="users"></i> Meet Us</a>
       </div>
     </div>
   </section>
 
-  <main class="main-content" id="team-content">
+  <main class="main-content wrap-max" id="team-content">
     <!-- Ethos -->
     <section class="content-section">
       <h2 class="section-title">Company Ethos</h2>
@@ -80,7 +131,7 @@
         uncertainty into practice. And we say the quiet part aloud: clarity costs energy and money.
         As intelligence scales — AI, games, decision support — demand scales. Our job is to make those
         trade-offs visible and investable.
-      </p><br>
+      </p>
     </section>
 
     <!-- Founder -->
@@ -90,7 +141,7 @@
         <strong>Abimereki Muzaale, MD, MPH</strong> — Founder & CEO<br><br>
         Clinical investigator and builder. Former NIH K-awardee, now focused on turning validated equations into
         individualized, explainable risk with benchmarked comparators — the backbone of our Game of Care engine and clinical tools.
-      </p><br>
+      </p>
     </section>
 
     <!-- Core Staff -->
@@ -102,49 +153,61 @@
       </p>
       <p class="section-text">
         Vincent translates survival models into living dashboards — interactive Kaplan–Meier and cumulative-incidence views that people can rehearse decisions with. He tightens the loop between evidence, visualization, and action.
-      </p><br>
+      </p>
     </section>
 
     <!-- Interns -->
-    <section class="content-section">
-      <h2 class="section-title">Interns</h2>
+<!-- Interns -->
+<section class="content-section">
+  <h2 class="section-title">Interns</h2>
 
-      <article class="intern-profile">
-        <p class="section-text"><strong>Jonathan Gasaatura</strong><br />Intern — Applied Analytics & Web Publishing</p>
-        <p class="section-text">
-          Oakton High School (Fairfax, VA): 8-day senior capstone with Ukubona (30 minutes/day). Now a first-year at the University of Virginia (Architecture).
-          Jonathan built <em><a href="https://ukubona-llc.github.io/internship/ukb/token/ji2x26/assets/html/final.html" target="_blank">The Soto–Judge Effect</a></em>, a full-stack analysis that turns lineup structure into actionable insight — an early taste of <em>gamified design</em> for decision support.
-        </p><br>
-      </article>
 
-      <article class="intern-profile">
-        <p class="section-text"><strong>Paul Luswata</strong><br />Intern — Data Analytics & Global Health Policy</p>
-        <p class="section-text">
-          Brandeis University (MA). Paul works on policy simulations — dashboards, manuscripts, and behavioral-health scenarios that let teams rehearse regulatory and system-level futures. (Program specifics to be added.)
-        </p><br>
-      </article>
+  <div class="interns-grid">
 
-      <article class="intern-profile">
-        <p class="section-text"><strong>Edward Ssemambo</strong><br />Intern — Energy Systems & Simulation</p>
-        <p class="section-text">
-          M.S. in Engineering Management (Environmental & Energy), The George Washington University (May 2025).
-          Edward works at the substrate of intelligence: energy. Each new layer of simulation — training AI, policy avatars, clinical rehearsal — demands more power.
-          Clarity scales with supply and demand. He maps how photons, electrons, and bonds cascade into the cost of computation — making the price of vision legible to builders and investors.
-        </p><br>
-      </article>
-    </section>
+    <!-- Jonathan -->
+    <article class="intern-card">
+      <h3>Jonathan Gasaatura — Intern, Applied Analytics & Web Publishing</h3>
+      <p class="intern-meta">
+        Oakton High School (Fairfax, VA) — 8-day capstone with Ukubona (30 min/day).
+        Now first-year at University of Virginia (Architecture).
+      </p>
+      <ul class="intern-points">
+        <li>Built <em>The Soto–Judge Effect</em>: lineup structure → actionable insight.</li>
+        <li>Exploring <em>gamified design</em> as a bridge from interface to decision support.</li>
+      </ul>
+      <p class="intern-link">
+        <a href="https://ukubona-llc.github.io/internship/ukb/token/ji2x26/assets/html/final.html" target="_blank">View project →</a>
+      </p>
+    </article>
 
-    <!-- Clinical Collaborators -->
-    <section class="content-section">
-      <h2 class="section-title">Clinical Collaborators</h2>
+    <!-- Paul -->
+    <article class="intern-card">
+      <h3>Paul Luswata — Intern, Data Analytics & Global Health Policy</h3>
+      <p class="intern-meta">
+        Brandeis University (MA). Program specifics to be added.
+      </p>
+      <ul class="intern-points">
+        <li>Policy simulation: dashboards, manuscripts, behavioral-health scenarios.</li>
+        <li>Goal: rehearse regulatory/system futures before deployment.</li>
+      </ul>
+    </article>
 
-      <p class="section-text"><strong>Fawaz S. Al Ammary, MD, PhD</strong><br />Telemedicine & Living Donor Care — UC Irvine</p>
-      <p class="section-text">
-        Board-certified nephrologist at UC Irvine; previously Medical Director of Living Donor Kidney Transplantation at Johns Hopkins.
-        Focus: telemedicine pathways for donors and recipients; building toward K23/R03 and future R01s, with active collaborations with Ukubona.
-        Co-author on our perioperative living-donor risk analysis — informing how we personalize surgical risk and communicate uncertainty.
-      </p><br>
-    </section>
+    <!-- Edward -->
+    <article class="intern-card">
+      <h3>Edward Ssemambo — Intern, Energy Systems & Simulation</h3>
+      <p class="intern-meta">
+        M.S. Engineering Management (Environmental &amp; Energy), The George Washington University (May 2025).
+      </p>
+      <ul class="intern-points">
+        <li>Focus: energy as the substrate of intelligence and simulation.</li>
+        <li>Each layer (AI runs, avatars, policy rehearsal) demands more power—clarity scales with cost.</li>
+        <li>Maps photons → electrons → computation cost, making the price of vision legible.</li>
+      </ul>
+    </article>
+
+  </div>
+</section>
+
 
     <!-- Origins -->
     <section class="content-section philosophy-section">
@@ -156,17 +219,17 @@
     </section>
   </main>
 
-  <div id="footer-placeholder"></div>
+  <div id="footer-placeholder" class="wrap-max"></div>
   <script>
     fetch('/assets/html/footer.html')
       .then(response => response.text())
       .then(html => {
         document.getElementById('footer-placeholder').innerHTML = html;
       });
+    feather.replace();
   </script>
 
   <script src="../js/shared.js"></script>
   <script src="../js/landing.js"></script>
-  <script>feather.replace();</script>
 </body>
 </html>
