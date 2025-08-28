@@ -1,492 +1,304 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <title>PAIRS@JH: Analytics Arsenal for Hopkins Epidemiologists</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Ukubona Investors</title>
+  <meta name="description" content="Rehearsal over prescription. Models → APIs → UI. Clarity costs energy and money; we make those trade-offs visible and investable.">
+
+  <!-- Minimal inline polish -->
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: linear-gradient(135deg, #002d72 0%, #1a1a2e 100%);
-      color: #ffffff;
-      line-height: 1.6;
-      overflow-x: hidden;
+    html[data-theme='light'] .menu-icon div { background-color:#000; }
+    html[data-theme='dark']  .menu-icon div { background-color:#fff; }
+
+    /* Layout container */
+    .wrap-max { max-width:1120px; margin:0 auto; padding:0 24px; }
+
+    /* Hero */
+    .hero .hero-content { padding:120px 0 40px; }
+    .hero-title { text-align:center; letter-spacing:.2px; }
+    .hero-subtitle { text-align:center; opacity:.9; margin-top:.4rem; }
+    .hero-cta { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:12px; }
+
+    /* Page rhythm */
+    .main-content { padding-bottom:64px; }
+    .content-section { margin:56px auto 0; }
+    .content-section:first-of-type { margin-top:24px; }
+
+    /* Typography */
+    .section-title { text-align:center; margin-bottom:12px; letter-spacing:.2px; }
+    .section-text { max-width:86ch; margin:0 auto; line-height:1.65; color:var(--text); text-align:left; }
+
+    /* 3-column grids (collapse to 2/1) */
+    .cards {
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:18px;
+      max-width:1080px;
+      margin:16px auto 0;
+      padding:0 4px;
     }
-    
-    .grain {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      opacity: 0.03;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><defs><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/></filter></defs><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.4"/></svg>');
-      pointer-events: none;
-      z-index: -1;
+    @media (max-width:980px){ .cards { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width:640px){ .cards { grid-template-columns: 1fr; } }
+
+    .card {
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:18px;
+      backdrop-filter: blur(var(--blur));
+      transition: var(--transition);
     }
-    
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
+    .card:hover { transform: translateY(-2px); }
+    .card h3 { margin:0 0 6px; font-weight:700; }
+    .card p { margin:0; }
+
+    /* Badges / pills */
+    .badge-row { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+    .badge { border:1px solid var(--border); border-radius:999px; padding:4px 10px; font-size:.85rem; background:var(--glass); white-space:nowrap; }
+
+    /* CTA buttons */
+    .btn-row { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:12px; }
+    .btn {
+      text-decoration:none; padding:.9rem 1.4rem; border-radius:12px; font-weight:600; display:inline-flex; gap:8px; align-items:center;
+      transition: transform .2s ease;
     }
-    
-    /* Hero Section */
-    .hero {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-    }
-    
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(0,45,114,0.4) 0%, transparent 70%);
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      animation: pulse 4s ease-in-out infinite;
-    }
-    
-    @keyframes pulse {
-      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
-      50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.2; }
-    }
-    
-    .logo {
-      font-size: clamp(4rem, 12vw, 8rem);
-      font-weight: 900;
-      background: linear-gradient(45deg, #68ace5, #ffffff, #ffc72c);
-      background-size: 200% 200%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: hopkins-gradient 3s ease infinite;
-      margin-bottom: 1rem;
-      z-index: 2;
-      position: relative;
-    }
-    
-    @keyframes hopkins-gradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    
-    .tagline {
-      font-size: clamp(1.5rem, 3vw, 2.5rem);
-      color: #68ace5;
-      margin-bottom: 1rem;
-      font-weight: 600;
-    }
-    
-    .subtitle {
-      color: #b8cee8;
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      font-style: italic;
-    }
-    
-    .hopkins-badge {
-      display: inline-block;
-      background: rgba(104, 172, 229, 0.2);
-      border: 2px solid #68ace5;
-      border-radius: 50px;
-      padding: 0.75rem 1.5rem;
-      margin: 1rem 0;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #68ace5;
-    }
-    
-    /* Course Cards */
-    .courses-section {
-      padding: 5rem 0;
-      background: rgba(0,0,0,0.2);
-    }
-    
-    .section-title {
-      font-size: clamp(2.5rem, 5vw, 3.5rem);
-      color: #68ace5;
-      text-align: center;
-      margin-bottom: 3rem;
-      font-weight: 700;
-    }
-    
-    .courses-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-    
-    .course-card {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(104, 172, 229, 0.3);
-      border-radius: 15px;
-      padding: 2rem;
-      backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
-      position: relative;
-      cursor: pointer;
-    }
-    
-    .course-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, #002d72, #68ace5, #ffc72c);
-      border-radius: 15px 15px 0 0;
-    }
-    
-    .course-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(104, 172, 229, 0.3);
-      border-color: #68ace5;
-    }
-    
-    .course-code {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: #ffc72c;
-      margin-bottom: 0.5rem;
-    }
-    
-    .course-title {
-      font-size: 1.8rem;
-      color: #68ace5;
-      margin-bottom: 1rem;
-      font-weight: 700;
-    }
-    
-    .course-terms {
-      background: rgba(104, 172, 229, 0.2);
-      border-radius: 20px;
-      padding: 0.5rem 1rem;
-      display: inline-block;
-      margin-bottom: 1rem;
-      font-size: 0.9rem;
-      color: #68ace5;
-      font-weight: 600;
-    }
-    
-    .course-description {
-      color: #e8f0ff;
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
-    }
-    
-    .course-objectives {
-      display: none;
-      margin-top: 1.5rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid rgba(104, 172, 229, 0.3);
-    }
-    
-    .course-objectives.show {
-      display: block;
-    }
-    
-    .course-objectives h4 {
-      color: #68ace5;
-      margin-bottom: 1rem;
-      font-size: 1.1rem;
-    }
-    
-    .course-objectives ul {
-      list-style: none;
-      padding: 0;
-    }
-    
-    .course-objectives li {
-      padding: 0.5rem 0;
-      padding-left: 1.5rem;
-      position: relative;
-      color: #b8cee8;
-      line-height: 1.5;
-    }
-    
-    .course-objectives li::before {
-      content: '▶';
-      position: absolute;
-      left: 0;
-      color: #68ace5;
-      font-size: 0.8rem;
-    }
-    
-    /* Announcement */
-    .announcement {
-      background: rgba(104, 172, 229, 0.1);
-      border: 1px solid #68ace5;
-      border-radius: 15px;
-      padding: 2rem;
-      margin: 3rem 0;
-      color: #b8cee8;
-      line-height: 1.6;
-    }
-    
-    .announcement h3 {
-      color: #68ace5;
-      margin-bottom: 1rem;
-      font-size: 1.3rem;
-    }
-    
-    .announcement strong {
-      color: #ffc72c;
-    }
-    
-    .announcement em {
-      color: #68ace5;
-      font-style: italic;
-    }
-    
-    /* Pathway Section */
-    .pathway-section {
-      padding: 5rem 0;
-      background: rgba(0,45,114,0.1);
-    }
-    
-    .pathway-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-    
-    .pathway-card {
-      text-align: center;
-      padding: 2rem;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(104, 172, 229, 0.2);
-      border-radius: 15px;
-      backdrop-filter: blur(5px);
-      transition: all 0.3s ease;
-    }
-    
-    .pathway-card:hover {
-      transform: translateY(-5px);
-      border-color: #68ace5;
-    }
-    
-    .pathway-number {
-      font-size: 3rem;
-      font-weight: 900;
-      color: #ffc72c;
-      margin-bottom: 1rem;
-    }
-    
-    .pathway-title {
-      font-size: 1.3rem;
-      color: #68ace5;
-      margin-bottom: 1rem;
-      font-weight: 600;
-    }
-    
-    .pathway-description {
-      color: #b8cee8;
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-    
-    /* Footer */
-    .footer {
-      background: rgba(0,0,0,0.8);
-      padding: 3rem 0;
-      text-align: center;
-      border-top: 1px solid rgba(104, 172, 229, 0.3);
-    }
-    
-    .footer-content {
-      color: #888;
-    }
-    
-    .footer-link {
-      color: #68ace5;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    
-    .footer-link:hover {
-      color: #ffc72c;
-    }
-    
-    /* Responsive */
-    @media (max-width: 768px) {
-      .container {
-        padding: 0 1rem;
-      }
-      
-      .courses-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .pathway-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: linear-gradient(135deg,#6366f1,#8b5cf6); color:white; }
+    .btn-ghost { background: rgba(255,255,255,0.08); border:1px solid var(--border); color: var(--text); }
+
+    /* No HR lines on this page */
+    .sep { display:none !important; }
   </style>
+
+  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon">
+  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" media="(prefers-color-scheme: dark)">
+  <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-light.png" as="image">
+  <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-dark.png" as="image">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
 </head>
 <body>
-  <div class="grain"></div>
-  
+  <div class="scroll-indicator"><div class="scroll-progress"></div></div>
+  <div class="bg-pattern"></div>
+
+  <header class="header">
+    <div class="nav-container wrap-max">
+      <img src="https://abikesa.github.io/logos/assets/ukubona-dark.png" alt="Ukubona LLC Logo" id="logo" class="logo">
+      <div class="top-right">
+        <ul class="nav-links">
+          <li><a href="../../index.html" class="nav-link">Home</a></li>
+          <li><a href="mission.html" class="nav-link">Mission</a></li>
+          <li><a href="models.html" class="nav-link">Models</a></li>
+          <li><a href="team.html" class="nav-link">Team</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+          <li><a href="pairs-jh.html" class="nav-link" target="_blank">Education</a></li>
+        </ul>
+        <button class="menu-icon" id="menuIcon" role="button" aria-label="Open navigation menu">
+          <div></div><div></div><div></div>
+          <div></div><div></div><div></div>
+          <div></div><div></div><div></div>
+        </button>
+        <button id="toggle-theme" aria-label="Toggle theme">🌙</button>
+      </div>
+    </div>
+
+    <div class="app-grid wrap-max" id="gridMenu">
+      <a href="../../index.html"><div class="icon-box">📊</div>Home</a>
+      <a href="mission.html"><div class="icon-box">🎯</div>Mission</a>
+      <a href="models.html"><div class="icon-box">📈</div>Models</a>
+      <a href="team.html"><div class="icon-box">👥</div>Team</a>
+      <a href="contact.html" class="active"><div class="icon-box">✉️</div>Contact</a>
+      <a href="pairs-jh.html" target="_blank"><div class="icon-box">📚</div>Education</a>
+      <a href="card.html"><div class="icon-box">💳</div>Business Card</a>
+      <a href="game.html"><div class="icon-box">🎮</div>Game of Care</a>
+      <a href="pitch.html" class="active"><div class="icon-box">📄</div>Pitch</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
   <section class="hero">
-    <div class="container">
-      <h1 class="logo">PAIRS@JH</h1>
-      <p class="tagline">Python. AI. R. Stata. JS/HTML.</p>
-      <p class="subtitle">Analytics Arsenal for Hopkins Epidemiologists</p>
-      <div class="hopkins-badge">Department of Epidemiology • Bloomberg School of Public Health</div>
-    </div>
-  </section>
-  
-  <section class="courses-section">
-    <div class="container">
-      <h2 class="section-title">Stata Programming Pathway</h2>
-      
-      <div class="announcement">
-        <h3>📋 Course Availability Update</h3>
-        <p>
-          <strong>Basic (340.600)</strong> and <strong>Intermediate (340.700)</strong> Stata Programming courses are <em>officially approved for the 4th term</em>, but we are making these courses <strong>available across all terms (1st to 4th) immediately</strong> to support Hopkins epidemiologists at every career stage.
-        </p>
-        <p>
-          <strong>Advanced Stata Programming (340.800)</strong> will launch beginning with the <em>3rd term</em>, powered by <em>Ukubona LLC</em> — the same expert instructor, now leveraging company resources for expanded impact within the Hopkins ecosystem.
-        </p>
-      </div>
-      
-      <div class="courses-grid">
-        <div class="course-card" onclick="toggleCourse(this)">
-          <div class="course-code">340.600</div>
-          <h3 class="course-title">Basic Stata Programming</h3>
-          <div class="course-terms">Terms 1-4 Available</div>
-          <p class="course-description">
-            Systematic Stata programming for Hopkins epidemiologists with prior statistical software exposure. Covers data management, programming concepts, and reproducible research workflows essential for epidemiological analysis.
-          </p>
-          <div class="course-objectives">
-            <h4>Learning Objectives for Hopkins Epidemiologists:</h4>
-            <ul>
-              <li>Master Stata commands beyond core biostatistics (reshape, collapse, factor variables)</li>
-              <li>Write efficient, reproducible code using loops, macros, and .ado files</li>
-              <li>Implement project workflows ensuring reproducibility with logging and version control</li>
-              <li>Manage complex epidemiological datasets with confidence</li>
-            </ul>
-          </div>
-        </div>
-        
-        <div class="course-card" onclick="toggleCourse(this)">
-          <div class="course-code">340.700</div>
-          <h3 class="course-title">Intermediate Stata Programming</h3>
-          <div class="course-terms">Terms 1-4 Available</div>
-          <p class="course-description">
-            Advanced Stata techniques for complex epidemiological analyses. Includes simulations, custom commands, and optimization strategies for large-scale population health studies.
-          </p>
-          <div class="course-objectives">
-            <h4>Advanced Skills for Hopkins Researchers:</h4>
-            <ul>
-              <li>Create and execute Monte Carlo simulations for epidemiological scenarios</li>
-              <li>Write custom Stata commands for specialized analyses</li>
-              <li>Optimize code performance for large cohort studies</li>
-              <li>Generate publication-ready output (HTML, LaTeX) for Hopkins standards</li>
-            </ul>
-          </div>
-        </div>
-        
-        <div class="course-card" onclick="toggleCourse(this)">
-          <div class="course-code">340.800</div>
-          <h3 class="course-title">Advanced Stata Programming</h3>
-          <div class="course-terms">Launching Term 3</div>
-          <p class="course-description">
-            Cutting-edge Stata programming via Ukubona LLC, designed specifically for Hopkins epidemiologists conducting high-impact research. Integration with modern development tools and AI-assisted workflows.
-          </p>
-          <div class="course-objectives">
-            <h4>Mastery-Level Skills for Hopkins Leaders:</h4>
-            <ul>
-              <li>Master complex programming constructs for longitudinal studies</li>
-              <li>Integrate Stata workflows with Python and modern development tools</li>
-              <li>Develop robust, scalable analytic pipelines for population health</li>
-              <li>Lead collaborative research projects with reproducible methodologies</li>
-            </ul>
-          </div>
-        </div>
+    <div class="hero-content wrap-max">
+      <h1 class="hero-title">Investors</h1>
+      <p class="hero-subtitle">Rehearsal over prescription. Models → APIs → UI. Clarity has a price; we make it visible and investable.</p>
+      <div class="hero-cta">
+        <a href="#pitch" class="btn btn-primary"><i data-feather="trending-up"></i> Why now</a>
+        <a href="contact.html" class="btn btn-ghost"><i data-feather="mail"></i> Contact</a>
       </div>
     </div>
   </section>
-  
-  <section class="pathway-section">
-    <div class="container">
-      <h2 class="section-title">From Hopkins Student to Analytics Leader</h2>
-      
-      <div class="pathway-grid">
-        <div class="pathway-card">
-          <div class="pathway-number">01</div>
-          <h3 class="pathway-title">Local Stata Mastery</h3>
-          <p class="pathway-description">
-            Build bulletproof workflows for collaborative epidemiological research. Teach colleagues without assuming technical skills. Output structured for seamless Hopkins collaboration.
-          </p>
+
+  <main class="main-content wrap-max" id="pitch">
+    <!-- Problem / Solution -->
+    <section class="content-section">
+      <h2 class="section-title">The Problem</h2>
+      <p class="section-text">
+        High-stakes decisions (clinical, policy, operations) still rely on static PDFs and gut checks. Tools hide uncertainty, and when we do simulate, the real costs are invisible: energy, compute, and time.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">Our Answer</h2>
+      <p class="section-text">
+        Ukubona builds rehearsal spaces for decisions: validated models served via Flask APIs and rendered as interactive loops (avatars, comparators, sliders). We’re explicit that clarity costs energy and money. We expose those trade-offs so leaders can invest wisely.
+      </p>
+    </section>
+
+    <!-- Product (3 cards) -->
+    <section class="content-section">
+      <h2 class="section-title">Product</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Game of Care</h3>
+          <p>Playable scenarios for consent and policy rehearsal. Safe tails, clear comparators, repeatable loops.</p>
+          <div class="badge-row"><span class="badge">Interactive</span><span class="badge">Explainable</span></div>
         </div>
-        
-        <div class="pathway-card">
-          <div class="pathway-number">02</div>
-          <h3 class="pathway-title">GitHub-Driven Research</h3>
-          <p class="pathway-description">
-            Version-controlled projects with GitHub backbone. Offline-first approach perfect for sensitive health data. Cloud-ready for multi-institutional collaboration.
-          </p>
+        <div class="card">
+          <h3>Models → APIs → UI</h3>
+          <p>Literature-grade models behind Flask endpoints. Public datasets + private feeds under disclosure controls.</p>
+          <div class="badge-row"><span class="badge">JSON</span><span class="badge">Auth</span><span class="badge">Audit</span></div>
         </div>
-        
-        <div class="pathway-card">
-          <div class="pathway-number">03</div>
-          <h3 class="pathway-title">Modern Dev Environment</h3>
-          <p class="pathway-description">
-            VS Code + Copilot + multi-kernel Jupyter. AI-assisted development that enhances (never replaces) epidemiological expertise. Ready for high-impact publication.
-          </p>
+        <div class="card">
+          <h3>Energy Cost Monitor</h3>
+          <p>kWh/$ per clarity; marginal cost curves as simulations scale. Clarity has a price — we count it.</p>
+          <div class="badge-row"><span class="badge">Meta</span><span class="badge">Aggregates</span></div>
         </div>
       </div>
-    </div>
-  </section>
-  
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <p>&copy; 2025 <a href="https://ukubona-llc.github.io/" class="footer-link">Ukubona LLC</a> | Designed for Hopkins Epidemiologists</p>
-        <p>"Real researchers don't worship languages. They sculpt answers from chaos — for people, not platforms."</p>
+    </section>
+
+    <!-- Traction (3 cards) -->
+    <section class="content-section">
+      <h2 class="section-title">Traction</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Vendor: Johns Hopkins</h3>
+          <p>Accepted as a vendor to Johns Hopkins Enterprise (June 2025). Enterprise-ready collaboration path.</p>
+          <div class="badge-row"><span class="badge">Enterprise</span><span class="badge">Health</span></div>
+        </div>
+        <div class="card">
+          <h3>Clinical Credibility</h3>
+          <p>Perioperative living-donor risk analysis in progress with clinical collaborators; visual consent rehearsal.</p>
+          <div class="badge-row"><span class="badge">Clinical</span><span class="badge">Explainable</span></div>
+        </div>
+        <div class="card">
+          <h3>Education Loop</h3>
+          <p>PAIRS@JH education pipeline: language-agnostic analytics at Hopkins; demand signal for tools.</p>
+          <div class="badge-row"><span class="badge">Education</span><span class="badge">Pipeline</span></div>
+        </div>
       </div>
-    </div>
-  </footer>
-  
+    </section>
+
+    <!-- LLC Stack (3×N, exactly 3 cards per row) -->
+    <section class="content-section">
+      <h2 class="section-title">LLC Stack (Investable Areas)</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Ukuvula — Provisioning</h3>
+          <p>SDOH/Exposure models and environment normalizers feeding downstream decisions.</p>
+          <div class="badge-row"><span class="badge">ETL</span><span class="badge">Low energy</span></div>
+        </div>
+        <div class="card">
+          <h3>Ukuzula — Vitality</h3>
+          <p>Signals-to-risk mappers (steps, cadence, recovery) with explainable proxies.</p>
+          <div class="badge-row"><span class="badge">Time-series</span><span class="badge">Explainable</span></div>
+        </div>
+        <div class="card">
+          <h3>Ukukona — Play</h3>
+          <p>Scenario engine + behavior loop for safe experimentation and adherence curves.</p>
+          <div class="badge-row"><span class="badge">Monte Carlo</span><span class="badge">Synthetic</span></div>
+        </div>
+        <div class="card">
+          <h3>Ukubona — Integration</h3>
+          <p>Comparators/benchmarks; consent-as-rehearsal snapshots; audit digests.</p>
+          <div class="badge-row"><span class="badge">Audit</span><span class="badge">Governance</span></div>
+        </div>
+        <div class="card">
+          <h3>Ukukula — Aging</h3>
+          <p>ADL trajectories, family impact surfaces, value-elicitation loops.</p>
+          <div class="badge-row"><span class="badge">Triggers</span><span class="badge">Aggregates</span></div>
+        </div>
+        <div class="card">
+          <h3>Cross-Cut — Energy</h3>
+          <p>Energy & simulation cost monitor; compute budget planner; footprint reporter.</p>
+          <div class="badge-row"><span class="badge">kWh/$</span><span class="badge">Planner</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Business Model / GTM -->
+    <section class="content-section">
+      <h2 class="section-title">Business Model</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Model Hosting (SaaS)</h3>
+          <p>Per-model hosting (Flask/API/UI), tiered by usage & support. Add-ons for comparators & audit.</p>
+          <div class="badge-row"><span class="badge">SaaS</span><span class="badge">Add-ons</span></div>
+        </div>
+        <div class="card">
+          <h3>Deployments (B2B)</h3>
+          <p>Institutional deployments w/ disclosure-risk controls; integrations & training.</p>
+          <div class="badge-row"><span class="badge">B2B</span><span class="badge">Enterprise</span></div>
+        </div>
+        <div class="card">
+          <h3>Advisory</h3>
+          <p>Short sprints to operationalize models: Inputs → Model → API → UI in 4–8 weeks.</p>
+          <div class="badge-row"><span class="badge">Services</span><span class="badge">Sprint</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">Go-to-Market</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Anchor: Hopkins</h3>
+          <p>Leverage vendor status + PAIRS@JH to seed pilots.</p>
+        </div>
+        <div class="card">
+          <h3>Clinical Collaborators</h3>
+          <p>Telemedicine pathways (UCI) & periop consent rehearsal to lighthouse early wins.</p>
+        </div>
+        <div class="card">
+          <h3>Play First</h3>
+          <p>Game of Care scenarios as the front door: low-friction demos → paid integrations.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Ask -->
+    <section class="content-section">
+      <h2 class="section-title">The Ask</h2>
+      <p class="section-text">
+        We’re lining up pilot partners and capital to scale model hosting and the scenario engine. If your mandate is better decisions — and you’re honest that clarity costs — let’s talk.
+      </p>
+      <div class="btn-row">
+        <a href="contact.html" class="btn btn-primary"><i data-feather="calendar"></i> Book a conversation</a>
+        <a href="models.html" class="btn btn-ghost"><i data-feather="box"></i> See model catalog</a>
+        <a href="game.html" class="btn btn-ghost"><i data-feather="play-circle"></i> Try Game of Care</a>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-placeholder" class="wrap-max"></div>
   <script>
-    function toggleCourse(card) {
-      const objectives = card.querySelector('.course-objectives');
-      const isExpanded = objectives.classList.contains('show');
-      
-      // Close all other cards
-      document.querySelectorAll('.course-objectives').forEach(obj => {
-        obj.classList.remove('show');
-      });
-      
-      // Toggle clicked card
-      if (!isExpanded) {
-        objectives.classList.add('show');
-        card.style.transform = 'translateY(-8px) scale(1.02)';
-      } else {
-        card.style.transform = 'translateY(0) scale(1)';
-      }
-    }
-    
-    // Add subtle parallax effect
+    fetch('/assets/html/footer.html')
+      .then(r => r.text())
+      .then(html => { document.getElementById('footer-placeholder').innerHTML = html; });
+
+    // Scroll progress bar
+    const progress = document.querySelector('.scroll-progress');
     window.addEventListener('scroll', () => {
-      const scrolled = window.pageYOffset;
-      const hero = document.querySelector('.hero::before');
-      if (hero) {
-        const speed = scrolled * 0.3;
-        hero.style.transform = `translate(-50%, ${-50 + speed * 0.05}%)`;
-      }
+      const h = document.documentElement;
+      const scrolled = (h.scrollTop)/(h.scrollHeight - h.clientHeight) * 100;
+      progress.style.width = scrolled + '%';
     });
+
+    feather.replace();
   </script>
+  <script src="../js/shared.js"></script>
+  <script src="../js/landing.js"></script>
 </body>
 </html>
