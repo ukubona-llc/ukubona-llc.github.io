@@ -665,3 +665,109 @@ html[data-theme='dark'] .menu-icon div {
     letter-spacing: normal;
     font-size: 0.95rem;
 }
+
+/* === Ukubona core tokens & rhythm (site-wide) === */
+:root{
+  --max-wrap:1120px;
+  --pad-x:24px;
+  --header-h:64px;
+
+  /* space scale */
+  --s-0:0; --s-1:8px; --s-2:12px; --s-3:16px; --s-4:24px;
+  --s-5:32px; --s-6:48px; --s-7:64px; --s-8:96px;
+
+  /* motion */
+  --transition: 200ms ease;
+  --blur: 6px;
+}
+
+/* theme tokens */
+html[data-theme='dark']{
+  --bg:#0b0d0f; --surface:#111318; --surface-2:#151922;
+  --text:#e7efe9; --muted:#a9b6ae;
+  --border:#1f2326; --accent:#8ee8ff;
+}
+html[data-theme='light']{
+  --bg:#f7f9fb; --surface:#ffffff; --surface-2:#f1f5f9;
+  --text:#0b0d0f; --muted:#475569;
+  --border:#d4d8dd; --accent:#0ea5e9;
+}
+
+/* base */
+html,body{background:var(--bg); color:var(--text);}
+.wrap-max{max-width:var(--max-wrap); margin:0 auto; padding:0 var(--pad-x);}
+.main-content{padding-bottom:var(--s-7);}
+.content-section{margin:clamp(24px,5vh,56px) auto 0;}
+
+/* headings & readable text */
+.section-title{text-align:center; margin:0 0 12px; letter-spacing:.2px;}
+.section-text{max-width:86ch; margin:0 auto; line-height:1.65; color:var(--text); text-align:left;}
+
+/* hero – consistent across pages */
+.hero{padding-block:clamp(72px,14vh,120px) clamp(16px,6vh,56px); margin-bottom:clamp(16px,4vh,48px);}
+.hero .hero-content{text-align:center;}
+.hero-title{letter-spacing:.2px; margin:0;}
+.hero-subtitle{opacity:.9; margin:.5rem 0 0;}
+.hero-cta{display:flex; justify-content:center; gap:12px; margin-top:16px; flex-wrap:wrap;}
+.cta-button.cta-primary{border-radius:9999px; padding:.7rem 1.1rem; gap:8px;}
+
+/* grid/cards used by Game + other pages */
+.role-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:18px; max-width:1080px; margin:16px auto 0; padding:0 4px;}
+.role-card{background:var(--surface); border:1px solid var(--border);
+  border-radius:16px; padding:18px; backdrop-filter:blur(var(--blur)); transition:var(--transition);}
+.role-card:hover{transform:translateY(-2px);}
+.role-card h3{margin:0 0 6px; font-weight:700;}
+.role-card p{margin:0;}
+.role-metrics{display:flex; gap:6px; flex-wrap:wrap; margin-top:12px;}
+
+/* pills/badges */
+.pill-row{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:12px;}
+.badge{display:inline-block; padding:6px 12px; border:1px solid rgba(255,255,255,.18);
+  border-radius:9999px; font-size:.85rem; background:rgba(255,255,255,.05); white-space:nowrap;}
+
+/* vignette & figures */
+.figure,.vignette{display:flex; flex-direction:column; align-items:center; text-align:center;}
+.figure figure,.vignette figure{margin:0;}
+.figure img,.vignette img{max-width:66%; height:auto; border-radius:10px; margin:0 0 12px;
+  box-shadow:0 8px 24px rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.12);}
+.figure figcaption,.vignette figcaption{opacity:.85; max-width:66%;}
+@media (max-width:900px){ .figure img,.figure figcaption,.vignette img,.vignette figcaption{max-width:85%;} }
+@media (max-width:600px){ .figure img,.figure figcaption,.vignette img,.vignette figcaption{max-width:100%;} }
+
+/* anchors don’t hide under sticky header */
+:where(h1,h2,h3,h4,h5,h6,section,main,footer,header){scroll-margin-top:calc(var(--header-h) + 12px);}
+
+/* kill legacy separators project-wide (you used .sep) */
+.sep{display:none !important;}
+
+/* === Game page primitives (reused anywhere) === */
+.flow-steps{
+  margin-top: 24px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.flow-step{
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  backdrop-filter: blur(var(--blur));
+  transition: var(--transition);
+}
+.flow-step + .flow-step{ margin-top: 12px; }
+.flow-step:hover{ transform: translateY(-2px); }
+.step-num{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255,255,255,.18);
+  font-size: .85rem;
+}

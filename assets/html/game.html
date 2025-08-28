@@ -1,221 +1,176 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
+  <!-- Page voice: switch footer to the “game” variant -->
+  <meta name="ukb-variant" content="game">
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🎮 The Game of Care — Ukubona LLC</title>
 
-  <!-- Minimal inline polish for symmetry & rhythm -->
-  <style>
-    html[data-theme='light'] .menu-icon div { background-color:#000; }
-    html[data-theme='dark']  .menu-icon div { background-color:#fff; }
-
-    /* Layout container */
-    .wrap-max { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
-
-    /* Hero */
-    .hero .hero-content { padding: 120px 0 40px; }
-    .hero-title { text-align:center; letter-spacing:.2px; }
-    .hero-subtitle { text-align:center; opacity:.9; margin-top:.4rem; }
-
-    /* Section rhythm */
-    .main-content { padding-bottom: 64px; }
-    .content-section { margin: 56px auto 0; }
-    .content-section:first-of-type { margin-top: 24px; }
-
-    /* Typography & symmetry */
-    .section-title {
-      text-align:center;
-      margin-bottom: 12px;
-      letter-spacing:.2px;
-    }
-    .section-text {
-      max-width: 86ch;
-      margin: 0 auto;
-      line-height: 1.65;
-      color: var(--text);
-      /* Left-align body everywhere to keep reading comfortable */
-      text-align: left;
-    }
-
-    /* Card grid for “Pick Your Avatar” (adapted from services-grid) */
-    .role-grid { 
-      display:grid; 
-      grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); 
-      gap: 18px; 
-      max-width: 1080px; 
-      margin: 16px auto 0; 
-      padding: 0 4px;
-    }
-    .role-card { 
-      background: var(--surface); 
-      border: 1px solid var(--border); 
-      border-radius: 16px; 
-      padding: 18px; 
-      backdrop-filter: blur(var(--blur));
-      transition: var(--transition);
-    }
-    .role-card:hover { transform: translateY(-2px); }
-    .role-card h3 { margin: 0 0 6px; font-weight: 700; }
-    .role-card p { margin: 0; }
-
-    /* Vignette specific styles */
-    .vignette {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-    .vignette figure { margin: 0; }
-    .vignette img {
-      max-width: 66%;
-      height: auto;
-      border-radius: 10px;
-      margin: 0 0 12px 0;
-      box-shadow: 0 8px 24px rgba(0,0,0,.35); 
-      border: 1px solid rgba(255,255,255,.12);
-    }
-    .vignette figcaption { opacity: .85; max-width: 66%; }
-    .scenario-text { margin-top: 12px; max-width: 86ch; }
-
-    @media (max-width: 900px) { 
-      .vignette img, .vignette figcaption { max-width: 85%; } 
-    }
-    @media (max-width: 600px) { 
-      .vignette img, .vignette figcaption { max-width: 100%; } 
-    }
-
-    /* Pill row */
-    .pill-row { 
-      display: flex; 
-      flex-wrap: wrap; 
-      gap: 8px; 
-      justify-content: center; 
-      margin-top: 10px; 
-    }
-    .badge {
-      display: inline-block; 
-      padding: 6px 12px; 
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: 9999px; 
-      font-size: .85rem; 
-      background: rgba(255,255,255,.05);
-      backdrop-filter: saturate(120%); 
-      white-space: nowrap;
-    }
-
-    /* Hero CTA centering */
-    .hero-cta { display: flex; justify-content: center; margin-top: 12px; }
-    .cta-button.cta-primary { border-radius: 9999px; padding: .7rem 1.1rem; gap: 8px; }
-
-    /* Remove all legacy separators on this page */
-    .sep { display:none !important; }
-  </style>
-
-  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon">
-  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" media="(prefers-color-scheme: light)">
-  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" media="(prefers-color-scheme: dark)">
-  <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-light.png" as="image">
-  <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-dark.png" as="image">
+  <!-- Fonts & CSS -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/main.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
-  <title>The Game of Care — Ukubona LLC</title>
+
+  <!-- Icons + shared behaviors -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+  <script defer src="../js/shared.js"></script>
 </head>
 <body>
   <div class="scroll-indicator"><div class="scroll-progress"></div></div>
   <div class="bg-pattern"></div>
 
+  <!-- header injected by shared.js -->
   <header class="header" id="header"></header>
 
-  <!-- HERO -->
+  <!-- Minimal hero -->
   <section class="hero">
     <div class="hero-content wrap-max">
-      <h1 class="hero-title">Gamify Care</h1>
-      <p class="hero-subtitle">Healthcare reimagined as sequential, consequential play.</p>
+      <h1 class="hero-title">🎮 The Game</h1>
+      <p class="hero-subtitle">Healthcare as sequential, consequential play.</p>
       <div class="hero-cta">
-        <a href="#to-screen" class="cta-button cta-primary">
-          <i data-feather="play-circle"></i> Try a Scenario
+        <a href="#scenarios" class="cta-button cta-primary">
+          <i data-feather="play-circle" aria-hidden="true"></i> Try a scenario
+        </a>
+        <a href="../html/models.html" class="cta-button cta-secondary">
+          <i data-feather="layers" aria-hidden="true"></i> Browse models
         </a>
       </div>
     </div>
   </section>
 
-  <main class="main-content wrap-max" id="roles">
+  <main class="main-content wrap-max" id="scenarios">
     <section class="content-section">
       <h2 class="section-title">Why Gamify?</h2>
       <p class="section-text">
-        Regulation defines "advice." Games define "play." By gamifying the care pathway, Ukubona creates a safe, engaging ecosystem where patients, clinicians, insurers, and trainees all explore decisions — without claiming to treat, diagnose, or cure.
+        Regulation defines “advice.” Games define “play.” By gamifying the care pathway, Ukubona creates a safe, engaging
+        ecosystem where patients, clinicians, insurers, and trainees explore decisions—without claiming to treat, diagnose,
+        or cure.
       </p>
       <div class="pill-row">
-        <span class="badge">Not FDA Approved</span>
-        <span class="badge">Not Medical Advice</span>
-        <span class="badge">Interactive Learning & Simulation</span>
+        <span class="badge">Interactive learning</span>
+        <span class="badge">Parallel futures</span>
+        <span class="badge">Tail-risk awareness</span>
       </div>
       <hr class="sep">
     </section>
 
     <section class="content-section">
       <h2 class="section-title">Pick Your Avatar</h2>
-      <div class="role-grid">
-        <div class="role-card"><h3>👩‍⚕️ Doctor</h3><p>Balance evidence, risk, and time. Do you order the scan, or wait?</p></div>
-        <div class="role-card"><h3>🧑‍🦽 Patient</h3><p>Navigate symptoms, insurance hurdles, and lifestyle tradeoffs.</p></div>
-        <div class="role-card"><h3>🚑 Ambulance Driver</h3><p>Get the patient to the right facility — time is life.</p></div>
-        <div class="role-card"><h3>📚 Med Student</h3><p>Study, rotate, and climb levels of mastery. Fail, repeat, learn.</p></div>
-        <div class="role-card"><h3>🏢 Insurance Exec</h3><p>Approve or deny? Balance actuarial math vs. human cost.</p></div>
-        <div class="role-card"><h3>🧑‍⚕️ Nurse</h3><p>Coordinate bedside care, anticipate crises, keep continuity alive.</p></div>
+      <div class="role-grid" role="list">
+        <div class="role-card" role="listitem">
+          <h3>👩‍⚕️ Primary Care Doctor</h3>
+          <p>Balance evidence, time, and risk. Each choice cascades across the system.</p>
+          <div class="role-metrics">
+            <span class="badge">Diagnostic accuracy</span>
+            <span class="badge">Patient satisfaction</span>
+            <span class="badge">Cost efficiency</span>
+          </div>
+        </div>
+        <div class="role-card" role="listitem">
+          <h3>🧑‍🦽 Patient</h3>
+          <p>Navigate symptoms, insurance hurdles, and lifestyle tradeoffs.</p>
+          <div class="role-metrics">
+            <span class="badge">Health outcomes</span>
+            <span class="badge">Financial impact</span>
+            <span class="badge">Quality of life</span>
+          </div>
+        </div>
+        <div class="role-card" role="listitem">
+          <h3>🏢 Insurance Executive</h3>
+          <p>Approve or deny? Balance actuarial math against human cost.</p>
+          <div class="role-metrics">
+            <span class="badge">Claims processing</span>
+            <span class="badge">Network management</span>
+            <span class="badge">Risk assessment</span>
+          </div>
+        </div>
+        <div class="role-card" role="listitem">
+          <h3>📚 Medical Student</h3>
+          <p>Fail safely, repeat scenarios, learn from consequences.</p>
+          <div class="role-metrics">
+            <span class="badge">Clinical knowledge</span>
+            <span class="badge">Bedside manner</span>
+            <span class="badge">Decision-making</span>
+          </div>
+        </div>
+        <div class="role-card" role="listitem">
+          <h3>🚑 Emergency Responder</h3>
+          <p>Time is life; resources are finite; decisions are immediate.</p>
+          <div class="role-metrics">
+            <span class="badge">Response time</span>
+            <span class="badge">Triage accuracy</span>
+            <span class="badge">Resource allocation</span>
+          </div>
+        </div>
+        <div class="role-card" role="listitem">
+          <h3>🧑‍⚕️ Nurse</h3>
+          <p>Coordinate bedside care, anticipate crises, maintain continuity.</p>
+          <div class="role-metrics">
+            <span class="badge">Patient advocacy</span>
+            <span class="badge">Care coordination</span>
+            <span class="badge">Crisis prevention</span>
+          </div>
+        </div>
       </div>
       <hr class="sep">
     </section>
 
-    <!-- Vignette -->
     <section class="content-section" id="to-screen">
       <h2 class="section-title">To Screen or Not to Screen?</h2>
       <div class="role-card vignette">
         <figure>
           <img src="../img/to-screen.jpeg" alt="News screenshot referencing a fatal reaction during a routine CT scan" loading="lazy" decoding="async">
           <figcaption class="section-text">
-            A "routine" decision can carry non-zero tail risk. Simulation lets us rehearse those branches before reality forces them.
+            A “routine” decision can carry non-zero tail risk. Simulation lets us rehearse branches before reality forces them.
           </figcaption>
         </figure>
-        <div class="section-text scenario-text">
-          <strong>Doctor:</strong> Order a contrast CT now (rule-out value high) knowing a small allergy risk exists — or observe and re-evaluate?<br>
-          <strong>Patient:</strong> Consent to the scan today — or delay for alternative tests and risk a missed diagnosis?<br>
-          <strong>Insurer:</strong> Approve pre-auth — or request step-therapy and push the decision downstream?
+      </div>
+
+      <div class="flow-steps" aria-label="Scenario steps">
+        <div class="flow-step">
+          <div class="step-num" aria-hidden="true">1</div>
+          <div>
+            <h4 style="margin:0 0 4px 0;">The Setup</h4>
+            <p style="margin:0;">Patient with chest pain. Low-risk history, but CT with contrast could rule out serious pathology.</p>
+          </div>
         </div>
-        <div class="pill-row">
-          <span class="badge">Parallel Futures</span>
-          <span class="badge">Tail Risk</span>
-          <span class="badge">Ethics of Delay</span>
+        <div class="flow-step">
+          <div class="step-num" aria-hidden="true">2</div>
+          <div>
+            <h4 style="margin:0 0 4px 0;">The Dilemma</h4>
+            <p style="margin:0;">Small but real risk of contrast allergy. Order now or try alternatives first?</p>
+          </div>
         </div>
+        <div class="flow-step">
+          <div class="step-num" aria-hidden="true">3</div>
+          <div>
+            <h4 style="margin:0 0 4px 0;">Multi-Player Perspectives</h4>
+            <p style="margin:0;">Doctor weighs liability, patient wants answers, insurer weighs cost, family fears the worst.</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num" aria-hidden="true">4</div>
+          <div>
+            <h4 style="margin:0 0 4px 0;">Branching Consequences</h4>
+            <p style="margin:0;">Each choice opens new scenarios. Wrong call? Learn. Right call? Face the next decision.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-cta" style="margin-top:28px;">
+        <a href="#to-screen" class="cta-button cta-primary">
+          <i data-feather="play" aria-hidden="true"></i> Play this scenario
+        </a>
+        <a href="../html/models.html" class="cta-button cta-secondary">
+          <i data-feather="grid" aria-hidden="true"></i> More scenarios
+        </a>
       </div>
       <hr class="sep">
     </section>
-
-    <section class="content-section">
-      <h2 class="section-title">Consequences & Levels</h2>
-      <p class="section-text">
-        Every choice changes what comes next. Like any good game, sequences matter: skip an immunization, delay a diagnosis, miss a payment — and you may find yourself "dead at Level 2." Or you may uncover resilience, redundancy, and recovery.
-      </p>
-      <hr class="sep">
-    </section>
-
-    <section class="content-section">
-      <h2 class="section-title">Advisors & Mentors</h2>
-      <p class="section-text">
-        Guided by fictional mentors, we poke fun at authority while building systems that, paradoxically, restore it. The aim is serious: a Fortune-500-class platform born from the gaming community itself.
-      </p>
-    </section>
   </main>
 
+  <!-- footer injected by shared.js -->
   <div id="footer-placeholder" class="wrap-max"></div>
-  <script>
-    fetch('/assets/html/footer.html')
-      .then(r => r.text())
-      .then(html => { document.getElementById('footer-placeholder').innerHTML = html; });
-  </script>
-
-  <script src="../js/landing.js"></script>
-  <script src="../js/shared.js"></script>
-  <script>feather.replace();</script>
 </body>
 </html>
