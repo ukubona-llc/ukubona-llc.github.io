@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">          
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,83 +42,30 @@
   <link rel="stylesheet" href="assets/css/index.css">
 </head>
 
-
 <body>
-    <div class="scroll-indicator">
-        <div class="scroll-progress"></div>
-    </div>
-    <div class="bg-pattern"></div>
-    <header class="header" id="header"></header>
-    <section class="hero" id="hero"></section>
-    <main class="main-content">
-        <section class="services-section" id="services-section"></section>
-        <section class="metrics-section" id="metrics-section"></section>
-    </main>
-    <div class="modal-overlay" id="modal-overlay"></div>
-    <div id="footer-placeholder"></div>
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">          
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <div class="scroll-indicator"><div class="scroll-progress"></div></div>
+  <div class="bg-pattern"></div>
 
-  <title>Ukubona LLC - Health Tech Infrastructure for Personalized Care</title>
-  <meta name="description" content="Ukubona builds AI-powered health tech infrastructure for personalized care—continuity, accountability, and decision support across ecosystems.">
-  <link rel="canonical" href="https://ukubona-llc.github.io/">
-  <meta name="robots" content="index,follow">
-  <meta name="color-scheme" content="dark light">
-  <meta name="theme-color" content="#0a0a0f">
+  <!-- Centralized header fetch -->
+  <header class="header" id="header"></header>
 
-  <!-- Open Graph / Twitter -->
-  <meta property="og:site_name" content="Ukubona LLC">
-  <meta property="og:title" content="Ukubona — The Game of Care">
-  <meta property="og:description" content="Healthcare reimagined as sequential, consequential play. Try a scenario.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://ukubona-llc.github.io/">
-  <meta property="og:image" content="https://ukubona-llc.github.io/assets/img/to-screen.jpeg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Ukubona — The Game of Care">
-  <meta name="twitter:description" content="Healthcare reimagined as sequential, consequential play. Try a scenario.">
-  <meta name="twitter:image" content="https://ukubona-llc.github.io/assets/img/to-screen.jpeg">
+  <!-- Page sections populated by your partials/scripts -->
+  <section class="hero" id="hero"></section>
+  <main class="main-content">
+    <section class="services-section" id="services-section"></section>
+    <section class="metrics-section" id="metrics-section"></section>
+  </main>
 
-  <!-- Icons / assets -->
-  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon">
-  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" media="(prefers-color-scheme: light)">
-  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" media="(prefers-color-scheme: dark)">
-  <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-light.png" as="image">
-  <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-dark.png" as="image">
+  <div class="modal-overlay" id="modal-overlay"></div>
 
-  <!-- Perf: preconnect fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Centralized footer fetch -->
+  <div id="footer-placeholder"></div>
 
-  <!-- CSS -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="stylesheet" href="assets/css/index.css">
-</head>
-
-
-<body>
-    <div class="scroll-indicator">
-        <div class="scroll-progress"></div>
-    </div>
-    <div class="bg-pattern"></div>
-    <header class="header" id="header"></header>
-    <section class="hero" id="hero"></section>
-    <main class="main-content">
-        <section class="services-section" id="services-section"></section>
-        <section class="metrics-section" id="metrics-section"></section>
-    </main>
-    <div class="modal-overlay" id="modal-overlay"></div>
-    <div id="footer-placeholder"></div>
-    <script src="assets/js/shared.js"></script>
-    <script src="assets/js/landing.js"></script>
-    <script src="assets/js/index.js"></script>
-    <script src="assets/js/tooltips.js"></script>
-</body>
-</html>
+  <!-- Scripts (Order matters!! Feather, shared, then page code) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+  <script src="assets/js/landing.js"></script>
+  <script src="assets/js/index.js"></script>
+  <script src="assets/js/shared.js"></script>
+  <script src="assets/js/tooltips.js"></script>
 </body>
 </html>
