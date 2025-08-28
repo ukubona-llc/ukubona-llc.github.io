@@ -37,6 +37,10 @@ html[data-theme='dark'] .menu-icon div { background-color: #fff; }
   padding: 0 24px; 
 }
 
+.nav-container.wrap-max {
+  max-width: 1200px; /* Match main.css to prevent override */
+}
+
 .hero .hero-content { 
   max-width: 1120px; 
   margin: 0 auto; 

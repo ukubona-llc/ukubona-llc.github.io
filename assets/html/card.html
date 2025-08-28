@@ -44,32 +44,29 @@
   <div class="scroll-indicator"><div class="scroll-progress"></div></div>
   <div class="bg-pattern"></div>
 
-  <!-- Centralized header fetch -->
-  <header class="header" id="header"></header>
-
-  <main class="main-content wrap-max">
-    <div class="card">
-      <img src="https://abikesa.github.io/logos/assets/ukubona-dark.png" alt="Ukubona LLC Logo" class="card-logo">
+  <main class="main-content wrap-max" style="display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 2rem 0;">
+    <div class="card" style="text-align: center; max-width: 480px;">
+      <img src="https://abikesa.github.io/logos/assets/ukubona-dark.png" alt="Ukubona LLC Logo" class="card-logo" id="logo" style="margin: 0 auto;">
       <h1 class="card-title">Ukubona LLC</h1>
       <h2 class="card-subtitle">Rehearsal over prescription. Models → APIs → UI.</h2>
 
-      <p class="bio">
+      <p class="bio" style="text-align: center;">
         <strong>Abimereki Muzaale, MD, MPH, PhDc</strong><br>
         Founder &amp; CEO — Long Island, NY
       </p>
-      <p class="bio bio-secondary">
+      <p class="bio bio-secondary" style="text-align: center;">
         Former NIH-funded faculty (Dept. of Surgery, Transplant; 2017–2024). Completed
         <a href="https://grantome.com/grant/NIH/K08-AG065520-01" target="_blank"><strong>NIH K08 (NIA, 2020–2024)</strong></a>. PhDc in Clinical Investigations (defending Oct 2025).<br>
         Teaching coding since 2022 at JH Bloomberg &nbsp;<a href="pairs-jh.html">PAIRS@JH Education</a>. Now full-time building Ukubona.
       </p>
 
-      <div class="badges">
+      <div class="badges" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;">
         <span class="badge">Vendor • Johns Hopkins Enterprise</span>
         <span class="badge">NIH K08 Award (completed)</span>
         <span class="badge">15 Years Academic Track Record</span>
       </div>
 
-      <div class="cta-row">
+      <div class="cta-row" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 24px;">
         <a href="../files/ukubona.vcf" class="cta primary">
           <i data-feather="user-plus"></i> Download vCard
         </a>
@@ -94,5 +91,25 @@
   <script src="../js/card.js"></script>
   <script src="../js/shared.js"></script>
   <script src="../js/tooltips.js"></script>
+  <script>
+    // Manually handle theme and logo rotation without full header
+    document.addEventListener('DOMContentLoaded', () => {
+      const html = document.documentElement;
+      const logo = document.getElementById('logo');
+      const LIGHT_LOGO = 'https://abikesa.github.io/logos/assets/ukubona-light.png';
+      const DARK_LOGO = 'https://abikesa.github.io/logos/assets/ukubona-dark.png';
+
+      function setTheme(theme) {
+        html.setAttribute('data-theme', theme);
+        try { localStorage.setItem('theme', theme); } catch {}
+        if (logo) logo.src = (theme === 'dark') ? DARK_LOGO : LIGHT_LOGO;
+      }
+
+      setTheme((() => { try { return localStorage.getItem('theme') || 'dark'; } catch { return 'dark'; } })());
+
+      // Apply rotation class if not already in CSS
+      logo.classList.add('logo'); // Reuse main.css .logo styles for rotation
+    });
+  </script>
 </body>
 </html>
