@@ -1,0 +1,230 @@
+/* ========== GAME-SPECIFIC STYLES ========== */
+/* Extracted from inline styles to maintain consistency with index.html structure */
+
+/* Header consistency - match main.css exactly */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  transition: var(--transition);
+  min-height: 80px; /* Reserve space to prevent layout shift */
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 80px; /* Match header height */
+}
+
+/* Menu icon theme variations */
+html[data-theme='light'] .menu-icon div { background-color: #000; }
+html[data-theme='dark'] .menu-icon div { background-color: #fff; }
+
+/* Layout symmetry & desktop polish */
+.wrap-max { 
+  max-width: 1120px; 
+  margin: 0 auto; 
+  padding: 0 24px; 
+}
+
+.hero .hero-content { 
+  max-width: 1120px; 
+  margin: 0 auto; 
+  padding: 0 24px; 
+}
+
+/* Hero styling with subtle glow effects */
+.hero { 
+  position: relative; 
+  overflow: hidden; 
+}
+
+.hero::after {
+  content: "";
+  position: absolute; 
+  inset: 0; 
+  pointer-events: none;
+  background:
+    radial-gradient(80% 120% at 10% 10%, rgba(255,255,255,0.05), transparent 60%),
+    radial-gradient(90% 140% at 90% 30%, rgba(0,153,255,0.08), transparent 65%),
+    radial-gradient(90% 140% at 50% 100%, rgba(255,0,128,0.06), transparent 60%);
+}
+
+.hero-title { 
+  letter-spacing: .3px; 
+  text-align: center;
+}
+
+.hero-subtitle { 
+  opacity: .9; 
+  text-align: center;
+}
+
+.hero-cta {
+  display: flex; 
+  justify-content: center;
+}
+
+.cta-button.cta-primary { 
+  border-radius: 9999px; 
+  padding: .7rem 1.1rem; 
+  gap: 8px; 
+}
+
+/* Section rhythm and styling */
+.content-section { 
+  margin-top: 2.25rem; 
+  padding-top: .25rem; 
+}
+
+.section-title { 
+  display: block; 
+  text-align: center; 
+  margin: 0 auto .75rem auto; 
+  letter-spacing: .2px; 
+}
+
+.section-title::after {
+  content: ""; 
+  display: block; 
+  height: 2px; 
+  width: 64px; 
+  margin: 10px auto 0 auto;
+  background: linear-gradient(90deg, rgba(0,153,255,.9), rgba(255,0,128,.85));
+  border-radius: 2px;
+}
+
+.section-text { 
+  line-height: 1.65; 
+  margin-left: auto; 
+  margin-right: auto; 
+  max-width: 86ch; 
+}
+
+/* Pills centered under text */
+.pill-row { 
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 8px; 
+  justify-content: center; 
+  margin-top: 10px; 
+}
+
+.badge {
+  display: inline-block; 
+  padding: 6px 12px; 
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 9999px; 
+  font-size: .85rem; 
+  background: rgba(255,255,255,.05);
+  backdrop-filter: saturate(120%); 
+  white-space: nowrap;
+}
+
+/* Role grid symmetry */
+.role-grid { 
+  display: grid; 
+  gap: 18px; 
+  margin-top: 20px; 
+  grid-template-columns: 1fr; 
+}
+
+@media (min-width: 640px) { 
+  .role-grid { 
+    grid-template-columns: repeat(2, 1fr); 
+  } 
+}
+
+@media (min-width: 1024px) { 
+  .role-grid { 
+    grid-template-columns: repeat(3, 1fr); 
+  } 
+}
+
+.role-card {
+  padding: 1rem; 
+  border: 1px solid rgba(255,255,255,.15); 
+  border-radius: 14px;
+  background: rgba(255,255,255,.04); 
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  display: flex; 
+  flex-direction: column; 
+  justify-content: flex-start; 
+  min-height: 132px;
+}
+
+.role-card:hover { 
+  transform: translateY(-3px); 
+  box-shadow: 0 10px 22px rgba(0,0,0,.35); 
+  border-color: rgba(0,153,255,.35); 
+}
+
+.role-card h3 { 
+  margin: 0 0 6px 0; 
+}
+
+/* Vignette styling */
+.vignette figure { 
+  margin: 0; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  text-align: center; 
+}
+
+.vignette img {
+  max-width: 66%; 
+  height: auto; 
+  border-radius: 10px; 
+  margin: 0 0 12px 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,.35); 
+  border: 1px solid rgba(255,255,255,.12);
+}
+
+.vignette figcaption { 
+  opacity: .85; 
+  max-width: 66%; 
+  text-align: center; 
+}
+
+.scenario-text {
+  margin-top: 12px; 
+  text-align: center; 
+  max-width: 86ch; 
+  margin-left: auto; 
+  margin-right: auto;
+}
+
+@media (max-width: 900px) { 
+  .vignette img, 
+  .vignette figcaption { 
+    max-width: 85%; 
+  } 
+}
+
+@media (max-width: 600px) { 
+  .vignette img, 
+  .vignette figcaption { 
+    max-width: 100%; 
+  } 
+}
+
+/* Section separators */
+.sep {
+  height: 1px; 
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+  margin: 24px auto 8px auto; 
+  border: none; 
+  max-width: 920px;
+}
