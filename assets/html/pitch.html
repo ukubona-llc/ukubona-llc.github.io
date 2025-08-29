@@ -8,8 +8,12 @@
   <meta name="description" content="Clarity costs energy and money; we make those trade-offs visible and investable.">
   <meta name="ukb-variant" content="investor">
 
-  <!-- Minimal inline polish -->
+  <!-- Safety fallbacks so cards look fine even if main.css is late -->
   <style>
+    :root{
+      --text:#e7efe9; --surface:#0f1216; --border:#1f2326; --glass:rgba(255,255,255,.04);
+      --blur:6px; --transition:transform .2s ease, box-shadow .2s ease;
+    }
     html[data-theme='light'] .menu-icon div { background-color:#000; }
     html[data-theme='dark']  .menu-icon div { background-color:#fff; }
 
@@ -59,15 +63,15 @@
     .badge-row { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
     .badge { border:1px solid var(--border); border-radius:999px; padding:4px 10px; font-size:.85rem; background:var(--glass); white-space:nowrap; }
 
-    /* CTA buttons */
-    .btn-row { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:12px; }
-    .btn {
+    /* CTA buttons — unified with game.html */
+    .cta-button {
       text-decoration:none; padding:.9rem 1.4rem; border-radius:12px; font-weight:600; display:inline-flex; gap:8px; align-items:center;
       transition: transform .2s ease;
     }
-    .btn:hover { transform: translateY(-2px); }
-    .btn-primary { background: linear-gradient(135deg,#6366f1,#8b5cf6); color:white; }
-    .btn-ghost { background: rgba(255,255,255,0.08); border:1px solid var(--border); color: var(--text); }
+    .cta-button:hover { transform: translateY(-2px); }
+    .cta-primary { background: linear-gradient(135deg,#6366f1,#8b5cf6); color:white; }
+    .cta-secondary { background: rgba(255,255,255,0.08); border:1px solid var(--border); color: var(--text); }
+    .cta-button:focus-visible{ outline:2px solid #8ee8ff; outline-offset:2px; }
 
     /* No HR lines on this page */
     .sep { display:none !important; }
@@ -78,9 +82,12 @@
   <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" media="(prefers-color-scheme: dark)">
   <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-light.png" as="image">
   <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-dark.png" as="image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/main.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+  <script defer src="../js/shared.js"></script>
 </head>
 <body>
   <div class="scroll-indicator"><div class="scroll-progress"></div></div>
@@ -92,10 +99,10 @@
   <section class="hero">
     <div class="hero-content wrap-max">
       <h1 class="hero-title">Investors</h1>
-      <p class="hero-subtitle">Models → APIs → UI. Clarity has a price; we make it visible and investable.</p>
-      <div class="hero-cta">
-        <a href="#pitch" class="btn btn-primary"><i data-feather="trending-up"></i> Why now</a>
-        <a href="contact.html" class="btn btn-ghost"><i data-feather="mail"></i> Contact</a>
+      <p class="hero-subtitle">Clarity has a price; we make it visible and investable.</p>
+      <div class="hero-cta" aria-label="Investor actions">
+        <a href="#pitch" class="cta-button cta-primary"><i data-feather="trending-up"></i> Why now</a>
+        <a href="contact.html" class="cta-button cta-secondary"><i data-feather="mail"></i> Contact</a>
       </div>
     </div>
   </section>
@@ -160,7 +167,7 @@
       </div>
     </section>
 
-    <!-- LLC Stack (3×N, exactly 3 cards per row) -->
+    <!-- LLC Stack (6 cards = 2 full rows on desktop) -->
     <section class="content-section">
       <h2 class="section-title">LLC Stack (Investable Areas)</h2>
       <div class="cards">
@@ -243,32 +250,20 @@
       <p class="section-text">
         We’re lining up pilot partners and capital to scale model hosting and the scenario engine. If your mandate is better decisions — and you’re honest that clarity costs — let’s talk.
       </p>
-      <div class="btn-row">
-        <a href="contact.html" class="btn btn-primary"><i data-feather="calendar"></i> Book a conversation</a>
-        <a href="models.html" class="btn btn-ghost"><i data-feather="box"></i> See model catalog</a>
-        <a href="game.html" class="btn btn-ghost"><i data-feather="play-circle"></i> Try Game of Care</a>
+      <div class="hero-cta" aria-label="Next steps">
+        <a href="contact.html" class="cta-button cta-primary"><i data-feather="calendar"></i> Book a conversation</a>
+        <a href="models.html" class="cta-button cta-secondary"><i data-feather="box"></i> See model catalog</a>
+        <a href="game.html" class="cta-button cta-secondary"><i data-feather="play-circle"></i> Try Game of Care</a>
       </div>
     </section>
   </main>
 
-  <div id="footer-placeholder" class="wrap-max"></div>
-  <script>
-    fetch('/assets/html/footer.html')
-      .then(r => r.text())
-      .then(html => { document.getElementById('footer-placeholder').innerHTML = html; });
+  <!-- Footer is injected by shared.js; no manual fetch needed. -->
 
-    // Scroll progress bar
-    const progress = document.querySelector('.scroll-progress');
-    window.addEventListener('scroll', () => {
-      const h = document.documentElement;
-      const scrolled = (h.scrollTop)/(h.scrollHeight - h.clientHeight) * 100;
-      progress.style.width = scrolled + '%';
-    });
+<!-- Footer placeholder (shared.js will fill this in) -->
+<div id="footer-placeholder" class="wrap-max"></div>
 
-    feather.replace();
-  </script>
+<script src="../js/shared.js"></script>
 
-  <script src="../js/landing.js"></script>
-  <script src="../js/shared.js"></script>
 </body>
 </html>

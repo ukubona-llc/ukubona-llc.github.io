@@ -8,6 +8,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>🎮 The Game of Care — Ukubona LLC</title>
 
+  <!-- Safety fallbacks for CSS vars -->
+  <style>
+    :root{
+      --text:#e7efe9; --surface:#0f1216; --border:#1f2326; --glass:rgba(255,255,255,.04);
+      --blur:6px; --transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .wrap-max { max-width:1120px; margin:0 auto; padding:0 24px; }
+    .section-title { text-align:center; margin-bottom:12px; letter-spacing:.2px; }
+    .section-text { max-width:86ch; margin:0 auto; line-height:1.65; color:var(--text); text-align:left; }
+    .hero .hero-content { padding:120px 0 40px; }
+    .hero-title { text-align:center; }
+    .hero-subtitle { text-align:center; opacity:.9; margin-top:.4rem; }
+    .hero-cta { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:12px; }
+    .cta-button { text-decoration:none; padding:.9rem 1.4rem; border-radius:12px; font-weight:600; display:inline-flex; gap:8px; align-items:center; transition: transform .2s ease; }
+    .cta-button:hover { transform: translateY(-2px); }
+    .cta-primary { background: linear-gradient(135deg,#6366f1,#8b5cf6); color:white; }
+    .cta-secondary { background: rgba(255,255,255,0.08); border:1px solid var(--border); color: var(--text); }
+    .cta-button:focus-visible{ outline:2px solid #8ee8ff; outline-offset:2px; }
+    .content-section { margin:56px auto 0; }
+    .pill-row, .badge-row { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; justify-content:center; }
+    .badge { border:1px solid var(--border); border-radius:999px; padding:4px 10px; font-size:.85rem; background:var(--glass); white-space:nowrap; }
+
+    /* Role grid */
+    .role-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    @media (max-width:980px){ .role-grid{ grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:640px){ .role-grid{ grid-template-columns:1fr; } }
+    .role-card{ border:1px solid var(--border); border-radius:14px; padding:16px; display:flex; flex-direction:column; background:var(--surface); }
+    .role-metrics{ margin-top:auto; display:flex; flex-wrap:wrap; gap:8px; }
+
+    /* Scenario flow */
+    .flow-steps{ display:flex; flex-direction:column; gap:12px; margin-top:14px; }
+    .flow-step{ display:flex; gap:12px; align-items:flex-start; border:1px solid var(--border); border-radius:12px; padding:12px; background:var(--glass); }
+    .step-num{ width:28px; height:28px; border-radius:50%; display:grid; place-items:center; border:1px solid var(--border); }
+
+    .vignette figure{ margin:0; }
+    .vignette img{ width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; border-radius:12px; border:1px solid var(--border); }
+
+    .sep { opacity:.1; margin-top:24px; }
+  </style>
+
   <!-- Fonts & CSS -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/main.css">
@@ -28,7 +68,7 @@
     <div class="hero-content wrap-max">
       <h1 class="hero-title">🎮 The Game</h1>
       <p class="hero-subtitle">Healthcare as sequential, consequential play.</p>
-      <div class="hero-cta">
+      <div class="hero-cta" aria-label="Game actions">
         <a href="#scenarios" class="cta-button cta-primary">
           <i data-feather="play-circle" aria-hidden="true"></i> Try a scenario
         </a>
@@ -120,7 +160,7 @@
       <h2 class="section-title">To Screen or Not to Screen?</h2>
       <div class="role-card vignette">
         <figure>
-          <img src="../img/to-screen.jpeg" alt="News screenshot referencing a fatal reaction during a routine CT scan" loading="lazy" decoding="async">
+          <img src="../img/to-screen.jpeg" alt="News screenshot referencing a fatal reaction during a routine CT scan" loading="lazy" decoding="async" width="1280" height="720">
           <figcaption class="section-text">
             A “routine” decision can carry non-zero tail risk. Simulation lets us rehearse branches before reality forces them.
           </figcaption>
@@ -159,7 +199,7 @@
       </div>
 
       <div class="hero-cta" style="margin-top:28px;">
-        <a href="#to-screen" class="cta-button cta-primary">
+        <a href="#ukb-sim-chat" class="cta-button cta-primary">
           <i data-feather="play" aria-hidden="true"></i> Play this scenario
         </a>
         <a href="../html/models.html" class="cta-button cta-secondary">
@@ -173,8 +213,6 @@
       <h2 class="section-title">Clinic Chat Simulator</h2>
       <div id="ukb-sim-chat"></div>
     </section>
-
-
   </main>
 
   <!-- footer injected by shared.js -->
@@ -197,7 +235,7 @@
     "Polonius (long-winded)": t => "In such affairs—mark me—prudence counsels thus: " + t + " In conclusion—though conclusions are seldom final—prefer caution to haste.",
     "Jane Austen (poised)": t => "It is a truth rarely acknowledged in the waiting room that " + t,
     "Dickens (observant)": t => "It was the best of plans, it was the worst of risks. " + t + " We shall proceed with both kindness and account.",
-    "Hemingway (spare)": t => t.replace(/\.\s+/g,". ").replace(/,|\;|\—/g,"").split(". ").slice(0,4).join(". ") + ".",
+    "Hemingway (spare)": t => t.replace(/\.\s+/g,". ").replace(/,|;|—/g,"").split(". ").slice(0,4).join(". ") + ".",
     "Toni Morrison (lyrical)": t => "Breathe. The body remembers the roads it has taken. " + t + " We will choose a path that honors your story.",
     "Shakespeare (narrator)": t => "Enter patient, burdened with doubt. " + t + " Exeunt fear; enter counsel."
   };
@@ -286,7 +324,7 @@
     const host = document.getElementById('ukb-sim-chat');
     if (!host) return;
     host.innerHTML = `
-      <div style="border:1px solid var(--stroke,#1f2326);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px">
+      <div style="border:1px solid var(--border);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;background:var(--surface)">
         <div style="display:flex;gap:8px;flex-wrap:wrap">
           <select id="role">${ROLES.map(r=>`<option>${r}</option>`).join('')}</select>
           <select id="persona">${Object.keys(PERSONAS).map(p=>`<option>${p}</option>`).join('')}</select>
@@ -294,12 +332,8 @@
         <textarea id="q" rows="3" placeholder="Type your question, e.g., 'Mild chest pain since yesterday'"></textarea>
 
         <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <button id="ask" class="cta-button cta-primary">
-            Ask
-          </button>
-          <a id="probe" href="../html/probe.html" class="cta-button cta-secondary">
-            Open Image Probe
-          </a>
+          <button id="ask" class="cta-button cta-primary">Ask</button>
+          <a id="probe" href="../html/probe.html" class="cta-button cta-secondary">Open Image Probe</a>
         </div>
 
         <div id="log" style="display:flex;flex-direction:column;gap:8px"></div>
@@ -313,7 +347,7 @@
 
     function bubble(who, text){
       const d = document.createElement('div');
-      d.style.border = '1px solid var(--stroke,#1f2326)';
+      d.style.border = '1px solid var(--border)';
       d.style.borderRadius = '10px';
       d.style.padding = '8px 10px';
       d.style.background = who==='You' ? 'transparent' : 'rgba(255,255,255,0.03)';
@@ -334,6 +368,4 @@
   document.addEventListener('DOMContentLoaded', mount);
 })();
 </script>
-
-
 </html>
