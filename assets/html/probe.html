@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Image Probe — Ukubona</title>
+  <style>
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#0b0d0f;color:#e7efe9;margin:0;padding:24px}
+    .wrap{max-width:960px;margin:0 auto}
+    .card{border:1px solid #1f2326;border-radius:14px;padding:16px;margin:12px 0}
+    .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    input[type=file]{padding:8px;border:1px solid #1f2326;border-radius:10px;background:transparent;color:#e7efe9}
+    button,a.btn{border:1px solid #1f2326;border-radius:10px;padding:8px 12px;background:transparent;color:#e7efe9;cursor:pointer;text-decoration:none}
+    pre{white-space:pre-wrap;word-wrap:break-word;background:#0f1216;border:1px solid #1f2326;border-radius:10px;padding:12px;max-height:360px;overflow:auto}
+    img{max-width:100%;height:auto;border-radius:12px;border:1px solid #1f2326}
+    .pill{display:inline-block;border:1px solid #1f2326;border-radius:999px;padding:4px 10px;margin:2px 6px 2px 0;font-size:12px}
+    .small{opacity:.8;font-size:12px}
+  </style>
+  <!-- EXIF reader -->
+  <script src="https://cdn.jsdelivr.net/npm/exifreader@4.23.3/dist/exif-reader.min.js"></script>
+  <!-- Tesseract OCR -->
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.0/dist/tesseract.min.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <h1>🕵️ Image Probe</h1>
+  <p class="small">Drop in a JPEG/PNG, or auto-load <code>../img/to-screen.jpeg</code> if it exists.</p>
+
+  <div class="card row">
+    <input id="file" type="file" accept="image/*">
+    <button id="loadExample">Load ../img/to-screen.jpeg</button>
+  </div>
+
+  <div class="card">
+    <div id="preview"></div>
+  </div>
+
+  <div class="card">
+    <h3>Quick Facts</h3>
+    <div id="facts"><span class="small">No image yet.</span></div>
+  </div>
+
+  <div class="card">
+    <h3>EXIF (if present)</h3>
+    <pre id="exif"><em class="small">No EXIF or not available for this file.</em></pre>
+  </div>
+
+  <div class="card">
+    <h3>OCR (text found inside the image)</h3>
+    <div class="row small">
+      <span class="pill">Language: eng</span>
+      <button id="runOCR">Run OCR</button>
+    </div>
+    <pre id="ocr"></pre>
+  </div>
+
+  <div class="card">
+    <h3>Suggested searches</h3>
+    <div id="queries" class="row small"><span class="small">OCR some text first.</span></div>
+  </div>
+</div>
+
+<script>
+const $file = document.getElementById('file');
+const $loadExample = document.getElementById('loadExample');
+const $preview = document.getElementById('preview');
+const $facts = document.getElementById('facts');
+const $exif = document.getElementById('exif');
+const $runOCR = document.getElementById('runOCR');
+const $ocr = document.getElementById('ocr');
+const $queries = document.getElementById('queries');
+
+let currentBlobURL = null;
+let currentImageEl = null;
+let lastOCRText = '';
+
+function reset() {
+  $preview.innerHTML = '';
+  $facts.innerHTML = '<span class="small">No image yet.</span>';
+  $exif.textContent = 'No EXIF or not available for this file.';
+  $ocr.textContent = '';
+  $queries.innerHTML = '<span class="small">OCR some text first.</span>';
+  currentBlobURL = null;
+  currentImageEl = null;
+  lastOCRText = '';
+}
+
+function showImage(src) {
+  const img = new Image();
+  img.onload = () => {
+    currentImageEl = img;
+    $preview.innerHTML = '';
+    $preview.appendChild(img);
+    $facts.innerHTML = `
+      <span class="pill">Width: ${img.naturalWidth}px</span>
+      <span class="pill">Height: ${img.naturalHeight}px</span>
+      <span class="pill">Aspect: ${(img.naturalWidth/img.naturalHeight).toFixed(3)}</span>
+    `;
+  };
+  img.src = src;
+}
+
+async function readEXIF(file) {
+  try {
+    const arrayBuffer = await file.arrayBuffer();
+    const tags = await ExifReader.load(arrayBuffer);
+    if (!tags || Object.keys(tags).length===0) {
+      $exif.textContent = 'No EXIF metadata found.';
+      return;
+    }
+    const printable = {};
+    for (const k of Object.keys(tags)) {
+      printable[k] = tags[k].description || tags[k].value || String(tags[k]);
+    }
+    $exif.textContent = JSON.stringify(printable, null, 2);
+  } catch(e) {
+    $exif.textContent = 'No EXIF or could not parse.';
+  }
+}
+
+function makeQueries(text) {
+  const terms = (text||'')
+    .toLowerCase()
+    .replace(/[^a-z0-9\s\-]/g,' ')
+    .split(/\s+/)
+    .filter(w => w && w.length>2);
+
+  const uniq = [...new Set(terms)].slice(0,12);
+  if (uniq.length===0) {
+    $queries.innerHTML = '<span class="small">OCR found no searchable text.</span>';
+    return;
+  }
+
+  const q = encodeURIComponent(uniq.join(' '));
+  const qExact = encodeURIComponent('"' + uniq.slice(0,3).join(' ') + '"');
+  const row = `
+    <a class="btn" target="_blank" rel="noreferrer" href="https://www.google.com/search?q=${q}">Google</a>
+    <a class="btn" target="_blank" rel="noreferrer" href="https://duckduckgo.com/?q=${q}">DuckDuckGo</a>
+    <a class="btn" target="_blank" rel="noreferrer" href="https://www.bing.com/search?q=${q}">Bing</a>
+    <a class="btn" target="_blank" rel="noreferrer" href="https://www.google.com/search?q=${qExact}+site:news">Exact phrase in News</a>
+  `;
+  $queries.innerHTML = row;
+}
+
+async function handleFile(file) {
+  reset();
+  if (!file) return;
+  const url = URL.createObjectURL(file);
+  currentBlobURL = url;
+  showImage(url);
+  await readEXIF(file);
+}
+
+$file.addEventListener('change', (e) => {
+  const f = e.target.files && e.target.files[0];
+  handleFile(f);
+});
+
+$loadExample.addEventListener('click', async () => {
+  reset();
+  const path = '../img/to-screen.jpeg';
+  // try to fetch and convert to file
+  try {
+    const res = await fetch(path, {cache:'no-store'});
+    if (!res.ok) throw new Error('Not found');
+    const blob = await res.blob();
+    const file = new File([blob], 'to-screen.jpeg', {type: blob.type});
+    handleFile(file);
+  } catch(e) {
+    alert('Could not load ../img/to-screen.jpeg — make sure it exists.');
+  }
+});
+
+$runOCR.addEventListener('click', async () => {
+  if (!currentBlobURL) { alert('Load an image first.'); return; }
+  $ocr.textContent = 'Running OCR… (can take ~10–20s in browser)';
+  try {
+    const worker = await Tesseract.createWorker('eng');
+    const res = await worker.recognize(currentBlobURL);
+    await worker.terminate();
+    lastOCRText = (res && res.data && res.data.text) ? res.data.text.trim() : '';
+    $ocr.textContent = lastOCRText || '(no text detected)';
+    makeQueries(lastOCRText);
+  } catch (e) {
+    $ocr.textContent = 'OCR failed.';
+  }
+});
+</script>
+</body>
+</html>
+

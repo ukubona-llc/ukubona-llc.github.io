@@ -168,9 +168,172 @@
       </div>
       <hr class="sep">
     </section>
+
+    <section class="content-section">
+      <h2 class="section-title">Clinic Chat Simulator</h2>
+      <div id="ukb-sim-chat"></div>
+    </section>
+
+
   </main>
 
   <!-- footer injected by shared.js -->
   <div id="footer-placeholder" class="wrap-max"></div>
 </body>
+
+<script>
+(function () {
+  // ——— Roles ———
+  const ROLES = [
+    "Front Desk","Triage Nurse","Emergency Care","Urgent Care",
+    "Outpatient","Inpatient","Telemedicine",
+    "Pharmacist","Care Manager","Radiology Tech","Social Worker"
+  ];
+
+  // ——— Personas ———
+  const PERSONAS = {
+    "Hamlet (doubter)": t => "To act, or not to act—thus stands your case. " + t.replace(/\b(we will|must|need to)\b/gi,"we might consider"),
+    "Fortinbras (action)": t => "Decide. Move. We’ll guard the risk. • " + t.replace(/\.\s+/g," • "),
+    "Polonius (long-winded)": t => "In such affairs—mark me—prudence counsels thus: " + t + " In conclusion—though conclusions are seldom final—prefer caution to haste.",
+    "Jane Austen (poised)": t => "It is a truth rarely acknowledged in the waiting room that " + t,
+    "Dickens (observant)": t => "It was the best of plans, it was the worst of risks. " + t + " We shall proceed with both kindness and account.",
+    "Hemingway (spare)": t => t.replace(/\.\s+/g,". ").replace(/,|\;|\—/g,"").split(". ").slice(0,4).join(". ") + ".",
+    "Toni Morrison (lyrical)": t => "Breathe. The body remembers the roads it has taken. " + t + " We will choose a path that honors your story.",
+    "Shakespeare (narrator)": t => "Enter patient, burdened with doubt. " + t + " Exeunt fear; enter counsel."
+  };
+
+  // ——— Intents ———
+  function intentOf(text) {
+    const s = text.toLowerCase();
+    if (/(face droop|slur|weakness|fast|stroke)/.test(s)) return "stroke";
+    if (/(crushing|severe).*chest|chest pain.*(radiat|sweat|vomit|short)/.test(s)) return "emergent";
+    if (/(chest pain|tightness)/.test(s)) return "lowrisk";
+    if (/(insurance|prior auth|authorization|denied)/.test(s)) return "insurance";
+    if (/(wait|queue|line|backlog)/.test(s)) return "wait";
+    if (/(refill|prescription|rx|pharmacy)/.test(s)) return "rx";
+    if (/(screen|mammogram|colonoscopy|ct|contrast|scan|x-ray|mri|ultrasound)/.test(s)) return "screening";
+    if (/(transport|housing|food|shelter|childcare|benefits)/.test(s)) return "social";
+    return "generic";
+  }
+
+  // ——— Blueprints per role ———
+  const BLUEPRINTS = {
+    "Front Desk": {
+      generic: "I can help with scheduling and directions. If urgent, say so and I’ll escalate.",
+      wait: "Current wait is ~30–90 minutes by acuity. If symptoms worsen, I’ll alert triage.",
+      insurance: "I’ll check coverage and prior authorization; we’ll route documentation as needed.",
+      screening: "I’ll note any contrast allergies and book you; the clinician will confirm prep."
+    },
+    "Triage Nurse": {
+      emergent: "This could be emergent. Please come to triage now—vitals and ECG within minutes.",
+      lowrisk: "We’ll assess risk (vitals, history, ECG) to avoid unnecessary exposure while staying safe.",
+      stroke: "Possible stroke signs. Time is brain. I’m activating the protocol; come immediately.",
+      generic: "Tell me onset, severity, triggers, and red flags (fainting, SOB, confusion)."
+    },
+    "Emergency Care": {
+      emergent: "ECG & troponins, monitoring, and treatment while balancing radiation/contrast risk.",
+      stroke: "CT to rule out bleed, then evaluate window for reperfusion. Speed preserves function.",
+      generic: "Stabilize airway/breathing/circulation; then focused diagnostics to minimize harm."
+    },
+    "Urgent Care": {
+      lowrisk: "If no red flags and normal vitals, we’ll use decision rules to minimize unnecessary CT.",
+      rx: "We can bridge short refills with checks; chronic regimens go to primary for continuity.",
+      generic: "Focused exam and point-of-care tests; escalate to ED if thresholds are crossed."
+    },
+    "Outpatient": {
+      screening: "We’ll weigh benefit vs radiation/contrast risk and cost; alternatives include watchful waiting or ultrasound.",
+      insurance: "We’ll document guideline-aligned indications to support authorization.",
+      generic: "Shared decision-making: your values, evidence summary, next steps, and follow-up."
+    },
+    "Inpatient": {
+      generic: "Daily goals: reduce risks, prevent complications, plan discharge. Orders must shorten stay or lower harm."
+    },
+    "Telemedicine": {
+      generic: "First, safety: any red flags needing in-person care? If safe, we’ll manage remotely with clear return precautions.",
+      screening: "We can order imaging/labs and coordinate nearby; past reactions guide prep."
+    },
+    "Pharmacist": {
+      rx: "Let’s review the medication, dose, interactions, and refills. I’ll check PDMP where appropriate and coordinate prescriber approval.",
+      generic: "We’ll verify allergies, interactions, and cost options (generics, PAPs)."
+    },
+    "Care Manager": {
+      insurance: "I’ll navigate benefits, prior auth, and appeals; we’ll align documentation with plan policies.",
+      generic: "We coordinate across clinics, hospitals, and payers to keep your plan on track."
+    },
+    "Radiology Tech": {
+      screening: "I’ll confirm the order, check for metal/implants/contrast allergy, explain prep, and ensure safety during the scan.",
+      generic: "We’ll position you comfortably, limit exposure, and keep you informed throughout."
+    },
+    "Social Worker": {
+      social: "We can help with transportation, housing, food resources, and benefits. Let’s match services to your situation.",
+      generic: "Tell me what’s in the way—costs, access, caregiving—and we’ll build supports."
+    }
+  };
+
+  // ——— Compose reply ———
+  function respond(role, persona, userText) {
+    const intent = intentOf(userText);
+    const b = BLUEPRINTS[role] || {};
+    let msg = b[intent] || b.generic || "I’ll route you appropriately and keep safety first.";
+    if (intent === "lowrisk" && !b[intent]) msg += " We’ll apply HEART-style rules to reduce unnecessary imaging.";
+    if (intent === "emergent" && !b[intent]) msg = "Sounds emergent—escalate now for ECG within minutes.";
+    const stylize = PERSONAS[persona] || (x => x);
+    return stylize(msg);
+  }
+
+  // ——— UI mount ———
+  function mount() {
+    const host = document.getElementById('ukb-sim-chat');
+    if (!host) return;
+    host.innerHTML = `
+      <div style="border:1px solid var(--stroke,#1f2326);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <select id="role">${ROLES.map(r=>`<option>${r}</option>`).join('')}</select>
+          <select id="persona">${Object.keys(PERSONAS).map(p=>`<option>${p}</option>`).join('')}</select>
+        </div>
+        <textarea id="q" rows="3" placeholder="Type your question, e.g., 'Mild chest pain since yesterday'"></textarea>
+
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button id="ask" class="cta-button cta-primary">
+            Ask
+          </button>
+          <a id="probe" href="../html/probe.html" class="cta-button cta-secondary">
+            Open Image Probe
+          </a>
+        </div>
+
+        <div id="log" style="display:flex;flex-direction:column;gap:8px"></div>
+      </div>`;
+
+    const $role = host.querySelector('#role');
+    const $persona = host.querySelector('#persona');
+    const $q = host.querySelector('#q');
+    const $ask = host.querySelector('#ask');
+    const $log = host.querySelector('#log');
+
+    function bubble(who, text){
+      const d = document.createElement('div');
+      d.style.border = '1px solid var(--stroke,#1f2326)';
+      d.style.borderRadius = '10px';
+      d.style.padding = '8px 10px';
+      d.style.background = who==='You' ? 'transparent' : 'rgba(255,255,255,0.03)';
+      d.innerHTML = `<strong>${who}:</strong> ${text.replace(/\n/g,'<br>')}`;
+      $log.appendChild(d);
+    }
+
+    $ask.onclick = () => {
+      const t = ($q.value||'').trim();
+      if (!t) return;
+      bubble('You', t);
+      const ans = respond($role.value, $persona.value, t);
+      bubble(`${$role.value} — ${$persona.value}`, ans);
+      $q.value = '';
+    };
+  }
+
+  document.addEventListener('DOMContentLoaded', mount);
+})();
+</script>
+
+
 </html>
