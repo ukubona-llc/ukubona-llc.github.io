@@ -1,25 +1,172 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <title>Ukubona Command Center</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="ukb-variant" content="twins">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Digital Twins — Ukubona LLC</title>
+
+  <!-- Minimal inline polish for symmetry & rhythm (same pattern as your example) -->
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
+    html[data-theme='light'] .menu-icon div { background-color:#000; }
+    html[data-theme='dark']  .menu-icon div { background-color:#fff; }
+
+    .wrap-max { max-width:1120px; margin:0 auto; padding:0 24px; }
+
+    /* Hero */
+    .hero .hero-content { padding:120px 0 40px; }
+    .hero-title { text-align:center; letter-spacing:.2px; }
+    .hero-subtitle { text-align:center; opacity:.9; margin-top:.4rem; }
+
+    /* Sections */
+    .main-content { padding-bottom:64px; }
+    .content-section { margin:56px auto 0; }
+    .content-section:first-of-type { margin-top:24px; }
+
+    /* Typography */
+    .section-title { text-align:center; margin-bottom:12px; letter-spacing:.2px; }
+    .section-text { max-width:86ch; margin:0 auto; line-height:1.65; color:var(--text); text-align:left; }
+
+    /* Grid for twins (re-uses your tokens, same breakpoints as example) */
+    .twins-grid {
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:18px;
+      max-width:1080px;
+      margin:16px auto 0;
+      padding:0 4px;
     }
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
+    @media (max-width: 980px) { .twins-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .twins-grid { grid-template-columns: 1fr; } }
+
+    .twin-card {
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:18px;
+      backdrop-filter: blur(var(--blur));
+      transition: var(--transition);
+      text-decoration:none;
+      color:inherit;
+      display:grid;
+      grid-template-columns:56px 1fr auto;
+      grid-auto-rows:auto;
+      column-gap:12px;
+      row-gap:4px;
+      align-items:center;
     }
+    .twin-card:hover { transform: translateY(-2px); }
+
+    .twin-emoji { font-size:28px; display:grid; place-items:center; grid-row:1 / span 2; }
+    .twin-title { margin:0; font-weight:700; }
+    .twin-sub { margin:0; opacity:.85; }
+    .twin-open { font-weight:600; opacity:.9; white-space:nowrap; }
+    .badge-row { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; grid-column:1 / -1; }
+    .badge { border:1px solid var(--border); border-radius:999px; padding:4px 10px; font-size:.85rem; background:var(--glass); }
+
+    /* Tiny helper for the external-link arrow alignment */
+    .twin-open::after { content:" ↗"; }
   </style>
+
+  <!-- Icons / assets (exact pattern you use) -->
+  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon">
+  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" media="(prefers-color-scheme: dark)">
+  <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-light.png" as="image">
+  <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-dark.png" as="image">
+
+  <!-- Fonts & site CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+
+  <!-- Feather (optional icons in buttons/links) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
 </head>
 <body>
-  <iframe src="https://dt-e-001.onrender.com/" allowfullscreen></iframe>
+  <div class="scroll-indicator"><div class="scroll-progress"></div></div>
+  <div class="bg-pattern"></div>
+
+  <!-- Centralized header (populated by shared.js like your other pages) -->
+  <header class="header" id="header"></header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content wrap-max">
+      <h1 class="hero-title">Digital Twins</h1>
+      <p class="hero-subtitle">Choose a cockpit. All open in a new tab.</p>
+      <div class="hero-cta" style="display:flex; justify-content:center; margin-top:12px;">
+        <a href="#twins" class="cta-button cta-primary">
+          <i data-feather="cpu"></i> View Twins
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <main class="main-content wrap-max" id="twins">
+    <!-- Cards grid -->
+    <section class="content-section">
+      <h2 class="section-title">Available Twins</h2>
+      <p class="section-text">
+        Enterprise gives the company-wide view; Personal is your owner-operator cockpit; Client A is a partner-specific rehearsal space.
+      </p>
+
+      <div class="twins-grid">
+        <!-- Enterprise -->
+        <a class="twin-card" href="https://dt-e-001.onrender.com/" target="_blank" rel="noopener">
+          <div class="twin-emoji" aria-hidden="true">🏢</div>
+          <h3 class="twin-title">Enterprise Twin</h3>
+          <div class="twin-open" aria-hidden="true">Open</div>
+          <p class="twin-sub">Company-wide operations & analytics.</p>
+          <div class="badge-row">
+            <span class="badge">Public</span><span class="badge">Read-heavy</span><span class="badge">Dashboards</span>
+          </div>
+        </a>
+
+        <!-- Personal -->
+        <a class="twin-card" href="https://dt-e-002.onrender.com/" target="_blank" rel="noopener">
+          <div class="twin-emoji" aria-hidden="true">🔥</div>
+          <h3 class="twin-title">Personal Twin</h3>
+          <div class="twin-open" aria-hidden="true">Open</div>
+          <p class="twin-sub">Owner-operator daily ops cockpit.</p>
+          <div class="badge-row">
+            <span class="badge">Ops</span><span class="badge">Private</span><span class="badge">Write</span>
+          </div>
+        </a>
+
+        <!-- Client -->
+        <a class="twin-card" href="https://dt-e-003.onrender.com/" target="_blank" rel="noopener">
+          <div class="twin-emoji" aria-hidden="true">🤝</div>
+          <h3 class="twin-title">Client A Twin</h3>
+          <div class="twin-open" aria-hidden="true">Open</div>
+          <p class="twin-sub">Partner/client-specific simulation.</p>
+          <div class="badge-row">
+            <span class="badge">Partner</span><span class="badge">Scoped</span><span class="badge">Sandbox</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Optional explanatory section (kept minimal; same house style) -->
+    <section class="content-section">
+      <h2 class="section-title">How Twins Fit</h2>
+      <p class="section-text">
+        Each twin is a live rehearsal: <strong>Inputs → Model → API → UI → Return</strong>. We keep assumptions visible and uncertainty preserved. Private variants add auth and stricter logging; public endpoints return only safe aggregates.
+      </p>
+    </section>
+  </main>
+
+  <!-- Footer (same partial pattern you’re using) -->
+  <div id="footer-placeholder" class="wrap-max"></div>
+  <script>
+    // footer partial (same as your example)
+    fetch('/assets/html/footer.html')
+      .then(r => r.text())
+      .then(html => { document.getElementById('footer-placeholder').innerHTML = html; });
+  </script>
+
+  <!-- Page scripts (order matches your other pages) -->
+  <script src="../js/landing.js"></script>
+  <script src="../js/shared.js"></script>
+  <script>feather.replace();</script>
 </body>
 </html>
-
