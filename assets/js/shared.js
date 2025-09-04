@@ -212,10 +212,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(!footer) return;
 
     const defaultChorus = [
-      'Clarity over hype.',
-      'Evidence before claims.',
-      'Privacy by design.',
-      'Humans in the loop.'
+      '"Ukubona" means ',
+      '<em>to see, to witness</em> —',
+      'to look into the mirror.'
     ];
 
     const variants = {
