@@ -6,165 +6,123 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Digital Twins — Ukubona LLC</title>
 
-  <!-- Minimal inline polish for symmetry & rhythm (same pattern as your example) -->
   <style>
+    :root {
+      --surface: rgba(255,255,255,0.03);
+      --glass: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.10);
+      --text: #e6edf3;
+      --blur: 8px;
+      --transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
     html[data-theme='light'] .menu-icon div { background-color:#000; }
     html[data-theme='dark']  .menu-icon div { background-color:#fff; }
 
+    body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
     .wrap-max { max-width:1120px; margin:0 auto; padding:0 24px; }
 
-    /* Hero */
     .hero .hero-content { padding:120px 0 40px; }
-    .hero-title { text-align:center; letter-spacing:.2px; }
+    .hero-title { text-align:center; letter-spacing:.2px; font-weight:800; }
     .hero-subtitle { text-align:center; opacity:.9; margin-top:.4rem; }
 
-    /* Sections */
     .main-content { padding-bottom:64px; }
     .content-section { margin:56px auto 0; }
     .content-section:first-of-type { margin-top:24px; }
 
-    /* Typography */
-    .section-title { text-align:center; margin-bottom:12px; letter-spacing:.2px; }
-    .section-text { max-width:86ch; margin:0 auto; line-height:1.65; color:var(--text); text-align:left; }
+    .section-title { text-align:center; margin-bottom:12px; letter-spacing:.2px; font-weight:800; }
+    .section-text { max-width:86ch; margin:0 auto; line-height:1.65; color:var(--text); text-align:left; opacity:.95; }
 
-    /* Grid for twins (re-uses your tokens, same breakpoints as example) */
-    .twins-grid {
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:18px;
-      max-width:1080px;
-      margin:16px auto 0;
-      padding:0 4px;
-    }
-    @media (max-width: 980px) { .twins-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 640px) { .twins-grid { grid-template-columns: 1fr; } }
+    .grid-3 { display:grid; grid-template-columns: repeat(3, 1fr); gap:18px; max-width:1080px; margin:16px auto 0; padding:0 4px; }
+    @media (max-width: 980px) { .grid-3 { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .grid-3 { grid-template-columns: 1fr; } }
 
-    .twin-card {
-      background:var(--surface);
-      border:1px solid var(--border);
-      border-radius:16px;
-      padding:18px;
-      backdrop-filter: blur(var(--blur));
-      transition: var(--transition);
-      text-decoration:none;
-      color:inherit;
-      display:grid;
-      grid-template-columns:56px 1fr auto;
-      grid-auto-rows:auto;
-      column-gap:12px;
-      row-gap:4px;
-      align-items:center;
-    }
-    .twin-card:hover { transform: translateY(-2px); }
-
-    .twin-emoji { font-size:28px; display:grid; place-items:center; grid-row:1 / span 2; }
-    .twin-title { margin:0; font-weight:700; }
-    .twin-sub { margin:0; opacity:.85; }
-    .twin-open { font-weight:600; opacity:.9; white-space:nowrap; }
-    .badge-row { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; grid-column:1 / -1; }
+    .card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:18px; backdrop-filter: blur(var(--blur)); transition: var(--transition); color:inherit; text-decoration:none; display:grid; grid-template-columns:56px 1fr auto; column-gap:12px; row-gap:4px; align-items:center; }
+    .card:hover { transform: translateY(-2px); }
+    .card .emoji { font-size:28px; display:grid; place-items:center; grid-row:1 / span 2; }
+    .card h3 { margin:0; font-weight:700; }
+    .card p { margin:0; opacity:.85; }
+    .card .open { font-weight:600; opacity:.9; white-space:nowrap; }
+    .card .open::after { content:" ↗"; }
+    .badges { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; grid-column:1 / -1; }
     .badge { border:1px solid var(--border); border-radius:999px; padding:4px 10px; font-size:.85rem; background:var(--glass); }
 
-    /* Tiny helper for the external-link arrow alignment */
-    .twin-open::after { content:" ↗"; }
+    .layer { grid-template-columns:56px 1fr auto; }
+    .code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:.9rem; opacity:.9; }
+    .mini { font-size:.92rem; opacity:.9; }
+
+    .ext::after { content:" ↗"; }
   </style>
 
-  <!-- Icons / assets (exact pattern you use) -->
   <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon">
   <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" media="(prefers-color-scheme: light)">
   <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" media="(prefers-color-scheme: dark)">
   <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-light.png" as="image">
   <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-dark.png" as="image">
 
-  <!-- Fonts & site CSS -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/main.css">
 
-  <!-- Feather (optional icons in buttons/links) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
 </head>
 <body>
   <div class="scroll-indicator"><div class="scroll-progress"></div></div>
   <div class="bg-pattern"></div>
-
-  <!-- Centralized header (populated by shared.js like your other pages) -->
   <header class="header" id="header"></header>
 
-  <!-- HERO -->
-  <section class="hero">
+  <section class="hero" aria-labelledby="hero-title">
     <div class="hero-content wrap-max">
-      <h1 class="hero-title">Digital Twins</h1>
+      <h1 class="hero-title" id="hero-title">Digital Twins</h1>
       <p class="hero-subtitle">Choose a cockpit. All open in a new tab.</p>
-      <div class="hero-cta" style="display:flex; justify-content:center; margin-top:12px;">
-        <a href="#twins" class="cta-button cta-primary">
-          <i data-feather="cpu"></i> View Twins
-        </a>
+      <div class="hero-cta" style="display:flex; justify-content:center; margin-top:12px; gap:10px;">
+        <a href="#twins" class="cta-button cta-primary"><i data-feather="cpu"></i> View Twins</a>
+        <a href="#layers" class="cta-button cta-secondary"><i data-feather="layers"></i> Model Layers</a>
       </div>
     </div>
   </section>
 
-  <main class="main-content wrap-max" id="twins">
-    <!-- Cards grid -->
-    <section class="content-section">
+  <main class="main-content wrap-max">
+    <section class="content-section" id="twins">
       <h2 class="section-title">Available Twins</h2>
-      <p class="section-text">
-        Enterprise gives the company-wide view; Personal is your owner-operator cockpit; Client A is a partner-specific rehearsal space.
-      </p>
+      <p class="section-text">Enterprise gives the company-wide view; Personal is your owner-operator cockpit; Client A is a partner-specific rehearsal space.</p>
 
-      <div class="twins-grid">
-        <!-- Enterprise -->
-        <a class="twin-card" href="dt-001.html" target="_blank" rel="noopener">
-          <div class="twin-emoji" aria-hidden="true">🏢</div>
-          <h3 class="twin-title">Enterprise Twin</h3>
-          <div class="twin-open" aria-hidden="true">Open</div>
-          <p class="twin-sub">Company-wide operations & analytics.</p>
-          <div class="badge-row">
-            <span class="badge">Public</span><span class="badge">Read-heavy</span><span class="badge">Dashboards</span>
-          </div>
-        </a>
-
-        <!-- Personal -->
-        <a class="twin-card" href="dt-002.html" target="_blank" rel="noopener">
-          <div class="twin-emoji" aria-hidden="true">🔥</div>
-          <h3 class="twin-title">Personal Twin</h3>
-          <div class="twin-open" aria-hidden="true">Open</div>
-          <p class="twin-sub">Owner-operator daily ops cockpit.</p>
-          <div class="badge-row">
-            <span class="badge">Ops</span><span class="badge">Private</span><span class="badge">Write</span>
-          </div>
-        </a>
-
-        <!-- Client -->
-        <a class="twin-card" href="dt-003.html" target="_blank" rel="noopener">
-          <div class="twin-emoji" aria-hidden="true">🤝</div>
-          <h3 class="twin-title">Client A Twin</h3>
-          <div class="twin-open" aria-hidden="true">Open</div>
-          <p class="twin-sub">Partner/client-specific simulation.</p>
-          <div class="badge-row">
-            <span class="badge">Partner</span><span class="badge">Scoped</span><span class="badge">Sandbox</span>
-          </div>
-        </a>
+      <div class="grid-3">
+        <a class="card" href="dt-001.html" target="_blank"><div class="emoji">🏢</div><h3>Enterprise Twin</h3><div class="open">Open</div><p>Company-wide operations & analytics.</p><div class="badges"><span class="badge">Public</span><span class="badge">Read-heavy</span><span class="badge">Dashboards</span></div></a>
+        <a class="card" href="dt-002.html" target="_blank"><div class="emoji">🔥</div><h3>Personal Twin</h3><div class="open">Open</div><p>Owner-operator daily ops cockpit.</p><div class="badges"><span class="badge">Ops</span><span class="badge">Private</span><span class="badge">Write</span></div></a>
+        <a class="card" href="dt-003.html" target="_blank"><div class="emoji">🤝</div><h3>Client A Twin</h3><div class="open">Open</div><p>Partner/client-specific simulation.</p><div class="badges"><span class="badge">Partner</span><span class="badge">Scoped</span><span class="badge">Sandbox</span></div></a>
       </div>
     </section>
 
-    <!-- Optional explanatory section (kept minimal; same house style) -->
+    <section class="content-section" id="layers">
+      <h2 class="section-title">Model Layers</h2>
+      <p class="section-text">Canonical codes for your PBSMC ladder — from molecules → platform. Each layer opens its own .html stub.</p>
+
+      <div class="grid-3">
+        <a class="card layer" href="dt-m-001.html" target="_blank"><div class="emoji">🧬</div><h3>Molecule</h3><div class="code">ukb-dt-m-001</div><p class="mini">Fundamental unit — chemical bonds, reactions, energy carriers.</p></a>
+        <a class="card layer" href="dt-c-001.html" target="_blank"><div class="emoji">🔬</div><h3>Cell</h3><div class="code">ukb-dt-c-001</div><p class="mini">Basic life form — organelles, membranes, metabolism.</p></a>
+        <a class="card layer" href="dt-t-001.html" target="_blank"><div class="emoji">🧵</div><h3>Tissue</h3><div class="code">ukb-dt-t-001</div><p class="mini">Collective cells — muscle, epithelium, connective, neural.</p></a>
+        <a class="card layer" href="dt-o-001.html" target="_blank"><div class="emoji">🫀</div><h3>Organ</h3><div class="code">ukb-dt-o-001</div><p class="mini">Functional subsystem — heart, lung, liver, kidney.</p></a>
+        <a class="card layer" href="dt-s-001.html" target="_blank"><div class="emoji">🌐</div><h3>System</h3><div class="code">ukb-dt-s-001</div><p class="mini">Organ networks — circulatory, respiratory, nervous.</p></a>
+        <a class="card layer" href="dt-a-001.html" target="_blank"><div class="emoji">🧑</div><h3>Agent</h3><div class="code">ukb-dt-a-001</div><p class="mini">Individual actor — person, clinician, patient, avatar.</p></a>
+        <a class="card layer" href="dt-r-001.html" target="_blank"><div class="emoji">🔗</div><h3>Relationship</h3><div class="code">ukb-dt-r-001</div><p class="mini">Interactions — transactions, communications, dependencies.</p></a>
+        <a class="card layer" href="dt-h-001.html" target="_blank"><div class="emoji">🏠</div><h3>Household</h3><div class="code">ukb-dt-h-001</div><p class="mini">Micro-society — family unit, shared resources, support.</p></a>
+        <a class="card layer" href="dt-e-002.html" target="_blank"><div class="emoji">🏢</div><h3>Enterprise</h3><div class="code">ukb-dt-e-001</div><p class="mini">Organized collective — firms, institutions, NGOs.</p></a>
+        <a class="card layer" href="dt-p-001.html" target="_blank"><div class="emoji">🛰️</div><h3>Platform</h3><div class="code">ukb-dt-p-001</div><p class="mini">Macro-infrastructure — ecosystems, digital twins, policy grids.</p></a>
+      </div>
+    </section>
+
     <section class="content-section">
       <h2 class="section-title">How Twins Fit</h2>
-      <p class="section-text">
-        Each twin is a live rehearsal: <strong>Inputs → Model → API → UI → Return</strong>. We keep assumptions visible and uncertainty preserved. Private variants add auth and stricter logging; public endpoints return only safe aggregates.
-      </p>
+      <p class="section-text">Each twin is a live rehearsal: <strong>Inputs → Model → API → UI → Return</strong>. We keep assumptions visible and uncertainty preserved. Private variants add auth and stricter logging; public endpoints return only safe aggregates.</p>
     </section>
   </main>
 
-  <!-- Footer (same partial pattern you’re using) -->
   <div id="footer-placeholder" class="wrap-max"></div>
   <script>
-    // footer partial (same as your example)
     fetch('/assets/html/footer.html')
       .then(r => r.text())
       .then(html => { document.getElementById('footer-placeholder').innerHTML = html; });
   </script>
 
-  <!-- Page scripts (order matches your other pages) -->
   <script src="../js/landing.js"></script>
   <script src="../js/shared.js"></script>
   <script>feather.replace();</script>
