@@ -219,10 +219,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const variants = {
       game: [
-        'This is play, not prescription.',
-        'This is rehearsal, not remedy.',
-        'This is simulation, not salvation.',
-        'Trials, not intimacy.'
+        'Healthcare needs its flight simulator. ',
+        'Ukubona builds it —',
+        'digital twins for safer, ',
+        'smarter decisions.'
       ],
       education: [
         'Practice over posturing.',
