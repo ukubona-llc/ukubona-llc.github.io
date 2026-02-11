@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Ukubona — The Optimization Loop</title>
+  <meta name="description" content="Landscape -> Behavior -> Optimization -> Ecosystem. Healthcare reimagined as sequential, consequential play.">
+  <link rel="canonical" href="https://ukubona-llc.github.io/">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#0a0a0f">
+
+  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/index.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="scroll-indicator"><div class="scroll-progress"></div></div>
+  <div class="bg-pattern"></div>
+
+  <header class="header" id="header"></header>
+
+  <main class="main-content">
+    
+    <section class="stage-landscape">
+      <div class="landscape-visual">
+        <div class="img-overlay"></div>
+        <img src="assets/img/terraforming.jpg" alt="The Landscape" class="bg-img">
+      </div>
+      
+      <div class="stage-content">
+        <div class="system-status mono">
+          <span class="pulse-dot"></span>
+          SYSTEM: OPTIMIZING
+        </div>
+        <h1 class="headline">
+          Healthcare is a <br>
+          <span class="gradient-text">Stochastic Process.</span>
+        </h1>
+        <p class="lead-text">
+          We map the landscape, measure user behavior, and apply gradient descent to care delivery. 
+          Don't just treat. Rehearse.
+        </p>
+        <div class="cta-group">
+          <a href="assets/html/game.html" class="btn btn-primary">Run Simulation</a>
+          <a href="#ecosystem" class="btn btn-ghost">View Models</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="stage-pipeline">
+      <div class="pipeline-grid">
+        
+        <article class="pipeline-node">
+          <header>
+            <span class="node-index mono">01</span>
+            <h2>User Behavior (UB)</h2>
+          </header>
+          <p>
+            Traditional healthcare assumes a linear path. We acknowledge the noise. 
+            By creating digital twins, we capture the behavior hidden in the variance.
+          </p>
+          <div class="data-stream mono">
+            > ERROR_RATE: <span class="highlight-error">0.042</span><br>
+            > CAPTURING_SIGNAL...
+          </div>
+        </article>
+
+        <div class="pipeline-visual">
+          <img src="assets/img/ant-colony-simulation-game-prototype-pheromone-foraging.jpg" alt="Stochastic Optimization">
+          <span class="caption mono">FIG 1.0: SWARM OPTIMIZATION</span>
+        </div>
+
+        <article class="pipeline-node">
+          <header>
+            <span class="node-index mono">02</span>
+            <h2>Optimization (SGD)</h2>
+          </header>
+          <p>
+            We calculate the loss function between <em>intended care</em> and <em>actual outcome</em>. 
+            Our models iteratively refine the path, minimizing error before a physical patient is ever touched.
+          </p>
+          <div class="data-stream mono">
+            > APPLYING_GRADIENT<br>
+            > LOSS_MINIMIZED
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="stage-ecosystem" id="ecosystem">
+      <div class="section-header">
+        <h2>The Ecosystem</h2>
+        <span class="mono subtitle">AVAILABLE DIGITAL TWIN INTERFACES</span>
+      </div>
+
+      <div class="grid-cards">
+        <a href="assets/html/game.html" class="card tool-card">
+          <div class="card-icon"><i data-feather="play-circle"></i></div>
+          <div class="card-body">
+            <h3>Scenario Rehearsal</h3>
+            <p>Interactive simulation of care pathways. Test decision trees in a risk-free environment.</p>
+          </div>
+          <div class="card-meta mono">
+            <span>ACTIVE</span>
+            <span>v2.4</span>
+          </div>
+        </a>
+
+        <a href="assets/html/dt-001.html" class="card tool-card">
+          <div class="card-icon"><i data-feather="activity"></i></div>
+          <div class="card-body">
+            <h3>Clinical Twin: DT-001</h3>
+            <p>Baseline physiological model for outcome prediction.</p>
+          </div>
+          <div class="card-meta mono">
+            <span>MODEL</span>
+            <span>n=10k</span>
+          </div>
+        </a>
+
+        <a href="assets/html/cartography-256.html" class="card tool-card">
+          <div class="card-icon"><i data-feather="map"></i></div>
+          <div class="card-body">
+            <h3>System Cartography</h3>
+            <p>Visualizing the healthcare topology and service nodes.</p>
+          </div>
+          <div class="card-meta mono">
+            <span>MAP</span>
+            <span>256 NODES</span>
+          </div>
+        </a>
+
+        <a href="assets/html/team.html" class="card tool-card">
+          <div class="card-icon"><i data-feather="users"></i></div>
+          <div class="card-body">
+            <h3>Operators</h3>
+            <p>The humans-in-the-loop refining the algorithm.</p>
+          </div>
+          <div class="card-meta mono">
+            <span>TEAM</span>
+            <span>CONNECT</span>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-overlay" id="modal-overlay"></div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+  <script src="assets/js/landing.js"></script>
+  <script src="assets/js/index.js"></script>
+  <script src="assets/js/shared.js"></script>
+  <script src="assets/js/tooltips.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>

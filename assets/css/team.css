@@ -1,0 +1,63 @@
+/* team.css - dedicated styles for team.html only */
+
+html[data-theme='light'] .menu-icon div { background-color: #000; }
+html[data-theme='dark']  .menu-icon div { background-color: #fff; }
+
+/* Layout */
+.wrap-max {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Hero */
+.hero .hero-content { padding: 120px 0 40px; }
+.hero-title { text-align: center; letter-spacing: .2px; }
+.hero-subtitle { text-align: center; opacity: .9; margin-top: .4rem; }
+
+/* Page rhythm */
+.main-content { padding-bottom: 64px; }
+.content-section { margin: 56px auto 0; }
+.content-section:first-of-type { margin-top: 24px; }
+
+/* Typography */
+.section-title { text-align: center; margin-bottom: 12px; letter-spacing: .2px; }
+.section-text {
+  max-width: 86ch;
+  margin: 0 auto;
+  line-height: 1.65;
+  color: var(--text);
+  text-align: left;
+}
+
+/* Intern cards */
+.interns-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  max-width: 86ch;
+  margin: 12px auto 0;
+}
+.intern-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  backdrop-filter: blur(var(--blur));
+}
+.intern-card h3 { margin: 0 0 6px; font-weight: 700; }
+.intern-meta { margin: 0 0 10px; opacity: .85; font-size: .95rem; }
+.intern-points { margin: 0; padding-left: 1.1rem; line-height: 1.6; }
+.intern-points li { margin: 4px 0; }
+.intern-link { margin-top: 10px; }
+.intern-link a { text-decoration: none; }
+.intern-note {
+  margin-top: 10px;
+  font-style: italic;
+  opacity: 0.9;
+}
+
+/* Header safety */
+.header { overflow: visible !important; }
+.header .logo { position: relative; z-index: 101; }
+.nav-container { overflow: visible !important; }

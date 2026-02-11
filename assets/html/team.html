@@ -4,96 +4,36 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Minimal inline polish for symmetry & rhythm -->
-  <style>
-    html[data-theme='light'] .menu-icon div { background-color:#000; }
-    html[data-theme='dark']  .menu-icon div { background-color:#fff; }
+  <title>Team - Ukubona LLC</title>
+  <meta name="description" content="The Ukubona team — scouts who returned with artifacts from high-curvature territory.">
 
-    /* Layout container */
-    .wrap-max { max-width:1120px; margin:0 auto; padding:0 24px; }
-
-    /* Hero */
-    .hero .hero-content { padding:120px 0 40px; }
-    .hero-title { text-align:center; letter-spacing:.2px; }
-    .hero-subtitle { text-align:center; opacity:.9; margin-top:.4rem; }
-
-    /* Page rhythm */
-    .main-content { padding-bottom:64px; }
-    .content-section { margin:56px auto 0; }
-    .content-section:first-of-type { margin-top:24px; }
-
-    /* Typography */
-    .section-title { text-align:center; margin-bottom:12px; letter-spacing:.2px; }
-    .section-text { max-width:86ch; margin:0 auto; line-height:1.65; color:var(--text); text-align:left; }
-
-    /* Intern cards: tidy spacing, readable lines */
-    .interns-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 18px;
-      max-width: 86ch;
-      margin: 12px auto 0;
-    }
-    .intern-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 18px;
-      backdrop-filter: blur(var(--blur));
-    }
-    .intern-card h3 {
-      margin: 0 0 6px;
-      font-weight: 700;
-    }
-    .intern-meta {
-      margin: 0 0 10px;
-      opacity: .85;
-      font-size: .95rem;
-    }
-    .intern-points {
-      margin: 0;
-      padding-left: 1.1rem;
-      line-height: 1.6;
-    }
-    .intern-points li { margin: 4px 0; }
-    .intern-link { margin-top: 10px; }
-    .intern-link a { text-decoration: none; }
-    
-    .intern-note {
-      margin-top: 10px;
-      font-style: italic;
-      opacity: 0.9;
-    }
-
-    /* FIX: Logo visibility */
-    .header {
-      overflow: visible !important;
-    }
-    .header .logo {
-      position: relative;
-      z-index: 101;
-    }
-    .nav-container {
-      overflow: visible !important;
-    }
-  </style>
-
+  <!-- Icons & Preloads -->
   <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon" />
   <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" media="(prefers-color-scheme: light)" />
   <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" media="(prefers-color-scheme: dark)" />
   <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-light.png" as="image" />
   <link rel="preload" href="https://abikesa.github.io/logos/assets/ukubona-dark.png" as="image" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/main.css" />
 
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Core styles -->
+  <link rel="stylesheet" href="../css/main.css" />
+  
+  <!-- Team-specific styles (new dedicated file) -->
+  <link rel="stylesheet" href="../css/team.css" />
+
+  <!-- Feather icons -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
-  <title>Team - Ukubona LLC</title>
 </head>
 <body>
   <div class="scroll-indicator"><div class="scroll-progress"></div></div>
   <div class="bg-pattern"></div>
 
-  <header class="header" id="header"></header>
+  <!-- Paste full content of header.html here (static, no fetch) -->
+  <header class="header" id="header">
+    <!-- ← FULL HEADER HTML GOES HERE -->
+  </header>
 
   <!-- HERO -->
   <section class="hero">
@@ -107,7 +47,9 @@
   </section>
 
   <main class="main-content wrap-max" id="team-content">
-
+    <!-- Your content stays exactly as you wrote it (How We Work, Founder, Core Staff, Interns, Origins) -->
+    <!-- ... paste all your sections here ... -->
+  
           <!-- How We Work -->
           <section class="content-section">
             <h2 class="section-title">How We Work</h2>
@@ -271,9 +213,9 @@
               <a href="ukhona.html" target="_blank">Ukhona/Ivyabona/Witness →</a>
             </p>
           </section>
-          
   </main>
 
+  <!-- Paste full content of footer.html here (static) -->
   <div id="footer-placeholder" class="wrap-max"></div>
   <script>
     fetch('/assets/html/footer.html')
@@ -284,7 +226,20 @@
     feather.replace();
   </script>
 
+  <script>
+    feather.replace();
+  </script>
+
   <script src="../js/landing.js"></script>
   <script src="../js/shared.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
