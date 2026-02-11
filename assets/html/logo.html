@@ -8,18 +8,15 @@
   <meta name="color-scheme" content="dark light">
   <meta name="theme-color" content="#0a0a0f">
 
-  <!-- Icons -->
   <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon">
   <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" media="(prefers-color-scheme: light)">
   <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" media="(prefers-color-scheme: dark)">
 
-  <!-- Fonts — match index.html -->
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/main.css" />
 
-  <!-- MathJax -->
   <script>
     window.MathJax = {
       tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] },
@@ -29,7 +26,7 @@
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   <style>
-    /* ── page-specific tokens not in main.css ── */
+    /* ── page-specific tokens ── */
     :root {
       --glass:      rgba(15, 28, 46, 0.72);
       --border-hi:  rgba(59, 130, 246, 0.38);
@@ -40,19 +37,13 @@
       --r-lg:       20px;
     }
 
-    /* bg-pattern handled by shared CSS */
-
-    /* layout: .main-content + .wrap-max handled by shared CSS */
-
-    /* ── hero: shared CSS handles padding/layout; keep only local overrides ── */
+    /* ── hero overrides ── */
     .hero-title em {
       font-style: italic;
       color: var(--blue);
     }
 
-    /* ───────────────────────────────────────────
-       DIVIDER
-    ─────────────────────────────────────────── */
+    /* ── DIVIDER ── */
     .divider {
       width: 100%;
       height: 1px;
@@ -60,9 +51,7 @@
       margin: 0 0 48px;
     }
 
-    /* ───────────────────────────────────────────
-       ISLAND / CARD
-    ─────────────────────────────────────────── */
+    /* ── ISLAND / CARD ── */
     .island {
       background: var(--glass);
       border: 1px solid var(--border);
@@ -84,7 +73,7 @@
       box-shadow: 0 0 40px rgba(59, 130, 246, 0.07), 0 2px 32px rgba(0,0,0,0.4);
     }
 
-    /* Accent stripe — left edge */
+    /* Accent stripe */
     .island::before {
       content: '';
       position: absolute;
@@ -94,7 +83,6 @@
       border-radius: 2px;
       opacity: 0.5;
     }
-
     .island:hover::before { opacity: 1; }
 
     /* Corner glow */
@@ -107,13 +95,10 @@
       pointer-events: none;
     }
 
-    /* Island variants */
     .island--center { text-align: center; }
     .island--center::before { display: none; }
 
-    /* ───────────────────────────────────────────
-       ISLAND TYPOGRAPHY
-    ─────────────────────────────────────────── */
+    /* ── TYPOGRAPHY ── */
     .island-tag {
       font-family: var(--mono);
       font-size: 0.68rem;
@@ -148,23 +133,11 @@
       line-height: 1.76;
       max-width: 64ch;
     }
-
-    .island--center .stat-row {
-      justify-content: center;
-    }
-
     .island--center p { margin: 0 auto; }
-
     .island p + p { margin-top: 0.9rem; }
+    .island strong { color: var(--text-hi); font-weight: 500; }
 
-    .island strong {
-      color: var(--text-hi);
-      font-weight: 500;
-    }
-
-    /* ───────────────────────────────────────────
-       MATH BLOCK
-    ─────────────────────────────────────────── */
+    /* ── MATH BLOCK ── */
     .math-block {
       background: rgba(7, 13, 20, 0.7);
       border: 1px solid var(--border);
@@ -177,7 +150,7 @@
     }
 
     /* ───────────────────────────────────────────
-       RADAR ANIMATION
+       RADAR ANIMATION (FIXED)
     ─────────────────────────────────────────── */
     .radar-wrap {
       display: flex;
@@ -197,9 +170,10 @@
         0 0 0 8px rgba(59, 130, 246, 0.03),
         0 0 0 24px rgba(59, 130, 246, 0.015),
         inset 0 0 40px rgba(0, 0, 0, 0.6);
+      overflow: hidden; /* Keeps the sweep clean */
     }
 
-    /* Concentric ring guides */
+    /* Rings */
     .radar-scope .ring {
       position: absolute;
       border-radius: 50%;
@@ -210,41 +184,37 @@
 
     /* Cross hairs */
     .radar-scope::before {
-      content: '';
-      position: absolute;
-      top: 50%; left: 5%; right: 5%;
-      height: 1px;
+      content: ''; position: absolute;
+      top: 50%; left: 5%; right: 5%; height: 1px;
       background: rgba(59, 130, 246, 0.1);
     }
     .radar-scope::after {
-      content: '';
-      position: absolute;
-      left: 50%; top: 5%; bottom: 5%;
-      width: 1px;
+      content: ''; position: absolute;
+      left: 50%; top: 5%; bottom: 5%; width: 1px;
       background: rgba(59, 130, 246, 0.1);
     }
 
+    /* ── THE SWEEP ── */
     .radar-sweep {
       position: absolute;
       top: 50%; left: 50%;
       width: 50%; height: 2px;
       transform-origin: left center;
+      /* Start at -90deg (12 o'clock) to sync with blip timing */
+      transform: rotate(-90deg);
       animation: scan 60s linear infinite;
+      z-index: 10;
     }
 
-    /* The line itself */
     .radar-sweep::before {
-      content: '';
-      position: absolute;
-      inset: 0;
+      content: ''; position: absolute; inset: 0;
       background: linear-gradient(90deg, rgba(59,130,246,0.02) 0%, rgba(59,130,246,0.9) 100%);
       border-radius: 1px;
     }
 
-    /* The trailing wake */
+    /* The Wake/Trail */
     .radar-sweep::after {
-      content: '';
-      position: absolute;
+      content: ''; position: absolute;
       right: 0; top: -24px;
       width: 48px; height: 48px;
       background: conic-gradient(from 255deg at 100% 50%,
@@ -252,39 +222,71 @@
       filter: blur(4px);
     }
 
-    /* Blip dot */
+    /* ── THE BLIP (TARGET) ── */
     .radar-blip {
       position: absolute;
-      width: 5px; height: 5px;
-      background: #3b82f6;
+      width: 6px; height: 6px;
+      background: #60a5fa; /* Brighter core */
       border-radius: 50%;
-      box-shadow: 0 0 8px #3b82f6, 0 0 20px rgba(59,130,246,0.5);
-      animation: blip 60s ease-in-out infinite;
-      /* place blip at ~55% radius, ~70° from top */
-      top:  28%; left: 68%;
+      /* Position at approx 2 o'clock (60 deg). 
+         Sweep hits here at ~10s (16.6% of 60s loop) */
+      top: 25%; left: 70%; 
+      
+      /* Composite animation: 
+         1. blip-flash: handles visibility/decay (60s loop) 
+         2. wander: handles stochastic movement (3s loop) */
+      animation: 
+        blip-flash 60s linear infinite,
+        wander 3s ease-in-out infinite alternate;
     }
 
+    /* Rotation Animation */
     @keyframes scan {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
+      from { transform: rotate(-90deg); }
+      to   { transform: rotate(270deg); }
     }
 
-    @keyframes blip {
-      0%, 18%, 100% { opacity: 0; }
-      19%, 22%      { opacity: 1; }
-      23%, 100%     { opacity: 0; }
+    /* Phosphor Persistence Logic */
+    @keyframes blip-flash {
+      0%, 15% { 
+        opacity: 0; 
+      }
+      /* HIT! Syncs with sweep passing 2 o'clock ~16% */
+      16% { 
+        opacity: 1; 
+        box-shadow: 0 0 10px #60a5fa, 0 0 25px rgba(59,130,246,0.9);
+        transform: scale(1.4);
+      }
+      /* Initial rapid cool-down */
+      20% {
+        opacity: 0.6;
+        box-shadow: 0 0 6px #3b82f6;
+        transform: scale(1);
+      }
+      /* Long slow phosphor decay */
+      45% { 
+        opacity: 0.15; 
+        box-shadow: none;
+      }
+      /* Gone */
+      46%, 100% { 
+        opacity: 0; 
+      }
     }
 
-    /* ───────────────────────────────────────────
-       STAT ROW
-    ─────────────────────────────────────────── */
+    /* Stochastic Movement (Brownian-ish drift) */
+    @keyframes wander {
+      0%   { margin-top: 0px; margin-left: 0px; }
+      25%  { margin-top: -3px; margin-left: 2px; }
+      50%  { margin-top: 2px; margin-left: 4px; }
+      75%  { margin-top: 1px; margin-left: -2px; }
+      100% { margin-top: -2px; margin-left: 0px; }
+    }
+
+    /* ── STAT ROW ── */
     .stat-row {
-      display: flex;
-      gap: 16px;
-      margin-top: 1.6rem;
-      flex-wrap: wrap;
+      display: flex; gap: 16px; margin-top: 1.6rem; flex-wrap: wrap; justify-content: center;
     }
-
     .stat {
       flex: 1 1 120px;
       background: rgba(7, 13, 20, 0.6);
@@ -292,52 +294,28 @@
       border-radius: var(--r);
       padding: 14px 18px;
     }
-
     .stat-value {
-      font-family: var(--mono);
-      font-size: 1.1rem;
-      color: var(--blue);
-      display: block;
-      line-height: 1.2;
+      font-family: var(--mono); font-size: 1.1rem; color: var(--blue);
+      display: block; line-height: 1.2;
     }
-
     .stat-label {
-      font-size: 0.72rem;
-      color: var(--text-dim);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-top: 4px;
-      display: block;
+      font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.06em;
+      text-transform: uppercase; margin-top: 4px; display: block;
     }
 
-    /* footer handled by footer-placeholder + shared CSS */
-
-    /* ───────────────────────────────────────────
-       RESPONSIVE
-    ─────────────────────────────────────────── */
+    /* ── RESPONSIVE / ANIMATION DELAYS ── */
     @media (max-width: 600px) {
       .island { padding: 28px 24px; }
       .island-title { font-size: 1.3rem; }
     }
-
-    /* ───────────────────────────────────────────
-       FADE-IN DELAYS
-    ─────────────────────────────────────────── */
     .island:nth-child(1) { animation-delay: 0.1s; }
     .island:nth-child(2) { animation-delay: 0.22s; }
     .island:nth-child(3) { animation-delay: 0.34s; }
-    .island:nth-child(4) { animation-delay: 0.46s; }
-    .island:nth-child(5) { animation-delay: 0.58s; }
+    
+    @keyframes fadeUp { to { opacity: 1; transform: none; } }
 
-    @keyframes fadeUp {
-      to { opacity: 1; transform: none; }
-    }
-
-    /* ── constrain islands inside wrap-max ── */
     .islands-wrap {
-      max-width: 780px;
-      margin: 0 auto;
-      padding: 0 24px 64px;
+      max-width: 780px; margin: 0 auto; padding: 0 24px 64px;
     }
   </style>
 </head>
