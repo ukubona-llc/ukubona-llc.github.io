@@ -771,3 +771,33 @@ html,body{background:var(--bg); color:var(--text);}
   border: 1px solid rgba(255,255,255,.18);
   font-size: .85rem;
 }
+
+/* Footer rotation */
+.footer-chorus {
+  font-style: italic;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.footer-chorus .chip {
+  background: var(--warning-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.footer-micro {
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+  opacity: 0.7;
+}
+
+.footer-micro a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.footer-micro a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}

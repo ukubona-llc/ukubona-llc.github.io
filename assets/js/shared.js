@@ -1,14 +1,14 @@
-/* Ukubona shared.js v3.2 (2025-08-28)
+/* Ukubona shared.js v4.0 (2026-02-10)
    - BASE handling for GitHub Pages project sites
    - Cache-busted partial injection (header/footer + optional sections)
    - Link rewrite inside injected header/grid to respect BASE
    - Theme persistence + logo swap (#toggle-theme / [data-theme-toggle] / #logo)
-   - Header height -> CSS var (--header-h) for anchor offset (bye <br> hacks)
+   - Header height -> CSS var (--header-h) for anchor offset
    - Active nav (file -> data-nav map) + path fallback
    - App grid toggle (#gridMenu / #menuIcon)
    - Smooth in-page anchors (offset-aware), scroll progress bar, Feather icons
-   - Footer variants via <meta name="ukb-variant" content="neutral|game|education|research|investor">
-     (neutral by default); optional <meta name="ukb-footnote" content="..."> injects a quiet note
+   - Rotating footer chorus (60s cycle matching logo) - respects footer.html structure
+   - Footer variants ONLY for pages with <meta name="ukb-variant"> (opt-in)
 */
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -23,22 +23,22 @@ document.addEventListener('DOMContentLoaded', async () => {
   const BASE = location.pathname.startsWith(REPO) ? REPO : '';
 
   // --- Cache-bust version (bump when partials change) ---
-  const V = 'v20250828.2';
+  const V = 'v20260210.1';
   const withBase = (p) => {
     if (!p) return p;
-    if (/^(https?:|mailto:|tel:|#)/i.test(p)) return p; // leave externals/fragments
-    return p.startsWith('/') ? `${BASE}${p}` : p;       // only prefix root-abs paths
+    if (/^(https?:|mailto:|tel:|#)/i.test(p)) return p;
+    return p.startsWith('/') ? `${BASE}${p}` : p;
   };
   const withV = (url) => url + (url.includes('?') ? '&' : '?') + V;
 
   // --- Partial injection (header/footer required; others optional) ---
   const PARTIALS = [
-    ['header',            '/assets/html/header.html'],           // required
-    ['hero',              '/assets/html/hero.html'],             // optional
-    ['services-section',  '/assets/html/services-section.html'], // optional
-    ['metrics-section',   '/assets/html/metrics-section.html'],  // optional
-    ['modal-overlay',     '/assets/html/modal-overlay.html'],    // optional
-    ['footer-placeholder','/assets/html/footer.html'],           // required
+    ['header',            '/assets/html/header.html'],
+    ['hero',              '/assets/html/hero.html'],
+    ['services-section',  '/assets/html/services-section.html'],
+    ['metrics-section',   '/assets/html/metrics-section.html'],
+    ['modal-overlay',     '/assets/html/modal-overlay.html'],
+    ['footer-placeholder','/assets/html/footer.html'],
   ];
 
   async function inject(id, path){
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  const results = await Promise.all(PARTIALS.map(([id, path]) => inject(id, path)));
+  await Promise.all(PARTIALS.map(([id, path]) => inject(id, path)));
   const headerHost = $('#header');
   const footerHost = $('#footer-placeholder');
 
@@ -71,9 +71,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
   rewriteLinks(headerHost);
-  rewriteLinks($('#gridMenu')); // app grid panel if present
+  rewriteLinks($('#gridMenu'));
 
-  // --- Theme persistence + logo swap (your IDs kept) ---
+  // --- Theme persistence + logo swap ---
   const LIGHT_LOGO = 'https://abikesa.github.io/logos/assets/ukubona-light.png';
   const DARK_LOGO  = 'https://abikesa.github.io/logos/assets/ukubona-dark.png';
   const logo      = $('#logo');
@@ -85,7 +85,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (logo)      logo.src = (theme === 'dark') ? DARK_LOGO : LIGHT_LOGO;
     if (toggleBtn) toggleBtn.textContent = (theme === 'dark') ? '🌙' : '🌞';
   }
-  // init from storage
   setTheme((() => { try { return localStorage.getItem('theme') || 'dark'; } catch { return 'dark'; } })());
   if (toggleBtn){
     toggleBtn.addEventListener('click', () => {
@@ -101,7 +100,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   setHeaderVar();
   win.addEventListener('resize', setHeaderVar, { passive: true });
 
-  // --- Active nav: file -> data-nav map (your keys), with path fallback ---
+  // --- Active nav: file -> data-nav map with path fallback ---
   (function markActive(){
     let path = location.pathname.replace(/\/+$/, '');
     if (BASE && path.startsWith(BASE)) path = path.slice(BASE.length) || '/';
@@ -114,7 +113,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const key = map[file];
     if (key) $$('.nav-links a.nav-link[data-nav="'+key+'"]').forEach(a => a.classList.add('active'));
 
-    // Fallback: exact path match inside header
     if (!key && headerHost){
       headerHost.querySelectorAll('a[href]').forEach(a=>{
         try{
@@ -126,7 +124,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   })();
 
-  // --- App-grid toggle (#gridMenu / #menuIcon) ---
+  // --- App-grid toggle ---
   (function wireGridMenu(){
     const menu = $('#gridMenu');
     const btn  = $('#menuIcon');
@@ -139,7 +137,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     menu.addEventListener('click', (e) => { const a = e.target.closest('a[href]'); if(a) close(); });
   })();
 
-  // --- Optional mobile nav hooks (future-proof) ---
+  // --- Optional mobile nav hooks ---
   (function wireDataNav(){
     const toggle = headerHost ? headerHost.querySelector('[data-nav-toggle]') : null;
     const nav    = headerHost ? headerHost.querySelector('[data-nav]') : null;
@@ -154,10 +152,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     doc.addEventListener('keydown', (e) => { if(e.key==='Escape') setOpen(false); });
   })();
 
-  // --- Feather icons (after injection) ---
+  // --- Feather icons ---
   if (win.feather) win.feather.replace();
 
-  // --- Scroll progress bar (if present) ---
+  // --- Scroll progress bar ---
   (function wireScrollProgress(){
     const bar = $('.scroll-progress');
     if (!bar) return;
@@ -171,7 +169,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     onScroll();
   })();
 
-  // --- Smooth in-page anchors (header-aware; no <br> hacks) ---
+  // --- Smooth in-page anchors ---
   (function wireSmoothAnchors(){
     doc.body.addEventListener('click', (e) => {
       const a = e.target.closest('a[href^="#"]');
@@ -179,14 +177,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       const hash = a.getAttribute('href');
       if(!hash || hash === '#') return;
       const target = $(hash);
-      if(!target) return; // let the browser handle if not found
+      if(!target) return;
       e.preventDefault();
       const headerH = parseInt(getComputedStyle(html).getPropertyValue('--header-h')) || 64;
       const y = target.getBoundingClientRect().top + win.scrollY - headerH - 12;
       win.scrollTo({ top: y, behavior: 'smooth' });
       history.pushState(null, '', hash);
     });
-    // initial hash on load (after injection/layout)
     if (location.hash){
       setTimeout(() => {
         const target = $(location.hash);
@@ -198,7 +195,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   })();
 
-  // --- Tooltips bootstrap (if you ship assets/js/tooltips.js that exposes .init) ---
+  // --- Tooltips bootstrap ---
   (function wireTooltips(){
     const api = win.ukbTooltips || win.UKBTooltips;
     if (api && typeof api.init === 'function'){
@@ -206,16 +203,59 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   })();
 
-  // --- Footer variants (neutral default; opt-in by page via <meta>) ---
+  // --- Rotating footer chorus (60s cycle) ---
+  (function footerRotation(){
+    function initRotation() {
+      const chorus = $('.rotating-chorus');
+      console.log('Looking for .rotating-chorus:', chorus);
+      if (!chorus) return false;
+      
+      const chips = Array.from(chorus.querySelectorAll('.chip'));
+      console.log('Found chips:', chips.length, chips);
+      if (chips.length <= 1) return false;
+      
+      // Hide all except first
+      chips.forEach((chip, i) => {
+        chip.style.display = i === 0 ? 'inline' : 'none';
+        console.log('Chip', i, 'display:', chip.style.display, chip.textContent);
+      });
+      
+      let idx = 0;
+      setInterval(() => {
+        chips[idx].style.display = 'none';
+        idx = (idx + 1) % chips.length;
+        chips[idx].style.display = 'inline';
+        console.log('🔄 Rotated to chip', idx, ':', chips[idx].textContent);
+      }, 3000); // 3 seconds for TESTING - change back to 60000 for production
+      
+      console.log('✅ Footer rotation initialized!');
+      return true;
+    }
+    
+    // Try immediately
+    if (initRotation()) return;
+    
+    console.log('⏳ Waiting for footer to load...');
+    // If footer not ready, wait for it
+    const observer = new MutationObserver(() => {
+      if (initRotation()) observer.disconnect();
+    });
+    observer.observe(doc.body, { childList: true, subtree: true });
+    
+    // Safety: stop observing after 2 seconds
+    setTimeout(() => {
+      observer.disconnect();
+      console.log('⚠️ Footer rotation observer timed out');
+    }, 2000);
+  })();
+
+  // --- Footer variants (OPT-IN ONLY via meta tag) ---
   (function footerVariants(){
+    const metaVariant = doc.querySelector('meta[name="ukb-variant"]');
+    if (!metaVariant) return; // No meta tag = no variant override
+
     const footer = $('.footer');
     if(!footer) return;
-
-    const defaultChorus = [
-      '"Ukubona" means ',
-      '<em>to see, to witness</em> —',
-      'to look into the mirror.'
-    ];
 
     const variants = {
       game: [
@@ -227,7 +267,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       education: [
         'Practice over posturing.',
         'Reproducible over rhetorical.',
-        'Iterate, don’t imitate.',
+        'Iterate, don\'t imitate.',
         'Open tools, shared insight.'
       ],
       research: [
@@ -241,19 +281,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         'Governed growth.',
         'Moats from merit.',
         'Real problems, real margins.'
-      ],
-      neutral: defaultChorus
+      ]
     };
 
-    const metaVariant = doc.querySelector('meta[name="ukb-variant"]');
-    const variant = (metaVariant?.content || 'neutral').toLowerCase();
-    const lines = variants[variant] || defaultChorus;
+    const variant = metaVariant.content.toLowerCase();
+    const lines = variants[variant];
+    if (!lines) return;
 
-    // Swap chorus ONLY if your footer has a .footer-chorus container (safe no-op otherwise)
-    const bar = footer.querySelector('.footer-chorus');
+    // Only override if NOT a rotating-chorus (preserves footer.html)
+    const bar = footer.querySelector('.footer-chorus:not(.rotating-chorus)');
     if (bar) bar.innerHTML = lines.map(l => `<span class="chip">${l}</span>`).join('');
 
-    // Optional variant extras if your footer provides a .footer-extra slot
+    // Optional variant extras
     const extra = footer.querySelector('.footer-extra');
     let htmlExtra = '';
     if (extra){
@@ -272,13 +311,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       } else if (variant === 'research') {
         htmlExtra = `<p class="footer-note">Supporting PIs: study design, compliant pipelines, IRB-friendly workflows.</p>`;
       } else if (variant === 'investor') {
-        htmlExtra = `<p class="footer-note">Operator’s cadence: disciplined build, verifiable outcomes, scalable margins.</p>`;
+        htmlExtra = `<p class="footer-note">Operator's cadence: disciplined build, verifiable outcomes, scalable margins.</p>`;
       }
       if (htmlExtra) { extra.innerHTML = htmlExtra; extra.hidden = false; }
       else { extra.innerHTML = ''; extra.hidden = true; }
     }
 
-    // Optional quiet per-page footnote if your footer has .footer-footnote
+    // Optional per-page footnote
     const footMeta = doc.querySelector('meta[name="ukb-footnote"]');
     if (footMeta){
       const note = footMeta.content.trim();
