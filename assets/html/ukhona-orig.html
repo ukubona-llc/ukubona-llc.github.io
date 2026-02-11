@@ -5,17 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>The Algorithm of Us - Ukubona LLC</title>
   <meta name="description" content="A universal field theory of human progress: civilization as stochastic gradient descent.">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0a0a0f">
 
-  <!-- Icons & Fonts -->
+  <!-- Icons -->
   <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon" />
   <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" media="(prefers-color-scheme: light)" />
   <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" media="(prefers-color-scheme: dark)" />
 
+  <!-- Fonts + Shared CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
-  <!-- Core + Page-specific CSS -->
   <link rel="stylesheet" href="../css/main.css" />
-  <link rel="stylesheet" href="../css/ukhona.css" />
 
   <!-- MathJax -->
   <script>
@@ -30,16 +32,342 @@
   </script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+  <style>
+    /* ── page-specific tokens not in main.css ── */
+    :root {
+      --glass:      rgba(15, 28, 46, 0.72);
+      --border-hi:  rgba(59, 130, 246, 0.38);
+      --blue-faint: rgba(59, 130, 246, 0.06);
+      --text-hi:    #e8f0ff;
+      --mono:       'SF Mono', 'Fira Mono', 'Consolas', monospace;
+      --r:          14px;
+      --r-lg:       20px;
+    }
+
+    /* ───────────────────────────────────────────
+       DIVIDER
+    ─────────────────────────────────────────── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-hi), transparent);
+      margin: 0 0 48px;
+    }
+
+    /* ───────────────────────────────────────────
+       ISLANDS WRAP
+    ─────────────────────────────────────────── */
+    .islands-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px 64px;
+    }
+
+    /* ───────────────────────────────────────────
+       ISLAND / CARD
+    ─────────────────────────────────────────── */
+    .island {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 40px 44px;
+      margin-bottom: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeUp 0.55s ease forwards;
+    }
+
+    .island:hover {
+      border-color: var(--border-hi);
+      box-shadow: 0 0 40px rgba(59,130,246,0.07), 0 2px 32px rgba(0,0,0,0.4);
+    }
+
+    /* Accent stripe — left edge */
+    .island::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 16%; bottom: 16%;
+      width: 2px;
+      background: linear-gradient(180deg, transparent, var(--blue), transparent);
+      border-radius: 2px;
+      opacity: 0.5;
+    }
+    .island:hover::before { opacity: 1; }
+
+    /* Corner glow */
+    .island::after {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(59,130,246,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .island--center { text-align: center; }
+    .island--center::before { display: none; }
+    .island--center p { margin-left: auto; margin-right: auto; }
+
+    /* ───────────────────────────────────────────
+       ISLAND TYPOGRAPHY
+    ─────────────────────────────────────────── */
+    .island-tag {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--blue);
+      opacity: 0.75;
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+
+    .island-title {
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--text-hi);
+      line-height: 1.2;
+      margin-bottom: 0.35rem;
+    }
+
+    .island-subtitle {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      letter-spacing: 0.06em;
+      margin-bottom: 1.6rem;
+    }
+
+    .island p {
+      font-size: 0.955rem;
+      color: var(--text);
+      line-height: 1.76;
+      max-width: 72ch;
+      margin-bottom: 0.9rem;
+    }
+
+    .island p:last-child { margin-bottom: 0; }
+
+    .island strong { color: var(--text-hi); font-weight: 600; }
+
+    /* ── section subheadings inside islands ── */
+    .island h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-hi);
+      margin: 2rem 0 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .island h3:first-child { margin-top: 0; }
+
+    /* ── lists inside islands ── */
+    .island ul, .island ol {
+      padding-left: 1.4em;
+      margin: 0.6rem 0 1rem;
+      color: var(--text);
+      font-size: 0.955rem;
+      line-height: 1.72;
+    }
+
+    .island ul li, .island ol li { margin-bottom: 0.3rem; }
+    .island ul li ul { margin: 0.25rem 0 0.25rem 0; }
+
+    /* ── blockquote inside islands ── */
+    .island blockquote {
+      border-left: 2px solid var(--blue);
+      background: rgba(59,130,246,0.05);
+      border-radius: 0 8px 8px 0;
+      margin: 1.2rem 0;
+      padding: 0.9rem 1.2rem;
+      font-style: italic;
+      color: var(--text-hi);
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+
+    /* ───────────────────────────────────────────
+       MATH BLOCK
+    ─────────────────────────────────────────── */
+    .math-block {
+      background: rgba(7, 13, 20, 0.7);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 28px;
+      margin: 1.4rem 0;
+      text-align: center;
+      font-size: 1.05rem;
+      overflow-x: auto;
+    }
+
+    .math-block p { margin: 0.5rem 0; font-size: inherit; max-width: none; color: var(--text); }
+    .math-block p:first-child { margin-top: 0; }
+    .math-block p:last-child  { margin-bottom: 0; }
+
+    /* ───────────────────────────────────────────
+       VIDEO EMBED
+    ─────────────────────────────────────────── */
+    .video-wrap {
+      margin: 1.6rem 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+    }
+
+    .video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-caption {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      text-align: center;
+      font-style: italic;
+      margin-top: 0.6rem;
+      font-family: var(--mono);
+      letter-spacing: 0.04em;
+    }
+
+    /* ───────────────────────────────────────────
+       FIGURE CARDS (dark-themed images)
+    ─────────────────────────────────────────── */
+    .fig-card {
+      background: rgba(7, 13, 20, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 1.6rem 0;
+    }
+
+    .fig-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .fig-card figcaption {
+      padding: 0.75rem 1rem;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      text-align: center;
+      font-style: italic;
+      font-family: var(--mono);
+      letter-spacing: 0.03em;
+      border-top: 1px solid var(--border);
+    }
+
+    .fig-grid {
+      display: grid;
+      gap: 16px;
+      margin: 1.6rem 0;
+    }
+
+    .fig-grid--2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
+    .fig-grid--3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); }
+
+    /* ───────────────────────────────────────────
+       STAT ROW (equation pill row)
+    ─────────────────────────────────────────── */
+    .stat-row {
+      display: flex;
+      gap: 12px;
+      margin: 1.4rem 0 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      flex: 1 1 100px;
+      background: rgba(7, 13, 20, 0.6);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 12px 16px;
+    }
+
+    .stat-value {
+      font-family: var(--mono);
+      font-size: 0.95rem;
+      color: var(--blue);
+      display: block;
+      line-height: 1.3;
+    }
+
+    .stat-label {
+      font-size: 0.68rem;
+      color: var(--text-dim);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* ───────────────────────────────────────────
+       CONCEPT TAGS (key terms row)
+    ─────────────────────────────────────────── */
+    .concept-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 1.2rem 0;
+    }
+
+    .concept-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      padding: 5px 12px;
+      border-radius: 40px;
+      border: 1px solid var(--border-hi);
+      background: var(--blue-faint);
+      color: var(--blue);
+      white-space: nowrap;
+    }
+
+    /* ───────────────────────────────────────────
+       RESPONSIVE
+    ─────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .island { padding: 28px 22px; }
+      .island-title { font-size: 1.3rem; }
+    }
+
+    /* ───────────────────────────────────────────
+       FADE-IN DELAYS
+    ─────────────────────────────────────────── */
+    .island:nth-child(1)  { animation-delay: 0.08s; }
+    .island:nth-child(2)  { animation-delay: 0.16s; }
+    .island:nth-child(3)  { animation-delay: 0.24s; }
+    .island:nth-child(4)  { animation-delay: 0.32s; }
+    .island:nth-child(5)  { animation-delay: 0.40s; }
+    .island:nth-child(6)  { animation-delay: 0.48s; }
+    .island:nth-child(7)  { animation-delay: 0.56s; }
+    .island:nth-child(8)  { animation-delay: 0.64s; }
+    .island:nth-child(9)  { animation-delay: 0.72s; }
+    .island:nth-child(10) { animation-delay: 0.80s; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: none; }
+    }
+  </style>
 </head>
+
 <body>
   <div class="scroll-indicator"><div class="scroll-progress"></div></div>
   <div class="bg-pattern"></div>
 
-  <!-- FULL STATIC HEADER GOES HERE -->
-  <header class="header" id="header">
-    <!-- Paste the entire content of assets/html/header.html here -->
-  </header>
+  <header class="header" id="header"></header>
 
   <section class="hero">
     <div class="hero-content wrap-max">
@@ -48,12 +376,20 @@
     </div>
   </section>
 
+  <section class="content-section">
+  <div class="island island--center">
+  <span class="island-tag">Manifesto</span>
+  <h2 class="island-title">To See is to Heal</h2>
+  <p class="island-subtitle">Ukubona — from civilizational progress to personalized medicine</p>
+  <p>
+    The same universal algorithm that drives ant colonies, raindrops carving valleys, and scientific breakthroughs also governs a single human life. 
+    At Ukubona, we apply this insight to healthcare: building <strong>digital twins</strong> that let clinicians and patients truly <em>see</em> the terrain and rehearse better paths forward.
+  </p>
+</div>
+</section>
+
   <main class="main-content">
     <div class="islands-wrap">
-
-      <!-- All your islands content stays exactly the same -->
-      <!-- (Paste everything from your <section class="content-section"> down to the last island) -->
-
 
       <div class="divider"></div>
 
@@ -409,21 +745,15 @@
         </p>
       </div>
 
-    </div>
+    </div><!-- /islands-wrap -->
   </main>
 
-  <!-- FULL STATIC FOOTER GOES HERE -->
-  <footer id="footer-placeholder" class="wrap-max">
-    <!-- Paste the entire content of assets/html/footer.html here -->
-  </footer>
+  <div id="footer-placeholder"></div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
   <script src="../js/landing.js"></script>
   <script src="../js/shared.js"></script>
   <script>if (window.feather) feather.replace();</script>
+
 </body>
 </html>
-
-
-
-
-
