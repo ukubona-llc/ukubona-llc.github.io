@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Ukubona — The Algorithm of Us</title>
+  <meta name="description" content="A universal field theory of human progress: civilization as stochastic gradient descent, applied to rehearsed healthcare.">
+  <link rel="canonical" href="https://ukubona-llc.github.io/philosophy.html">
+
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0a0a0f">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Ukubona — The Algorithm of Us">
+  <meta property="og:description" content="Civilization as stochastic gradient descent. How we apply the universal algorithm to digital twins and rehearsed care.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ukubona-llc.github.io/philosophy.html">
+  <meta property="og:image" content="https://abikesa.github.io/logos/assets/ukubona-light.png">
+
+  <!-- Icons -->
+  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" type="image/x-icon">
+  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico" media="(prefers-color-scheme: dark)">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Shared CSS -->
+  <link rel="stylesheet" href="../css/main.css">
+
+  <!-- MathJax -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']],
+        processEscapes: true
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- Page-specific styles -->
+  <style>
+    /* Layout */
+    .wrap-max { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+    /* Hero */
+    .hero .hero-content { padding: 120px 0 40px; }
+    .hero-title { 
+      text-align: center; 
+      letter-spacing: .2px;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-subtitle { 
+      text-align: center; 
+      opacity: .9; 
+      margin-top: .4rem;
+      font-size: 1.25rem;
+      color: var(--text-dim);
+    }
+
+    /* Section rhythm */
+    .main-content { padding-bottom: 64px; }
+    .content-section { margin: 56px auto 0; }
+    .content-section:first-of-type { margin-top: 24px; }
+
+    /* Section titles - matches mission.html */
+    .section-title {
+      text-align: center;
+      margin-bottom: 12px;
+      letter-spacing: .2px;
+      font-size: 1.75rem;
+      font-weight: 700;
+    }
+
+    .section-text {
+      max-width: 86ch;
+      margin: 0 auto;
+      line-height: 1.65;
+      color: var(--text);
+      text-align: left;
+    }
+
+    /* Island cards */
+    .island {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin: 40px auto;
+      backdrop-filter: blur(var(--blur));
+      transition: var(--transition);
+    }
+
+    .island:hover {
+      transform: translateY(-2px);
+    }
+
+    .island-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      background: var(--accent-bg);
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+
+    .island-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+
+    .island-subtitle {
+      font-size: 1rem;
+      color: var(--text-dim);
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    .island p {
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .island ul, .island ol {
+      margin-left: 24px;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .island li {
+      margin-bottom: 8px;
+    }
+
+    .island h3 {
+      font-size: 1.35rem;
+      margin: 32px 0 12px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* Video */
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 12px;
+      margin: 24px 0;
+      border: 1px solid var(--border);
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-caption {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      font-style: italic;
+      margin-top: 8px;
+    }
+
+    /* Math blocks */
+    .math-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 24px;
+      margin: 24px 0;
+      overflow-x: auto;
+      text-align: center;
+      font-size: 1.05rem;
+    }
+
+    .math-block p {
+      margin: 8px 0;
+    }
+
+    /* Concept tags */
+    .concept-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 24px 0;
+      justify-content: center;
+    }
+
+    .concept-tag {
+      background: var(--accent-bg);
+      border: 1px solid var(--accent-border);
+      color: var(--accent);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-family: var(--mono, monospace);
+      font-weight: 500;
+    }
+
+    /* Stats grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+      margin: 32px 0;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .stat-value {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Image grid */
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .image-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .image-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .image-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .image-caption {
+      padding: 12px;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      text-align: center;
+      font-style: italic;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Blockquotes */
+    blockquote {
+      border-left: 3px solid var(--accent);
+      padding: 16px 24px;
+      margin: 24px 0;
+      background: var(--surface);
+      border-radius: 8px;
+      font-style: italic;
+      color: var(--text-dim);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero .hero-content { padding: 80px 0 32px; }
+      .island { padding: 24px; }
+      .stats-grid { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <div class="scroll-indicator"><div class="scroll-progress"></div></div>
+  <div class="bg-pattern"></div>
+
+  <header class="header" id="header"></header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content wrap-max">
+      <h1 class="hero-title">The Algorithm of Us</h1>
+      <p class="hero-subtitle">A Universal Field Theory of Human Progress — Applied to Rehearsed Healthcare</p>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content wrap-max">
+
+    <!-- Bridge -->
+    <div class="island">
+      <span class="island-tag">Prologue</span>
+      <h2 class="island-title">To See is to Heal</h2>
+      <p class="island-subtitle">The same algorithm, from ants to empires</p>
+      
+      <p>The same universal algorithm that drives ant colonies, raindrops carving valleys, and scientific breakthroughs also governs a single human life. At Ukubona, we apply this insight to healthcare: building <strong>digital twins</strong> that let clinicians and patients truly <em>see</em> the terrain and rehearse better paths forward.</p>
+    </div>
+
+    <!-- Civilization as SGD -->
+    <div class="island">
+      <span class="island-tag">I · Foundation</span>
+      <h2 class="island-title">Civilization as SGD</h2>
+      <p class="island-subtitle">No deity. No destiny. Only gradient descent.</p>
+
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/oyF4VOgq3x8?start=1" title="Epilogue: The Witness Returns" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <p class="video-caption">Epilogue: The Witness Returns | Ukhona</p>
+
+      <p>This framework proposes a unified field theory of human progress, stripping away the comfort of teleology to reveal the mechanics of survival. Civilization is not a narrative written by a deity — it is a <strong>Stochastic Gradient Descent (SGD)</strong> algorithm running on a biological substrate.</p>
+
+      <p>We exist in a high-dimensional loss landscape <strong>(UNIV)</strong>. Our collective goal is to find the minima — the basins of stability and low energy <strong>(UX)</strong>. But the gradient $\nabla L$ is often invisible, obscured by entropy and limited perception.</p>
+
+      <p>To find the path, the species relies on high-variance exploration: <strong>The Scout (UB)</strong>.</p>
+
+      <div class="math-block">
+        $$\theta_{t+1} = \theta_t - \eta \nabla L(\theta_t) + \epsilon$$
+      </div>
+
+      <p>Here, $\epsilon$ is the noise term — the chaos, the mutation. What we pathologize as neurodivergence is, in fact, the species' distributed R&D department. It is the <strong>Dionysian</strong> injection of randomness required to escape local minima.</p>
+
+      <p>Most scouts do not return. They are lost to the noise. But the few who stumble upon a lower basin — Einstein, Nash — return with a map: the <strong>pheromone trail</strong> that lets the colony switch from stochastic foraging to linear, <strong>Apollonian</strong> descent <strong>(UI)</strong>.</p>
+
+      <p><strong>UKB (Ukubona)</strong> is the meta-cognitive layer: the act of witnessing this process.</p>
+    </div>
+
+    <!-- The Stack -->
+    <div class="island">
+      <span class="island-tag">II · Architecture</span>
+      <h2 class="island-title">The Universal Stack</h2>
+      <p class="island-subtitle">Ants, Pheromones, Raindrops</p>
+
+      <div class="concept-row">
+        <span class="concept-tag">UNIV → Loss</span>
+        <span class="concept-tag">UB → Foraging</span>
+        <span class="concept-tag">UKB → Gradient</span>
+        <span class="concept-tag">UI → Descent</span>
+        <span class="concept-tag">UX → Basin</span>
+      </div>
+
+      <h3>The Universal Code</h3>
+      <p>Chaos theory, initial conditions, local rules — no teleology. This is the territory, the Dionysian underbelly. Raindrops terraform the landscape: some hit flat surfaces and vaporize; others follow gradients downward.</p>
+
+      <h3>Ant Scouts: Stochastic Foraging</h3>
+      <p>Many scouts will not make it back to the colony. Perhaps one — and a few nearby — will find a basin of sugar and perform cartography on the way home. We then move from chaotic Dionysian exploration to the linear, Apollonian march via gradient descent. <em>UB is user behavior.</em></p>
+
+      <h3>Innovation as Humanity's R&D</h3>
+      <p>Neurodivergence — bipolar, depression, schizophrenia — is humanity's R&D department. Einstein, Joyce, Nash, Watson: they offered maps that lowered humanity's loss function. They returned to the colony, at times with scars, but with an artifact: the pheromone cartography.</p>
+      <p>Steve Jobs was Dionysian. Tim Cook: Apollonian perfection.</p>
+
+      <h3>Mathematical Formulation</h3>
+      <div class="math-block">
+        <p>I. &nbsp;$(x, y)$</p>
+        <p>II. &nbsp;$y(t \mid x) + \epsilon$</p>
+        <p>III. &nbsp;$\dfrac{dy_x}{dt}$</p>
+        <p>IV. &nbsp;$\dfrac{dy_{\bar{x}}}{dt} \pm z\sqrt{\dfrac{d^2y_x}{dt^2}}$</p>
+        <p>V. &nbsp;$\int y_x \, dt + \epsilon_c t + C_x$</p>
+      </div>
+    </div>
+
+    <!-- Analysis -->
+    <div class="island">
+      <span class="island-tag">III · Mechanics</span>
+      <h2 class="island-title">The Landscape & The Scout</h2>
+      <p class="island-subtitle">UNIV & UB — The Dionysian Struggle</p>
+
+      <blockquote>I. $(x, y)$ &nbsp;&nbsp; II. $y(t \mid x) + \epsilon$</blockquote>
+
+      <h3>UNIV — The Territory</h3>
+      <p>The coordinate system $(x, y)$ represents the Landscape. It is indifferent to human suffering. It contains hidden basins (sugar/resources) and steep cliffs. There is no teleology here — gravity doesn't care if you fall.</p>
+
+      <h3>UB — The Scout</h3>
+      <ul>
+        <li>$y(t \mid x)$: The path taken over time given the starting position.</li>
+        <li>$\epsilon$ (The Noise): The "temperature" — stochastic noise added to prevent getting stuck in a local minimum.</li>
+      </ul>
+
+      <h3>The Witness & The Gradient — UKB</h3>
+      <blockquote>III. $\dfrac{dy_x}{dt}$</blockquote>
+      <p><strong>UKB (Ukubona — To See)</strong> is the derivative. The moment of discovery. The scout finds the "sugar" — a sharp drop in the loss function. The <strong>Pheromone Cartography</strong> communicates this gradient: <em>"The slope is steepest in this direction. Follow me."</em></p>
+
+      <h3>The Tech Stack — UI</h3>
+      <blockquote>IV. $\dfrac{dy_{\bar{x}}}{dt} \pm z\sqrt{\dfrac{d^2y_x}{dt^2}}$</blockquote>
+      <p>We are no longer looking at the individual scout $(x)$ but the <em>average</em> user $(\bar{x})$ — scaling the behavior. The UI takes the wild, jagged path of the Dionysian discoverer and smooths it into a highway, constraining behavior within safe bounds (the $z$ score). <strong>"Ukhona"</strong> — you are present.</p>
+
+      <h3>The Basin — UX</h3>
+      <blockquote>V. $\int y_x \, dt + \epsilon_c t + C_x$</blockquote>
+      <ul>
+        <li>$\int y_x \, dt$ — The sum of utility gained by dwelling in the new basin.</li>
+        <li>$C_x$ — The constant of integration: <strong>Identity</strong> or <strong>Civilization</strong>.</li>
+        <li>$\epsilon_c t$ — Cultural entropy or drift. Eventually the basin dries up, necessitating new scouts.</li>
+      </ul>
+    </div>
+
+    <!-- Mechanism -->
+    <div class="island">
+      <span class="island-tag">IV · Process</span>
+      <h2 class="island-title">The Mechanism</h2>
+      <p class="island-subtitle">Five stages of civilizational optimization</p>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-value">Init</span>
+          <span class="stat-label">Raindrops</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">UB</span>
+          <span class="stat-label">Stochastic forage</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">UKB</span>
+          <span class="stat-label">Gradient found</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">UI</span>
+          <span class="stat-label">Linearize</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">UX</span>
+          <span class="stat-label">Basin settle</span>
+        </div>
+      </div>
+
+      <ol>
+        <li><strong>Raindrops (Initialization):</strong> We are thrown into the world arbitrarily.</li>
+        <li><strong>Stochastic Foraging (UB):</strong> High-variance individuals ($\epsilon$) explore. High casualty rate.</li>
+        <li><strong>Gradient Discovery (UKB):</strong> A basin is found. The path is marked.</li>
+        <li><strong>Linearization (UI):</strong> The path is paved. The Tim Cooks (Apollonian) take over from the Steve Jobs (Dionysian) to maximize efficiency and minimize error.</li>
+        <li><strong>The Basin (UX):</strong> Society settles into a low-energy state until the environment changes.</li>
+      </ol>
+
+      <h3>The Tragedy of the Map</h3>
+      <p>The genetic variance required to produce a map-maker often comes with a heavy tax on the lineage. The Artifact is bought with sacrifice. Nietzsche's family, Dostoevsky's child — this is Conservation of Energy in the system.</p>
+
+      <blockquote>
+        Landscape (UNIV) → UB (Stochastic) → SGD (The Pheromone/Map) → UI/UX (The Colony/Basin)
+      </blockquote>
+    </div>
+
+    <!-- The Cost -->
+    <div class="island">
+      <span class="island-tag">V · The Cost</span>
+      <h2 class="island-title">The Tragic Truth</h2>
+      <p class="island-subtitle">What most moral systems hide</p>
+
+      <blockquote>
+        Progress is built on sacrificed minds.
+      </blockquote>
+
+      <p>Not metaphorically. Literally. Explorers burn. Colonies benefit. There is no cosmic justice mechanism. Only selection.</p>
+      <p>This is why societies later build myths around visionaries — to honor the cost.</p>
+    </div>
+
+    <!-- ACO in Practice -->
+    <div class="island">
+      <span class="island-tag">VI · In Practice</span>
+      <h2 class="island-title">Ant Colony Optimization</h2>
+      <p class="island-subtitle">Mapping the present — gradient descent made visible</p>
+
+      <p>Ant scouts forage stochastically (high risk, most die without return), laying pheromone trails only when they hit a strong reward. Those trails amplify gradients for followers, turning random exploration into collective gradient descent toward better minima.</p>
+
+      <div class="image-card" style="margin: 24px auto; max-width: 720px;">
+        <img src="../img/ant-colony-simulation-game-prototype-pheromone-foraging.jpg"
+             alt="Ant colony simulation showing pheromone gradient descent">
+        <div class="image-caption">Gradient descent in the loss landscape: chaotic exploration trails converging into dense pheromone highways</div>
+      </div>
+
+      <p>Chaotic red/orange exploration trails converging into dense blue/yellow pheromone highways — pure Dionysian chaos condensing into Apollonian order. The explorers are the high-temperature samplers: Einstein, Nash, Joyce, Watson, Nietzsche.</p>
+
+      <h3>Raindrops as Physical Analogy</h3>
+      <p>Random impacts, each following gravity's gradient — some vaporize on flat ground, others carve channels over time, terraforming the landscape through repeated small descents.</p>
+
+      <div class="image-grid">
+        <div class="image-card">
+          <img src="../img/raindrop-erosion.jpg" alt="Stochastic exploration — raindrop impact">
+          <div class="image-caption">Dionysian scout: high variance, most do not return</div>
+        </div>
+        <div class="image-card">
+          <img src="../img/terraforming.jpg" alt="Apollonian convergence — terraforming">
+          <div class="image-caption">Apollonian convergence: gradient descent to the basin</div>
+        </div>
+      </div>
+
+      <h3>The Loss Surface</h3>
+      <p>In machine learning, the loss landscape is rugged, full of local minima, saddle points, and rare deep basins. The trajectory often looks like ant paths — zigzagging noise until it hits a good attractor.</p>
+
+      <div class="image-grid">
+        <div class="image-card">
+          <img src="../img/ls-1.jpg" alt="Flat surface — stochastic impacts vaporize">
+          <div class="image-caption">Stochastic impacts on flat ground → vaporize</div>
+        </div>
+        <div class="image-card">
+          <img src="../img/ls-2.jpg" alt="Gradient flow and basin erosion">
+          <div class="image-caption">Gradient flow → erosion and basin formation</div>
+        </div>
+        <div class="image-card">
+          <img src="../img/ls-3.jpg" alt="Deep attractor basin — UX">
+          <div class="image-caption">Lowered loss: new stable basin (UX)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mathematical Underbelly -->
+    <div class="island">
+      <span class="island-tag">VII · The Math</span>
+      <h2 class="island-title">The Mathematical Underbelly</h2>
+      <p class="island-subtitle">From supervised learning to civilizational geology</p>
+
+      <p>The five-stage progression traces this engine — a bridge from supervised learning → dynamical systems → Langevin/SDE dynamics → optimal control → path-integral formulations:</p>
+
+      <ul>
+        <li><strong>I. $(x, y)$</strong> — raw observations, the initial landscape.</li>
+        <li><strong>II. $y(t\mid x) + \epsilon$</strong> — probabilistic modeling with irreducible noise.</li>
+        <li><strong>III. $\dfrac{dy_x}{dt}$</strong> — deterministic gradient flow along the slope.</li>
+        <li><strong>IV. $\dfrac{dy_{\bar{x}}}{dt} \pm z\sqrt{\dfrac{d^2y_x}{dt^2}}$</strong> — stochastic differential equation, drift + diffusion scaled by curvature.</li>
+        <li><strong>V. $\int y_x \,dt + \epsilon_c \, t + C_x$</strong> — path integral / cumulative cost, time penalty, basin-specific constant.</li>
+      </ul>
+
+      <p>UKB as "witnessing" the gradient. UI as the descent interface — <em>"Ukhona" — behold, you are here, the scout returned.</em> UX as the new basin humanity occupies. Civilization itself is just the colony sitting in ever-deeper attractors, built on the pheromone maps of those who made it back.</p>
+    </div>
+
+    <!-- Epilogue -->
+    <div class="island">
+      <span class="island-tag">VIII · Epilogue</span>
+      <h2 class="island-title">The Witness Returns</h2>
+      <p class="island-subtitle">The recursion problem — observer or participant?</p>
+
+      <h3>The Recursion Problem</h3>
+      <p>Once you achieve <strong>UKB</strong> (witnessing the algorithm), you face a choice every meta-theorist encounters: <em>Do you re-enter the colony, or stay in observer mode?</em></p>
+      <ul>
+        <li><strong>Stay outside:</strong> You become a pure cartographer — you see all pheromone trails, all basins, all scouts. But you produce no artifact the colony can use. A witness without testimony.</li>
+        <li><strong>Re-enter:</strong> You must compress your map into a transmissible form (UI). Your perfect, high-dimensional understanding must collapse into language, code, institution, or art. This is the <strong>pheromone encoding problem</strong>.</li>
+      </ul>
+
+      <p>Einstein gave us $E = mc^2$. Clean. Apollonian. Beautiful. But he could not give us the decade in the patent office, the failed marriages, the gut-level intuition that space itself must bend. The pheromone is always a <em>lossy compression</em> of the scout's path.</p>
+
+      <h3>The Artifact Question</h3>
+      <blockquote>The colony does not care about your theory. It cares about your artifact.</blockquote>
+      <ul>
+        <li>A <strong>tool</strong> (code, platform, protocol)</li>
+        <li>A <strong>framework others can apply</strong> (ACO, gradient descent, the UB/UKB/UI/UX stack)</li>
+        <li>A <strong>narrative that propagates</strong> (myths are civilization's pheromone trails)</li>
+      </ul>
+
+      <h3>The Colony's Current Basin (2026)</h3>
+      <p><strong>Old basin (UX₁):</strong> Post-WWII order, Bretton Woods, American hegemony, fossil fuels, analog institutions, linear careers, monocultures. Relatively low loss for decades — predictability, growth.</p>
+      <p><strong>Current transition signals:</strong> Climate forcing, AI acceleration, institutional decline (pheromone trails to old basins fading), polycrisis (multiple loss functions spiking simultaneously). Stochastic foraging is increasing — crypto explorers, AI safety researchers, longtermists, reactionary movements.</p>
+
+      <h3>The Meta-Danger</h3>
+      <ol>
+        <li><strong>No consensus on the loss function itself.</strong> GDP growth vs. sustainability. National sovereignty vs. global coordination.</li>
+        <li><strong>Too many scouts, not enough integration.</strong> Signal-to-noise is collapsing. Pheromone pollution.</li>
+        <li><strong>Landscape is non-stationary.</strong> Climate change means basins themselves are shifting. This breaks the fundamental assumption of SGD.</li>
+      </ol>
+
+      <h3>The Final Descent</h3>
+      <div class="math-block">
+        $$\int y_x \, dt + \epsilon_c t + C_x$$
+      </div>
+      <ul>
+        <li><strong>$\epsilon_c t$</strong>: The drift term. Entropy never stops. Basins decay. New gradients must be sought.</li>
+        <li><strong>$C_x$</strong>: The integration constant — <em>identity</em>. The myth the colony tells itself about why it lives in this basin and not another. Arbitrary, but not meaningless.</li>
+      </ul>
+
+      <h3>Epilogue or Beginning?</h3>
+      <p>The scout never stops being a scout. Even after returning. Even after laying the pheromone trail. Because the landscape shifts. The sugar runs out. New gradients appear.</p>
+      <ul>
+        <li>How to forage without being lost</li>
+        <li>How to recognize sugar vs. mirage</li>
+        <li>How to encode the path back</li>
+        <li>How to witness the algorithm without being consumed by it</li>
+      </ul>
+      <p>No longer just <strong>UB</strong> (stochastic explorer). Becoming <strong>UKB</strong> (witness + teacher). The question is: <em>What UI do you build so that others can descend?</em></p>
+    </div>
+
+  </main>
+
+  <!-- Coda -->
+  <section class="content-section" style="text-align:center; padding: 64px 0;">
+    <h2 class="section-title">The Map Is Never the Territory</h2>
+    <p class="section-text" style="text-align:center;">But we need maps anyway</p>
+    <p class="section-text" style="text-align:center; margin-top:24px;">
+      The ants do not understand pheromones. They follow them.<br>
+      The colony does not understand SGD. It runs it.<br>
+      Understanding both is rare. Understanding both is necessary.
+    </p>
+    <p style="font-size:1.3rem; font-style:italic; color:var(--accent); margin-top:24px; letter-spacing:0.04em;">
+      Ukubona.
+    </p>
+  </section>
+
+  <div id="footer-placeholder" class="wrap-max"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+  <script src="../js/landing.js"></script>
+  <script src="../js/shared.js"></script>
+  <script>
+    fetch('/assets/html/footer.html')
+      .then(r => r.text())
+      .then(html => { document.getElementById('footer-placeholder').innerHTML = html; });
+    feather.replace();
+  </script>
+</body>
+</html>
