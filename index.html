@@ -3,35 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Twin OS Embed</title>
-    <!-- Icons -->
-    <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" />
-    <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico"
-          media="(prefers-color-scheme: dark)" />
+  <title>Ukubona LLC</title>
+  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-light.ico" />
+  <link rel="icon" href="https://abikesa.github.io/favicon/assets/favicon-dark.ico"
+        media="(prefers-color-scheme: dark)" />
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      background: #000;
-      overflow: hidden;
-    }
-
-    iframe {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      border: none;
-    }
+    html, body { margin: 0; padding: 0; height: 100%; background: #000; overflow: hidden; }
+    iframe { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; border: none; }
   </style>
 </head>
 <body>
   <iframe
     src="https://twin-os.onrender.com/"
     loading="lazy"
-    allowfullscreen>
-  </iframe>
+    allowfullscreen
+  ></iframe>
+
+  <script>
+    // Replace iframe history entries with parent entries
+    // so back button never escapes to Render
+    const iframe = document.querySelector('iframe')
+    iframe.addEventListener('load', () => {
+      try {
+        iframe.contentWindow.addEventListener('popstate', () => {
+          window.history.replaceState(null, '', window.location.href)
+        })
+      } catch(e) {
+        // cross-origin guard — if Render ever moves domains
+      }
+    })
+
+    // Intercept all link clicks inside iframe
+    iframe.addEventListener('load', () => {
+      try {
+        iframe.contentDocument.addEventListener('click', e => {
+          const a = e.target.closest('a')
+          if (a && a.href && !a.href.startsWith('https://twin-os.onrender.com')) return
+          window.history.replaceState(null, '', window.location.href)
+        })
+      } catch(e) {}
+    })
+  </script>
 </body>
 </html>
